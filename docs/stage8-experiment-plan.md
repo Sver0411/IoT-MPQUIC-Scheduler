@@ -1,0 +1,19 @@
+# Stage 8 validation plan
+
+Baseline commit `97dc1452affcaf250ce1fd940fb04c799f505bf1`, Stage 7 tree `61bd02cf7e8f33ed9258b15b711fa474a5fcc446`. The pre-change SHA-256 check verified 12,363 Stage 7 files. The original verifier validates transport, record lifecycles and bound probability estimates. It lacks Proposed-App decision timestamps on native transport, exact admission cutoffs, feedback transitions and quota evidence. Add opt-in observations and replay the normative rules independently. Keep previous logs and data unchanged.
+
+## Experiments frozen before the formal run
+
+Use seeds 8101–8120 for paired transport and factorial comparisons and 8201–8220 for randomized exploration. Explore with odd training and even held-out test seeds. Seed 8091 is a pilot and is excluded from all formal summaries. Run two environments for the main contrasts: the existing high mixed workload under outage reversal and a previously unused asymmetric bandwidth/latency reversal with short-deadline bursts. Add the directed outage repair pair to measure recovery. Preserve the same 4 s window, pinned dependencies, stream/queue limits, CUBIC and pacing. Run policies in shuffled order inside a seed block.
+
+Each main block contains FIFO + native, FIFO + probability, Proposed-App + native, Proposed-App + fixed MinRTT, Proposed-App + earliest completion, Proposed-App + probability and Proposed-App + probability with cross repair. Primary outcomes are event deadline success and observed mean AoI. Primary contrasts are the application effect with native transport, the probability-transport effect with FIFO, the additive interaction, probability versus fixed MinRTT, probability versus earliest completion, and cross versus strict. Apply Holm over these six contrasts × two outcomes × two main environments. Directed repair results are separate. Compute whole-seed paired bootstrap intervals, paired standardized effect sizes and two-sided sign-flip tests.
+
+## Selection and randomized measurement
+
+Fixed MinRTT binds the eligible path with smallest SRTT at submission. Earliest completion chooses smallest existing estimated completion duration. Probability maximizes the existing completion score with completion duration as a tie break. Final ties use eligible path order. The custom arms share the same affinity callback. Native uses the upstream packet scheduler and serves as a system baseline. The cross arm changes only repair.
+
+Randomized strict-affinity exploration runs Proposed-App on two environments and two offered load levels. Selection draws from eligible paths with equal probability using a fixed unsigned integer hash of the independently derived assignment seed, record ID, effective slack bucket and payload-size bucket. The environment and load are already in the assignment seed. Analyze eligible two-path decisions, report actual allocation and observed outcomes only, and label single-path decisions separately. Measure absolute deadline and effective freshness budget. The primary calibration comparisons are held-out Brier against slack-only overall and in the positive 0–100 ms band. Log loss, ECE, ROC-AUC, calibration intercept and slope accompany those scores. Fit simple baselines and a monotone probability calibration on training seeds. Report common test rows, seed-paired Brier differences and scenario/load/path/slack/payload subgroups.
+
+## Evidence
+
+Persist the exact source commit and executable/toolchain hashes, per-case configuration, workload seed, assignment seed, timestamps, endpoints, XQUIC traces, qdiscs and PCAPs. Validate eligibility and both logged forecasts, verify actual initial and repair transmission against XQUIC send records, and verify aggregate outputs by independent rerun. Recheck the seven Stage 7 special-time cases by monotonic log and window, with explicit treatment of process-lifetime CPU.

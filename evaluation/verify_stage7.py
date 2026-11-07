@@ -14,7 +14,7 @@ from verify_stage4 import transmitted_streams, verify_affinity
 from verify_stage5 import verify_network
 
 
-def verify_run(root):
+def verify_run(root, path_oracle=None):
     case = json.loads((root / "case.json").read_text())
     client, server = (read_events(root / f"{role}.log") for role in ("client", "server"))
     for trace in (client, server):
@@ -80,12 +80,15 @@ def verify_run(root):
                     seed = row["random_loss_seed"] + (side == "server") + (2 if link == "b" else 0)
                     require(f"seed {seed}" in qdisc, "kernel qdisc did not confirm its seed")
     cross = []
-    if config["path"] == "proposed-path":
+    if config["path"] == "proposed-path" or (path_oracle and config["path"] != "minrtt"):
         plans, sent, cross = verify_affinity(root, client, config["repair"] == "cross")
         require(plans.keys() == streams.keys() and
                 all(plan["id"] == streams[sid]["id"] for sid, plan in plans.items()),
                 "bound streams lack record plans")
-        verify_estimates(case, records, plans, client)
+        if path_oracle:
+            path_oracle(case, records, plans, client, origin)
+        else:
+            verify_estimates(case, records, plans, client)
     else:
         require(not client.get("iot_packet_path") and not client.get("iot_plan"),
                 "native transport unexpectedly uses a bound path")

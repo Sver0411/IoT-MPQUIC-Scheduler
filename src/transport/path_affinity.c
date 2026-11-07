@@ -30,6 +30,8 @@ static struct iot_path_sample path_sample(xqc_path_ctx_t *path, double loss_scal
         .rate_Bps = xqc_send_ctl_get_est_bw(ctl),
         .queued_bytes = path->path_schedule_bytes,
         .in_flight_bytes = ctl->ctl_bytes_in_flight,
+        .recent_sent = sent,
+        .recent_lost = lost,
         .loss = fmin(0.95, loss * loss_scale),
         .observed_loss = loss,
         .pto = ctl->ctl_pto_count,

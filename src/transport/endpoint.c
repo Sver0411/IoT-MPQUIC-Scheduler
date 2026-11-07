@@ -36,7 +36,9 @@ struct iot_run {
         struct iot_receiver receiver;
     };
     uint64_t start, retry_at, retry_delay, horizon_us;
-    bool window_blocked, bind_path;
+    bool window_blocked, bind_path, oracle;
+    enum iot_path_rule path_rule;
+    uint32_t assignment_seed;
     struct iot_scheduler scheduler;
     struct iot_path_control paths;
 };
@@ -425,9 +427,25 @@ static int finish_iot_record(xqc_stream_t *stream, struct record_stream *buffer)
         (!state && (ack.latest_serial || ack.latest_generated)))
         return -1;
     buffer->id = ack.id;
+    const struct iot_feedback *previous = NULL;
+    struct iot_feedback before = {0};
+    if (state && ep->iot->oracle) {
+        previous = iot_latest_feedback(&ep->iot->scheduler, entry->record.source);
+        if (previous)
+            before = *previous;
+    }
     if (state)
         iot_schedule_feedback(&ep->iot->scheduler, entry->record.source,
                               ack.latest_generated - ep->iot->start, ack.latest_serial);
+    if (state && ep->iot->oracle && ep->iot->scheduler.policy == IOT_PROPOSED_APP) {
+        const struct iot_feedback *after = iot_latest_feedback(&ep->iot->scheduler, entry->record.source);
+        uint64_t elapsed = received - ep->iot->start;
+        event("iot_feedback", "id=%u feedback_before=%" PRId64 "/%" PRIu64
+              " feedback_after=%" PRIu64 "/%" PRIu64 " aoi_before=%" PRId64 " aoi_after=%" PRIu64,
+              ack.id, previous ? (int64_t)before.generated : -1, previous ? before.serial : 0,
+              after->generated, after->serial, previous ? (int64_t)(elapsed - before.generated) : -1,
+              elapsed - after->generated);
+    }
     entry->state = IOT_ACKED;
     workload->outstanding--;
     event("iot_ack", "id=%u stream_id=%" PRIu64 " ack_stream_id=%" PRIu64
@@ -594,6 +612,12 @@ static xqc_stream_t *open_iot_tx(struct endpoint *ep, struct record_stream *reco
     return stream;
 }
 
+static const char *const path_rules[] = {
+    [IOT_NATIVE_PATH] = "minrtt", [IOT_PROBABILITY_PATH] = "proposed-path",
+    [IOT_FIXED_MINRTT] = "fixed-minrtt", [IOT_EARLIEST_COMPLETION] = "earliest-completion",
+    [IOT_RANDOM_PATH] = "random-path",
+};
+
 static void progress_iot(struct endpoint *ep)
 {
     if (ep->server) {
@@ -636,13 +660,15 @@ static void progress_iot(struct endpoint *ep)
             event("iot_ablation", "name=%s", iot_ablation_name(scheduler->ablation));
         if (ep->iot->horizon_us)
             event("iot_experiment", "path=%s repair=%s horizon_us=%" PRIu64 " cc=cubic pacing=1",
-                  bind_path ? "proposed-path" : "minrtt", bind_path ?
+                  path_rules[ep->iot->path_rule], bind_path ?
                   (ep->iot->paths.cross ? "cross" : "strict") : "native", ep->iot->horizon_us);
         if (ep->iot->horizon_us)
             event("iot_tuning", "event_burst=%u severity_weight=%.8g waiting_weight=%.8g"
                   " slack_margin_us=%u loss_scale=%.8g", scheduler->tuning.event_burst,
                   scheduler->tuning.severity_weight, scheduler->tuning.waiting_weight,
                   scheduler->tuning.slack_margin_us, scheduler->tuning.loss_scale);
+        if (ep->iot->oracle)
+            event("iot_oracle", "assignment_seed=%u", ep->iot->assignment_seed);
     }
     uint64_t elapsed = now_us() - ep->iot->start;
     if (ep->iot->horizon_us && elapsed >= ep->iot->horizon_us) {
@@ -655,6 +681,9 @@ static void progress_iot(struct endpoint *ep)
     size_t index;
     uint32_t superseded;
     bool replace = iot_policy_replaces(scheduler->policy) && scheduler->ablation != IOT_NO_REPLACE;
+    if (ep->iot->oracle && (iot_pending(workload) || (workload->next < workload->count &&
+                           workload->entries[workload->next].release <= elapsed)))
+        event("iot_admission", "elapsed=%" PRIu64, elapsed);
     while (iot_admit(workload, elapsed, replace, &index, &superseded)) {
         const struct iot_record *record = &workload->entries[index].record;
         event("iot_input", "id=%u kind=%u source=%u serial=%" PRIu64 " release=%" PRIu64,
@@ -678,6 +707,8 @@ static void progress_iot(struct endpoint *ep)
         struct iot_path_sample paths[PATHS];
         size_t count = 0;
         uint64_t decision_us = now_us() - ep->iot->start;
+        if (ep->iot->oracle && decision_us >= ep->iot->horizon_us)
+            break;
         if (bind_path) {
             count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale);
             if (!count)
@@ -694,8 +725,14 @@ static void progress_iot(struct endpoint *ep)
         double slack = iot_record_slack(&entry->record, decision_us);
         if (bind_path && !joint) {
             plan.entry = entry;
-            iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
+            if (!ep->iot->oracle)
+                iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
         }
+        if (ep->iot->oracle)
+            event("iot_app_decision", "id=%u kind=%u class=%d decision_us=%" PRIu64
+                  " score=%.17g normal=%u events=%u", entry->record.id, entry->record.kind,
+                  plan.category, decision_us, plan.score, scheduler->normal_since_recovery,
+                  scheduler->event_streak);
         struct iot_record record = entry->record;
         record.generated += ep->iot->start;
         record.deadline += ep->iot->start;
@@ -712,6 +749,12 @@ static void progress_iot(struct endpoint *ep)
         entry->state = IOT_SUBMITTED;
         workload->outstanding++;
         if (bind_path) {
+            if (ep->iot->oracle) {
+                size_t chosen = iot_choose_initial_path(&entry->record, slack, paths, count,
+                                                        ep->iot->path_rule, ep->iot->assignment_seed);
+                plan.path_id = paths[chosen].id;
+                plan.estimate = iot_estimate_path(&paths[chosen], buffer->size, slack);
+            }
             uint64_t due = record.deadline;
             if (record.kind == IOT_STATE && record.maximum_age < due - record.generated)
                 due = record.generated + record.maximum_age;
@@ -726,12 +769,19 @@ static void progress_iot(struct endpoint *ep)
                       record.id, path->id, path->rtt_us, path->rttvar_us, path->rate_Bps,
                       path->queued_bytes + path->in_flight_bytes, path->in_flight_bytes,
                       path->queued_bytes, path->loss, path->observed_loss, path->pto);
+                if (ep->iot->oracle) {
+                    struct iot_estimate estimate = iot_estimate_path(path, buffer->size, slack);
+                    event("iot_path_forecast", "id=%u path_id=%" PRIu64 " recent_sent=%" PRIu64
+                          " recent_lost=%" PRIu64 " estimate_us=%.9f probability=%.17g",
+                          record.id, path->id, path->recent_sent, path->recent_lost,
+                          estimate.duration_us, estimate.probability);
+                }
             }
             event("iot_plan", "id=%u stream_id=%" PRIu64 " class=%d home=%" PRIu64
-                  " decision_us=%" PRIu64 " slack_us=%.0f estimate_us=%.6f probability=%.9f score=%.9f normal=%u events=%u",
+                  " decision_us=%" PRIu64 " slack_us=%.0f estimate_us=%.6f probability=%.9f score=%.9f normal=%u events=%u candidates=%zu",
                   record.id, entry->stream_id, plan.category, plan.path_id, decision_us, slack,
                   plan.estimate.duration_us, plan.estimate.probability, plan.score,
-                  scheduler->normal_since_recovery, scheduler->event_streak);
+                  scheduler->normal_since_recovery, scheduler->event_streak, count);
         }
         if (proposed)
             iot_commit_plan(scheduler, plan.category);
@@ -961,14 +1011,41 @@ int main(int argc, char **argv)
         return 2;
     }
     bool bind_path = iot_policy_joint(policy);
+    enum iot_path_rule path_rule = bind_path ? IOT_PROBABILITY_PATH : IOT_NATIVE_PATH;
+    const char *oracle_seed = getenv("IOT_STAGE8_SEED");
+    bool oracle = iot && !server && oracle_seed;
+    uint32_t assignment_seed = 0;
+    if (oracle) {
+        char *end;
+        unsigned long long value = strtoull(oracle_seed, &end, 10);
+        if (!*oracle_seed || *end || value > UINT32_MAX ||
+            (policy != IOT_FIFO && policy != IOT_PROPOSED_APP)) {
+            fprintf(stderr, "Stage 8 requires a uint32 assignment seed and FIFO or Proposed-App\n");
+            return 2;
+        }
+        assignment_seed = (uint32_t)value;
+    }
+    bool repair = policy == IOT_PROPOSED_CROSS && ablation != IOT_NO_CROSS;
     const char *path_policy = getenv("IOT_PATH_POLICY");
     if (iot && !server && path_policy) {
-        if (!strcmp(path_policy, "proposed-path"))
-            bind_path = true;
-        else if (strcmp(path_policy, "minrtt") || bind_path) {
+        size_t rule = 0;
+        size_t count = oracle ? sizeof(path_rules) / sizeof(*path_rules) : IOT_PROBABILITY_PATH + 1;
+        while (rule < count && strcmp(path_policy, path_rules[rule]))
+            rule++;
+        if (rule == count || (bind_path && rule == IOT_NATIVE_PATH)) {
             fprintf(stderr, "Invalid path policy or MinRTT requested for a joint policy\n");
             return 2;
         }
+        path_rule = (enum iot_path_rule)rule;
+        bind_path = path_rule != IOT_NATIVE_PATH;
+    }
+    const char *cross = getenv("IOT_STAGE8_REPAIR");
+    if (oracle && cross) {
+        if (strcmp(cross, "cross") || path_rule != IOT_PROBABILITY_PATH) {
+            fprintf(stderr, "Stage 8 cross repair requires Proposed Probability\n");
+            return 2;
+        }
+        repair = true;
     }
     uint64_t horizon = 0;
     const char *horizon_arg = getenv("IOT_HORIZON_US");
@@ -994,6 +1071,10 @@ int main(int argc, char **argv)
             return 2;
         }
     }
+    if (oracle && (!horizon || tuning.slack_margin_us || tuning.loss_scale != 1)) {
+        fprintf(stderr, "Stage 8 requires a finite window and the unmodified path model\n");
+        return 2;
+    }
     setvbuf(stdout, NULL, _IOLBF, 0);
     struct sigaction action = {.sa_handler = on_signal};
     sigemptyset(&action.sa_mask);
@@ -1018,7 +1099,10 @@ int main(int argc, char **argv)
         ep.iot->scheduler.tuning = tuning;
         ep.iot->horizon_us = horizon;
         ep.iot->bind_path = bind_path;
-        ep.iot->paths.cross = policy == IOT_PROPOSED_CROSS && ablation != IOT_NO_CROSS;
+        ep.iot->path_rule = path_rule;
+        ep.iot->oracle = oracle;
+        ep.iot->assignment_seed = assignment_seed;
+        ep.iot->paths.cross = repair;
         if (!server && !iot_load_workload(&ep.iot->workload, argv[3]))
             goto fail;
     }

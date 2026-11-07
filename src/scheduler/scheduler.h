@@ -48,9 +48,13 @@ enum iot_class { IOT_NO_RECORD, IOT_NORMAL, IOT_RECOVERY, IOT_URGENT };
 
 struct iot_path_sample {
     uint64_t id, rtt_us, rttvar_us, rate_Bps, queued_bytes, in_flight_bytes;
+    uint64_t recent_sent, recent_lost;
     double loss, observed_loss;
     unsigned pto;
 };
+
+enum iot_path_rule { IOT_NATIVE_PATH, IOT_PROBABILITY_PATH, IOT_FIXED_MINRTT,
+                     IOT_EARLIEST_COMPLETION, IOT_RANDOM_PATH };
 
 struct iot_estimate {
     double duration_us, probability;
@@ -83,6 +87,9 @@ struct iot_estimate iot_estimate_path(const struct iot_path_sample *path, size_t
 double iot_record_slack(const struct iot_record *record, uint64_t elapsed);
 void iot_plan_path(struct iot_plan *plan, double slack, const struct iot_path_sample *paths,
                    size_t count, bool fixed);
+size_t iot_choose_initial_path(const struct iot_record *record, double slack,
+                              const struct iot_path_sample *paths, size_t count,
+                              enum iot_path_rule rule, uint32_t seed);
 struct iot_plan iot_plan_record(const struct iot_scheduler *scheduler, struct iot_workload *workload,
                                 uint64_t elapsed, const struct iot_path_sample *paths, size_t count);
 void iot_commit_plan(struct iot_scheduler *scheduler, enum iot_class category);

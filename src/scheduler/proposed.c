@@ -51,6 +51,37 @@ void iot_plan_path(struct iot_plan *plan, double slack, const struct iot_path_sa
     }
 }
 
+size_t iot_choose_initial_path(const struct iot_record *record, double slack,
+                              const struct iot_path_sample *paths, size_t count,
+                              enum iot_path_rule rule, uint32_t seed)
+{
+    if (rule == IOT_RANDOM_PATH) {
+        unsigned time_bin = slack <= 0 ? 0 : slack <= 100000 ? 1 : slack <= 400000 ? 2 : 3;
+        unsigned size_bin = record->payload_len < 1200 ? 0 : record->payload_len < 3000 ? 1 : 2;
+        uint32_t draw = seed ^ record->id * UINT32_C(0x9e3779b9) ^
+                        (time_bin * 3 + size_bin + 1) * UINT32_C(0x85ebca6b);
+        draw = (draw ^ (draw >> 16)) * UINT32_C(0x7feb352d);
+        draw = (draw ^ (draw >> 15)) * UINT32_C(0x846ca68b);
+        return (draw ^ (draw >> 16)) % count;
+    }
+    size_t best = 0;
+    size_t bytes = IOT_HEADER + record->payload_len;
+    struct iot_estimate chosen = iot_estimate_path(&paths[0], bytes, slack);
+    for (size_t i = 1; i < count; i++) {
+        struct iot_estimate candidate = iot_estimate_path(&paths[i], bytes, slack);
+        bool better = candidate.duration_us < chosen.duration_us;
+        if (rule == IOT_FIXED_MINRTT)
+            better = paths[i].rtt_us < paths[best].rtt_us;
+        if (rule == IOT_PROBABILITY_PATH && candidate.probability != chosen.probability)
+            better = candidate.probability > chosen.probability;
+        if (better) {
+            best = i;
+            chosen = candidate;
+        }
+    }
+    return best;
+}
+
 static struct iot_plan plan_entry(const struct iot_scheduler *scheduler, struct iot_entry *entry,
                                    uint64_t now, const struct iot_path_sample *paths, size_t count)
 {

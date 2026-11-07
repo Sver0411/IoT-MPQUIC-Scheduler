@@ -1,0 +1,16 @@
+{
+  "pilot_seed": 8091,
+  "paired_seeds": [8101, 8120],
+  "exploration_seeds": [8201, 8220],
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "novel": {
+    "initial": {"a": [7, 16, 0], "b": [21, 25, 0]},
+    "phases": [
+      {"at_us": 575000, "links": {"a": [43, 3, 0], "b": [8, 27, 0]}},
+      {"at_us": 1150000, "links": {"a": [11, 20, 0], "b": [27, 12, 0]}}
+    ]
+  },
+  "primary_metrics": ["event_deadline_success", "mean_aoi_ms"],
+  "primary_contrasts": ["B-A", "C-A", "D-B-C+A", "D-Fixed", "D-Earliest", "Cross-D"]
+}
