@@ -19,14 +19,16 @@ fi
 mkdir -p "$build"
 # Export a separate tree for CMake-generated headers and the research patch.
 patch="$root/patches/xquic/stream-pto-scheduler.patch"
+integrity="$root/patches/xquic/stage91-integrity-trace.patch"
 patch_hash=$(sha256sum < "$patch")
-xquic_src="$build/xquic-$xquic_rev-${patch_hash%% *}"
+integrity_hash=$(sha256sum < "$integrity")
+xquic_src="$build/xquic-$xquic_rev-${patch_hash%% *}-${integrity_hash%% *}"
 if [[ ! -f "$xquic_src/.export-complete" ]]; then
     mkdir -p "$xquic_src"
     git -C "$root/third_party/xquic" archive "$xquic_rev" | tar -x -C "$xquic_src"
     # Run outside the parent repository even when the build directory is inside it.
     git --git-dir="$xquic_src/.git" init -q
-    git -C "$xquic_src" apply "$patch"
+    git -C "$xquic_src" apply "$patch" "$integrity"
     touch "$xquic_src/.export-complete"
 fi
 

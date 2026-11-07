@@ -1,0 +1,41 @@
+{
+  "name": "migration",
+  "scenario": "novel-reversal",
+  "seed": 8091,
+  "cell": "D",
+  "load": "heavy",
+  "workload": "short-burst",
+  "assignment_seed": 2384953873,
+  "network_seed": 223445041,
+  "policy": "proposed-app",
+  "path_scheduler": "proposed-path",
+  "ablation": "full",
+  "repair": "strict",
+  "initial": {
+    "a": [
+      42,
+      6,
+      0
+    ],
+    "b": [
+      5,
+      30,
+      0
+    ]
+  },
+  "phases": [],
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "tuning": {
+    "event_burst": 3,
+    "severity_weight": 2,
+    "waiting_weight": 1,
+    "slack_margin_us": 0,
+    "loss_scale": 1
+  },
+  "experiment_order": 4,
+  "migration": true,
+  "required": {
+    "migrated": 1
+  }
+}

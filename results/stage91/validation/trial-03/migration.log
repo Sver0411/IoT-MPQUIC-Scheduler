@@ -1,0 +1,14 @@
+Stage 91 artifacts: /var/tmp/iot-stage91-engineering-03/migration
+Traceback (most recent call last):
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/verify_stage91.py", line 439, in <module>
+    print(json.dumps(verify_run(parser.parse_args().run), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/verify_stage91.py", line 415, in verify_run
+    migrated = verify_migration(client, server, migration, origin)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/verify_stage91.py", line 331, in verify_migration
+    require(client_ports["4434"] and client_ports["4435"] and after,
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/verify_stage1.py", line 13, in require
+    raise ValueError(message)
+ValueError: fixture lacked data on both sides of the migration
+Stage 91 failed. Inspect /var/tmp/iot-stage91-engineering-03/migration

@@ -1,0 +1,125 @@
+[2026/11/08 01:06:47 719393] [warn] |xqc_tls_ctx_set_config|no session ticket key data|
+[2026/11/08 01:06:47 723053] [warn] |xqc_create_server_ssl_ctx|read ssl session ticket key error|
+[2026/11/08 01:06:47 723087] [info] |xqc_tls_ctx_register_alpn|alpn registered|alpn:iot-stage2|alpn_list:
+iot-stage2
+[2026/11/08 01:06:47 723089] [info] |xqc_engine_add_alpn|alpn registered|alpn:iot-stage2|
+[2026/11/08 01:06:47 846045] [info] |scid:e5c97d57d2c70823|xqc_set_path_state|iot91|kind=path_state path=0 before=0 after=2|
+[2026/11/08 01:06:47 846553] [stats] |xqc_conn_server_init_path_addr|path:0|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12|
+[2026/11/08 01:06:47 846560] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:1200|state:S_INIT|recv_time:177559304|
+[2026/11/08 01:06:47 846564] [info] |scid:e5c97d57d2c70823|xqc_conn_check_token|token empty|
+[2026/11/08 01:06:47 846573] [info] |scid:e5c97d57d2c70823|xqc_conn_server_accept|check_token fail|conn:00005CF26CF66E8C|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12|
+[2026/11/08 01:06:47 846578] [info] |scid:e5c97d57d2c70823|xqc_conn_get_local_transport_params|generate sr_token[9d020f284c7c5bff9fdc5e18435b7908] for cid[e5c97d57d2c70823]
+[2026/11/08 01:06:47 846664] [info] |scid:e5c97d57d2c70823|xqc_ssl_cert_cb|cert chain or key empty|sni:iot-stage2
+[2026/11/08 01:06:47 847197] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:1200|pkt_type:INIT|pkt_num:0|frame:PADDING CRYPTO |recv_time:177559304|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 847204] [info] |scid:e5c97d57d2c70823|xqc_conn_check_tx_key|keys are ready, can send 1rtt now|
+[2026/11/08 01:06:47 847207] [info] |scid:e5c97d57d2c70823|xqc_crypto_stream_send|crypto send data|pkt_num:0|size:157|sent:127|pkt_type:INIT|frame:CRYPTO |now:177561115|
+[2026/11/08 01:06:47 847213] [info] |scid:e5c97d57d2c70823|xqc_crypto_stream_send|crypto send data|pkt_num:0|size:673|sent:644|pkt_type:HSK|frame:CRYPTO |now:177561121|
+[2026/11/08 01:06:47 848099] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:0|size:1184|sent:1200|pkt_type:INIT|frame:PADDING CRYPTO |inflight:0|now:177561132|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 848743] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:0|size:673|sent:689|pkt_type:HSK|frame:CRYPTO |inflight:1184|now:177562018|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 849339] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:1|size:36|sent:52|pkt_type:INIT|frame:ACK |inflight:1857|now:177562659|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 857682] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:1200|state:S_HANDSHAKE_SENT|recv_time:177571039|
+[2026/11/08 01:06:47 857709] [stats] |scid:e5c97d57d2c70823|xqc_send_ctl_info_circle_record|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12 |path:0||cwnd:15544|inflight:673|mode:0|applimit:0|pacing_rate:0|bw:0|srtt:9907|latest_rtt:9907|min_rtt:0|send:2|lost:0|tlp:0|recv:1|recovery:0|slow_start:1|conn_life:11684|acked:1184|delivered:1184|is_cwnd_limited:0|
+[2026/11/08 01:06:47 857717] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:1200|pkt_type:INIT|pkt_num:1|frame:PADDING ACK |recv_time:177571039|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 859761] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:84|state:S_HANDSHAKE_SENT|recv_time:177573194|
+[2026/11/08 01:06:47 859836] [info] |scid:e5c97d57d2c70823|xqc_send_ctl_on_pns_discard|xqc_send_ctl_set_loss_detection_timer on discard pns:0
+[2026/11/08 01:06:47 859839] [info] |scid:e5c97d57d2c70823|xqc_conn_addr_validated|Address Validated|conn:00005CF26CF66E8C|role:1|
+[2026/11/08 01:06:47 859841] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:84|pkt_type:HSK|pkt_num:0|frame:CRYPTO |recv_time:177573194|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 860401] [info] |scid:e5c97d57d2c70823|xqc_conn_handshake_confirmed|handshake confirmed|conn:00005CF26CF66E8C|
+[2026/11/08 01:06:47 860404] [info] |scid:e5c97d57d2c70823|xqc_send_ctl_on_pns_discard|xqc_send_ctl_set_loss_detection_timer on discard pns:1
+[2026/11/08 01:06:47 861451] [info] |scid:e5c97d57d2c70823|xqc_crypto_stream_send|crypto send data|pkt_num:0|size:461|sent:448|pkt_type:SHORT_HEADER|frame:CRYPTO |now:177575358|
+[2026/11/08 01:06:47 862213] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:0|size:14|sent:30|pkt_type:SHORT_HEADER|frame:HANDSHAKE_DONE |inflight:0|now:177575393|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 863102] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:1|size:52|sent:68|pkt_type:SHORT_HEADER|frame:NEW_TOKEN |inflight:14|now:177576130|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 863918] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:2|size:461|sent:477|pkt_type:SHORT_HEADER|frame:CRYPTO |inflight:66|now:177577023|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 864592] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:1|size:35|sent:51|pkt_type:HSK|frame:ACK |inflight:527|now:177577837|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 865600] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:3|size:45|sent:61|pkt_type:SHORT_HEADER|frame:MP_NEW_CONN_ID |inflight:527|now:177578507|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 866943] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:4|size:45|sent:61|pkt_type:SHORT_HEADER|frame:MP_NEW_CONN_ID |inflight:572|now:177579524|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 867891] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:8|size:45|sent:61|pkt_type:SHORT_HEADER|frame:MP_NEW_CONN_ID |inflight:617|now:177580863|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 869008] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:9|size:45|sent:61|pkt_type:SHORT_HEADER|frame:MP_NEW_CONN_ID |inflight:662|now:177581807|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 869861] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:51|state:ESTABED|recv_time:177583363|
+[2026/11/08 01:06:47 869879] [info] |scid:e5c97d57d2c70823|xqc_send_ctl_on_pns_discard|xqc_send_ctl_set_loss_detection_timer on discard pns:0
+[2026/11/08 01:06:47 869889] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:51|pkt_type:HSK|pkt_num:1|frame:ACK |recv_time:177583363|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 870903] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:61|state:ESTABED|recv_time:177584390|
+[2026/11/08 01:06:47 870925] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:61|pkt_type:SHORT_HEADER|pkt_num:0|frame:MP_NEW_CONN_ID |recv_time:177584390|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 872428] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:61|state:ESTABED|recv_time:177585830|
+[2026/11/08 01:06:47 872446] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:61|pkt_type:SHORT_HEADER|pkt_num:1|frame:MP_NEW_CONN_ID |recv_time:177585830|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 873433] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:10|size:23|sent:39|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:707|now:177586362|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 874384] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:61|state:ESTABED|recv_time:177587792|
+[2026/11/08 01:06:47 874399] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:61|pkt_type:SHORT_HEADER|pkt_num:2|frame:MP_NEW_CONN_ID |recv_time:177587792|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 875572] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:61|state:ESTABED|recv_time:177589100|
+[2026/11/08 01:06:47 875587] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:61|pkt_type:SHORT_HEADER|pkt_num:3|frame:MP_NEW_CONN_ID |recv_time:177589100|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 876292] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:11|size:22|sent:38|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:707|now:177589503|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 877074] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:38|state:ESTABED|recv_time:177590560|
+[2026/11/08 01:06:47 877089] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:38|pkt_type:SHORT_HEADER|pkt_num:4|frame:ACK_MP |recv_time:177590560|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 879615] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:38|state:ESTABED|recv_time:177593099|
+[2026/11/08 01:06:47 879643] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:38|pkt_type:SHORT_HEADER|pkt_num:5|frame:ACK_MP |recv_time:177593099|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 881961] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:40|state:ESTABED|recv_time:177595401|
+[2026/11/08 01:06:47 881980] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:40|pkt_type:SHORT_HEADER|pkt_num:6|frame:ACK_MP |recv_time:177595401|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 886818] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:61|state:ESTABED|recv_time:177600268|
+[2026/11/08 01:06:47 886846] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:61|pkt_type:SHORT_HEADER|pkt_num:7|frame:MP_NEW_CONN_ID |recv_time:177600268|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 908681] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:41|state:ESTABED|recv_time:177622165|
+[2026/11/08 01:06:47 908707] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:41|pkt_type:SHORT_HEADER|pkt_num:8|frame:ACK_MP |recv_time:177622165|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:47 913535] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:12|size:23|sent:39|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:177626395|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 957095] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:1200|state:ESTABED|recv_time:177670327|
+[2026/11/08 01:06:47 957133] [info] |scid:e5c97d57d2c70823|xqc_set_path_state|iot91|kind=path_state path=1 before=0 after=1|
+[2026/11/08 01:06:47 957538] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:1200|pkt_type:SHORT_HEADER|pkt_num:0|frame:PADDING PATH_CHALLENGE |recv_time:177670327|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:47 957945] [stats] |xqc_conn_server_init_path_addr|path:1|l-10.47.2.2-4433-b145ef51cf613c3f p-10.47.2.1-4434-fd68ea9a17a3fcda|
+[2026/11/08 01:06:47 958646] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:13|size:45|sent:61|pkt_type:SHORT_HEADER|frame:MP_NEW_CONN_ID |inflight:0|now:177671870|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 959395] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:0|size:1184|sent:1200|pkt_type:SHORT_HEADER|frame:PADDING PATH_CHALLENGE |inflight:0|now:177672564|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 960286] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:5|size:1184|sent:1200|pkt_type:SHORT_HEADER|frame:PADDING PATH_RESPONSE |inflight:1184|now:177673311|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 982808] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:6|size:23|sent:39|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:2368|now:177695716|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:47 994930] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:39|state:ESTABED|recv_time:177708353|
+[2026/11/08 01:06:47 994956] [stats] |scid:e5c97d57d2c70823|xqc_send_ctl_info_circle_record|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12 |path:0||cwnd:16296|inflight:0|mode:0|applimit:0|pacing_rate:0|bw:0|srtt:11774|latest_rtt:36483|min_rtt:0|send:10|lost:0|tlp:0|recv:13|recovery:0|slow_start:1|conn_life:148931|acked:45|delivered:1936|is_cwnd_limited:0|
+[2026/11/08 01:06:47 994962] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:0|size:39|pkt_type:SHORT_HEADER|pkt_num:9|frame:ACK_MP |recv_time:177708353|dcid:e5c97d57d2c70823|dcid_seq:0|
+[2026/11/08 01:06:48 009986] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:1200|state:ESTABED|recv_time:177723406|
+[2026/11/08 01:06:48 010007] [info] |scid:e5c97d57d2c70823|xqc_set_path_state|iot91|kind=path_state path=1 before=1 after=2|
+[2026/11/08 01:06:48 010427] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:1200|pkt_type:SHORT_HEADER|pkt_num:1|frame:PADDING PATH_RESPONSE |recv_time:177723406|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 011220] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:41|state:ESTABED|recv_time:177724749|
+[2026/11/08 01:06:48 011233] [stats] |scid:e5c97d57d2c70823|xqc_send_ctl_info_circle_record|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12 |path:1||cwnd:16728|inflight:0|mode:0|applimit:0|pacing_rate:0|bw:0|srtt:51438|latest_rtt:51438|min_rtt:0|send:2|lost:0|tlp:0|recv:2|recovery:0|slow_start:1|conn_life:165208|acked:2368|delivered:2368|is_cwnd_limited:0|
+[2026/11/08 01:06:48 011235] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:41|pkt_type:SHORT_HEADER|pkt_num:2|frame:ACK_MP |recv_time:177724749|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 035755] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:7|size:23|sent:39|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:177748675|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 530888] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178244228|
+[2026/11/08 01:06:48 530915] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:3|frame:STREAMS_BLOCKED |recv_time:178244228|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 531844] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178245280|
+[2026/11/08 01:06:48 531855] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:4|frame:STREAMS_BLOCKED |recv_time:178245280|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 532644] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:8|size:22|sent:38|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178245771|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 533289] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178246885|
+[2026/11/08 01:06:48 533297] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:5|frame:STREAMS_BLOCKED |recv_time:178246885|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 533979] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178247574|
+[2026/11/08 01:06:48 533986] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:6|frame:STREAMS_BLOCKED |recv_time:178247574|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 534934] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:15|size:23|sent:39|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178248252|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 535529] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178249131|
+[2026/11/08 01:06:48 535537] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:7|frame:STREAMS_BLOCKED |recv_time:178249131|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 536207] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178249770|
+[2026/11/08 01:06:48 536214] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:8|frame:STREAMS_BLOCKED |recv_time:178249770|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 537160] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:16|size:22|sent:38|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178250128|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 581816] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178295188|
+[2026/11/08 01:06:48 581844] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:9|frame:STREAMS_BLOCKED |recv_time:178295188|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 607819] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:17|size:23|sent:39|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178321002|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 656876] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178370127|
+[2026/11/08 01:06:48 656904] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:14|frame:STREAMS_BLOCKED |recv_time:178370127|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 682461] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:18|size:25|sent:41|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178395442|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 731474] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178444563|
+[2026/11/08 01:06:48 731501] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:15|frame:STREAMS_BLOCKED |recv_time:178444563|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 756819] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:19|size:25|sent:41|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178469835|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 805786] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178519174|
+[2026/11/08 01:06:48 805812] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:16|frame:STREAMS_BLOCKED |recv_time:178519174|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 806854] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178520320|
+[2026/11/08 01:06:48 806868] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:17|frame:STREAMS_BLOCKED |recv_time:178520320|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 807683] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:20|size:24|sent:40|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178520785|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 856908] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178569931|
+[2026/11/08 01:06:48 856947] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:18|frame:STREAMS_BLOCKED |recv_time:178569931|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 882574] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:21|size:25|sent:41|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178595424|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:48 931274] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178644522|
+[2026/11/08 01:06:48 931300] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:19|frame:STREAMS_BLOCKED |recv_time:178644522|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:48 957590] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:22|size:25|sent:41|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178670172|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:49 007702] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178720986|
+[2026/11/08 01:06:49 007727] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:20|frame:STREAMS_BLOCKED |recv_time:178720986|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:49 008558] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:31|state:ESTABED|recv_time:178722088|
+[2026/11/08 01:06:49 008570] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:31|pkt_type:SHORT_HEADER|pkt_num:21|frame:STREAMS_BLOCKED |recv_time:178722088|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:49 009295] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:1|pkt_num:23|size:24|sent:40|pkt_type:SHORT_HEADER|frame:ACK_MP |inflight:0|now:178722488|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:49 199785] [info] |xqc_engine_packet_process|==>|conn:00005CF26CF66E8C|size:44|state:ESTABED|recv_time:178913108|
+[2026/11/08 01:06:49 199812] [info] |scid:e5c97d57d2c70823|xqc_conn_immediate_close|state to closing|state:ESTABED|flags:WAIT_WAKEUP HSK_DONE CAN_SEND_1RTT HAS_GAP DCID_OK 0RTT_REJECT UPPER_CONN_EXIST INIT_RECVD HSK_CONFIRMED HSK_DONE_ACKED ADDR_VALIDATED (null) TLS_HSK_CMPTD NO_DGRAM_NOTIFIED DGRAM_MSS_NOTIFY HANDSHAKE_DONE_SENT SERVER_ACCEPT 
+[2026/11/08 01:06:49 199817] [info] |scid:e5c97d57d2c70823|xqc_conn_on_pkt_processed|====>|conn:00005CF26CF66E8C|path:1|size:44|pkt_type:SHORT_HEADER|pkt_num:22|frame:CONNECTION_CLOSE |recv_time:178913108|dcid:b145ef51cf613c3f|dcid_seq:0|
+[2026/11/08 01:06:49 200628] [info] |scid:e5c97d57d2c70823|xqc_send_packet_with_pn|<==|conn:00005CF26CF66E8C|path:0|pkt_num:14|size:29|sent:45|pkt_type:SHORT_HEADER|frame:CONNECTION_CLOSE |inflight:0|now:178913736|stream_id:0|stream_offset:0|
+[2026/11/08 01:06:49 738186] [info] |xqc_engine_main_logic|conn:00005CF26CF66E8C|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12|conn_state:13|next_tick_time:179451658
+[2026/11/08 01:06:49 738200] [report] |scid:e5c97d57d2c70823|xqc_conn_destroy|00005CF26CF66E8C|has_0rtt:0|0rtt_accept:0|token_ok:0|handshake_time:13808|first_send_delay:0|conn_persist:1892175|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-10.47.1.2-4433-e5c97d57d2c70823 p-10.47.1.1-4434-d8c6ea4790bd5e12|hsk_recv:13261|close_recv:1353783|close_send:1353803|last_recv:1353175|last_send:1353803|mp_enable:1|create:2|validated:2|active:2|path_info:1/1/1/a/a,2,2,2,0,0,0,0,0,0,0,30,33,33,0,0,0,i0,4,22,31,2000,20,1161,0,4,22,31,2000,21,1162,0,4,35,44,40000,22,1353,0,4,25,100000,22,1110,4,24,100000,23,1162,4,29,40000,14,1353,0-2,0-2,0-0,0-0,0-0,0-11,0-3033,0-3036,0-10,0-14,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0,1-2,1-2,1-0,1-111,1-0,1-51,1-2876,1-2950,1-2,1-19,1-0,1-0,1-0,1-0,1-0,1-0,1-0,1-0|alpn:iot-stage2|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:12|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:0|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|

@@ -4,12 +4,12 @@ set -euo pipefail
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 stage=${1:-}
 windowed=false
-if [[ $stage == 7 || $stage == 8 ]]; then windowed=true; fi
+if [[ $stage == 7 || $stage == 8 || $stage == 91 ]]; then windowed=true; fi
 if ! { [[ $stage == 1 || $stage == 2 ]] && (( $# <= 2 )); } &&
    ! { [[ $stage == 3 ]] && (( $# == 4 )); } &&
    ! { [[ $stage == 4 ]] && (( $# == 5 )); } &&
    ! { { [[ $stage == 5 ]] || $windowed; } && (( $# == 7 )); }; then
-    echo "Usage: run-lab.sh {1|2} [DIRECTORY] | run-lab.sh 3 DIRECTORY POLICY WORKLOAD | run-lab.sh 4 DIRECTORY POLICY WORKLOAD K | run-lab.sh {5|7|8} DIRECTORY POLICY WORKLOAD K CASE ABLATION" >&2
+    echo "Usage: run-lab.sh {1|2} [DIRECTORY] | run-lab.sh 3 DIRECTORY POLICY WORKLOAD | run-lab.sh 4 DIRECTORY POLICY WORKLOAD K | run-lab.sh {5|7|8|91} DIRECTORY POLICY WORKLOAD K CASE ABLATION" >&2
     exit 2
 fi
 shift
@@ -99,6 +99,9 @@ fi
     if [[ $stage == 4 || $stage == 5 ]] || $windowed; then
         printf 'stream_pto_patch=%s\n' "$(sha256sum < "$root/patches/xquic/stream-pto-scheduler.patch" | cut -d ' ' -f 1)"
     fi
+    if [[ $stage == 91 ]]; then
+        sha256sum "$root/patches/xquic/stage91-integrity-trace.patch"
+    fi
     for ns in "$client_ns" "$server_ns"; do
         echo "namespace=$ns"
         ip -n "$ns" -brief addr
@@ -151,12 +154,25 @@ fi
 openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:P-256 -nodes -days 1 \
     -subj "/CN=iot-stage$stage" -keyout "$out/lab-key.pem" -out "$out/lab-cert.pem" 2> "$out/openssl.log"
 
+snaplen=96
+capture_filter='udp and port 4433 and port 4434'
+if [[ $stage == 91 ]]; then snaplen=0; fi
+if [[ $stage == 91 && -n ${IOT_STAGE91_MIGRATION:-} ]]; then
+    capture_filter='udp and port 4433 and (port 4434 or port 4435)'
+fi
 for link in a b; do
-    ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s 96 -U --immediate-mode -B 4096 -Z root \
-        -w "$out/link-$link.pcap" 'udp and port 4433 and port 4434' \
+    ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s "$snaplen" -U --immediate-mode -B 4096 -Z root \
+        -w "$out/link-$link.pcap" "$capture_filter" \
         2> "$out/tcpdump-$link.log" &
     captures+=("$!")
     wait_log "$out/tcpdump-$link.log" 'listening on' "$!"
+    if [[ $stage == 91 ]]; then
+        ip netns exec "$client_ns" tcpdump -nn -i "iot-$link" -s 0 -U --immediate-mode -B 4096 -Z root \
+            -w "$out/client-link-$link.pcap" "$capture_filter" \
+            2> "$out/client-tcpdump-$link.log" &
+        captures+=("$!")
+        wait_log "$out/client-tcpdump-$link.log" 'listening on' "$!"
+    fi
 done
 
 ip netns exec "$server_ns" "$exe" "$server_role" "$out/server.xquic.log" "$out/lab-cert.pem" "$out/lab-key.pem" \

@@ -1,0 +1,345 @@
+{
+  "purpose": "Stage 9.1 engineering acceptance",
+  "base_commit": "ca9d9b62f3f3863afdb0282060769c05ae823d84",
+  "source_sha256": {
+    "CMakeLists.txt": "ce517c2af1a2634dbf6d2f4e00c392625170b449a47805f836c869349c55172f",
+    "configs/stage5.json": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f",
+    "configs/stage8.json": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+    "evaluation/oracle/app_scheduler_oracle.py": "09593054b2e1c593cf37df7db0f286c7d26b08dbc9f9d8f7972c5e81fc485891",
+    "evaluation/oracle/path_scheduler_oracle.py": "0707416fc4f47a577a29fa6d9fd24c392d7fc29e38c85e94775189c29c9217e0",
+    "evaluation/oracle/stage91_lifecycle.py": "f555a2835be12399cbdb6009a7ed296263fb561c6c43bfe2a3be79645f93fe0d",
+    "evaluation/stage6.py": "5c689e4fd03066654016a05e3dac05ecf78f1fd779f9484d386477b28c4b5dbe",
+    "evaluation/stage6_figures.py": "37867cfe8dcf7600a3383f1d0552790ba0bb150743acb0ba799e0763ba277aa5",
+    "evaluation/stage7.py": "a1f7ac6d1e61ec51474667dcf9978327cadb5bec22e589cb3b0f0b357197a23c",
+    "evaluation/stage7_figures.py": "b9f352a0c33d51a8a30a6ed8c7fb2611b04cccbb10214b31cc25f71304456df4",
+    "evaluation/stage7_statistics.py": "5d843340629b77a0cc9752da728961ab020a90770ce17730786a083d93558b02",
+    "evaluation/stage8.py": "e79ffc4f02c3c6dd7f1b9f62785e0c379896ecf1a0ce3732931e7a2a555de125",
+    "evaluation/stage8_figures.py": "1c82e7888859aa65396ead979238b7373063ce7381d72914d42d26b351a4fe29",
+    "evaluation/stage8_history.py": "77b835c2f5d8a968e81aec9f1315e7017ef54240191959fb5bc10564779d591a",
+    "evaluation/stage8_statistics.py": "b990ef751434e03cf13d7f0a7bc53ee72c6ef0cb69ed2a14374c9dbcd028a5f5",
+    "evaluation/verify_stage1.py": "f256bfd5a9c9caaa5971e064f66172815a1675ebf0af0d400d5b9efab86f6aa3",
+    "evaluation/verify_stage2.py": "ca8eb1d3ee5405a8cf3bb9bb0199811b86eb0fe0d1d71e25f30ce06b055ef298",
+    "evaluation/verify_stage3.py": "514e4e2b6c584cb5ff67afc8e71ebe3e5a5715a1eda0049a697b9e17ac69fa0e",
+    "evaluation/verify_stage4.py": "9446fd689e9cd0321a1d0326e82f97de18f3932190f59145c129d36c02c7dfb5",
+    "evaluation/verify_stage5.py": "679b37d700b7aa3f8832c47c625c00c6e6ebfcd2fe09e5736f9be3c2fca28b1f",
+    "evaluation/verify_stage7.py": "24e5ae1a211b4aaf0d30d4cd16eacd6fb3eb29c91c8189c07955c94fe82d7710",
+    "evaluation/verify_stage8.py": "bcebfe2afce3bf77f72d365929f20851c76888d046c6a429cdf77f2986caabaf",
+    "evaluation/verify_stage91.py": "80a67e4b9aa2475c4a20a32afcb8ad1bfb9bf9462b575cff532fda6f1a294dd2",
+    "experiments/run_stage5.py": "bc17bcd101d8339f2e48f76acf10aa7c822e1d482ee4c38ca3251b73e38a61f0",
+    "experiments/run_stage7.py": "a7dcd7a6c990998645682c7a0a642e14ecbee9df7b88d6692f411f4159e155df",
+    "experiments/run_stage8.py": "9d9277df5e8bcbc42dc1bc4dc86a234d2d12f6cc2d570e7430bbc0646367b50b",
+    "experiments/run_stage91.py": "626d0b3a55ee5c57d313ea9d8d99f98f50e6a2f8395d37fc56242bbe0786e9a8",
+    "network/scenarios/performance-reversal.sh": "276b142d5461841fa3b13ca74ae2c8c205259c716d6c2422d59a81a8c9d8d895",
+    "network/scenarios/stage5.py": "aedaaf62b74711c0a8d9dfa227412b68074245000e30d646670f331ba4d4de93",
+    "network/scenarios/verify_seeded_netem.py": "d05c5dc151e9f5aedfcf7306ba2173da6335e50b003b3eabd1fdb64a0ec0836d",
+    "network/topology/dual-veth.sh": "cb8b6201e4c715e9c7dfe6cccd9663a9648ad75cdac52f95b4268043d13d96a2",
+    "patches/xquic/stage91-integrity-trace.patch": "083fff36df5b433730e2d20c2bf5e8bc6687381075f66b0a83c510ed3771efe9",
+    "patches/xquic/stream-pto-scheduler.patch": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd",
+    "scripts/build.sh": "e3b8dbb481cb8a1ff30c8969c6f05590ffc7ae9559a1d2ded6aa824274469f06",
+    "scripts/run-lab.sh": "004f3ef080db73830e8d0f34f17cdba71667b52d7df09e329b86ea96760e1991",
+    "scripts/run-stage1.sh": "ba23812b138b148ab5cf4465ed2a9edd270b96e09671d8a9614bacadde2e2fff",
+    "scripts/run-stage2.sh": "1d4955c73aa062fdaba1f76f4749fbacf4e69b960fe68606d2666be7834f180f",
+    "scripts/run-stage3.sh": "3dc3fecf215815e79a9b99b922ae542193a48f434d14fcb82a0fd067186a3da2",
+    "scripts/run-stage4.sh": "7c00ba69ae480ad1aaf23419dfa342e35b3c0c684e07c49ed54b0f12c7cb772d",
+    "scripts/test.sh": "3d7b2799ea6c432160ff8642c41f3d466e4f40a4e71fa9d09b3201cd646e5203",
+    "src/gateway/iot_queue.c": "a2ab6bd3100bda5a669c08a6937652b9350c07300e4e15a07cc8e1c011840aad",
+    "src/iot.h": "029212eeb4719629fa90861dd0145f888cef171cb01cb15b39b15de3c16d2a17",
+    "src/receiver/iot_receive.c": "4e2b101c370eaf2e4d18d360332edb7a22b86b26da45933763032492d2ccee5c",
+    "src/scheduler/proposed.c": "00e2a67b52c7acaa4b1ba5a69ebdd5226b346ca5bc6b3cccf773f698112a6d07",
+    "src/scheduler/scheduler.c": "322d5eb70b3be519b5fa13bee013ae4feab05ae47b4490c55dd28f6b9ba08612",
+    "src/scheduler/scheduler.h": "fc1b0050bb312c6113e2401b07eb9b4a1b92088b6923d5054f6f07ff673e1ad6",
+    "src/transport/endpoint.c": "b3cbb6d00a0fefd12cd6966480b05bfb6e8ce2002d843bd570c61d086a1df5f9",
+    "src/transport/iot_wire.c": "e92cc654379ef5ccfb79d9de8219a6bde64e8bddc33b63ae6bae611a4de26741",
+    "src/transport/path_affinity.c": "4403daa112dccec0f2edd4f2fc417964ff0b370a96f791021360374c3c8f30a1",
+    "src/transport/path_affinity.h": "a87157e8b6bd2df44cb245c17eb64389767bfb2516246a9a02dc910a0d1d6d4b",
+    "src/workload/generate.py": "7426cfab74034efab2b174dab493eaa6b7f811e83eea74d0fa8cc6bb5277dfae",
+    "tests/stage91_test.py": "043c54cd47971fd3e4d1809ea8471703d1710373d2b6a9ee317c0a2066089cc8"
+  },
+  "binary_sha256": "95921224361e5dc8f2634826d11cbfa1d1823d16830635218beda329ef7780fc",
+  "cases": [
+    {
+      "name": "attempts",
+      "scenario": "novel-reversal",
+      "seed": 8091,
+      "cell": "D",
+      "load": "heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2384953873,
+      "network_seed": 223445041,
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 4,
+      "required": {
+        "blocked": 1
+      }
+    },
+    {
+      "name": "repair",
+      "scenario": "repair",
+      "seed": 8091,
+      "cell": "Cross",
+      "load": "directed",
+      "workload": "repair-probe",
+      "assignment_seed": 89396450,
+      "network_seed": 989366044,
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "repair": "cross",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 100000,
+          "side": "client",
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 1000000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 16,
+      "required": {
+        "cross_packets": 1
+      }
+    },
+    {
+      "name": "lifecycle",
+      "scenario": "novel-reversal",
+      "seed": 8091,
+      "cell": "D",
+      "load": "heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2384953873,
+      "network_seed": 223445041,
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 4,
+      "required": {
+        "frozen": 1,
+        "recovered": 1,
+        "removed": 1
+      },
+      "lifecycle_commands": [
+        "freeze",
+        "recover",
+        "remove"
+      ]
+    },
+    {
+      "name": "timeout",
+      "scenario": "repair",
+      "seed": 8091,
+      "cell": "D",
+      "load": "directed",
+      "workload": "repair-probe",
+      "assignment_seed": 89396450,
+      "network_seed": 989366044,
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 100000,
+          "side": "server",
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ],
+            "b": [
+              24,
+              12,
+              100
+            ]
+          }
+        }
+      ],
+      "horizon_us": 1200000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 17,
+      "required": {
+        "timeouts": 1,
+        "lost_ack": 1
+      }
+    },
+    {
+      "name": "migration",
+      "scenario": "novel-reversal",
+      "seed": 8091,
+      "cell": "D",
+      "load": "heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2384953873,
+      "network_seed": 223445041,
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          42,
+          6,
+          0
+        ],
+        "b": [
+          5,
+          30,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 4,
+      "migration": true,
+      "required": {
+        "migrated": 1
+      }
+    }
+  ]
+}

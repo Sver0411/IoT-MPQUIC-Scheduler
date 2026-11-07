@@ -15,6 +15,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <openssl/sha.h>
 #include <xquic/xquic.h>
 #include <xquic/xqc_errno.h>
 
@@ -36,6 +37,7 @@ struct iot_run {
         struct iot_receiver receiver;
     };
     uint64_t start, retry_at, retry_delay, horizon_us;
+    uint64_t attempts, blocked_attempts;
     bool window_blocked, bind_path, oracle;
     enum iot_path_rule path_rule;
     uint32_t assignment_seed;
@@ -56,6 +58,9 @@ struct endpoint {
     xqc_cid_t cid;
     struct link links[PATHS];
     uint64_t timer;
+    uint64_t tx_datagram, rx_datagram, current_rx_datagram;
+    unsigned lifecycle_step;
+    bool exercise_lifecycle, exercise_migration, rebound;
     bool server, handshake, create_path, validated, closing, quic_closing, closed, failed;
     unsigned phase, sent, active_tx, acked, ack_sent;
     unsigned received[PHASES + 1];
@@ -73,6 +78,8 @@ struct record_stream {
 };
 
 static volatile sig_atomic_t advance_phase;
+static bool integrity_trace;
+static uint64_t integrity_sequence;
 
 static void on_signal(int signal_number)
 {
@@ -87,7 +94,7 @@ static uint64_t now_us(void)
     return (uint64_t)ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
 }
 
-static void event(const char *name, const char *format, ...)
+void iot_trace_event(const char *name, const char *format, ...)
 {
     printf("t_us=%" PRIu64 " event=%s", now_us(), name);
     if (*format) {
@@ -97,7 +104,29 @@ static void event(const char *name, const char *format, ...)
         vprintf(format, args);
         va_end(args);
     }
+    if (integrity_trace)
+        printf(" audit_seq=%" PRIu64, ++integrity_sequence);
     putchar('\n');
+}
+
+#define event iot_trace_event
+
+static void datagram_event(const char *name, uint64_t index, uint64_t path, int link,
+                           const unsigned char *bytes, size_t size, uint64_t timestamp,
+                           const struct sockaddr_in *local, const struct sockaddr_in *peer)
+{
+    unsigned char digest[SHA256_DIGEST_LENGTH];
+    char hex[2 * SHA256_DIGEST_LENGTH + 1];
+    static const char digits[] = "0123456789abcdef";
+    SHA256(bytes, size, digest);
+    for (size_t i = 0; i < sizeof(digest); i++) {
+        hex[2 * i] = digits[digest[i] >> 4];
+        hex[2 * i + 1] = digits[digest[i] & 15];
+    }
+    hex[sizeof(hex) - 1] = '\0';
+    event(name, "datagram=%" PRIu64 " path=%" PRIu64 " link=%c bytes=%zu at_us=%" PRIu64
+          " digest=%s local_port=%u peer_port=%u",
+          index, path, 'A' + link, size, timestamp, hex, ntohs(local->sin_port), ntohs(peer->sin_port));
 }
 
 static void set_timer(xqc_usec_t delay, void *user)
@@ -112,6 +141,17 @@ static void trace_log(xqc_log_level_t level, const void *buf, size_t size, void 
     struct endpoint *ep = user;
     fwrite(buf, 1, size, ep->trace);
     fputc('\n', ep->trace);
+    if (integrity_trace) {
+        static const char marker[] = "|iot91|";
+        const char *begin = memmem(buf, size, marker, sizeof(marker) - 1);
+        if (begin) {
+            begin += sizeof(marker) - 1;
+            const char *end = memchr(begin, '|', (const char *)buf + size - begin);
+            if (end)
+                event("iot91_xquic", "tx_datagram=%" PRIu64 " rx_datagram=%" PRIu64 " %.*s",
+                      ep->tx_datagram, ep->current_rx_datagram, (int)(end - begin), begin);
+        }
+    }
 }
 
 static bool same_address(const struct sockaddr_in *a, const struct sockaddr *b, socklen_t len)
@@ -139,6 +179,12 @@ static void map_link(struct link *link, int index, uint64_t id)
           'A' + index, id, local, peer);
 }
 
+static bool migration_peer(const struct link *link, const struct sockaddr_in *peer)
+{
+    return peer->sin_family == AF_INET && peer->sin_addr.s_addr == link->peer.sin_addr.s_addr &&
+           (peer->sin_port == htons(4434) || peer->sin_port == htons(4435));
+}
+
 static ssize_t write_path(uint64_t id, const unsigned char *buf, size_t size,
                           const struct sockaddr *peer, socklen_t len, void *user)
 {
@@ -147,16 +193,20 @@ static ssize_t write_path(uint64_t id, const unsigned char *buf, size_t size,
         struct link *link = &ep->links[i];
         if (link->id != id)
             continue;
+        bool migrating = ep->exercise_migration && ep->server && i == 1;
+        const struct sockaddr_in *target = migrating ? (const struct sockaddr_in *)peer : &link->peer;
         // The pinned client initializes new paths with path A's address.
         // Its connected socket supplies the configured destination for B.
-        if ((ep->server || i == 0) && len && !same_address(&link->peer, peer, len)) {
+        if ((migrating && (len != sizeof(*target) || !target || !migration_peer(link, target))) ||
+            (!migrating && (ep->server || i == 0) && len && !same_address(&link->peer, peer, len))) {
             event("peer_mismatch", "link=%c path_id=%" PRIu64, 'A' + i, id);
             ep->failed = true;
             return XQC_SOCKET_ERROR;
         }
+        uint64_t send_started = integrity_trace ? now_us() : 0;
         ssize_t written;
         do {
-            written = send(link->fd, buf, size, 0);
+            written = migrating ? sendto(link->fd, buf, size, 0, peer, len) : send(link->fd, buf, size, 0);
         } while (written < 0 && errno == EINTR);
         if (written < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
             link->blocked = true;
@@ -171,6 +221,9 @@ static ssize_t write_path(uint64_t id, const unsigned char *buf, size_t size,
         }
         link->tx++;
         link->tx_bytes += size;
+        if (integrity_trace)
+            datagram_event("iot91_udp_tx", ++ep->tx_datagram, id, i, buf, size, send_started,
+                           &link->local, target);
         event("udp_tx", "link=%c path_id=%" PRIu64 " bytes=%zu", 'A' + i, id, size);
         return written;
     }
@@ -509,6 +562,8 @@ static xqc_int_t stream_read(xqc_stream_t *stream, void *user)
         if (record->used > record->size)
             break;
         if (fin) {
+            if (integrity_trace)
+                event("iot91_fin_read", "stream=%" PRIu64 " bytes=%zu", xqc_stream_id(stream), record->used);
             if (finish_record(stream, record))
                 break;
             record->fin = true;
@@ -601,6 +656,8 @@ static xqc_stream_t *open_iot_tx(struct endpoint *ep, struct record_stream *reco
     if (!stream) {
         if (!iot->retry_delay || iot->oracle)
             event("iot_stream_create", "blocked=1 id=%u active_tx=%u", id, ep->active_tx);
+        if (integrity_trace && !ep->server)
+            iot->blocked_attempts++;
         // Each failed credit check in the pinned XQUIC can enqueue STREAMS_BLOCKED.
         uint64_t delay = iot->retry_delay ? iot->retry_delay * 2 : IOT_RETRY_MIN_US;
         iot->retry_delay = delay < IOT_RETRY_MAX_US ? delay : IOT_RETRY_MAX_US;
@@ -609,6 +666,9 @@ static xqc_stream_t *open_iot_tx(struct endpoint *ep, struct record_stream *reco
         event("iot_stream_create", "blocked=0 id=%u active_tx=%u", id, ep->active_tx);
         iot->retry_delay = iot->retry_at = 0;
     }
+    if (integrity_trace && !ep->server)
+        event("iot91_create", "attempt=%" PRIu64 " id=%u outcome=%s stream=%" PRIu64,
+              iot->attempts, id, stream ? "created" : "blocked", stream ? xqc_stream_id(stream) : 0);
     return stream;
 }
 
@@ -617,6 +677,57 @@ static const char *const path_rules[] = {
     [IOT_FIXED_MINRTT] = "fixed-minrtt", [IOT_EARLIEST_COMPLETION] = "earliest-completion",
     [IOT_RANDOM_PATH] = "random-path",
 };
+
+static void exercise_lifecycle(struct endpoint *ep, uint64_t elapsed)
+{
+    static const uint64_t times[] = {480000, 920000, 1550000};
+    unsigned step = ep->lifecycle_step;
+    if (step >= sizeof(times) / sizeof(*times) || elapsed < times[step])
+        return;
+    uint64_t path = ep->links[1].id;
+    const char *action = step == 0 ? "freeze" : step == 1 ? "recover" : "remove";
+    event("iot91_path_command", "path=%" PRIu64 " action=%s", path, action);
+    int result = step == 0 ? xqc_conn_mark_path_frozen(ep->engine, &ep->cid, path) :
+                 step == 1 ? xqc_conn_mark_path_available(ep->engine, &ep->cid, path) :
+                             xqc_conn_close_path(ep->engine, &ep->cid, path);
+    event("iot91_path_result", "path=%" PRIu64 " action=%s rc=%d", path, action, result);
+    ep->failed |= result != 0;
+    ep->lifecycle_step++;
+}
+
+static int open_link_socket(const struct sockaddr_in *local, const struct sockaddr_in *peer)
+{
+    int fd = socket(AF_INET, SOCK_DGRAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
+    if (fd < 0)
+        return -1;
+    if (bind(fd, (const struct sockaddr *)local, sizeof(*local)) < 0 ||
+        (peer && connect(fd, (const struct sockaddr *)peer, sizeof(*peer)) < 0)) {
+        int error = errno;
+        close(fd);
+        errno = error;
+        return -1;
+    }
+    return fd;
+}
+
+static void exercise_migration(struct endpoint *ep)
+{
+    struct link *link = &ep->links[1];
+    struct sockaddr_in local = link->local;
+    local.sin_port = htons(4435);
+    int fd = open_link_socket(&local, &link->peer);
+    if (fd < 0) {
+        perror("opening rebinding fixture socket");
+        ep->failed = true;
+        return;
+    }
+    close(link->fd);
+    link->fd = fd;
+    link->local = local;
+    link->blocked = false;
+    ep->rebound = true;
+    event("iot91_rebind", "path=%" PRIu64 " link=B old_port=4434 new_port=4435", link->id);
+}
 
 static void progress_iot(struct endpoint *ep)
 {
@@ -672,12 +783,23 @@ static void progress_iot(struct endpoint *ep)
     }
     uint64_t elapsed = now_us() - ep->iot->start;
     if (ep->iot->horizon_us && elapsed >= ep->iot->horizon_us) {
+        if (integrity_trace) {
+            for (size_t i = 0; i < workload->next; i++) {
+                const struct iot_entry *entry = &workload->entries[i];
+                if (entry->state == IOT_SUBMITTED)
+                    event("iot91_timeout", "id=%u stream=%" PRIu64, entry->record.id, entry->stream_id);
+            }
+        }
         snapshot(ep, 1);
         event("iot_window_end", "elapsed=%" PRIu64 " outstanding=%zu", elapsed, workload->outstanding);
         ep->closing = true;
         ep->failed |= xqc_conn_close(ep->engine, &ep->cid) != 0;
         return;
     }
+    if (ep->exercise_lifecycle)
+        exercise_lifecycle(ep, elapsed);
+    if (ep->exercise_migration && !ep->rebound && elapsed >= 1150000)
+        exercise_migration(ep);
     size_t index;
     uint32_t superseded;
     bool replace = iot_policy_replaces(scheduler->policy) && scheduler->ablation != IOT_NO_REPLACE;
@@ -728,6 +850,8 @@ static void progress_iot(struct endpoint *ep)
             if (!ep->iot->oracle)
                 iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
         }
+        if (integrity_trace)
+            event("iot91_attempt", "attempt=%" PRIu64 " id=%u", ++ep->iot->attempts, entry->record.id);
         if (ep->iot->oracle)
             event("iot_app_decision", "id=%u kind=%u class=%d decision_us=%" PRIu64
                   " score=%.17g normal=%u events=%u", entry->record.id, entry->record.kind,
@@ -782,6 +906,9 @@ static void progress_iot(struct endpoint *ep)
                   record.id, entry->stream_id, plan.category, plan.path_id, decision_us, slack,
                   plan.estimate.duration_us, plan.estimate.probability, plan.score,
                   scheduler->normal_since_recovery, scheduler->event_streak, count);
+            if (integrity_trace)
+                event("iot91_bind", "attempt=%" PRIu64 " id=%u stream=%" PRIu64 " home=%" PRIu64,
+                      ep->iot->attempts, record.id, entry->stream_id, plan.path_id);
         }
         if (proposed)
             iot_commit_plan(scheduler, plan.category);
@@ -869,7 +996,7 @@ static void progress(struct endpoint *ep)
     }
 }
 
-static int open_link(struct link *link, bool server, int index)
+static int open_link(struct link *link, bool server, int index, bool unconnected)
 {
     const char *client_ips[] = {"10.47.1.1", "10.47.2.1"};
     const char *server_ips[] = {"10.47.1.2", "10.47.2.2"};
@@ -878,10 +1005,8 @@ static int open_link(struct link *link, bool server, int index)
     link->peer.sin_port = htons(server ? 4434 : 4433);
     inet_pton(AF_INET, server ? server_ips[index] : client_ips[index], &link->local.sin_addr);
     inet_pton(AF_INET, server ? client_ips[index] : server_ips[index], &link->peer.sin_addr);
-    link->fd = socket(AF_INET, SOCK_DGRAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
-    if (link->fd < 0 ||
-        bind(link->fd, (struct sockaddr *)&link->local, sizeof(link->local)) < 0 ||
-        connect(link->fd, (struct sockaddr *)&link->peer, sizeof(link->peer)) < 0) {
+    link->fd = open_link_socket(&link->local, unconnected ? NULL : &link->peer);
+    if (link->fd < 0) {
         char local[22];
         address_text(&link->local, local);
         fprintf(stderr, "UDP setup for link %c (%s): %s\n", 'A' + index, local, strerror(errno));
@@ -894,8 +1019,12 @@ static void receive_packets(struct endpoint *ep, int index)
 {
     struct link *link = &ep->links[index];
     unsigned char buf[65536];
+    bool migrating = ep->exercise_migration && ep->server && index == 1;
     for (int n = 0; n < 64; n++) {
-        ssize_t bytes = recv(link->fd, buf, sizeof(buf), 0);
+        struct sockaddr_in peer = link->peer;
+        socklen_t peer_len = sizeof(peer);
+        ssize_t bytes = migrating ? recvfrom(link->fd, buf, sizeof(buf), 0, (struct sockaddr *)&peer, &peer_len)
+                                  : recv(link->fd, buf, sizeof(buf), 0);
         if (bytes < 0 && (errno == EAGAIN || errno == EWOULDBLOCK || errno == EINTR))
             break;
         if (bytes < 0 && errno == ECONNREFUSED && ep->quic_closing)
@@ -905,12 +1034,20 @@ static void receive_packets(struct endpoint *ep, int index)
             ep->failed = true;
             break;
         }
+        if (migrating && (peer_len != sizeof(peer) || !migration_peer(link, &peer)))
+            continue;
         uint64_t received_at = now_us();
         link->rx++;
         link->rx_bytes += (uint64_t)bytes;
+        if (integrity_trace) {
+            ep->current_rx_datagram = ++ep->rx_datagram;
+            datagram_event("iot91_udp_rx", ep->current_rx_datagram, link->id, index,
+                           buf, (size_t)bytes, received_at, &link->local, &peer);
+        }
         int rc = xqc_engine_packet_process(ep->engine, buf, (size_t)bytes,
                    (struct sockaddr *)&link->local, sizeof(link->local),
-                   (struct sockaddr *)&link->peer, sizeof(link->peer), received_at, ep);
+                   (struct sockaddr *)&peer, sizeof(peer), received_at, ep);
+        ep->current_rx_datagram = 0;
         event("udp_rx", "link=%c path_id=%" PRIu64 " bytes=%zd recv_us=%" PRIu64 " rc=%d",
               'A' + index, link->id, bytes, received_at, rc);
     }
@@ -1075,6 +1212,11 @@ int main(int argc, char **argv)
         fprintf(stderr, "Stage 8 requires a finite window and the unmodified path model\n");
         return 2;
     }
+    integrity_trace = iot && getenv("IOT_STAGE91_TRACE");
+    if (integrity_trace && (!horizon || (!server && (!oracle || !bind_path)))) {
+        fprintf(stderr, "Stage 9.1 requires a fixed window and a bound Stage 8 client\n");
+        return 2;
+    }
     setvbuf(stdout, NULL, _IOLBF, 0);
     struct sigaction action = {.sa_handler = on_signal};
     sigemptyset(&action.sa_mask);
@@ -1083,7 +1225,11 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    struct endpoint ep = {.server = server, .timer = UINT64_MAX};
+    struct endpoint ep = {.server = server, .timer = UINT64_MAX,
+                          .exercise_lifecycle = integrity_trace && !server && getenv("IOT_STAGE91_LIFECYCLE"),
+                          .exercise_migration = integrity_trace && getenv("IOT_STAGE91_MIGRATION")};
+    if (integrity_trace)
+        event("iot91_open", "role=%s", server ? "server" : "client");
     const char *alpn = iot ? IOT_ALPN : ALPN;
     for (int i = 0; i < PATHS; i++)
         ep.links[i].fd = -1;
@@ -1103,6 +1249,7 @@ int main(int argc, char **argv)
         ep.iot->oracle = oracle;
         ep.iot->assignment_seed = assignment_seed;
         ep.iot->paths.cross = repair;
+        ep.iot->paths.integrity = integrity_trace;
         if (!server && !iot_load_workload(&ep.iot->workload, argv[3]))
             goto fail;
     }
@@ -1113,7 +1260,7 @@ int main(int argc, char **argv)
     }
     for (int i = 0; i < PATHS; i++) {
         ep.links[i].id = UINT64_MAX;
-        if (open_link(&ep.links[i], server, i) < 0)
+        if (open_link(&ep.links[i], server, i, ep.exercise_migration && server && i == 1) < 0)
             goto fail;
     }
     map_link(&ep.links[0], 0, 0);
@@ -1136,6 +1283,7 @@ int main(int argc, char **argv)
         .log_callbacks = {.xqc_log_write_err = trace_log, .xqc_log_write_stat = trace_log},
     };
     xqc_transport_callbacks_t transport = {
+        .iot_integrity_trace = integrity_trace,
         .server_accept = server ? accept_connection : NULL,
         .write_socket = write_initial,
         .write_socket_ex = write_path,
@@ -1208,6 +1356,11 @@ cleanup:
         ep.failed = true;
     }
     if (ep.iot) {
+        if (integrity_trace)
+            event("iot91_totals", "attempts=%" PRIu64 " blocked=%" PRIu64 " choices=%" PRIu64
+                  " tx=%" PRIu64 " rx=%" PRIu64,
+                  ep.iot->attempts, ep.iot->blocked_attempts, ep.iot->paths.decisions,
+                  ep.tx_datagram, ep.rx_datagram);
         if (server)
             iot_free_receiver(&ep.iot->receiver);
         else

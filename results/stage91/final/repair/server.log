@@ -1,0 +1,956 @@
+t_us=14245586 event=iot91_open role=server audit_seq=1
+t_us=14245667 event=path_map link=A path_id=0 local=10.47.1.2:4433 peer=10.47.1.1:4434 audit_seq=2
+t_us=14258663 event=ready role=server audit_seq=3
+t_us=14313707 event=iot91_udp_rx datagram=1 path=0 link=A bytes=1200 at_us=14313702 digest=94f0ec80e4f914bbc9887eb981c96d020ca701c2cb90958519b4943c59481d90 local_port=4433 peer_port=4434 audit_seq=4
+t_us=14313775 event=iot91_xquic tx_datagram=0 rx_datagram=1 kind=path_state path=0 before=0 after=2 audit_seq=5
+t_us=14313882 event=conn_open audit_seq=6
+t_us=14314075 event=iot91_udp_tx datagram=1 path=0 link=A bytes=1200 at_us=14314055 digest=8d6a52a000fc98ec259929c4d4674c9b2983252181e4616a10b5de0f88c3c868 local_port=4433 peer_port=4434 audit_seq=7
+t_us=14314079 event=udp_tx link=A path_id=0 bytes=1200 audit_seq=8
+t_us=14314093 event=iot91_udp_tx datagram=2 path=0 link=A bytes=689 at_us=14314090 digest=95e93c2d0e73e05e03d2c52c584140c824b402bb5f88680fcea4442851b3b76a local_port=4433 peer_port=4434 audit_seq=9
+t_us=14314095 event=udp_tx link=A path_id=0 bytes=689 audit_seq=10
+t_us=14314104 event=iot91_udp_tx datagram=3 path=0 link=A bytes=51 at_us=14314101 digest=af696006cb69d0a596291f3665d9420ad90b07589db9c694fadc7a03801038fb local_port=4433 peer_port=4434 audit_seq=11
+t_us=14314105 event=udp_tx link=A path_id=0 bytes=51 audit_seq=12
+t_us=14314110 event=udp_rx link=A path_id=0 bytes=1200 recv_us=14313702 rc=0 audit_seq=13
+t_us=14323271 event=iot91_udp_rx datagram=2 path=0 link=A bytes=1200 at_us=14323267 digest=5887aea2f6bace77e68f6c00edfe38c9f6a2ff709961f51d1ae782d63858c559 local_port=4433 peer_port=4434 audit_seq=14
+t_us=14323322 event=udp_rx link=A path_id=0 bytes=1200 recv_us=14323267 rc=0 audit_seq=15
+t_us=14323326 event=iot91_udp_rx datagram=3 path=0 link=A bytes=84 at_us=14323325 digest=c28b4f24297fc88144e61d234725a253be8988b228dd09ca6c25a3949da023e4 local_port=4433 peer_port=4434 audit_seq=16
+t_us=14323407 event=handshake audit_seq=17
+t_us=14323415 event=quic_stats phase=0 mp=1 mp_state=0 available=1 lost=0 sent=2 spurious=0 audit_seq=18
+t_us=14323417 event=quic_path phase=0 path_id=0 tx_packets=2 rx_packets=3 data_tx_bytes=0 data_rx_bytes=0 audit_seq=19
+t_us=14323446 event=iot91_udp_tx datagram=4 path=0 link=A bytes=30 at_us=14323436 digest=f99f28cfd885e6d8c121a1ced113c08a74b6d82c085cfd335708fc6c808513b5 local_port=4433 peer_port=4434 audit_seq=20
+t_us=14323448 event=udp_tx link=A path_id=0 bytes=30 audit_seq=21
+t_us=14323459 event=iot91_udp_tx datagram=5 path=0 link=A bytes=68 at_us=14323456 digest=2d47ff61a0e045cf84da526e885b3224be5ac7b14a1bd66a5e4e395a378de569 local_port=4433 peer_port=4434 audit_seq=22
+t_us=14323461 event=udp_tx link=A path_id=0 bytes=68 audit_seq=23
+t_us=14323470 event=iot91_udp_tx datagram=6 path=0 link=A bytes=477 at_us=14323467 digest=81419c735d8b7b8610a1b4d6b6670442f0f2e0b703b6d9d51301052242708a15 local_port=4433 peer_port=4434 audit_seq=24
+t_us=14323472 event=udp_tx link=A path_id=0 bytes=477 audit_seq=25
+t_us=14323480 event=iot91_udp_tx datagram=7 path=0 link=A bytes=50 at_us=14323477 digest=e32ea3c9080a4c28086e9f085a8a4d9db3c092280dccc3efc7803a8e8d324ffe local_port=4433 peer_port=4434 audit_seq=26
+t_us=14323482 event=udp_tx link=A path_id=0 bytes=50 audit_seq=27
+t_us=14323489 event=iot91_udp_tx datagram=8 path=0 link=A bytes=61 at_us=14323486 digest=1022940d41f7027fbc9230a1079cfbb1df7f0a73c44bcfb810231fd3d40fb377 local_port=4433 peer_port=4434 audit_seq=28
+t_us=14323491 event=udp_tx link=A path_id=0 bytes=61 audit_seq=29
+t_us=14323498 event=iot91_udp_tx datagram=9 path=0 link=A bytes=61 at_us=14323496 digest=f235d286df40274f585d6ab2e9d97934bc54613dbeb7bb25bbb2f64a4acacf94 local_port=4433 peer_port=4434 audit_seq=30
+t_us=14323500 event=udp_tx link=A path_id=0 bytes=61 audit_seq=31
+t_us=14323507 event=iot91_udp_tx datagram=10 path=0 link=A bytes=61 at_us=14323505 digest=dbfa575373cac8249d3e6d298f850b7335369f7108130214817ac72c8c300279 local_port=4433 peer_port=4434 audit_seq=32
+t_us=14323509 event=udp_tx link=A path_id=0 bytes=61 audit_seq=33
+t_us=14323516 event=iot91_udp_tx datagram=11 path=0 link=A bytes=61 at_us=14323514 digest=85c9dddff304c230fdfc03dd33a185a972d8103005ef07df66e64759bbfea16c local_port=4433 peer_port=4434 audit_seq=34
+t_us=14323523 event=udp_tx link=A path_id=0 bytes=61 audit_seq=35
+t_us=14323528 event=udp_rx link=A path_id=0 bytes=84 recv_us=14323325 rc=0 audit_seq=36
+t_us=14323532 event=iot91_udp_rx datagram=4 path=0 link=A bytes=50 at_us=14323532 digest=3eb74ca6fba51f00fc534d822ec3aa0543ce78aad5e7e56b558aa7425e6a841e local_port=4433 peer_port=4434 audit_seq=37
+t_us=14323541 event=udp_rx link=A path_id=0 bytes=50 recv_us=14323532 rc=0 audit_seq=38
+t_us=14332165 event=iot91_udp_rx datagram=5 path=0 link=A bytes=61 at_us=14332160 digest=c8d5ad84a5a69b69f67cdc9c7146836a948a9faa819534d9e0423985942c2ed7 local_port=4433 peer_port=4434 audit_seq=39
+t_us=14332223 event=udp_rx link=A path_id=0 bytes=61 recv_us=14332160 rc=0 audit_seq=40
+t_us=14332227 event=iot91_udp_rx datagram=6 path=0 link=A bytes=61 at_us=14332227 digest=c56cd5bd786f2ccfb636221ee924d2efce6e03d64a266d956a37963b80a5f567 local_port=4433 peer_port=4434 audit_seq=41
+t_us=14332255 event=iot91_udp_tx datagram=12 path=0 link=A bytes=38 at_us=14332241 digest=07aaadba4ce24d7ccf0cacdcac65f6f216cfb587d4820734560198bc626e722f local_port=4433 peer_port=4434 audit_seq=42
+t_us=14332258 event=udp_tx link=A path_id=0 bytes=38 audit_seq=43
+t_us=14332264 event=udp_rx link=A path_id=0 bytes=61 recv_us=14332227 rc=0 audit_seq=44
+t_us=14332268 event=iot91_udp_rx datagram=7 path=0 link=A bytes=61 at_us=14332268 digest=92b1fa59c85d9f8d7724c195bce466d251862558b4a47697aa8c015469d0ce06 local_port=4433 peer_port=4434 audit_seq=45
+t_us=14332293 event=udp_rx link=A path_id=0 bytes=61 recv_us=14332268 rc=0 audit_seq=46
+t_us=14332296 event=iot91_udp_rx datagram=8 path=0 link=A bytes=61 at_us=14332296 digest=454ec0cf004965de2105ca48f7347bdcc151321c0389ad6f322735608f626e48 local_port=4433 peer_port=4434 audit_seq=47
+t_us=14332308 event=iot91_udp_tx datagram=13 path=0 link=A bytes=40 at_us=14332304 digest=970aaacd5bb664e7b03914777b9482e5f31f222dcba5f81ca89098aa32155c6b local_port=4433 peer_port=4434 audit_seq=48
+t_us=14332310 event=udp_tx link=A path_id=0 bytes=40 audit_seq=49
+t_us=14332314 event=udp_rx link=A path_id=0 bytes=61 recv_us=14332296 rc=0 audit_seq=50
+t_us=14332317 event=iot91_udp_rx datagram=9 path=0 link=A bytes=38 at_us=14332317 digest=6b8110c55503520b2f135af01c070e5ef10abb7d1ef8d6d2d8d2217a364359c5 local_port=4433 peer_port=4434 audit_seq=51
+t_us=14332329 event=udp_rx link=A path_id=0 bytes=38 recv_us=14332317 rc=0 audit_seq=52
+t_us=14332332 event=iot91_udp_rx datagram=10 path=0 link=A bytes=38 at_us=14332332 digest=a13820524a6d80dff956e2685bb71ff7a531a5f6bb7d57a7041cafd21a9be917 local_port=4433 peer_port=4434 audit_seq=53
+t_us=14332340 event=udp_rx link=A path_id=0 bytes=38 recv_us=14332332 rc=0 audit_seq=54
+t_us=14332343 event=iot91_udp_rx datagram=11 path=0 link=A bytes=38 at_us=14332343 digest=a9e7ecefe783d5a9e24c1d7a9fc239746e93a8a0c5dba5975db3295260750e02 local_port=4433 peer_port=4434 audit_seq=55
+t_us=14332350 event=udp_rx link=A path_id=0 bytes=38 recv_us=14332343 rc=0 audit_seq=56
+t_us=14340715 event=iot91_udp_rx datagram=12 path=0 link=A bytes=61 at_us=14340711 digest=389549097415e648e1ee17a9e644d9cba6894ad0fc40940ff5e9e63decf49615 local_port=4433 peer_port=4434 audit_seq=57
+t_us=14340773 event=udp_rx link=A path_id=0 bytes=61 recv_us=14340711 rc=0 audit_seq=58
+t_us=14358184 event=iot91_udp_rx datagram=13 path=0 link=A bytes=39 at_us=14358180 digest=e0be5e01cc7997ca4c01371bcc84b266ebcc5656bddc656e1c012fe2bb664336 local_port=4433 peer_port=4434 audit_seq=59
+t_us=14358238 event=udp_rx link=A path_id=0 bytes=39 recv_us=14358180 rc=0 audit_seq=60
+t_us=14366529 event=iot91_udp_tx datagram=14 path=0 link=A bytes=41 at_us=14366507 digest=89f39c9338fc65660e59aab701fb45aab5d7a3a1b56f073fead3752ab56402ed local_port=4433 peer_port=4434 audit_seq=61
+t_us=14366555 event=udp_tx link=A path_id=0 bytes=41 audit_seq=62
+t_us=14409703 event=iot91_udp_rx datagram=14 path=18446744073709551615 link=B bytes=1200 at_us=14409698 digest=4219b91084995c306ce4806090d80d3b5d6180e45ccf51f9c349e5ec56d5b74f local_port=4433 peer_port=4434 audit_seq=63
+t_us=14409761 event=iot91_xquic tx_datagram=14 rx_datagram=14 kind=path_state path=1 before=0 after=1 audit_seq=64
+t_us=14409775 event=path_map link=B path_id=1 local=10.47.2.2:4433 peer=10.47.2.1:4434 audit_seq=65
+t_us=14409804 event=iot91_udp_tx datagram=15 path=0 link=A bytes=61 at_us=14409791 digest=80bdd10d81302ffc133ef45ca528c8a4e7fa7ca986d288178a7711ded0c82614 local_port=4433 peer_port=4434 audit_seq=66
+t_us=14409807 event=udp_tx link=A path_id=0 bytes=61 audit_seq=67
+t_us=14409822 event=iot91_udp_tx datagram=16 path=1 link=B bytes=1200 at_us=14409817 digest=5d25361494d137fea3ef21305c6071da42a024c93f8c7ec6ea7adbec25809ff0 local_port=4433 peer_port=4434 audit_seq=68
+t_us=14409825 event=udp_tx link=B path_id=1 bytes=1200 audit_seq=69
+t_us=14409834 event=iot91_udp_tx datagram=17 path=1 link=B bytes=1200 at_us=14409831 digest=9a3a12d1c112254b0e5436da42f9df9d1411fa609e8c4588e50385682a8a0870 local_port=4433 peer_port=4434 audit_seq=70
+t_us=14409836 event=udp_tx link=B path_id=1 bytes=1200 audit_seq=71
+t_us=14409853 event=udp_rx link=B path_id=1 bytes=1200 recv_us=14409698 rc=0 audit_seq=72
+t_us=14435350 event=iot91_udp_tx datagram=18 path=1 link=B bytes=39 at_us=14435340 digest=6a29fd1df767096553510ff83105f839f038337ee0f3d19b67f9665dfc933ddd local_port=4433 peer_port=4434 audit_seq=73
+t_us=14435362 event=udp_tx link=B path_id=1 bytes=39 audit_seq=74
+t_us=14443972 event=iot91_udp_rx datagram=15 path=0 link=A bytes=39 at_us=14443969 digest=06253198de529dab25d6a3beb656ca233e151b894f445f3c1656afcb722e71e4 local_port=4433 peer_port=4434 audit_seq=75
+t_us=14444080 event=udp_rx link=A path_id=0 bytes=39 recv_us=14443969 rc=0 audit_seq=76
+t_us=14459765 event=iot91_udp_rx datagram=16 path=1 link=B bytes=1200 at_us=14459762 digest=c6b3f3e8b1b3947a28667344a76df0c6aaa7b313114be30645eb99c96b0101f5 local_port=4433 peer_port=4434 audit_seq=77
+t_us=14459791 event=iot91_xquic tx_datagram=18 rx_datagram=16 kind=path_state path=1 before=1 after=2 audit_seq=78
+t_us=14459805 event=udp_rx link=B path_id=1 bytes=1200 recv_us=14459762 rc=0 audit_seq=79
+t_us=14459808 event=iot91_udp_rx datagram=17 path=1 link=B bytes=40 at_us=14459808 digest=f33547754f83eb64bfeee246f251005b72bd15ce5cee771bb86f01522daebcea local_port=4433 peer_port=4434 audit_seq=80
+t_us=14459823 event=udp_rx link=B path_id=1 bytes=40 recv_us=14459808 rc=0 audit_seq=81
+t_us=14459826 event=paths_validated count=2 audit_seq=82
+t_us=14485347 event=iot91_udp_tx datagram=19 path=1 link=B bytes=39 at_us=14485329 digest=b3e42dcb57fed462f5314b3fff71e7996781329b281013a0ab1f9d81ec949b90 local_port=4433 peer_port=4434 audit_seq=83
+t_us=14485369 event=udp_tx link=B path_id=1 bytes=39 audit_seq=84
+t_us=14732218 event=iot91_udp_rx datagram=18 path=1 link=B bytes=1216 at_us=14732213 digest=e3baba8160bca15ad3eb5ba8a7f1ade8a9defbee3edf20e850979ed37b0136bd local_port=4433 peer_port=4434 audit_seq=85
+t_us=14732262 event=iot91_xquic tx_datagram=19 rx_datagram=18 kind=wire_rx path=1 pns=2 pn=4 stream=2 offset=0 length=1183 fin=0 audit_seq=86
+t_us=14732287 event=stream_open stream_id=2 direction=rx audit_seq=87
+t_us=14732296 event=udp_rx link=B path_id=1 bytes=1216 recv_us=14732213 rc=0 audit_seq=88
+t_us=14732970 event=iot91_udp_rx datagram=19 path=1 link=B bytes=1216 at_us=14732968 digest=4ba709a8f0550287b763d04da878395f8a21d4f7ef691ab0ba9e575b52667a1c local_port=4433 peer_port=4434 audit_seq=89
+t_us=14732984 event=iot91_xquic tx_datagram=19 rx_datagram=19 kind=wire_rx path=1 pns=2 pn=5 stream=2 offset=1183 length=1181 fin=0 audit_seq=90
+t_us=14732989 event=udp_rx link=B path_id=1 bytes=1216 recv_us=14732968 rc=0 audit_seq=91
+t_us=14733009 event=iot91_udp_tx datagram=20 path=1 link=B bytes=40 at_us=14732998 digest=01dfb8745bd1f4d0373a0cb4ec6483ee5b94a20c87033027cfdcf776f55eee46 local_port=4433 peer_port=4434 audit_seq=92
+t_us=14733011 event=udp_tx link=B path_id=1 bytes=40 audit_seq=93
+t_us=14776488 event=iot91_udp_rx datagram=20 path=1 link=B bytes=1216 at_us=14776483 digest=bee5738a3d5d31e403e8156a8eae680757880b729051da87e96251df9fc20d97 local_port=4433 peer_port=4434 audit_seq=94
+t_us=14776531 event=iot91_xquic tx_datagram=20 rx_datagram=20 kind=wire_rx path=1 pns=2 pn=6 stream=2 offset=0 length=1183 fin=0 audit_seq=95
+t_us=14776545 event=udp_rx link=B path_id=1 bytes=1216 recv_us=14776483 rc=0 audit_seq=96
+t_us=14777191 event=iot91_udp_rx datagram=21 path=1 link=B bytes=1216 at_us=14777189 digest=b7f0ac03b3a8e176fa3aa64ce891333e2e0d2bc04d155bfdfe8878805cdd8158 local_port=4433 peer_port=4434 audit_seq=97
+t_us=14777210 event=iot91_xquic tx_datagram=20 rx_datagram=21 kind=wire_rx path=1 pns=2 pn=7 stream=2 offset=1183 length=1181 fin=0 audit_seq=98
+t_us=14777216 event=udp_rx link=B path_id=1 bytes=1216 recv_us=14777189 rc=0 audit_seq=99
+t_us=14777235 event=iot91_udp_tx datagram=21 path=1 link=B bytes=40 at_us=14777224 digest=a20aa89875f2bf89b77926de05d0cfb84f518fc32bf03ceedea83d857c928aad local_port=4433 peer_port=4434 audit_seq=100
+t_us=14777237 event=udp_tx link=B path_id=1 bytes=40 audit_seq=101
+t_us=15002029 event=iot91_udp_rx datagram=22 path=1 link=B bytes=1216 at_us=15002024 digest=7f2d0f601362e4cc16b73b805c381a8dc4e50fc27a24ab90ee4214614cdc5caa local_port=4433 peer_port=4434 audit_seq=102
+t_us=15002071 event=iot91_xquic tx_datagram=21 rx_datagram=22 kind=wire_rx path=1 pns=2 pn=8 stream=2 offset=2364 length=1181 fin=0 audit_seq=103
+t_us=15002081 event=udp_rx link=B path_id=1 bytes=1216 recv_us=15002024 rc=0 audit_seq=104
+t_us=15002456 event=iot91_udp_rx datagram=23 path=1 link=B bytes=638 at_us=15002455 digest=d2427b5b8db62484c9b0030b4dd55c1630b43bfebc8c7ed42cc6cfb1956284f8 local_port=4433 peer_port=4434 audit_seq=105
+t_us=15002470 event=iot91_xquic tx_datagram=21 rx_datagram=23 kind=wire_rx path=1 pns=2 pn=9 stream=2 offset=3545 length=603 fin=1 audit_seq=106
+t_us=15002477 event=udp_rx link=B path_id=1 bytes=638 recv_us=15002455 rc=0 audit_seq=107
+t_us=15002483 event=iot91_fin_read stream=2 bytes=4148 audit_seq=108
+t_us=15002508 event=iot_rx id=1 stream_id=2 kind=2 source=1 serial=900 priority=6 severity=5 payload_len=4096 hash=847458422082031791 generated=14661810 deadline=14686810 maximum_age=0 received=15002485 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=109
+t_us=15002528 event=iot91_udp_tx datagram=22 path=1 link=B bytes=40 at_us=15002516 digest=79cecf209b3cae07bd146ae4c5600f81193682e4691cd47d8b336df530f29992 local_port=4433 peer_port=4434 audit_seq=110
+t_us=15002530 event=udp_tx link=B path_id=1 bytes=40 audit_seq=111
+t_us=15002546 event=stream_open stream_id=3 direction=tx audit_seq=112
+t_us=15002565 event=iot91_udp_tx datagram=23 path=0 link=A bytes=77 at_us=15002560 digest=b8151a3bac0480b3d6343df0d86aab3b0edea809ccc0240627e72f40d724780a local_port=4433 peer_port=4434 audit_seq=113
+t_us=15002567 event=udp_tx link=A path_id=0 bytes=77 audit_seq=114
+t_us=15002571 event=iot91_xquic tx_datagram=23 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=13 choice=0 stream=3 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=115
+t_us=15002579 event=stream_fin_tx stream_id=3 id=1 bytes=44 audit_seq=116
+t_us=15030972 event=iot91_udp_rx datagram=24 path=1 link=B bytes=31 at_us=15030968 digest=9394a5f46614863abdf97dd17e98266fba0188a9f54f30b0f6a2980c79698536 local_port=4433 peer_port=4434 audit_seq=117
+t_us=15031018 event=udp_rx link=B path_id=1 bytes=31 recv_us=15030968 rc=0 audit_seq=118
+t_us=15042325 event=iot91_udp_tx datagram=24 path=0 link=A bytes=77 at_us=15042305 digest=e4a685cd753843dad70c983895e85885eade5b80f17246eb2b58038e426a4128 local_port=4433 peer_port=4434 audit_seq=119
+t_us=15042337 event=udp_tx link=A path_id=0 bytes=77 audit_seq=120
+t_us=15042346 event=iot91_xquic tx_datagram=24 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=14 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=121
+t_us=15042358 event=iot91_udp_tx datagram=25 path=0 link=A bytes=77 at_us=15042355 digest=32388a7e9b787874e2dd955fcdd1d603e6d2fea0f051540d2028586a882b5d75 local_port=4433 peer_port=4434 audit_seq=122
+t_us=15042360 event=udp_tx link=A path_id=0 bytes=77 audit_seq=123
+t_us=15042383 event=iot91_xquic tx_datagram=25 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=15 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=124
+t_us=15056720 event=iot91_udp_tx datagram=26 path=1 link=B bytes=41 at_us=15056700 digest=e5092a035728b97327af7f83908a1c22bd2b824835918b358292a65eaa1921a9 local_port=4433 peer_port=4434 audit_seq=125
+t_us=15056743 event=udp_tx link=B path_id=1 bytes=41 audit_seq=126
+t_us=15105192 event=iot91_udp_rx datagram=25 path=1 link=B bytes=31 at_us=15105188 digest=7e823311c8fe37454a75931fabe2a4ce357690803f4712c182ddf36c857af07b local_port=4433 peer_port=4434 audit_seq=127
+t_us=15105241 event=udp_rx link=B path_id=1 bytes=31 recv_us=15105188 rc=0 audit_seq=128
+t_us=15121696 event=iot91_udp_tx datagram=27 path=0 link=A bytes=77 at_us=15121679 digest=b9666ac213981e3ef2e561144e3a4d35cbb59ba0f447941458fb8e00f428aa7a local_port=4433 peer_port=4434 audit_seq=129
+t_us=15121711 event=udp_tx link=A path_id=0 bytes=77 audit_seq=130
+t_us=15121718 event=iot91_xquic tx_datagram=27 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=16 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=131
+t_us=15121726 event=iot91_udp_tx datagram=28 path=0 link=A bytes=77 at_us=15121723 digest=76a9bf0dfb40eda289407eb80f8e17ab5e13097f43fd05af15e4c1aebffe5e12 local_port=4433 peer_port=4434 audit_seq=132
+t_us=15121728 event=udp_tx link=A path_id=0 bytes=77 audit_seq=133
+t_us=15121731 event=iot91_xquic tx_datagram=28 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=17 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=134
+t_us=15130955 event=iot91_udp_tx datagram=29 path=1 link=B bytes=41 at_us=15130938 digest=673e40d489e2e10945a1da7816f0c294f66af63819d911153f55921ff3a59432 local_port=4433 peer_port=4434 audit_seq=135
+t_us=15130976 event=udp_tx link=B path_id=1 bytes=41 audit_seq=136
+t_us=15150200 event=iot91_udp_rx datagram=26 path=1 link=B bytes=31 at_us=15150196 digest=6e714ec88a10976ce9443bcbe3a73aa9690c6d7cc32732bb51ffa63d0db89604 local_port=4433 peer_port=4434 audit_seq=137
+t_us=15150249 event=udp_rx link=B path_id=1 bytes=31 recv_us=15150196 rc=0 audit_seq=138
+t_us=15175768 event=iot91_udp_tx datagram=30 path=1 link=B bytes=41 at_us=15175750 digest=98ef47e30cd803b74e69dc8eeef544a18d9e780f0aff05d1741b887ed4e568cf local_port=4433 peer_port=4434 audit_seq=139
+t_us=15175780 event=udp_tx link=B path_id=1 bytes=41 audit_seq=140
+t_us=15224306 event=iot91_udp_rx datagram=27 path=1 link=B bytes=31 at_us=15224301 digest=e3256867f451c8ee5695a09e096363449a5f8433933b90d30745dbbc5962cef2 local_port=4433 peer_port=4434 audit_seq=141
+t_us=15224360 event=udp_rx link=B path_id=1 bytes=31 recv_us=15224301 rc=0 audit_seq=142
+t_us=15249986 event=iot91_udp_tx datagram=31 path=1 link=B bytes=41 at_us=15249966 digest=e7bd8c526d6d3884d1fd44a8ee58b4dab965f426f6960c23a114fdcb25c6aa34 local_port=4433 peer_port=4434 audit_seq=143
+t_us=15250005 event=udp_tx link=B path_id=1 bytes=41 audit_seq=144
+t_us=15279682 event=iot91_udp_tx datagram=32 path=0 link=A bytes=77 at_us=15279669 digest=3c29dfa49523c8ae84a895fddadaef92e53c73fd30c3a1b5824a34643235cb2f local_port=4433 peer_port=4434 audit_seq=145
+t_us=15279693 event=udp_tx link=A path_id=0 bytes=77 audit_seq=146
+t_us=15279701 event=iot91_xquic tx_datagram=32 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=18 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=147
+t_us=15279711 event=iot91_udp_tx datagram=33 path=0 link=A bytes=77 at_us=15279708 digest=2fcd5c1941b376bec0efd138232c1879664fe45e7e35f029abf7eea780bf7771 local_port=4433 peer_port=4434 audit_seq=148
+t_us=15279713 event=udp_tx link=A path_id=0 bytes=77 audit_seq=149
+t_us=15279718 event=iot91_xquic tx_datagram=33 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=19 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=150
+t_us=15298471 event=iot91_udp_rx datagram=28 path=1 link=B bytes=31 at_us=15298467 digest=5321616c09e0327bb0987b3c7a02b1866f92bd385f9e2794c76eb1ad97a945e1 local_port=4433 peer_port=4434 audit_seq=151
+t_us=15298539 event=udp_rx link=B path_id=1 bytes=31 recv_us=15298467 rc=0 audit_seq=152
+t_us=15298543 event=iot91_udp_rx datagram=29 path=1 link=B bytes=31 at_us=15298543 digest=70b9bbec3f24cac56e6b97d978a2f0e5474a8e96ff1a050632f444b7b4ffb0df local_port=4433 peer_port=4434 audit_seq=153
+t_us=15298568 event=iot91_udp_tx datagram=34 path=1 link=B bytes=40 at_us=15298555 digest=80785ba350bbe3402968cc3eb30a56af340133bbd202587effb4042ef6353daf local_port=4433 peer_port=4434 audit_seq=154
+t_us=15298571 event=udp_tx link=B path_id=1 bytes=40 audit_seq=155
+t_us=15298577 event=udp_rx link=B path_id=1 bytes=31 recv_us=15298543 rc=0 audit_seq=156
+t_us=15347020 event=iot91_udp_rx datagram=30 path=1 link=B bytes=31 at_us=15347016 digest=e471992dd7360b687f594dfae1f2680fd25aa53ec34f468b4d5017119e720836 local_port=4433 peer_port=4434 audit_seq=157
+t_us=15347067 event=udp_rx link=B path_id=1 bytes=31 recv_us=15347016 rc=0 audit_seq=158
+t_us=15352035 event=iot91_udp_rx datagram=31 path=1 link=B bytes=1216 at_us=15352030 digest=9c72357bba3969823f826582a7ba330638d260df4833547acb89ccf5f2e38499 local_port=4433 peer_port=4434 audit_seq=159
+t_us=15352077 event=iot91_xquic tx_datagram=34 rx_datagram=31 kind=wire_rx path=1 pns=2 pn=17 stream=6 offset=0 length=1183 fin=0 audit_seq=160
+t_us=15352116 event=stream_open stream_id=6 direction=rx audit_seq=161
+t_us=15352127 event=udp_rx link=B path_id=1 bytes=1216 recv_us=15352030 rc=0 audit_seq=162
+t_us=15352155 event=iot91_udp_tx datagram=35 path=1 link=B bytes=40 at_us=15352141 digest=f948ee48a995e077ef4dc9c88ab94ae316e1b082dd31f9aacbd179b279708daa local_port=4433 peer_port=4434 audit_seq=163
+t_us=15352157 event=udp_tx link=B path_id=1 bytes=40 audit_seq=164
+t_us=15352814 event=iot91_udp_rx datagram=32 path=1 link=B bytes=1216 at_us=15352813 digest=276f33af3b7e9c31f67aa79600ff333c5e24934f097fe9339285a2f3e3480a25 local_port=4433 peer_port=4434 audit_seq=165
+t_us=15352833 event=iot91_xquic tx_datagram=35 rx_datagram=32 kind=wire_rx path=1 pns=2 pn=18 stream=6 offset=1183 length=1181 fin=0 audit_seq=166
+t_us=15352840 event=udp_rx link=B path_id=1 bytes=1216 recv_us=15352813 rc=0 audit_seq=167
+t_us=15378371 event=iot91_udp_tx datagram=36 path=1 link=B bytes=41 at_us=15378360 digest=38a2ad78df44503e3f2118149503b3936e33761618d997675727121d0369cba5 local_port=4433 peer_port=4434 audit_seq=168
+t_us=15378385 event=udp_tx link=B path_id=1 bytes=41 audit_seq=169
+t_us=15400611 event=iot91_udp_rx datagram=33 path=1 link=B bytes=31 at_us=15400606 digest=31cb141e869d6287490b3a24e623cf22840d98d479dbccd0ae435205025fd186 local_port=4433 peer_port=4434 audit_seq=170
+t_us=15400661 event=udp_rx link=B path_id=1 bytes=31 recv_us=15400606 rc=0 audit_seq=171
+t_us=15426213 event=iot91_udp_tx datagram=37 path=1 link=B bytes=41 at_us=15426192 digest=8345587cc63a5baf1717992205aaed12adb016a5dc9b664d881de48d68a31be8 local_port=4433 peer_port=4434 audit_seq=172
+t_us=15426264 event=udp_tx link=B path_id=1 bytes=41 audit_seq=173
+t_us=15455611 event=iot91_udp_rx datagram=34 path=1 link=B bytes=31 at_us=15455608 digest=f96869d4d5fe9855f204c96b15d7f6da144680316022faded50b51930cee0c47 local_port=4433 peer_port=4434 audit_seq=174
+t_us=15455651 event=udp_rx link=B path_id=1 bytes=31 recv_us=15455608 rc=0 audit_seq=175
+t_us=15481194 event=iot91_udp_tx datagram=38 path=1 link=B bytes=41 at_us=15481173 digest=dd702b6c55795625500a7342cbabe32f88153b58c9a8f6bad200a7e85feda343 local_port=4433 peer_port=4434 audit_seq=176
+t_us=15481207 event=udp_tx link=B path_id=1 bytes=41 audit_seq=177
+t_us=15491580 event=iot91_udp_rx datagram=35 path=1 link=B bytes=31 at_us=15491576 digest=2d19bceaedb0927c9ad09a845428f3499fb68484378bac310f88fd1af7695d47 local_port=4433 peer_port=4434 audit_seq=178
+t_us=15491642 event=udp_rx link=B path_id=1 bytes=31 recv_us=15491576 rc=0 audit_seq=179
+t_us=15517249 event=iot91_udp_tx datagram=39 path=1 link=B bytes=41 at_us=15517225 digest=2e0481146d17237bf243dd0bf2e527e25da408832ab70585072c29e40e8788e4 local_port=4433 peer_port=4434 audit_seq=180
+t_us=15517274 event=udp_tx link=B path_id=1 bytes=41 audit_seq=181
+t_us=15527520 event=stream_closed stream_id=2 id=1 fin=1 direction=rx active_tx=1 audit_seq=182
+t_us=15595125 event=iot91_udp_tx datagram=40 path=0 link=A bytes=77 at_us=15595104 digest=e4ccca86a2d6f7a28873a69168abc490c0b038e23dec1add83c77a3ac69b6264 local_port=4433 peer_port=4434 audit_seq=183
+t_us=15595136 event=udp_tx link=A path_id=0 bytes=77 audit_seq=184
+t_us=15595145 event=iot91_xquic tx_datagram=40 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=20 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=185
+t_us=15595156 event=iot91_udp_tx datagram=41 path=0 link=A bytes=77 at_us=15595152 digest=1ca5abe33398255df576b21fec19ae4384f38b4e7e0043e444972bb190741ecb local_port=4433 peer_port=4434 audit_seq=186
+t_us=15595158 event=udp_tx link=A path_id=0 bytes=77 audit_seq=187
+t_us=15595162 event=iot91_xquic tx_datagram=41 rx_datagram=0 kind=wire_tx path=0 pns=2 pn=21 choice=0 stream=3 offset=0 length=44 fin=1 repair=1 orig_path=0 orig_pns=2 orig_pn=13 audit_seq=188
+t_us=15645643 event=iot91_udp_rx datagram=36 path=1 link=B bytes=31 at_us=15645639 digest=1085c2d071ac427f5efc0c8aacd3218dcd282a89a9836fbfb4c827607a606b1e local_port=4433 peer_port=4434 audit_seq=189
+t_us=15645703 event=iot91_udp_tx datagram=42 path=1 link=B bytes=31 at_us=15645692 digest=b293fbd71bd46ee0f971cdbf26e80abace36d91743bf1f4a13b8dacaf5c42472 local_port=4433 peer_port=4434 audit_seq=190
+t_us=15645706 event=udp_tx link=B path_id=1 bytes=31 audit_seq=191
+t_us=15645716 event=udp_rx link=B path_id=1 bytes=31 recv_us=15645639 rc=0 audit_seq=192
+t_us=15645719 event=iot91_udp_rx datagram=37 path=1 link=B bytes=31 at_us=15645719 digest=85553a1928553405c0a4306a82af644b2e4c51eb18a3fa8aa4391ae5979d303b local_port=4433 peer_port=4434 audit_seq=193
+t_us=15645731 event=iot91_udp_tx datagram=43 path=1 link=B bytes=40 at_us=15645728 digest=cf91bea26664a3a71cb64376f988bee1a6b76ce2f642b81bbb960d165d51e1e8 local_port=4433 peer_port=4434 audit_seq=194
+t_us=15645733 event=udp_tx link=B path_id=1 bytes=40 audit_seq=195
+t_us=15645738 event=udp_rx link=B path_id=1 bytes=31 recv_us=15645719 rc=0 audit_seq=196
+t_us=15645741 event=iot91_udp_rx datagram=38 path=1 link=B bytes=31 at_us=15645741 digest=7a1c024f82cef9d3751746cbc3edb20a216c061cb2477d197d46c48101e5ccd6 local_port=4433 peer_port=4434 audit_seq=197
+t_us=15645747 event=udp_rx link=B path_id=1 bytes=31 recv_us=15645741 rc=0 audit_seq=198
+t_us=15671306 event=iot91_udp_tx datagram=44 path=1 link=B bytes=41 at_us=15671287 digest=ed0e3866417cd15cae9bdaeaf567a36e02e5edcdf94e4e9b2aa8a1e1b9d4a2b7 local_port=4433 peer_port=4434 audit_seq=199
+t_us=15671325 event=udp_tx link=B path_id=1 bytes=41 audit_seq=200
+t_us=15682039 event=iot91_udp_rx datagram=39 path=1 link=B bytes=923 at_us=15682035 digest=545ce97424d85aab33fe62515c70de3041a50cefe18be1d97654dd8aa3b45bc5 local_port=4433 peer_port=4434 audit_seq=201
+t_us=15682091 event=iot91_xquic tx_datagram=44 rx_datagram=39 kind=wire_rx path=1 pns=2 pn=25 stream=6 offset=2364 length=888 fin=1 audit_seq=202
+t_us=15682103 event=udp_rx link=B path_id=1 bytes=923 recv_us=15682035 rc=0 audit_seq=203
+t_us=15682111 event=iot91_fin_read stream=6 bytes=3252 audit_seq=204
+t_us=15682117 event=iot_rx id=5 stream_id=6 kind=2 source=2 serial=904 priority=6 severity=5 payload_len=3200 hash=16529889165638435716 generated=14765657 deadline=15045657 maximum_age=0 received=15682113 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=205
+t_us=15682146 event=stream_open stream_id=7 direction=tx audit_seq=206
+t_us=15682175 event=iot91_udp_tx datagram=45 path=1 link=B bytes=77 at_us=15682163 digest=0e524e3b2af9b3b946407faef91c31da1ebd6b4b25f6c83eb39857560d6ba920 local_port=4433 peer_port=4434 audit_seq=207
+t_us=15682177 event=udp_tx link=B path_id=1 bytes=77 audit_seq=208
+t_us=15682182 event=iot91_xquic tx_datagram=45 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=27 choice=0 stream=7 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=209
+t_us=15682190 event=stream_fin_tx stream_id=7 id=5 bytes=44 audit_seq=210
+t_us=15682344 event=iot91_udp_rx datagram=40 path=1 link=B bytes=1216 at_us=15682342 digest=57d886737523d2592ac2780c6fb458b8f1257e1670b3f1f0596cdc3fddb88499 local_port=4433 peer_port=4434 audit_seq=211
+t_us=15682362 event=iot91_xquic tx_datagram=45 rx_datagram=40 kind=wire_rx path=1 pns=2 pn=26 stream=10 offset=0 length=1183 fin=0 audit_seq=212
+t_us=15682376 event=stream_open stream_id=10 direction=rx audit_seq=213
+t_us=15682382 event=udp_rx link=B path_id=1 bytes=1216 recv_us=15682342 rc=0 audit_seq=214
+t_us=15682386 event=iot91_udp_rx datagram=41 path=1 link=B bytes=41 at_us=15682385 digest=2fe5ff125ae1f97e4ca2fe4694133109d424f81d3f90cf0c5ec579976c243dae local_port=4433 peer_port=4434 audit_seq=215
+t_us=15682414 event=iot91_udp_tx datagram=46 path=1 link=B bytes=38 at_us=15682407 digest=42775241f0d25f3bc2b8ccb960311617883c80eb388a5341a910cda375ac7037 local_port=4433 peer_port=4434 audit_seq=216
+t_us=15682416 event=udp_tx link=B path_id=1 bytes=38 audit_seq=217
+t_us=15682422 event=udp_rx link=B path_id=1 bytes=41 recv_us=15682385 rc=0 audit_seq=218
+t_us=15685707 event=iot91_udp_rx datagram=42 path=0 link=A bytes=38 at_us=15685705 digest=5cdd2f25934822af70bfd18e522eb801db3e580e36247776a2a42a0f7b3c3d9c local_port=4433 peer_port=4434 audit_seq=219
+t_us=15685745 event=udp_rx link=A path_id=0 bytes=38 recv_us=15685705 rc=0 audit_seq=220
+t_us=15693106 event=iot91_udp_rx datagram=43 path=1 link=B bytes=1216 at_us=15693102 digest=5ea09a7607b1bf9ac4d070ece9dae56542b1b8f4edf8e8b965728f8188609737 local_port=4433 peer_port=4434 audit_seq=221
+t_us=15693134 event=iot91_xquic tx_datagram=46 rx_datagram=43 kind=wire_rx path=1 pns=2 pn=28 stream=18 offset=0 length=1183 fin=0 audit_seq=222
+t_us=15693147 event=stream_open stream_id=18 direction=rx audit_seq=223
+t_us=15693154 event=udp_rx link=B path_id=1 bytes=1216 recv_us=15693102 rc=0 audit_seq=224
+t_us=15693345 event=iot91_udp_rx datagram=44 path=1 link=B bytes=952 at_us=15693344 digest=4875df725e90f77cf8168b70c7347a5f1ee8855573ed1f2e64e0e883787df18c local_port=4433 peer_port=4434 audit_seq=225
+t_us=15693364 event=iot91_xquic tx_datagram=46 rx_datagram=44 kind=wire_rx path=1 pns=2 pn=29 stream=18 offset=1183 length=917 fin=1 audit_seq=226
+t_us=15693369 event=udp_rx link=B path_id=1 bytes=952 recv_us=15693344 rc=0 audit_seq=227
+t_us=15693372 event=iot91_udp_rx datagram=45 path=1 link=B bytes=31 at_us=15693372 digest=47f44f01b8ae2ec5744028f4bebd626543aefa2e7c4fd24bce128375dc6df20c local_port=4433 peer_port=4434 audit_seq=228
+t_us=15693379 event=iot91_fin_read stream=18 bytes=2100 audit_seq=229
+t_us=15693383 event=iot_rx id=31 stream_id=18 kind=1 source=1 serial=5 priority=1 severity=0 payload_len=2048 hash=9853353056521858320 generated=15495657 deadline=16995657 maximum_age=1250000 received=15693380 status=1 on_time=1 age_exceeded=0 latest_generated=15495657 latest_serial=5 audit_seq=230
+t_us=15693399 event=iot91_udp_tx datagram=47 path=1 link=B bytes=38 at_us=15693389 digest=832a8e944a46532ccf339f7f108002bc1bd1e77c03f206970e34c814798427a9 local_port=4433 peer_port=4434 audit_seq=231
+t_us=15693400 event=udp_tx link=B path_id=1 bytes=38 audit_seq=232
+t_us=15693405 event=udp_rx link=B path_id=1 bytes=31 recv_us=15693372 rc=0 audit_seq=233
+t_us=15693414 event=stream_open stream_id=11 direction=tx audit_seq=234
+t_us=15693427 event=iot91_udp_tx datagram=48 path=1 link=B bytes=77 at_us=15693424 digest=4d2d923542f3e26dad265d935b737b8d56ff76d689eb415007cd5e365fec79fc local_port=4433 peer_port=4434 audit_seq=235
+t_us=15693428 event=udp_tx link=B path_id=1 bytes=77 audit_seq=236
+t_us=15693431 event=iot91_xquic tx_datagram=48 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=30 choice=0 stream=11 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=237
+t_us=15693436 event=stream_fin_tx stream_id=11 id=31 bytes=44 audit_seq=238
+t_us=15703807 event=iot91_udp_rx datagram=46 path=1 link=B bytes=31 at_us=15703803 digest=128df7c446ac1463caec2fc9efd4f3c8473a3ec35070db4de093cabc365c7e3d local_port=4433 peer_port=4434 audit_seq=239
+t_us=15703860 event=udp_rx link=B path_id=1 bytes=31 recv_us=15703803 rc=0 audit_seq=240
+t_us=15703864 event=iot91_udp_rx datagram=47 path=1 link=B bytes=38 at_us=15703863 digest=b47a0d60f8cee1e889a6b92b5e6753f1921647abd0b08ea6b8cf0249ea3aff8c local_port=4433 peer_port=4434 audit_seq=241
+t_us=15703881 event=udp_rx link=B path_id=1 bytes=38 recv_us=15703863 rc=0 audit_seq=242
+t_us=15729495 event=iot91_udp_tx datagram=49 path=1 link=B bytes=39 at_us=15729473 digest=28d27909a9a10816dfc85b0bf5792580a0bfe61ab5633145516be1b1c75de9bb local_port=4433 peer_port=4434 audit_seq=243
+t_us=15729520 event=udp_tx link=B path_id=1 bytes=39 audit_seq=244
+t_us=15739916 event=iot91_udp_rx datagram=48 path=1 link=B bytes=31 at_us=15739913 digest=77b076c736cf54bd21f81620d4e78aa5d35f71580d1d317686f42deb21219a79 local_port=4433 peer_port=4434 audit_seq=245
+t_us=15739961 event=udp_rx link=B path_id=1 bytes=31 recv_us=15739913 rc=0 audit_seq=246
+t_us=15739964 event=iot91_udp_rx datagram=49 path=1 link=B bytes=31 at_us=15739964 digest=c44959f52fbff21d0f88cca98d7ec1d42595140178e079a419e16c85eb7d3a8c local_port=4433 peer_port=4434 audit_seq=247
+t_us=15739988 event=iot91_udp_tx datagram=50 path=1 link=B bytes=38 at_us=15739976 digest=b13b24728cecdae2354fc5209214522055cf8b7e2c33101a5ad5a71f41b8d0d2 local_port=4433 peer_port=4434 audit_seq=248
+t_us=15739990 event=udp_tx link=B path_id=1 bytes=38 audit_seq=249
+t_us=15739996 event=udp_rx link=B path_id=1 bytes=31 recv_us=15739964 rc=0 audit_seq=250
+t_us=16138816 event=iot91_udp_rx datagram=50 path=1 link=B bytes=31 at_us=16138812 digest=7cd0e2a405a4b48beb82ef5586c156f05c379a6122ff7dc4fe197a02f404b7f9 local_port=4433 peer_port=4434 audit_seq=251
+t_us=16138903 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138812 rc=0 audit_seq=252
+t_us=16138907 event=iot91_udp_rx datagram=51 path=1 link=B bytes=31 at_us=16138906 digest=3ed8268bcd8807bc3f19f1a30f1ed2ae8cdc4464aac0fcb3a7fd8ebdf9c440a8 local_port=4433 peer_port=4434 audit_seq=253
+t_us=16138931 event=iot91_udp_tx datagram=51 path=1 link=B bytes=40 at_us=16138919 digest=b3031af43f4951b184e0de281214b3a8ba79c140e28b194f47d2755bad6d5ee5 local_port=4433 peer_port=4434 audit_seq=254
+t_us=16138933 event=udp_tx link=B path_id=1 bytes=40 audit_seq=255
+t_us=16138940 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138906 rc=0 audit_seq=256
+t_us=16138942 event=iot91_udp_rx datagram=52 path=1 link=B bytes=31 at_us=16138942 digest=dfa2907db205a68a6f1732be98b27d6f8c6b30e22c2cdcd4e1fb490da303b7a3 local_port=4433 peer_port=4434 audit_seq=257
+t_us=16138948 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138942 rc=0 audit_seq=258
+t_us=16138950 event=iot91_udp_rx datagram=53 path=1 link=B bytes=31 at_us=16138950 digest=af4e24b1421f6eb6f157a9836fde5d4f3ee2ad151c832615ae584fac0275759c local_port=4433 peer_port=4434 audit_seq=259
+t_us=16138958 event=iot91_udp_tx datagram=52 path=1 link=B bytes=40 at_us=16138955 digest=0998c816b578fd62b27b9cf8e6e9f45e3bc13d2c0f93f92a192d93fce01cf60c local_port=4433 peer_port=4434 audit_seq=260
+t_us=16138960 event=udp_tx link=B path_id=1 bytes=40 audit_seq=261
+t_us=16138964 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138950 rc=0 audit_seq=262
+t_us=16138966 event=iot91_udp_rx datagram=54 path=1 link=B bytes=31 at_us=16138966 digest=33739c39a848eb54d63dd741d2608bf78f1198ce84134cab0439b6e8a3886ec2 local_port=4433 peer_port=4434 audit_seq=263
+t_us=16138971 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138966 rc=0 audit_seq=264
+t_us=16138973 event=iot91_udp_rx datagram=55 path=1 link=B bytes=31 at_us=16138973 digest=54e6ac805c2ebe6b0db42116c6b9f33ea21fb1415dff165bc441a71decf68c35 local_port=4433 peer_port=4434 audit_seq=265
+t_us=16138981 event=iot91_udp_tx datagram=53 path=1 link=B bytes=40 at_us=16138979 digest=51e09ec7d85835d23c6b5674643bf31e53ae50aa03dfe0b7cba73886a9c9478e local_port=4433 peer_port=4434 audit_seq=266
+t_us=16138983 event=udp_tx link=B path_id=1 bytes=40 audit_seq=267
+t_us=16138986 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138973 rc=0 audit_seq=268
+t_us=16138989 event=iot91_udp_rx datagram=56 path=1 link=B bytes=31 at_us=16138989 digest=671670e7ed050798f60fa765cef0e9afdc84985bead9ebc823ecb8d6d9035289 local_port=4433 peer_port=4434 audit_seq=269
+t_us=16138997 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138989 rc=0 audit_seq=270
+t_us=16138999 event=iot91_udp_rx datagram=57 path=1 link=B bytes=31 at_us=16138999 digest=37a1910c41e40344c935fe455cdad2f5185db535136114c9afd4d88ac4a0e1b8 local_port=4433 peer_port=4434 audit_seq=271
+t_us=16139007 event=iot91_udp_tx datagram=54 path=1 link=B bytes=40 at_us=16139005 digest=965763b98db856cb043b073eb1f76f584a8940f258b3316c3939e3eb76f58027 local_port=4433 peer_port=4434 audit_seq=272
+t_us=16139008 event=udp_tx link=B path_id=1 bytes=40 audit_seq=273
+t_us=16139012 event=udp_rx link=B path_id=1 bytes=31 recv_us=16138999 rc=0 audit_seq=274
+t_us=16170748 event=stream_closed stream_id=3 id=1 fin=1 direction=tx active_tx=2 audit_seq=275
+t_us=16179017 event=stream_closed stream_id=18 id=31 fin=1 direction=rx active_tx=2 audit_seq=276
+t_us=16179075 event=iot91_udp_tx datagram=55 path=1 link=B bytes=31 at_us=16179054 digest=cbdbeab476c14e1e9806d195958e88f2d32d4585126fce4b360d1f7c75d466a3 local_port=4433 peer_port=4434 audit_seq=277
+t_us=16179078 event=udp_tx link=B path_id=1 bytes=31 audit_seq=278
+t_us=16189389 event=stream_closed stream_id=7 id=5 fin=1 direction=tx active_tx=1 audit_seq=279
+t_us=16189433 event=stream_closed stream_id=11 id=31 fin=1 direction=tx active_tx=0 audit_seq=280
+t_us=16189521 event=iot91_udp_rx datagram=58 path=1 link=B bytes=31 at_us=16189518 digest=599696d1982fb7845402590c9853c5f23ad4b6096f4e78e7a6d8baa06d98aef7 local_port=4433 peer_port=4434 audit_seq=281
+t_us=16189555 event=udp_rx link=B path_id=1 bytes=31 recv_us=16189518 rc=0 audit_seq=282
+t_us=16208061 event=stream_closed stream_id=6 id=5 fin=1 direction=rx active_tx=0 audit_seq=283
+t_us=16215229 event=iot91_udp_rx datagram=59 path=1 link=B bytes=39 at_us=16215225 digest=ad8f5f481526ece82dd108e8c6795cf10c10fbe5edbb55af83a961c0fbfb3a40 local_port=4433 peer_port=4434 audit_seq=284
+t_us=16215317 event=iot91_udp_tx datagram=56 path=1 link=B bytes=39 at_us=16215305 digest=ae62e093b2589a19508a93d314a65e8c04f19818cd1b713e01eaff39119b9363 local_port=4433 peer_port=4434 audit_seq=285
+t_us=16215320 event=udp_tx link=B path_id=1 bytes=39 audit_seq=286
+t_us=16215327 event=udp_rx link=B path_id=1 bytes=39 recv_us=16215225 rc=0 audit_seq=287
+t_us=16236401 event=iot91_udp_rx datagram=60 path=1 link=B bytes=1216 at_us=16236398 digest=6d3b9e7bef54d0454049c5042882bba4c53d175d7db1c2e7f27b3a8c34165db1 local_port=4433 peer_port=4434 audit_seq=288
+t_us=16236429 event=iot91_xquic tx_datagram=56 rx_datagram=60 kind=wire_rx path=1 pns=2 pn=47 stream=22 offset=0 length=1183 fin=0 audit_seq=289
+t_us=16236434 event=stream_open stream_id=22 direction=rx audit_seq=290
+t_us=16236440 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16236398 rc=0 audit_seq=291
+t_us=16236461 event=iot91_udp_tx datagram=57 path=1 link=B bytes=31 at_us=16236451 digest=0fb5c3f4f80d825e817bcaa4359999d688f9966f43c1744b0c94da625c2ea3d8 local_port=4433 peer_port=4434 audit_seq=292
+t_us=16236463 event=udp_tx link=B path_id=1 bytes=31 audit_seq=293
+t_us=16236700 event=iot91_udp_rx datagram=61 path=1 link=B bytes=1216 at_us=16236698 digest=a802b35b5df8e31fbb286ced176a118358e43e2b7ca75a82c8ef60eda716d87e local_port=4433 peer_port=4434 audit_seq=294
+t_us=16236719 event=iot91_xquic tx_datagram=57 rx_datagram=61 kind=wire_rx path=1 pns=2 pn=48 stream=22 offset=1183 length=1181 fin=0 audit_seq=295
+t_us=16236726 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16236698 rc=0 audit_seq=296
+t_us=16236742 event=iot91_udp_tx datagram=58 path=1 link=B bytes=38 at_us=16236736 digest=37ad9a36d1e2799916d0e2e3687223e52296c7fccde577f23e2a3f4b6eeecfe1 local_port=4433 peer_port=4434 audit_seq=297
+t_us=16236744 event=udp_tx link=B path_id=1 bytes=38 audit_seq=298
+t_us=16236985 event=iot91_udp_rx datagram=62 path=1 link=B bytes=923 at_us=16236983 digest=f9e40be9293e8ca6c1f2c269269abd29d974070489004a533641abac2f0589ad local_port=4433 peer_port=4434 audit_seq=299
+t_us=16237002 event=iot91_xquic tx_datagram=58 rx_datagram=62 kind=wire_rx path=1 pns=2 pn=49 stream=22 offset=2364 length=888 fin=1 audit_seq=300
+t_us=16237023 event=udp_rx link=B path_id=1 bytes=923 recv_us=16236983 rc=0 audit_seq=301
+t_us=16237029 event=iot91_fin_read stream=22 bytes=3252 audit_seq=302
+t_us=16237036 event=iot_rx id=21 stream_id=22 kind=2 source=2 serial=911 priority=6 severity=5 payload_len=3200 hash=12253038895966483520 generated=15085657 deadline=15515657 maximum_age=0 received=16237031 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=303
+t_us=16237042 event=stream_open stream_id=15 direction=tx audit_seq=304
+t_us=16237062 event=iot91_udp_tx datagram=59 path=1 link=B bytes=77 at_us=16237056 digest=25d2209ae14a73d021f609d6c0af9bce7cd85eabddcd3d7a3a12ea24c0b9f2cf local_port=4433 peer_port=4434 audit_seq=305
+t_us=16237065 event=udp_tx link=B path_id=1 bytes=77 audit_seq=306
+t_us=16237069 event=iot91_xquic tx_datagram=59 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=41 choice=0 stream=15 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=307
+t_us=16237076 event=stream_fin_tx stream_id=15 id=21 bytes=44 audit_seq=308
+t_us=16246854 event=iot91_udp_rx datagram=63 path=1 link=B bytes=31 at_us=16246850 digest=2544aeba97b731765c65e32961fdded5547d4e1768a97e5e0260af95e7cdf9be local_port=4433 peer_port=4434 audit_seq=309
+t_us=16246917 event=iot91_udp_tx datagram=60 path=1 link=B bytes=38 at_us=16246905 digest=da953ac4501ac6d390d2bbe2e74d141be98284ade735da728862151977a92b55 local_port=4433 peer_port=4434 audit_seq=310
+t_us=16246920 event=udp_tx link=B path_id=1 bytes=38 audit_seq=311
+t_us=16246926 event=udp_rx link=B path_id=1 bytes=31 recv_us=16246850 rc=0 audit_seq=312
+t_us=16246929 event=iot91_udp_rx datagram=64 path=1 link=B bytes=31 at_us=16246929 digest=cbb40b66eee3f84c80aaa545ade113fcf38b58e924ed8897d1f3e41d589f4250 local_port=4433 peer_port=4434 audit_seq=313
+t_us=16246955 event=udp_rx link=B path_id=1 bytes=31 recv_us=16246929 rc=0 audit_seq=314
+t_us=16247392 event=iot91_udp_rx datagram=65 path=1 link=B bytes=31 at_us=16247391 digest=bfeacab8b8292b3e9aa486ea361c24d42ec5694404846c8bdf1d9b48906406d8 local_port=4433 peer_port=4434 audit_seq=315
+t_us=16247423 event=iot91_udp_tx datagram=61 path=1 link=B bytes=38 at_us=16247417 digest=1e58b2419123b8b391b090e80c954075281fe60797e5ae7a3d46c9c33a289209 local_port=4433 peer_port=4434 audit_seq=316
+t_us=16247426 event=udp_tx link=B path_id=1 bytes=38 audit_seq=317
+t_us=16247431 event=udp_rx link=B path_id=1 bytes=31 recv_us=16247391 rc=0 audit_seq=318
+t_us=16247434 event=iot91_udp_rx datagram=66 path=1 link=B bytes=38 at_us=16247434 digest=09614df76c469339b02f9962b378ea367bc8cb753038e2926a49a0e0f96f03e3 local_port=4433 peer_port=4434 audit_seq=319
+t_us=16247451 event=udp_rx link=B path_id=1 bytes=38 recv_us=16247434 rc=0 audit_seq=320
+t_us=16252938 event=iot91_udp_rx datagram=67 path=1 link=B bytes=1216 at_us=16252936 digest=b57a5bb685d5fa82fd877753f6568a04cd31c7c1806d1137c18327b020409d94 local_port=4433 peer_port=4434 audit_seq=321
+t_us=16252961 event=iot91_xquic tx_datagram=61 rx_datagram=67 kind=wire_rx path=1 pns=2 pn=54 stream=26 offset=0 length=1183 fin=0 audit_seq=322
+t_us=16252965 event=stream_open stream_id=26 direction=rx audit_seq=323
+t_us=16252970 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16252936 rc=0 audit_seq=324
+t_us=16253263 event=iot91_udp_rx datagram=68 path=1 link=B bytes=1216 at_us=16253262 digest=a75c61309ae9aa8bfc4493ab1d4c7a34869cc9c90aa555de0d510a9fbb03c737 local_port=4433 peer_port=4434 audit_seq=325
+t_us=16253274 event=iot91_xquic tx_datagram=61 rx_datagram=68 kind=wire_rx path=1 pns=2 pn=55 stream=26 offset=1183 length=1181 fin=0 audit_seq=326
+t_us=16253278 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16253262 rc=0 audit_seq=327
+t_us=16253291 event=iot91_udp_tx datagram=62 path=1 link=B bytes=38 at_us=16253285 digest=f81995b3fe12f6beb647b6bd19b065befcb35a3a25878b5197a4d52d1eda7aac local_port=4433 peer_port=4434 audit_seq=328
+t_us=16253292 event=udp_tx link=B path_id=1 bytes=38 audit_seq=329
+t_us=16253524 event=iot91_udp_rx datagram=69 path=1 link=B bytes=923 at_us=16253522 digest=83ea396dbcbb1bd61da0466ba1b41b6c69459b5a750f20bf7ce6acb9e86f72f8 local_port=4433 peer_port=4434 audit_seq=330
+t_us=16253551 event=iot91_xquic tx_datagram=62 rx_datagram=69 kind=wire_rx path=1 pns=2 pn=56 stream=26 offset=2364 length=888 fin=1 audit_seq=331
+t_us=16253560 event=udp_rx link=B path_id=1 bytes=923 recv_us=16253522 rc=0 audit_seq=332
+t_us=16253566 event=iot91_fin_read stream=26 bytes=3252 audit_seq=333
+t_us=16253572 event=iot_rx id=25 stream_id=26 kind=2 source=2 serial=915 priority=6 severity=5 payload_len=3200 hash=18406258361800310077 generated=15245657 deadline=15825657 maximum_age=0 received=16253568 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=334
+t_us=16253579 event=stream_open stream_id=19 direction=tx audit_seq=335
+t_us=16253600 event=iot91_udp_tx datagram=63 path=1 link=B bytes=77 at_us=16253593 digest=6e503f8dbf3e6282b3b4aeacaccf25c1f4ef139eec2550930f69e92aad0db0f6 local_port=4433 peer_port=4434 audit_seq=336
+t_us=16253602 event=udp_tx link=B path_id=1 bytes=77 audit_seq=337
+t_us=16253607 event=iot91_xquic tx_datagram=63 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=45 choice=0 stream=19 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=338
+t_us=16253616 event=stream_fin_tx stream_id=19 id=25 bytes=44 audit_seq=339
+t_us=16257298 event=iot91_udp_rx datagram=70 path=1 link=B bytes=31 at_us=16257296 digest=faf94f4b3716f3f8dfc31b975536a7b05b2b92de226eac7d5200483aa684ec30 local_port=4433 peer_port=4434 audit_seq=340
+t_us=16257366 event=iot91_udp_tx datagram=64 path=1 link=B bytes=38 at_us=16257353 digest=85ba7857a9c703f122d931f90bdcbd5b59091e6b351c829be57f3f32533945fa local_port=4433 peer_port=4434 audit_seq=341
+t_us=16257369 event=udp_tx link=B path_id=1 bytes=38 audit_seq=342
+t_us=16257375 event=udp_rx link=B path_id=1 bytes=31 recv_us=16257296 rc=0 audit_seq=343
+t_us=16263668 event=iot91_udp_rx datagram=71 path=1 link=B bytes=31 at_us=16263666 digest=732fa5d965d075f25769dabc9318c90d52bb1740adc8f89911745eedeb186a52 local_port=4433 peer_port=4434 audit_seq=344
+t_us=16263704 event=udp_rx link=B path_id=1 bytes=31 recv_us=16263666 rc=0 audit_seq=345
+t_us=16289271 event=iot91_udp_tx datagram=65 path=1 link=B bytes=39 at_us=16289249 digest=6425b2df8294b545979118578c3933fcf87037bd6d468e2f2391bea049ec4ff0 local_port=4433 peer_port=4434 audit_seq=346
+t_us=16289296 event=udp_tx link=B path_id=1 bytes=39 audit_seq=347
+t_us=16289610 event=iot91_udp_rx datagram=72 path=1 link=B bytes=31 at_us=16289609 digest=f7e77f1bd5e5812e89a782aac75336229bc2640fb25cd4098f353e7d2fd4ea58 local_port=4433 peer_port=4434 audit_seq=348
+t_us=16289639 event=udp_rx link=B path_id=1 bytes=31 recv_us=16289609 rc=0 audit_seq=349
+t_us=16289642 event=iot91_udp_rx datagram=73 path=1 link=B bytes=31 at_us=16289642 digest=9e38df0ebd2c8bb31e89e124b30fdc76f82e83baa7e130de73773a593a0608e7 local_port=4433 peer_port=4434 audit_seq=350
+t_us=16289658 event=iot91_udp_tx datagram=66 path=1 link=B bytes=38 at_us=16289652 digest=8b1702070349c4eeef27f6370fad42d791fca23403ddf6eb08d20b6bba63b59d local_port=4433 peer_port=4434 audit_seq=351
+t_us=16289660 event=udp_tx link=B path_id=1 bytes=38 audit_seq=352
+t_us=16289666 event=udp_rx link=B path_id=1 bytes=31 recv_us=16289642 rc=0 audit_seq=353
+t_us=16289669 event=iot91_udp_rx datagram=74 path=1 link=B bytes=41 at_us=16289669 digest=85bcb478199521eb7d090832d2011af9a08989a5961d6c82245bf72166ffee0c local_port=4433 peer_port=4434 audit_seq=354
+t_us=16289684 event=udp_rx link=B path_id=1 bytes=41 recv_us=16289669 rc=0 audit_seq=355
+t_us=16379983 event=iot91_udp_rx datagram=75 path=1 link=B bytes=31 at_us=16379980 digest=ef4a03bff5c60c11d199b6a67b3495007ff152e407c80c02f4e341fbbb48a29c local_port=4433 peer_port=4434 audit_seq=356
+t_us=16380052 event=udp_rx link=B path_id=1 bytes=31 recv_us=16379980 rc=0 audit_seq=357
+t_us=16380058 event=iot91_udp_rx datagram=76 path=1 link=B bytes=31 at_us=16380058 digest=0e2cb2253bc29ffe55df51d0340a442448f48421f9e4d9f5c8be11081bdfd549 local_port=4433 peer_port=4434 audit_seq=358
+t_us=16380083 event=iot91_udp_tx datagram=67 path=1 link=B bytes=38 at_us=16380075 digest=2aa2e23ad26e0709ee927d0225afa4aee1d7cfa78807e991510bdd8c319138db local_port=4433 peer_port=4434 audit_seq=359
+t_us=16380085 event=udp_tx link=B path_id=1 bytes=38 audit_seq=360
+t_us=16380090 event=udp_rx link=B path_id=1 bytes=31 recv_us=16380058 rc=0 audit_seq=361
+t_us=16382493 event=iot91_udp_rx datagram=77 path=1 link=B bytes=1216 at_us=16382489 digest=b9b83b2ab8292d369361649e80e740b140f9d0756c31343135ea7d72778d8ab4 local_port=4433 peer_port=4434 audit_seq=362
+t_us=16382528 event=iot91_xquic tx_datagram=67 rx_datagram=77 kind=wire_rx path=1 pns=2 pn=64 stream=10 offset=1183 length=1181 fin=0 audit_seq=363
+t_us=16382539 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16382489 rc=0 audit_seq=364
+t_us=16382689 event=iot91_udp_rx datagram=78 path=1 link=B bytes=923 at_us=16382688 digest=7b15514cbe4b1fcb443609b799f38127dd7ebe81b4349bdda88f793faf63370f local_port=4433 peer_port=4434 audit_seq=365
+t_us=16382705 event=iot91_xquic tx_datagram=67 rx_datagram=78 kind=wire_rx path=1 pns=2 pn=65 stream=10 offset=2364 length=888 fin=1 audit_seq=366
+t_us=16382728 event=udp_rx link=B path_id=1 bytes=923 recv_us=16382688 rc=0 audit_seq=367
+t_us=16382734 event=iot91_fin_read stream=10 bytes=3252 audit_seq=368
+t_us=16382739 event=iot_rx id=2 stream_id=10 kind=2 source=2 serial=901 priority=4 severity=3 payload_len=3200 hash=493626106374025435 generated=14765657 deadline=15045657 maximum_age=0 received=16382735 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=369
+t_us=16382758 event=iot91_udp_tx datagram=68 path=1 link=B bytes=39 at_us=16382746 digest=765155e7192dc85b78a39749df3da706ca8a637b85740a961f879ce3a370cbfc local_port=4433 peer_port=4434 audit_seq=370
+t_us=16382759 event=udp_tx link=B path_id=1 bytes=39 audit_seq=371
+t_us=16382768 event=stream_open stream_id=23 direction=tx audit_seq=372
+t_us=16382784 event=iot91_udp_tx datagram=69 path=1 link=B bytes=77 at_us=16382781 digest=c653e546473e7d12ece6729b77b71cb61f027f01ad2c98df54c2b1e1561adbfd local_port=4433 peer_port=4434 audit_seq=373
+t_us=16382785 event=udp_tx link=B path_id=1 bytes=77 audit_seq=374
+t_us=16382789 event=iot91_xquic tx_datagram=69 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=56 choice=0 stream=23 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=375
+t_us=16382797 event=stream_fin_tx stream_id=23 id=2 bytes=44 audit_seq=376
+t_us=16390426 event=iot91_udp_rx datagram=79 path=1 link=B bytes=31 at_us=16390424 digest=2adf61f13e1b8f4ff54b6657d576dfa9583c615e005fcb102dfa17702d85d08e local_port=4433 peer_port=4434 audit_seq=377
+t_us=16390460 event=udp_rx link=B path_id=1 bytes=31 recv_us=16390424 rc=0 audit_seq=378
+t_us=16397198 event=iot91_udp_rx datagram=80 path=1 link=B bytes=31 at_us=16397195 digest=d016f9c2b93f13d280cc6666d06f55e17d77356fd077fba2098166dc4c012dad local_port=4433 peer_port=4434 audit_seq=379
+t_us=16397255 event=iot91_udp_tx datagram=70 path=1 link=B bytes=39 at_us=16397243 digest=a47ea465d6b8aaa64361db4bbf8dc07d078bb38fdd31bf696aa7a213544aae1c local_port=4433 peer_port=4434 audit_seq=380
+t_us=16397257 event=udp_tx link=B path_id=1 bytes=39 audit_seq=381
+t_us=16397264 event=udp_rx link=B path_id=1 bytes=31 recv_us=16397195 rc=0 audit_seq=382
+t_us=16419078 event=iot91_udp_rx datagram=81 path=1 link=B bytes=39 at_us=16419074 digest=ec8caf499404b129a8160e94589a2bc569d39969067568469fac9bbbf8da825d local_port=4433 peer_port=4434 audit_seq=383
+t_us=16419146 event=udp_rx link=B path_id=1 bytes=39 recv_us=16419074 rc=0 audit_seq=384
+t_us=16555707 event=iot91_udp_rx datagram=82 path=1 link=B bytes=31 at_us=16555704 digest=3205faabb63d268c9438629f47ef935165869c54cb79ffc91e3093d671d75a72 local_port=4433 peer_port=4434 audit_seq=385
+t_us=16555739 event=udp_rx link=B path_id=1 bytes=31 recv_us=16555704 rc=0 audit_seq=386
+t_us=16555742 event=iot91_udp_rx datagram=83 path=1 link=B bytes=31 at_us=16555741 digest=665f5cafc6416f138abf2f206530597cd9a4675495a50a1c0f9a81ffe45cf89b local_port=4433 peer_port=4434 audit_seq=387
+t_us=16555769 event=iot91_udp_tx datagram=71 path=1 link=B bytes=39 at_us=16555759 digest=af37c9bea17b4cb423fb32ee6c22201bc71d3034c4d083c98ac07f4aa7b21125 local_port=4433 peer_port=4434 audit_seq=388
+t_us=16555771 event=udp_tx link=B path_id=1 bytes=39 audit_seq=389
+t_us=16555776 event=udp_rx link=B path_id=1 bytes=31 recv_us=16555741 rc=0 audit_seq=390
+t_us=16555777 event=iot91_udp_rx datagram=84 path=1 link=B bytes=31 at_us=16555777 digest=3ed8fae7bb85817fbf266f83cd18e6b033ac906870287c9498ac9555494de101 local_port=4433 peer_port=4434 audit_seq=391
+t_us=16555787 event=udp_rx link=B path_id=1 bytes=31 recv_us=16555777 rc=0 audit_seq=392
+t_us=16581365 event=iot91_udp_tx datagram=72 path=1 link=B bytes=40 at_us=16581343 digest=6e6de5d6c3a1ca705e88e1f6846a01b6237ee2f68a41f4aae28960ed5641c728 local_port=4433 peer_port=4434 audit_seq=393
+t_us=16581383 event=udp_tx link=B path_id=1 bytes=40 audit_seq=394
+t_us=16599185 event=iot91_udp_rx datagram=85 path=1 link=B bytes=31 at_us=16599180 digest=a0f9608d432139fd736aad5987bc9e1a1d512a2211d1618ff4979c4b7ee98162 local_port=4433 peer_port=4434 audit_seq=395
+t_us=16599231 event=udp_rx link=B path_id=1 bytes=31 recv_us=16599180 rc=0 audit_seq=396
+t_us=16624791 event=iot91_udp_tx datagram=73 path=1 link=B bytes=40 at_us=16624771 digest=de103fecf888ef0860fd64f436038f890f9c03e68915770502fb554bec68abfc local_port=4433 peer_port=4434 audit_seq=397
+t_us=16624805 event=udp_tx link=B path_id=1 bytes=40 audit_seq=398
+t_us=16763045 event=stream_closed stream_id=22 id=21 fin=1 direction=rx active_tx=3 audit_seq=399
+t_us=16763112 event=iot91_udp_tx datagram=74 path=1 link=B bytes=31 at_us=16763092 digest=20d3b946fb2efd1c089c3db0a623205ebae067ba7cb860e8a5b9cd4eeaf8ee68 local_port=4433 peer_port=4434 audit_seq=400
+t_us=16763115 event=udp_tx link=B path_id=1 bytes=31 audit_seq=401
+t_us=16772394 event=stream_closed stream_id=26 id=25 fin=1 direction=rx active_tx=3 audit_seq=402
+t_us=16772431 event=stream_closed stream_id=15 id=21 fin=1 direction=tx active_tx=2 audit_seq=403
+t_us=16773545 event=iot91_udp_rx datagram=86 path=1 link=B bytes=31 at_us=16773542 digest=b0024950b85525c2bf827a297531ddd6082ff2ce95e11f5f715dc120e0707165 local_port=4433 peer_port=4434 audit_seq=404
+t_us=16773591 event=iot91_udp_tx datagram=75 path=1 link=B bytes=31 at_us=16773581 digest=f6f2296231399affa639e4a2925f9562c45b8156bcdfb5af97c23d582dcd20e1 local_port=4433 peer_port=4434 audit_seq=405
+t_us=16773594 event=udp_tx link=B path_id=1 bytes=31 audit_seq=406
+t_us=16773603 event=udp_rx link=B path_id=1 bytes=31 recv_us=16773542 rc=0 audit_seq=407
+t_us=16773606 event=iot91_udp_rx datagram=87 path=1 link=B bytes=31 at_us=16773606 digest=8a71ee21e343c693f4cb2f2e49874261922feb4db66f5571dbf54cfcbc19788c local_port=4433 peer_port=4434 audit_seq=408
+t_us=16773634 event=iot91_udp_tx datagram=76 path=1 link=B bytes=41 at_us=16773631 digest=35928a2d5b79281c1cf27407728b55c1d86b3ddac34b90340e58f031e5d24191 local_port=4433 peer_port=4434 audit_seq=409
+t_us=16773636 event=udp_tx link=B path_id=1 bytes=41 audit_seq=410
+t_us=16773642 event=udp_rx link=B path_id=1 bytes=31 recv_us=16773606 rc=0 audit_seq=411
+t_us=16773644 event=iot91_udp_rx datagram=88 path=1 link=B bytes=31 at_us=16773644 digest=f034b0a3b9b54ac700c9cc18fcb8b011ba11c51da4826ac7abe941cee2245218 local_port=4433 peer_port=4434 audit_seq=412
+t_us=16773651 event=udp_rx link=B path_id=1 bytes=31 recv_us=16773644 rc=0 audit_seq=413
+t_us=16784037 event=iot91_udp_rx datagram=89 path=1 link=B bytes=38 at_us=16784033 digest=e29b513dd14924e7c241e0c0e738da094ac6ca619d304e6147dcb15f7489ebe6 local_port=4433 peer_port=4434 audit_seq=414
+t_us=16784090 event=udp_rx link=B path_id=1 bytes=38 recv_us=16784033 rc=0 audit_seq=415
+t_us=16799493 event=iot91_udp_tx datagram=77 path=1 link=B bytes=40 at_us=16799472 digest=e3c71ba7f48197db4a725f1b9e20f718bd9c8f46a987ac2a3790ad81d21e64bb local_port=4433 peer_port=4434 audit_seq=416
+t_us=16799517 event=udp_tx link=B path_id=1 bytes=40 audit_seq=417
+t_us=16799807 event=iot91_udp_rx datagram=90 path=1 link=B bytes=1216 at_us=16799805 digest=5e7aefd99de54ddd7f7ea59700ae4d7134994df7a136aa96fdaedb67b74a55bf local_port=4433 peer_port=4434 audit_seq=418
+t_us=16799837 event=iot91_xquic tx_datagram=77 rx_datagram=90 kind=wire_rx path=1 pns=2 pn=78 stream=30 offset=0 length=1183 fin=0 audit_seq=419
+t_us=16799843 event=stream_open stream_id=30 direction=rx audit_seq=420
+t_us=16799851 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16799805 rc=0 audit_seq=421
+t_us=16800115 event=iot91_udp_rx datagram=91 path=1 link=B bytes=1216 at_us=16800113 digest=ccb894ca0ae362e7cacb3631f85b50d84578db840af916c431f1ae5d1a065059 local_port=4433 peer_port=4434 audit_seq=422
+t_us=16800134 event=iot91_xquic tx_datagram=77 rx_datagram=91 kind=wire_rx path=1 pns=2 pn=79 stream=30 offset=1183 length=1181 fin=0 audit_seq=423
+t_us=16800140 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16800113 rc=0 audit_seq=424
+t_us=16800155 event=iot91_udp_tx datagram=78 path=1 link=B bytes=39 at_us=16800148 digest=398c8f44b37db02d4d606fafc5c48652d1a6b80f220cbb30cd42411c1c4aa336 local_port=4433 peer_port=4434 audit_seq=425
+t_us=16800157 event=udp_tx link=B path_id=1 bytes=39 audit_seq=426
+t_us=16800356 event=iot91_udp_rx datagram=92 path=1 link=B bytes=923 at_us=16800355 digest=23a577fb047b1071a9a21f1544d6fcd24245d224651f75298f47769a019db8a5 local_port=4433 peer_port=4434 audit_seq=427
+t_us=16800367 event=iot91_xquic tx_datagram=78 rx_datagram=92 kind=wire_rx path=1 pns=2 pn=80 stream=30 offset=2364 length=888 fin=1 audit_seq=428
+t_us=16800373 event=udp_rx link=B path_id=1 bytes=923 recv_us=16800355 rc=0 audit_seq=429
+t_us=16800377 event=iot91_fin_read stream=30 bytes=3252 audit_seq=430
+t_us=16800381 event=iot_rx id=10 stream_id=30 kind=2 source=2 serial=905 priority=5 severity=4 payload_len=3200 hash=14124278006026462084 generated=14925657 deadline=15355657 maximum_age=0 received=16800378 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=431
+t_us=16800386 event=stream_open stream_id=27 direction=tx audit_seq=432
+t_us=16800408 event=iot91_udp_tx datagram=79 path=1 link=B bytes=77 at_us=16800403 digest=4ead280e769be947cf2ccab463cc925735fa2c7415dca7f65b12df4b5fcfad42 local_port=4433 peer_port=4434 audit_seq=433
+t_us=16800409 event=udp_tx link=B path_id=1 bytes=77 audit_seq=434
+t_us=16800413 event=iot91_xquic tx_datagram=79 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=66 choice=0 stream=27 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=435
+t_us=16800418 event=stream_fin_tx stream_id=27 id=10 bytes=44 audit_seq=436
+t_us=16800691 event=iot91_udp_rx datagram=93 path=1 link=B bytes=1216 at_us=16800690 digest=f2e1d74b8985d877a00cfe4967a7749355267088055f43638e09ac2f68552a66 local_port=4433 peer_port=4434 audit_seq=437
+t_us=16800701 event=iot91_xquic tx_datagram=79 rx_datagram=93 kind=wire_rx path=1 pns=2 pn=81 stream=34 offset=0 length=1183 fin=0 audit_seq=438
+t_us=16800704 event=stream_open stream_id=34 direction=rx audit_seq=439
+t_us=16800708 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16800690 rc=0 audit_seq=440
+t_us=16800717 event=iot91_udp_tx datagram=80 path=1 link=B bytes=39 at_us=16800713 digest=c4276b711ec5a31867ae8b8d0cc420780c46d6e940309955f3dba8d9e30362a6 local_port=4433 peer_port=4434 audit_seq=441
+t_us=16800719 event=udp_tx link=B path_id=1 bytes=39 audit_seq=442
+t_us=16800974 event=iot91_udp_rx datagram=94 path=1 link=B bytes=952 at_us=16800973 digest=225dd2c82e23654d30261ffc25549e76e6c708fac56c9178cc8f24c0fa8c20fb local_port=4433 peer_port=4434 audit_seq=443
+t_us=16800989 event=iot91_xquic tx_datagram=80 rx_datagram=94 kind=wire_rx path=1 pns=2 pn=82 stream=34 offset=1183 length=917 fin=1 audit_seq=444
+t_us=16800997 event=udp_rx link=B path_id=1 bytes=952 recv_us=16800973 rc=0 audit_seq=445
+t_us=16801003 event=iot91_fin_read stream=34 bytes=2100 audit_seq=446
+t_us=16801008 event=iot_rx id=36 stream_id=34 kind=1 source=2 serial=6 priority=1 severity=0 payload_len=2048 hash=10205813077531868696 generated=15735657 deadline=17235657 maximum_age=1250000 received=16801004 status=1 on_time=1 age_exceeded=0 latest_generated=15735657 latest_serial=6 audit_seq=447
+t_us=16801034 event=iot_stream_create blocked=1 id=36 active_tx=3 audit_seq=448
+t_us=16809223 event=stream_closed stream_id=19 id=25 fin=1 direction=tx active_tx=2 audit_seq=449
+t_us=16809250 event=iot91_udp_tx datagram=81 path=1 link=B bytes=31 at_us=16809244 digest=a6f9e8287e29570aa2a1ec38f4e05d7c0375c65e71500cee0a364b5292ba944f local_port=4433 peer_port=4434 audit_seq=450
+t_us=16809252 event=udp_tx link=B path_id=1 bytes=31 audit_seq=451
+t_us=16809261 event=iot91_udp_tx datagram=82 path=1 link=B bytes=31 at_us=16809259 digest=f1521e30b62aeac74b13f2ac0382b02fa55f6ea7f788d41c57c80bae4f4d05ce local_port=4433 peer_port=4434 audit_seq=452
+t_us=16809262 event=udp_tx link=B path_id=1 bytes=31 audit_seq=453
+t_us=16809801 event=iot91_udp_rx datagram=95 path=1 link=B bytes=31 at_us=16809800 digest=69dfbdbbdb66d22f91c07d0f1691cff9f82b45b2311be866e2d6325968457932 local_port=4433 peer_port=4434 audit_seq=454
+t_us=16809830 event=iot91_udp_tx datagram=83 path=1 link=B bytes=39 at_us=16809824 digest=9df6cd3333f8e9f0a0ae4199dcf9c3db9eb7b155438d520e9a137f05c25c3d8e local_port=4433 peer_port=4434 audit_seq=455
+t_us=16809833 event=udp_tx link=B path_id=1 bytes=39 audit_seq=456
+t_us=16809838 event=udp_rx link=B path_id=1 bytes=31 recv_us=16809800 rc=0 audit_seq=457
+t_us=16809841 event=iot91_udp_rx datagram=96 path=1 link=B bytes=31 at_us=16809841 digest=69aa54e7783ed2351ad1d5e4d71c78d2d538fdd395c5cbffeb2125993c0e74eb local_port=4433 peer_port=4434 audit_seq=458
+t_us=16809860 event=udp_rx link=B path_id=1 bytes=31 recv_us=16809841 rc=0 audit_seq=459
+t_us=16810689 event=iot91_udp_rx datagram=97 path=1 link=B bytes=31 at_us=16810688 digest=7935a4135e640c5fd30f8696c54ec8f4217febad8b1c722dd70e57d914890538 local_port=4433 peer_port=4434 audit_seq=460
+t_us=16810715 event=iot91_udp_tx datagram=84 path=1 link=B bytes=39 at_us=16810709 digest=19186f8065018803b33d5525d5c54fdc9854b4bf15f6a6285c423cec6b89dedd local_port=4433 peer_port=4434 audit_seq=461
+t_us=16810717 event=udp_tx link=B path_id=1 bytes=39 audit_seq=462
+t_us=16810723 event=udp_rx link=B path_id=1 bytes=31 recv_us=16810688 rc=0 audit_seq=463
+t_us=16819582 event=iot91_udp_rx datagram=98 path=1 link=B bytes=31 at_us=16819581 digest=ffe036f3339c420f4cc686175d2b422978f8cfa5915819eb5beda4dbd0e64363 local_port=4433 peer_port=4434 audit_seq=464
+t_us=16819617 event=udp_rx link=B path_id=1 bytes=31 recv_us=16819581 rc=0 audit_seq=465
+t_us=16819620 event=iot91_udp_rx datagram=99 path=1 link=B bytes=39 at_us=16819620 digest=ed7809b1db92010447350eee54f9908d3c31089824c6516b3d8ae660bf01f892 local_port=4433 peer_port=4434 audit_seq=466
+t_us=16819635 event=udp_rx link=B path_id=1 bytes=39 recv_us=16819620 rc=0 audit_seq=467
+t_us=16819640 event=stream_open stream_id=31 direction=tx audit_seq=468
+t_us=16819642 event=iot_stream_create blocked=0 id=36 active_tx=3 audit_seq=469
+t_us=16819665 event=iot91_udp_tx datagram=85 path=1 link=B bytes=77 at_us=16819656 digest=6687531e08610cf327c8a2bfb25e011268c4a77118a54e7b323b44630f06e25e local_port=4433 peer_port=4434 audit_seq=470
+t_us=16819667 event=udp_tx link=B path_id=1 bytes=77 audit_seq=471
+t_us=16819672 event=iot91_xquic tx_datagram=85 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=72 choice=0 stream=31 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=472
+t_us=16819679 event=stream_fin_tx stream_id=31 id=36 bytes=44 audit_seq=473
+t_us=16830067 event=iot91_udp_rx datagram=100 path=1 link=B bytes=39 at_us=16830064 digest=826943b1826239c23882070cda8118a327c5b3e29ffcef8b13d166d3b177c966 local_port=4433 peer_port=4434 audit_seq=474
+t_us=16830122 event=udp_rx link=B path_id=1 bytes=39 recv_us=16830064 rc=0 audit_seq=475
+t_us=16845474 event=iot91_udp_tx datagram=86 path=1 link=B bytes=40 at_us=16845454 digest=1a967d706833695703d4e72b1a29b805a3a367eb0a46e0f8d9cc67a4b4ca7b06 local_port=4433 peer_port=4434 audit_seq=476
+t_us=16845491 event=udp_tx link=B path_id=1 bytes=40 audit_seq=477
+t_us=16855842 event=iot91_udp_rx datagram=101 path=1 link=B bytes=31 at_us=16855839 digest=e0eb82d653bef9c230f22304c301d1887dc36be809e4795fc16f21b4e905787b local_port=4433 peer_port=4434 audit_seq=478
+t_us=16855894 event=udp_rx link=B path_id=1 bytes=31 recv_us=16855839 rc=0 audit_seq=479
+t_us=16881512 event=iot91_udp_tx datagram=87 path=1 link=B bytes=40 at_us=16881489 digest=3269da8b492982c338ba7d216f5016787be2e602798f48fdfb3b82a107f82dd7 local_port=4433 peer_port=4434 audit_seq=480
+t_us=16881532 event=udp_tx link=B path_id=1 bytes=40 audit_seq=481
+t_us=16882638 event=stream_closed stream_id=10 id=2 fin=1 direction=rx active_tx=3 audit_seq=482
+t_us=16882674 event=iot91_udp_tx datagram=88 path=1 link=B bytes=31 at_us=16882669 digest=4242f1ad55358fbf70087fd9f9abff93daa12b918372c12e4177ac26c48a6169 local_port=4433 peer_port=4434 audit_seq=483
+t_us=16882676 event=udp_tx link=B path_id=1 bytes=31 audit_seq=484
+t_us=16891913 event=iot91_udp_rx datagram=102 path=1 link=B bytes=31 at_us=16891911 digest=4e26b6d64869f178c17a7674439acef380bf6f246846e8a428bbde5429f80acf local_port=4433 peer_port=4434 audit_seq=485
+t_us=16891958 event=udp_rx link=B path_id=1 bytes=31 recv_us=16891911 rc=0 audit_seq=486
+t_us=16917524 event=iot91_udp_tx datagram=89 path=1 link=B bytes=40 at_us=16917511 digest=6253904fd08b135287c102e0f8ec2ecdf1633873a166eb7b60b67d6718de0124 local_port=4433 peer_port=4434 audit_seq=487
+t_us=16917542 event=udp_tx link=B path_id=1 bytes=40 audit_seq=488
+t_us=16918654 event=iot91_udp_rx datagram=103 path=1 link=B bytes=40 at_us=16918652 digest=2da29aa00e441097eaa5c2e81a79e0099b554e0a15878b8670a830874a83a1c2 local_port=4433 peer_port=4434 audit_seq=489
+t_us=16918691 event=udp_rx link=B path_id=1 bytes=40 recv_us=16918652 rc=0 audit_seq=490
+t_us=16919786 event=stream_closed stream_id=23 id=2 fin=1 direction=tx active_tx=2 audit_seq=491
+t_us=16933662 event=iot91_udp_rx datagram=104 path=1 link=B bytes=1216 at_us=16933658 digest=d2caf10c7efd28a3761788a8f3596d6a6a7809574e61e35ef095f01581580fb1 local_port=4433 peer_port=4434 audit_seq=492
+t_us=16933688 event=iot91_xquic tx_datagram=89 rx_datagram=104 kind=wire_rx path=1 pns=2 pn=92 stream=38 offset=0 length=1183 fin=0 audit_seq=493
+t_us=16933693 event=stream_open stream_id=38 direction=rx audit_seq=494
+t_us=16933699 event=udp_rx link=B path_id=1 bytes=1216 recv_us=16933658 rc=0 audit_seq=495
+t_us=16933883 event=iot91_udp_rx datagram=105 path=1 link=B bytes=952 at_us=16933881 digest=5546673d63d2724320999b2b4f7e1e09e512a051d0973ad3b64540a430f63034 local_port=4433 peer_port=4434 audit_seq=496
+t_us=16933900 event=iot91_xquic tx_datagram=89 rx_datagram=105 kind=wire_rx path=1 pns=2 pn=93 stream=38 offset=1183 length=917 fin=1 audit_seq=497
+t_us=16933909 event=udp_rx link=B path_id=1 bytes=952 recv_us=16933881 rc=0 audit_seq=498
+t_us=16933915 event=iot91_fin_read stream=38 bytes=2100 audit_seq=499
+t_us=16933920 event=iot_rx id=14 stream_id=38 kind=1 source=7 serial=1 priority=2 severity=0 payload_len=2048 hash=13151666399598153073 generated=14435657 deadline=14515657 maximum_age=80000 received=16933917 status=1 on_time=0 age_exceeded=1 latest_generated=14435657 latest_serial=1 audit_seq=500
+t_us=16933940 event=iot91_udp_tx datagram=90 path=1 link=B bytes=39 at_us=16933928 digest=5d3734ba576445681a87fa7dedfdf59a538ec3a61692ab4fc5ff658cd08b9fc8 local_port=4433 peer_port=4434 audit_seq=501
+t_us=16933942 event=udp_tx link=B path_id=1 bytes=39 audit_seq=502
+t_us=16933950 event=stream_open stream_id=35 direction=tx audit_seq=503
+t_us=16933982 event=iot91_udp_tx datagram=91 path=1 link=B bytes=77 at_us=16933979 digest=7479a71b7023bf95465f4862b08a606e2777ff5d083472a7ab9d94441fec17ad local_port=4433 peer_port=4434 audit_seq=504
+t_us=16933985 event=udp_tx link=B path_id=1 bytes=77 audit_seq=505
+t_us=16933989 event=iot91_xquic tx_datagram=91 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=78 choice=0 stream=35 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=506
+t_us=16933996 event=stream_fin_tx stream_id=35 id=14 bytes=44 audit_seq=507
+t_us=16944343 event=iot91_udp_rx datagram=106 path=1 link=B bytes=31 at_us=16944339 digest=2d7f9ee75787e69cc416d95c6473793ef77a464154b8d84f5fd6a03a9f297ca3 local_port=4433 peer_port=4434 audit_seq=508
+t_us=16944396 event=udp_rx link=B path_id=1 bytes=31 recv_us=16944339 rc=0 audit_seq=509
+t_us=16944399 event=iot91_udp_rx datagram=107 path=1 link=B bytes=31 at_us=16944399 digest=f35fbf70f1340a7a821a255120709462c11c1fec26d076e4186581c366782c0b local_port=4433 peer_port=4434 audit_seq=510
+t_us=16944422 event=iot91_udp_tx datagram=92 path=1 link=B bytes=39 at_us=16944411 digest=05b5286b480e80319a4c48b450bbd900d4cf76edbed02c7cd079fe10c5e75135 local_port=4433 peer_port=4434 audit_seq=511
+t_us=16944425 event=udp_tx link=B path_id=1 bytes=39 audit_seq=512
+t_us=16944431 event=udp_rx link=B path_id=1 bytes=31 recv_us=16944399 rc=0 audit_seq=513
+t_us=16954782 event=iot91_udp_rx datagram=108 path=1 link=B bytes=31 at_us=16954779 digest=a4a8239137fde6c359ad2b3a90726f8d540e85af5002634ba9db535b80c04048 local_port=4433 peer_port=4434 audit_seq=514
+t_us=16954825 event=udp_rx link=B path_id=1 bytes=31 recv_us=16954779 rc=0 audit_seq=515
+t_us=16970405 event=iot91_udp_rx datagram=109 path=1 link=B bytes=40 at_us=16970400 digest=72f4628e27f15e7de5d9bb65893df4a3cc03739af93a4e084b7d0f99b7ac40da local_port=4433 peer_port=4434 audit_seq=516
+t_us=16970478 event=udp_rx link=B path_id=1 bytes=40 recv_us=16970400 rc=0 audit_seq=517
+t_us=16980736 event=iot91_udp_tx datagram=93 path=1 link=B bytes=42 at_us=16980714 digest=fc1317f987362e8877efca3d850919d9607115fa5a11375dc651a9a5c6782208 local_port=4433 peer_port=4434 audit_seq=518
+t_us=16980748 event=udp_tx link=B path_id=1 bytes=42 audit_seq=519
+t_us=16991148 event=iot91_udp_rx datagram=110 path=1 link=B bytes=31 at_us=16991144 digest=df86b6ca8ba261bc5fa2a20b8cfa59543109639bced38231801279b2b1eda84c local_port=4433 peer_port=4434 audit_seq=520
+t_us=16991195 event=udp_rx link=B path_id=1 bytes=31 recv_us=16991144 rc=0 audit_seq=521
+t_us=17016858 event=iot91_udp_tx datagram=94 path=1 link=B bytes=42 at_us=17016831 digest=b4bf7cea7ac6352354ac3441360831d45eef1cb8a2931f1029df79cfced79de7 local_port=4433 peer_port=4434 audit_seq=522
+t_us=17016875 event=udp_tx link=B path_id=1 bytes=42 audit_seq=523
+t_us=17027253 event=iot91_udp_rx datagram=111 path=1 link=B bytes=31 at_us=17027249 digest=b7d0c1c83ddb0f3123749be834503257524e5a8cf920fe17cdda1ead3ab41296 local_port=4433 peer_port=4434 audit_seq=524
+t_us=17027304 event=udp_rx link=B path_id=1 bytes=31 recv_us=17027249 rc=0 audit_seq=525
+t_us=17052949 event=iot91_udp_tx datagram=95 path=1 link=B bytes=42 at_us=17052929 digest=e1d5a55cb6f02df2786bf3a2b46a29811ec4f429ee2cf53c7909ecd9cdd6e610 local_port=4433 peer_port=4434 audit_seq=526
+t_us=17052961 event=udp_tx link=B path_id=1 bytes=42 audit_seq=527
+t_us=17063427 event=iot91_udp_rx datagram=112 path=1 link=B bytes=31 at_us=17063422 digest=b2bb0efbae121c84cc03475b68428532057c3ef1c78465e9c54124cc370a4606 local_port=4433 peer_port=4434 audit_seq=528
+t_us=17063502 event=udp_rx link=B path_id=1 bytes=31 recv_us=17063422 rc=0 audit_seq=529
+t_us=17089096 event=iot91_udp_tx datagram=96 path=1 link=B bytes=42 at_us=17089070 digest=3c2f8f8b6a267b0fc5a6e5f5ca6556e203a3d959fb1930e6379420cef9547060 local_port=4433 peer_port=4434 audit_seq=530
+t_us=17089111 event=udp_tx link=B path_id=1 bytes=42 audit_seq=531
+t_us=17250272 event=stream_closed stream_id=30 id=10 fin=1 direction=rx active_tx=3 audit_seq=532
+t_us=17250306 event=stream_closed stream_id=34 id=36 fin=1 direction=rx active_tx=3 audit_seq=533
+t_us=17250341 event=iot91_udp_tx datagram=97 path=1 link=B bytes=31 at_us=17250322 digest=6e8923c5e6d99d0761f9524575ba23ca144493ae380c66019c77b1b605f54838 local_port=4433 peer_port=4434 audit_seq=534
+t_us=17250343 event=udp_tx link=B path_id=1 bytes=31 audit_seq=535
+t_us=17252444 event=stream_closed stream_id=31 id=36 fin=1 direction=tx active_tx=2 audit_seq=536
+t_us=17260730 event=iot91_udp_rx datagram=113 path=1 link=B bytes=31 at_us=17260728 digest=773d2e866e37557647a2556eb7d5f1be1e2f43e3ac2ab617c191ef952c9b1657 local_port=4433 peer_port=4434 audit_seq=537
+t_us=17260782 event=iot91_udp_tx datagram=98 path=1 link=B bytes=31 at_us=17260772 digest=2ef710d2ac2356d8c417d4fbe27dcd40fb7b5f8fc7efb4cd2dd08122eb12edd7 local_port=4433 peer_port=4434 audit_seq=538
+t_us=17260799 event=udp_tx link=B path_id=1 bytes=31 audit_seq=539
+t_us=17260808 event=udp_rx link=B path_id=1 bytes=31 recv_us=17260728 rc=0 audit_seq=540
+t_us=17260811 event=iot91_udp_rx datagram=114 path=1 link=B bytes=31 at_us=17260811 digest=b5da4a5ddb35bc2ee852eae728e17c0988a2efcae7005b6707ebd0bfb0294089 local_port=4433 peer_port=4434 audit_seq=541
+t_us=17260823 event=iot91_udp_tx datagram=99 path=1 link=B bytes=41 at_us=17260820 digest=607ba4ec4d6c9b0b8b500e194730720909f7af069213b4ac82bfc60641f0ca6e local_port=4433 peer_port=4434 audit_seq=542
+t_us=17260825 event=udp_tx link=B path_id=1 bytes=41 audit_seq=543
+t_us=17260830 event=udp_rx link=B path_id=1 bytes=31 recv_us=17260811 rc=0 audit_seq=544
+t_us=17260833 event=iot91_udp_rx datagram=115 path=1 link=B bytes=31 at_us=17260833 digest=c5e4168731a5e240c8501fc12cccb4bede936a49936a2f5c2f3b48aea2d1b205 local_port=4433 peer_port=4434 audit_seq=545
+t_us=17260847 event=udp_rx link=B path_id=1 bytes=31 recv_us=17260833 rc=0 audit_seq=546
+t_us=17269025 event=stream_closed stream_id=27 id=10 fin=1 direction=tx active_tx=1 audit_seq=547
+t_us=17271403 event=iot91_udp_rx datagram=116 path=1 link=B bytes=1216 at_us=17271401 digest=33bceebf05b18ece00f18b68da5b8168b747749a26ee8f51c106851933c27cdb local_port=4433 peer_port=4434 audit_seq=548
+t_us=17271426 event=iot91_xquic tx_datagram=99 rx_datagram=116 kind=wire_rx path=1 pns=2 pn=108 stream=42 offset=0 length=1183 fin=0 audit_seq=549
+t_us=17271432 event=stream_open stream_id=42 direction=rx audit_seq=550
+t_us=17271439 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17271401 rc=0 audit_seq=551
+t_us=17271457 event=iot91_udp_tx datagram=100 path=1 link=B bytes=41 at_us=17271450 digest=1fc1ba61ef90203d7a8777ce66ed11adf4251b7c43fc79399ad28e9bbc0045f7 local_port=4433 peer_port=4434 audit_seq=552
+t_us=17271459 event=udp_tx link=B path_id=1 bytes=41 audit_seq=553
+t_us=17271773 event=iot91_udp_rx datagram=117 path=1 link=B bytes=1216 at_us=17271771 digest=47ca066cde9382260e19a2fb84833f53ad4ca32881b57eb55654bf2a08735019 local_port=4433 peer_port=4434 audit_seq=554
+t_us=17271790 event=iot91_xquic tx_datagram=100 rx_datagram=117 kind=wire_rx path=1 pns=2 pn=109 stream=42 offset=1183 length=1181 fin=0 audit_seq=555
+t_us=17271797 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17271771 rc=0 audit_seq=556
+t_us=17272025 event=iot91_udp_rx datagram=118 path=1 link=B bytes=923 at_us=17272024 digest=8b63558fd8597900a4a051293fde39699b3b06c5cd0ab3aa5585ede8afeed139 local_port=4433 peer_port=4434 audit_seq=557
+t_us=17272044 event=iot91_xquic tx_datagram=100 rx_datagram=118 kind=wire_rx path=1 pns=2 pn=110 stream=42 offset=2364 length=888 fin=1 audit_seq=558
+t_us=17272051 event=udp_rx link=B path_id=1 bytes=923 recv_us=17272024 rc=0 audit_seq=559
+t_us=17272055 event=iot91_udp_rx datagram=119 path=1 link=B bytes=31 at_us=17272055 digest=07c9388c332b53e5b3b3545d21a8b89537abc2d7be68084352dba8953e3a3774 local_port=4433 peer_port=4434 audit_seq=560
+t_us=17272065 event=iot91_fin_read stream=42 bytes=3252 audit_seq=561
+t_us=17272071 event=iot_rx id=11 stream_id=42 kind=2 source=2 serial=906 priority=4 severity=3 payload_len=3200 hash=17567260037480243908 generated=14925657 deadline=15505657 maximum_age=0 received=17272067 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=562
+t_us=17272083 event=iot91_udp_tx datagram=101 path=1 link=B bytes=41 at_us=17272077 digest=8977d2ca4dd496eac9ea15c86ea6532a58bfc51dfcc80b9720256ffd03e6f6da local_port=4433 peer_port=4434 audit_seq=563
+t_us=17272085 event=udp_tx link=B path_id=1 bytes=41 audit_seq=564
+t_us=17272091 event=udp_rx link=B path_id=1 bytes=31 recv_us=17272055 rc=0 audit_seq=565
+t_us=17272095 event=iot91_udp_rx datagram=120 path=1 link=B bytes=41 at_us=17272095 digest=f9db21ba5c4e6c86c743bd7be535d36841f35d38c48037a93c7b7673d8e95e48 local_port=4433 peer_port=4434 audit_seq=566
+t_us=17272109 event=udp_rx link=B path_id=1 bytes=41 recv_us=17272095 rc=0 audit_seq=567
+t_us=17272113 event=stream_open stream_id=39 direction=tx audit_seq=568
+t_us=17272142 event=iot91_udp_tx datagram=102 path=1 link=B bytes=77 at_us=17272138 digest=15e980438312d5c90310a827254ff81d2d798b51022bd8ab3cbba53080adb333 local_port=4433 peer_port=4434 audit_seq=569
+t_us=17272143 event=udp_tx link=B path_id=1 bytes=77 audit_seq=570
+t_us=17272148 event=iot91_xquic tx_datagram=102 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=92 choice=0 stream=39 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=571
+t_us=17272154 event=stream_fin_tx stream_id=39 id=11 bytes=44 audit_seq=572
+t_us=17276687 event=iot91_udp_rx datagram=121 path=1 link=B bytes=1216 at_us=17276685 digest=db2c43c48ee307100fd8e77f57ec687b19cdf0af3824c824f93daf408e4aee49 local_port=4433 peer_port=4434 audit_seq=573
+t_us=17276710 event=iot91_xquic tx_datagram=102 rx_datagram=121 kind=wire_rx path=1 pns=2 pn=115 stream=46 offset=0 length=1183 fin=0 audit_seq=574
+t_us=17276715 event=stream_open stream_id=46 direction=rx audit_seq=575
+t_us=17276721 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17276685 rc=0 audit_seq=576
+t_us=17277083 event=iot91_udp_rx datagram=122 path=1 link=B bytes=1216 at_us=17277081 digest=259a0a3ac727fdfff30f174372296ce5e9e025f405adf2e82a412a7dac9a609b local_port=4433 peer_port=4434 audit_seq=577
+t_us=17277103 event=iot91_xquic tx_datagram=102 rx_datagram=122 kind=wire_rx path=1 pns=2 pn=116 stream=46 offset=1183 length=1181 fin=0 audit_seq=578
+t_us=17277236 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17277081 rc=0 audit_seq=579
+t_us=17277242 event=iot91_udp_rx datagram=123 path=1 link=B bytes=923 at_us=17277241 digest=2ae0c8754483f01125314582a37e062e32475122c9cf8fa23462bf864bad90d0 local_port=4433 peer_port=4434 audit_seq=580
+t_us=17277251 event=iot91_xquic tx_datagram=102 rx_datagram=123 kind=wire_rx path=1 pns=2 pn=117 stream=46 offset=2364 length=888 fin=1 audit_seq=581
+t_us=17277258 event=udp_rx link=B path_id=1 bytes=923 recv_us=17277241 rc=0 audit_seq=582
+t_us=17277264 event=iot91_fin_read stream=46 bytes=3252 audit_seq=583
+t_us=17277270 event=iot_rx id=12 stream_id=46 kind=2 source=2 serial=907 priority=4 severity=3 payload_len=3200 hash=10562147118780030432 generated=14925657 deadline=15205657 maximum_age=0 received=17277265 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=584
+t_us=17277283 event=iot91_udp_tx datagram=103 path=1 link=B bytes=41 at_us=17277276 digest=a891de4d4392abbcc336878392e0a239b394344cebc5a6eb3f06f045053a19b5 local_port=4433 peer_port=4434 audit_seq=585
+t_us=17277286 event=udp_tx link=B path_id=1 bytes=41 audit_seq=586
+t_us=17277295 event=iot_stream_create blocked=1 id=12 active_tx=2 audit_seq=587
+t_us=17281901 event=iot91_udp_rx datagram=124 path=1 link=B bytes=31 at_us=17281896 digest=63d8bf1254207117b06fa096729d860c79d134db578edf5591de14910e30bd03 local_port=4433 peer_port=4434 audit_seq=588
+t_us=17281972 event=iot91_udp_tx datagram=104 path=1 link=B bytes=31 at_us=17281957 digest=a849185b6fa8544149e68205aeacb13d7017b0c499d43d801655c112485c8ccd local_port=4433 peer_port=4434 audit_seq=589
+t_us=17281974 event=udp_tx link=B path_id=1 bytes=31 audit_seq=590
+t_us=17281984 event=udp_rx link=B path_id=1 bytes=31 recv_us=17281896 rc=0 audit_seq=591
+t_us=17281986 event=iot91_udp_rx datagram=125 path=1 link=B bytes=31 at_us=17281986 digest=33a2f48c6bcfe8ca3b9e01dff97b544cf00c024be71d7a5818e3ab45b6c65519 local_port=4433 peer_port=4434 audit_seq=592
+t_us=17281998 event=iot91_udp_tx datagram=105 path=1 link=B bytes=41 at_us=17281995 digest=04535f0ac7eca5eb55c7e84404751fd05fd3915b8c659ed934bb20bf60a690da local_port=4433 peer_port=4434 audit_seq=593
+t_us=17282000 event=udp_tx link=B path_id=1 bytes=41 audit_seq=594
+t_us=17282004 event=udp_rx link=B path_id=1 bytes=31 recv_us=17281986 rc=0 audit_seq=595
+t_us=17282467 event=iot91_udp_rx datagram=126 path=1 link=B bytes=31 at_us=17282465 digest=c4469147f23c9ba0051b2f1cc69e3e43fbe37a72859afeed27bc5cf0fa635256 local_port=4433 peer_port=4434 audit_seq=596
+t_us=17282502 event=udp_rx link=B path_id=1 bytes=31 recv_us=17282465 rc=0 audit_seq=597
+t_us=17282508 event=stream_open stream_id=43 direction=tx audit_seq=598
+t_us=17282514 event=iot_stream_create blocked=0 id=12 active_tx=3 audit_seq=599
+t_us=17282534 event=iot91_udp_tx datagram=106 path=1 link=B bytes=77 at_us=17282528 digest=8319164df93967e516dd636e35f9b7c8679dc99391e15bf78aa9eadbf1100a5a local_port=4433 peer_port=4434 audit_seq=600
+t_us=17282535 event=udp_tx link=B path_id=1 bytes=77 audit_seq=601
+t_us=17282540 event=iot91_xquic tx_datagram=106 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=96 choice=0 stream=43 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=602
+t_us=17282545 event=stream_fin_tx stream_id=43 id=12 bytes=44 audit_seq=603
+t_us=17292426 event=iot91_udp_rx datagram=127 path=1 link=B bytes=39 at_us=17292422 digest=80ecb6719c671064c075b61a96c6c620c95dba30671022ab6c07170af0784c0d local_port=4433 peer_port=4434 audit_seq=604
+t_us=17292482 event=udp_rx link=B path_id=1 bytes=39 recv_us=17292422 rc=0 audit_seq=605
+t_us=17292847 event=iot91_udp_rx datagram=128 path=1 link=B bytes=31 at_us=17292846 digest=c923565eef8b8627430edcc4cf9384804c592c8c997fd1a8c6a5edd70e1f125e local_port=4433 peer_port=4434 audit_seq=606
+t_us=17292883 event=iot91_udp_tx datagram=107 path=1 link=B bytes=41 at_us=17292870 digest=e350fa6128a9ceb56a3fecdc071f5031341f6d4476a6ee00e430b6a4a2546978 local_port=4433 peer_port=4434 audit_seq=607
+t_us=17292885 event=udp_tx link=B path_id=1 bytes=41 audit_seq=608
+t_us=17292892 event=udp_rx link=B path_id=1 bytes=31 recv_us=17292846 rc=0 audit_seq=609
+t_us=17318966 event=iot91_udp_rx datagram=129 path=1 link=B bytes=31 at_us=17318962 digest=274b459a132064be371f13b88831f9b1a7d86b5eb3659372fc0749356c650afb local_port=4433 peer_port=4434 audit_seq=610
+t_us=17319015 event=udp_rx link=B path_id=1 bytes=31 recv_us=17318962 rc=0 audit_seq=611
+t_us=17319019 event=iot91_udp_rx datagram=130 path=1 link=B bytes=40 at_us=17319018 digest=20498f8c2173edea9b9c53a1c2c8d1b6aadf395428b270c36d13dabf982e3ca3 local_port=4433 peer_port=4434 audit_seq=612
+t_us=17319036 event=udp_rx link=B path_id=1 bytes=40 recv_us=17319018 rc=0 audit_seq=613
+t_us=17323169 event=stream_closed stream_id=38 id=14 fin=1 direction=rx active_tx=3 audit_seq=614
+t_us=17323240 event=iot91_udp_tx datagram=108 path=1 link=B bytes=31 at_us=17323220 digest=709a8f95aa9da2a720903bb2433abbe4bf35a28b455e8050bd89cb584170a2d0 local_port=4433 peer_port=4434 audit_seq=615
+t_us=17323243 event=udp_tx link=B path_id=1 bytes=31 audit_seq=616
+t_us=17344877 event=iot91_udp_tx datagram=109 path=1 link=B bytes=40 at_us=17344857 digest=3cd9339da3ec00be47601a2c3fa7b2fffb48fc8331b394a0892ab3d2aa1c0bf7 local_port=4433 peer_port=4434 audit_seq=617
+t_us=17344893 event=udp_tx link=B path_id=1 bytes=40 audit_seq=618
+t_us=17354531 event=iot91_udp_rx datagram=131 path=1 link=B bytes=1216 at_us=17354528 digest=94412b65e5d5c6aaf62bbb42d6233f6c9707c0364d172bd4390d798dda1e2561 local_port=4433 peer_port=4434 audit_seq=619
+t_us=17354573 event=iot91_xquic tx_datagram=109 rx_datagram=131 kind=wire_rx path=1 pns=2 pn=125 stream=50 offset=0 length=1183 fin=0 audit_seq=620
+t_us=17354578 event=stream_open stream_id=50 direction=rx audit_seq=621
+t_us=17354585 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17354528 rc=0 audit_seq=622
+t_us=17354842 event=iot91_udp_rx datagram=132 path=1 link=B bytes=1216 at_us=17354840 digest=eda52c41348a9c89d51aee324ad8b0c78e0a308fd3ad0eab876522e80d21f2ed local_port=4433 peer_port=4434 audit_seq=623
+t_us=17354860 event=iot91_xquic tx_datagram=109 rx_datagram=132 kind=wire_rx path=1 pns=2 pn=126 stream=50 offset=1183 length=1181 fin=0 audit_seq=624
+t_us=17354867 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17354840 rc=0 audit_seq=625
+t_us=17354885 event=iot91_udp_tx datagram=110 path=1 link=B bytes=39 at_us=17354877 digest=97cfe173ddce934614980fa99b71f670da34657218b278d620fcff5cc0856d87 local_port=4433 peer_port=4434 audit_seq=626
+t_us=17354888 event=udp_tx link=B path_id=1 bytes=39 audit_seq=627
+t_us=17355084 event=iot91_udp_rx datagram=133 path=1 link=B bytes=923 at_us=17355082 digest=1b635851241a210cbb015c24d4052d0ddb64191320cae727c23ec5294646c7da local_port=4433 peer_port=4434 audit_seq=628
+t_us=17355107 event=iot91_xquic tx_datagram=110 rx_datagram=133 kind=wire_rx path=1 pns=2 pn=127 stream=50 offset=2364 length=888 fin=1 audit_seq=629
+t_us=17355116 event=udp_rx link=B path_id=1 bytes=923 recv_us=17355082 rc=0 audit_seq=630
+t_us=17355122 event=iot91_fin_read stream=50 bytes=3252 audit_seq=631
+t_us=17355128 event=iot_rx id=20 stream_id=50 kind=2 source=2 serial=910 priority=4 severity=3 payload_len=3200 hash=10022569031773383481 generated=15085657 deadline=15365657 maximum_age=0 received=17355124 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=632
+t_us=17355151 event=stream_open stream_id=47 direction=tx audit_seq=633
+t_us=17355172 event=iot91_udp_tx datagram=111 path=1 link=B bytes=77 at_us=17355165 digest=de49f12b103a23e67fc76a6788f38c603b2b48ee60d177d8716203bf737e1652 local_port=4433 peer_port=4434 audit_seq=634
+t_us=17355174 event=udp_tx link=B path_id=1 bytes=77 audit_seq=635
+t_us=17355179 event=iot91_xquic tx_datagram=111 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=101 choice=0 stream=47 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=636
+t_us=17355186 event=stream_fin_tx stream_id=47 id=20 bytes=44 audit_seq=637
+t_us=17355191 event=iot91_udp_rx datagram=134 path=1 link=B bytes=31 at_us=17355191 digest=f57e4e46e80d5df6b8e651fb350292583e15b338ff0300bc5a386da5e94d580c local_port=4433 peer_port=4434 audit_seq=638
+t_us=17355203 event=iot91_udp_tx datagram=112 path=1 link=B bytes=39 at_us=17355200 digest=1c5159fd1306f436bc9d786c653163289d946ad0b0381327f367414cd43b4d38 local_port=4433 peer_port=4434 audit_seq=639
+t_us=17355205 event=udp_tx link=B path_id=1 bytes=39 audit_seq=640
+t_us=17355210 event=udp_rx link=B path_id=1 bytes=31 recv_us=17355191 rc=0 audit_seq=641
+t_us=17359449 event=iot91_udp_rx datagram=135 path=1 link=B bytes=40 at_us=17359445 digest=82a67b6cbb827a9d8b40be5b59f39f1a1785d1a6516d3b333b4cb061beaabe5e local_port=4433 peer_port=4434 audit_seq=642
+t_us=17359495 event=stream_closed stream_id=35 id=14 fin=1 direction=tx active_tx=3 audit_seq=643
+t_us=17359521 event=udp_rx link=B path_id=1 bytes=40 recv_us=17359445 rc=0 audit_seq=644
+t_us=17365292 event=iot91_udp_rx datagram=136 path=1 link=B bytes=31 at_us=17365288 digest=1b6d01e1ebd5c7103d3cb5d37087575a9e1e063992f6a598d379a5b7c9cd08f7 local_port=4433 peer_port=4434 audit_seq=645
+t_us=17365340 event=udp_rx link=B path_id=1 bytes=31 recv_us=17365288 rc=0 audit_seq=646
+t_us=17390999 event=iot91_udp_tx datagram=113 path=1 link=B bytes=40 at_us=17390976 digest=9abc14c98eb88749a6619a75b39407cb42c3b79a80351273ef3964bbcd6c0380 local_port=4433 peer_port=4434 audit_seq=647
+t_us=17391026 event=udp_tx link=B path_id=1 bytes=40 audit_seq=648
+t_us=17391246 event=iot91_udp_rx datagram=137 path=1 link=B bytes=31 at_us=17391244 digest=4f6151936054e86b437feda8c0f8eb1c755058093c22dd3d5b4035382aa34d59 local_port=4433 peer_port=4434 audit_seq=649
+t_us=17391273 event=udp_rx link=B path_id=1 bytes=31 recv_us=17391244 rc=0 audit_seq=650
+t_us=17391277 event=iot91_udp_rx datagram=138 path=1 link=B bytes=40 at_us=17391277 digest=a6fb8a7ff3391b9ba8e7590e8c9fca2fcc902d26c706f1fcfedd89aca7098224 local_port=4433 peer_port=4434 audit_seq=651
+t_us=17391296 event=udp_rx link=B path_id=1 bytes=40 recv_us=17391277 rc=0 audit_seq=652
+t_us=17401438 event=iot91_udp_rx datagram=139 path=1 link=B bytes=31 at_us=17401435 digest=005c07687a0b396b09ececbd4afcab358a863f65c6d34bff996ab078e28a681b local_port=4433 peer_port=4434 audit_seq=653
+t_us=17401495 event=iot91_udp_tx datagram=114 path=1 link=B bytes=39 at_us=17401484 digest=8a6ca474f4cbaf847f1e90de69138365231a4e53e38b352b126a58c86e8ae26c local_port=4433 peer_port=4434 audit_seq=654
+t_us=17401498 event=udp_tx link=B path_id=1 bytes=39 audit_seq=655
+t_us=17401505 event=udp_rx link=B path_id=1 bytes=31 recv_us=17401435 rc=0 audit_seq=656
+t_us=17497540 event=iot91_udp_rx datagram=140 path=1 link=B bytes=31 at_us=17497536 digest=f183514e6921cd63a8327f58f3726013574e3bd7b8ef210fc96a762f2163144b local_port=4433 peer_port=4434 audit_seq=657
+t_us=17497590 event=udp_rx link=B path_id=1 bytes=31 recv_us=17497536 rc=0 audit_seq=658
+t_us=17497593 event=iot91_udp_rx datagram=141 path=1 link=B bytes=31 at_us=17497593 digest=e9e3a1b67709d5a0b909683de1027d4b7c838b82cd70e872f7a5a8fbc47a4f98 local_port=4433 peer_port=4434 audit_seq=659
+t_us=17497612 event=iot91_udp_tx datagram=115 path=1 link=B bytes=39 at_us=17497601 digest=1fb4e9b8e7e8fb7de829002a3a3a435d9d18744c254844bbf2e0cfb25524bd05 local_port=4433 peer_port=4434 audit_seq=660
+t_us=17497614 event=udp_tx link=B path_id=1 bytes=39 audit_seq=661
+t_us=17497619 event=udp_rx link=B path_id=1 bytes=31 recv_us=17497593 rc=0 audit_seq=662
+t_us=17661230 event=stream_closed stream_id=42 id=11 fin=1 direction=rx active_tx=3 audit_seq=663
+t_us=17661298 event=iot91_udp_tx datagram=116 path=1 link=B bytes=31 at_us=17661279 digest=06ae3a1992f0ec17786e1f79a02d6fa23714d6db3c5af19c2442cf8e6ed3f35a local_port=4433 peer_port=4434 audit_seq=664
+t_us=17661300 event=udp_tx link=B path_id=1 bytes=31 audit_seq=665
+t_us=17666470 event=stream_closed stream_id=46 id=12 fin=1 direction=rx active_tx=3 audit_seq=666
+t_us=17671720 event=iot91_udp_rx datagram=142 path=1 link=B bytes=31 at_us=17671717 digest=dde6bd74c72befb8c482bc06ac7e69d5c269f3886935d6899f600d7a2f61881f local_port=4433 peer_port=4434 audit_seq=667
+t_us=17671776 event=iot91_udp_tx datagram=117 path=1 link=B bytes=31 at_us=17671765 digest=a891186d3e841c36cf7e8334336075de3c977a96733ab2c7152abbe3a3b29e6e local_port=4433 peer_port=4434 audit_seq=668
+t_us=17671779 event=udp_tx link=B path_id=1 bytes=31 audit_seq=669
+t_us=17671787 event=udp_rx link=B path_id=1 bytes=31 recv_us=17671717 rc=0 audit_seq=670
+t_us=17671789 event=iot91_udp_rx datagram=143 path=1 link=B bytes=31 at_us=17671789 digest=207877e79a015d5b3b5d487fd1d64e470bf526d7a8da18a70e053b956a60af81 local_port=4433 peer_port=4434 audit_seq=671
+t_us=17671801 event=iot91_udp_tx datagram=118 path=1 link=B bytes=41 at_us=17671798 digest=92a2679bdc3838139b23f18ae10a175a6e1db918df63f6106b13ea6625489fb0 local_port=4433 peer_port=4434 audit_seq=672
+t_us=17671803 event=udp_tx link=B path_id=1 bytes=41 audit_seq=673
+t_us=17671807 event=udp_rx link=B path_id=1 bytes=31 recv_us=17671789 rc=0 audit_seq=674
+t_us=17671810 event=iot91_udp_rx datagram=144 path=1 link=B bytes=31 at_us=17671810 digest=375e3c47056c21b0b85b5b111b08c90c8dcedf95022f3991fb82c17b9fd53d37 local_port=4433 peer_port=4434 audit_seq=675
+t_us=17671815 event=udp_rx link=B path_id=1 bytes=31 recv_us=17671810 rc=0 audit_seq=676
+t_us=17682056 event=stream_closed stream_id=39 id=11 fin=1 direction=tx active_tx=2 audit_seq=677
+t_us=17682134 event=iot91_udp_rx datagram=145 path=1 link=B bytes=39 at_us=17682131 digest=0e6eea878bdbc9374d4453ec7b2859458216b510a9023cfa54fce314e60f81cb local_port=4433 peer_port=4434 audit_seq=678
+t_us=17682163 event=udp_rx link=B path_id=1 bytes=39 recv_us=17682131 rc=0 audit_seq=679
+t_us=17692830 event=iot91_udp_rx datagram=146 path=1 link=B bytes=1216 at_us=17692826 digest=c59692cd430a2bcd960a1cac1d0863d2dfdc1eb420da6372ca16ed71cdf270a7 local_port=4433 peer_port=4434 audit_seq=680
+t_us=17692873 event=iot91_xquic tx_datagram=118 rx_datagram=146 kind=wire_rx path=1 pns=2 pn=144 stream=54 offset=0 length=1183 fin=0 audit_seq=681
+t_us=17692877 event=stream_open stream_id=54 direction=rx audit_seq=682
+t_us=17692886 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17692826 rc=0 audit_seq=683
+t_us=17692910 event=iot91_udp_tx datagram=119 path=1 link=B bytes=41 at_us=17692899 digest=289c83505483d7d348782915dc7e4365892a4ddc89c85608ec79a81c0c0d3d79 local_port=4433 peer_port=4434 audit_seq=684
+t_us=17692912 event=udp_tx link=B path_id=1 bytes=41 audit_seq=685
+t_us=17693093 event=iot91_udp_rx datagram=147 path=1 link=B bytes=952 at_us=17693092 digest=2409f49153fc6fcd1a381534b3db4419204b4fc112471e662d69ac4e03eb2de2 local_port=4433 peer_port=4434 audit_seq=686
+t_us=17693110 event=iot91_xquic tx_datagram=119 rx_datagram=147 kind=wire_rx path=1 pns=2 pn=145 stream=54 offset=1183 length=917 fin=1 audit_seq=687
+t_us=17693118 event=udp_rx link=B path_id=1 bytes=952 recv_us=17693092 rc=0 audit_seq=688
+t_us=17693130 event=iot91_fin_read stream=54 bytes=2100 audit_seq=689
+t_us=17693136 event=iot_rx id=37 stream_id=54 kind=1 source=3 serial=6 priority=1 severity=0 payload_len=2048 hash=1690297286543337416 generated=15735657 deadline=17235657 maximum_age=1250000 received=17693132 status=1 on_time=0 age_exceeded=1 latest_generated=15735657 latest_serial=6 audit_seq=690
+t_us=17693142 event=stream_open stream_id=51 direction=tx audit_seq=691
+t_us=17693163 event=iot91_udp_tx datagram=120 path=1 link=B bytes=77 at_us=17693156 digest=9fe4d64b0d4596c05681b87f3349e50261d077e6a4cee51a5afd2fbc0cb33747 local_port=4433 peer_port=4434 audit_seq=692
+t_us=17693165 event=udp_tx link=B path_id=1 bytes=77 audit_seq=693
+t_us=17693170 event=iot91_xquic tx_datagram=120 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=110 choice=0 stream=51 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=694
+t_us=17693178 event=stream_fin_tx stream_id=51 id=37 bytes=44 audit_seq=695
+t_us=17693397 event=iot91_udp_rx datagram=148 path=1 link=B bytes=1216 at_us=17693396 digest=478a62a5e98f2ef6d9e7de40835ffdec438513caf7174f2b07670b8396affbab local_port=4433 peer_port=4434 audit_seq=696
+t_us=17693411 event=iot91_xquic tx_datagram=120 rx_datagram=148 kind=wire_rx path=1 pns=2 pn=146 stream=58 offset=0 length=1183 fin=0 audit_seq=697
+t_us=17693416 event=stream_open stream_id=58 direction=rx audit_seq=698
+t_us=17693421 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17693396 rc=0 audit_seq=699
+t_us=17693435 event=iot91_udp_tx datagram=121 path=1 link=B bytes=41 at_us=17693430 digest=e617aa9f754289333cb62af32a39340ac12838c77a360c1dff4ab79edd996543 local_port=4433 peer_port=4434 audit_seq=700
+t_us=17693438 event=udp_tx link=B path_id=1 bytes=41 audit_seq=701
+t_us=17693767 event=iot91_udp_rx datagram=149 path=1 link=B bytes=1216 at_us=17693765 digest=a25998b4c97a5b16903303721c2a88d83fb0282de79587c3721665d48a981176 local_port=4433 peer_port=4434 audit_seq=702
+t_us=17693784 event=iot91_xquic tx_datagram=121 rx_datagram=149 kind=wire_rx path=1 pns=2 pn=147 stream=58 offset=1183 length=1181 fin=0 audit_seq=703
+t_us=17693791 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17693765 rc=0 audit_seq=704
+t_us=17694028 event=iot91_udp_rx datagram=150 path=1 link=B bytes=923 at_us=17694027 digest=bb1b3133ea5718eb67d7859364e0f37c8bbdd8387c8fbd282068e066ea61db67 local_port=4433 peer_port=4434 audit_seq=705
+t_us=17694045 event=iot91_xquic tx_datagram=121 rx_datagram=150 kind=wire_rx path=1 pns=2 pn=148 stream=58 offset=2364 length=888 fin=1 audit_seq=706
+t_us=17694054 event=udp_rx link=B path_id=1 bytes=923 recv_us=17694027 rc=0 audit_seq=707
+t_us=17694060 event=iot91_fin_read stream=58 bytes=3252 audit_seq=708
+t_us=17694066 event=iot_rx id=22 stream_id=58 kind=2 source=2 serial=912 priority=4 severity=3 payload_len=3200 hash=10250026576285509476 generated=15085657 deadline=15665657 maximum_age=0 received=17694061 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=709
+t_us=17694077 event=iot91_udp_tx datagram=122 path=1 link=B bytes=41 at_us=17694071 digest=a3b2c78977857045221eb2ba88042a2f1d8201da0c85df31e73e40837bb30161 local_port=4433 peer_port=4434 audit_seq=710
+t_us=17694080 event=udp_tx link=B path_id=1 bytes=41 audit_seq=711
+t_us=17694097 event=iot_stream_create blocked=1 id=22 active_tx=3 audit_seq=712
+t_us=17703265 event=iot91_udp_rx datagram=151 path=1 link=B bytes=31 at_us=17703262 digest=5fc7b6b4150e1a1cd135af2bc7e7906f08fab2381c3e1374b5f43bde60e86d4a local_port=4433 peer_port=4434 audit_seq=713
+t_us=17703317 event=iot91_udp_tx datagram=123 path=1 link=B bytes=31 at_us=17703307 digest=75ce8e6e84b1f249848a9eaccfd9dea375a6f722f9403f02451e8381bf196a70 local_port=4433 peer_port=4434 audit_seq=714
+t_us=17703319 event=udp_tx link=B path_id=1 bytes=31 audit_seq=715
+t_us=17703330 event=iot91_udp_tx datagram=124 path=1 link=B bytes=31 at_us=17703327 digest=cc5c846ead2a688b3497b2ec01a4b49483155ad521fd12792345225cbbb33609 local_port=4433 peer_port=4434 audit_seq=716
+t_us=17703332 event=udp_tx link=B path_id=1 bytes=31 audit_seq=717
+t_us=17703347 event=udp_rx link=B path_id=1 bytes=31 recv_us=17703262 rc=0 audit_seq=718
+t_us=17703350 event=iot91_udp_rx datagram=152 path=1 link=B bytes=31 at_us=17703350 digest=56b97007df674ee7a937dbaed6a39cc2a7af25c7e7d8c44d40e2a446eefd1bb1 local_port=4433 peer_port=4434 audit_seq=719
+t_us=17703361 event=iot91_udp_tx datagram=125 path=1 link=B bytes=41 at_us=17703359 digest=cb3fce838cfae8ea1c6477135ab95d1d518d35918aa0932a2c84bcc3080dcd12 local_port=4433 peer_port=4434 audit_seq=720
+t_us=17703363 event=udp_tx link=B path_id=1 bytes=41 audit_seq=721
+t_us=17703368 event=udp_rx link=B path_id=1 bytes=31 recv_us=17703350 rc=0 audit_seq=722
+t_us=17703478 event=iot91_udp_rx datagram=153 path=1 link=B bytes=31 at_us=17703477 digest=647c018134e3e4283f5f70513ce5e9046e3713d34cdf661cbbb90da57bc7dd43 local_port=4433 peer_port=4434 audit_seq=723
+t_us=17703500 event=udp_rx link=B path_id=1 bytes=31 recv_us=17703477 rc=0 audit_seq=724
+t_us=17708586 event=stream_closed stream_id=43 id=12 fin=1 direction=tx active_tx=2 audit_seq=725
+t_us=17713674 event=iot91_udp_rx datagram=154 path=1 link=B bytes=31 at_us=17713672 digest=386b15091c2bcd40c8ca827e52fe7d40aa13580c842e1f28f5f9e04caf269c16 local_port=4433 peer_port=4434 audit_seq=726
+t_us=17713728 event=iot91_udp_tx datagram=126 path=1 link=B bytes=41 at_us=17713717 digest=f3c3ede135d30c4b912c440826dae6ee4677cfde6102e7809567fbb07a8e7ff7 local_port=4433 peer_port=4434 audit_seq=727
+t_us=17713731 event=udp_tx link=B path_id=1 bytes=41 audit_seq=728
+t_us=17713738 event=udp_rx link=B path_id=1 bytes=31 recv_us=17713672 rc=0 audit_seq=729
+t_us=17713741 event=iot91_udp_rx datagram=155 path=1 link=B bytes=41 at_us=17713741 digest=a50f648f8b5d7c5348047b724f568eba2f9e0f6ac07cf69a5fe0f438fccf8d34 local_port=4433 peer_port=4434 audit_seq=730
+t_us=17713758 event=udp_rx link=B path_id=1 bytes=41 recv_us=17713741 rc=0 audit_seq=731
+t_us=17713764 event=stream_open stream_id=55 direction=tx audit_seq=732
+t_us=17713766 event=iot_stream_create blocked=0 id=22 active_tx=3 audit_seq=733
+t_us=17713795 event=iot91_udp_tx datagram=127 path=1 link=B bytes=77 at_us=17713792 digest=b019e7efd5ba7fcc6600c6dd2e0f982cbfd9b84d8f45bbc6c528cd494beb42e3 local_port=4433 peer_port=4434 audit_seq=734
+t_us=17713797 event=udp_tx link=B path_id=1 bytes=77 audit_seq=735
+t_us=17713802 event=iot91_xquic tx_datagram=127 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=120 choice=0 stream=55 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=736
+t_us=17713808 event=stream_fin_tx stream_id=55 id=22 bytes=44 audit_seq=737
+t_us=17724183 event=iot91_udp_rx datagram=156 path=1 link=B bytes=41 at_us=17724179 digest=b1ad264ddd0706abcd695c205cd252ee4696c6ed795cd28f6f2d4b0008218353 local_port=4433 peer_port=4434 audit_seq=738
+t_us=17724238 event=udp_rx link=B path_id=1 bytes=41 recv_us=17724179 rc=0 audit_seq=739
+t_us=17744718 event=stream_closed stream_id=50 id=20 fin=1 direction=rx active_tx=3 audit_seq=740
+t_us=17744788 event=iot91_udp_tx datagram=128 path=1 link=B bytes=31 at_us=17744768 digest=e3f988340dd8510492b5e201fd304085b6fe83f42054d6d27b55e8aaaee3d070 local_port=4433 peer_port=4434 audit_seq=741
+t_us=17744792 event=udp_tx link=B path_id=1 bytes=31 audit_seq=742
+t_us=17755270 event=iot91_udp_rx datagram=157 path=1 link=B bytes=31 at_us=17755267 digest=ff3391d80514d2261d57e50a30a07ef199d441dd1982bd6520472aa0ee5ff4ad local_port=4433 peer_port=4434 audit_seq=743
+t_us=17755317 event=udp_rx link=B path_id=1 bytes=31 recv_us=17755267 rc=0 audit_seq=744
+t_us=17776262 event=iot91_udp_rx datagram=158 path=1 link=B bytes=1216 at_us=17776259 digest=0ca9ec3f31ef00f1e78ca6afbedbc6e453f3e309b204cf2635072bc5d11ab9be local_port=4433 peer_port=4434 audit_seq=745
+t_us=17776292 event=iot91_xquic tx_datagram=128 rx_datagram=158 kind=wire_rx path=1 pns=2 pn=156 stream=62 offset=0 length=1183 fin=0 audit_seq=746
+t_us=17776298 event=stream_open stream_id=62 direction=rx audit_seq=747
+t_us=17776305 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17776259 rc=0 audit_seq=748
+t_us=17776324 event=iot91_udp_tx datagram=129 path=1 link=B bytes=39 at_us=17776316 digest=e57c9203fc61c1545c6ddca2ee6d7b9b69d5067ab61451f2ec3a9c7273fdec3b local_port=4433 peer_port=4434 audit_seq=749
+t_us=17776332 event=udp_tx link=B path_id=1 bytes=39 audit_seq=750
+t_us=17776592 event=iot91_udp_rx datagram=159 path=1 link=B bytes=1216 at_us=17776590 digest=65ec167374c15e4b489ecab4d027f74d9de05db332654b5828306dc6d6fa2ccb local_port=4433 peer_port=4434 audit_seq=751
+t_us=17776610 event=iot91_xquic tx_datagram=129 rx_datagram=159 kind=wire_rx path=1 pns=2 pn=157 stream=62 offset=1183 length=1181 fin=0 audit_seq=752
+t_us=17776617 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17776590 rc=0 audit_seq=753
+t_us=17776825 event=iot91_udp_rx datagram=160 path=1 link=B bytes=923 at_us=17776824 digest=e58c3d3bcd4f34a0f26cbb6019e7ad39da1e97057329563c950f69e6f8e8335b local_port=4433 peer_port=4434 audit_seq=754
+t_us=17776840 event=iot91_xquic tx_datagram=129 rx_datagram=160 kind=wire_rx path=1 pns=2 pn=158 stream=62 offset=2364 length=888 fin=1 audit_seq=755
+t_us=17776859 event=udp_rx link=B path_id=1 bytes=923 recv_us=17776824 rc=0 audit_seq=756
+t_us=17776865 event=iot91_fin_read stream=62 bytes=3252 audit_seq=757
+t_us=17776871 event=iot_rx id=24 stream_id=62 kind=2 source=2 serial=914 priority=4 severity=3 payload_len=3200 hash=10430039223101344796 generated=15245657 deadline=15675657 maximum_age=0 received=17776866 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=758
+t_us=17776882 event=iot91_udp_tx datagram=130 path=1 link=B bytes=39 at_us=17776876 digest=8a01d513419ed4b9dec5b19c1d1dd9ef61df8e8b33e373ac291b736888843c14 local_port=4433 peer_port=4434 audit_seq=759
+t_us=17776885 event=udp_tx link=B path_id=1 bytes=39 audit_seq=760
+t_us=17776893 event=stream_open stream_id=59 direction=tx audit_seq=761
+t_us=17776909 event=iot91_udp_tx datagram=131 path=1 link=B bytes=77 at_us=17776906 digest=35889bac6fc2e890ad7fb57e5481ab904f247e18fe08aa175fe630bfa28f130f local_port=4433 peer_port=4434 audit_seq=762
+t_us=17776911 event=udp_tx link=B path_id=1 bytes=77 audit_seq=763
+t_us=17776915 event=iot91_xquic tx_datagram=131 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=124 choice=0 stream=59 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=764
+t_us=17776922 event=stream_fin_tx stream_id=59 id=24 bytes=44 audit_seq=765
+t_us=17781030 event=stream_closed stream_id=47 id=20 fin=1 direction=tx active_tx=3 audit_seq=766
+t_us=17781548 event=iot91_udp_rx datagram=161 path=1 link=B bytes=1216 at_us=17781546 digest=037ccab65d6466144edd5cb3684718f02fccc749d3a7f1e62e9d77dc6644e86a local_port=4433 peer_port=4434 audit_seq=767
+t_us=17781562 event=iot91_xquic tx_datagram=131 rx_datagram=161 kind=wire_rx path=1 pns=2 pn=159 stream=14 offset=0 length=1183 fin=0 audit_seq=768
+t_us=17781566 event=stream_open stream_id=14 direction=rx audit_seq=769
+t_us=17781571 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17781546 rc=0 audit_seq=770
+t_us=17781901 event=iot91_udp_rx datagram=162 path=1 link=B bytes=1216 at_us=17781899 digest=dc91d2826e03adca20f0fb2eca32e6ad21fad36e8ebe59b5e78643c45756be1b local_port=4433 peer_port=4434 audit_seq=771
+t_us=17782042 event=iot91_xquic tx_datagram=131 rx_datagram=162 kind=wire_rx path=1 pns=2 pn=160 stream=14 offset=1183 length=1181 fin=0 audit_seq=772
+t_us=17782050 event=udp_rx link=B path_id=1 bytes=1216 recv_us=17781899 rc=0 audit_seq=773
+t_us=17782055 event=iot91_udp_rx datagram=163 path=1 link=B bytes=31 at_us=17782054 digest=c96ba054aba807d3af28bcfad40903a91cb12626d90fb33a286501d4aec8da52 local_port=4433 peer_port=4434 audit_seq=774
+t_us=17782076 event=iot91_udp_tx datagram=132 path=1 link=B bytes=39 at_us=17782069 digest=12aac6d6b498aed9a5fc16558ebaef4e1dca46b381474c74123b069baa8d807e local_port=4433 peer_port=4434 audit_seq=775
+t_us=17782078 event=udp_tx link=B path_id=1 bytes=39 audit_seq=776
+t_us=17782084 event=udp_rx link=B path_id=1 bytes=31 recv_us=17782054 rc=0 audit_seq=777
+t_us=17782087 event=iot91_udp_rx datagram=164 path=1 link=B bytes=42 at_us=17782087 digest=5d52b5f4f44938770116f63a205c351f443e1b5b97afbb51f98fee46d0360c68 local_port=4433 peer_port=4434 audit_seq=778
+t_us=17782105 event=udp_rx link=B path_id=1 bytes=42 recv_us=17782087 rc=0 audit_seq=779
+t_us=17786721 event=iot91_udp_rx datagram=165 path=1 link=B bytes=31 at_us=17786719 digest=4e417dc8f1ec610eecdeb2f9cfae238c925a9711bc431492d52288d913788e82 local_port=4433 peer_port=4434 audit_seq=780
+t_us=17786759 event=udp_rx link=B path_id=1 bytes=31 recv_us=17786719 rc=0 audit_seq=781
+t_us=17792391 event=iot91_udp_rx datagram=166 path=1 link=B bytes=31 at_us=17792388 digest=ef07228dfd25da77769fc85f3410834453f4a3294b32a6fed9ca886d8483db9c local_port=4433 peer_port=4434 audit_seq=782
+t_us=17792447 event=iot91_udp_tx datagram=133 path=1 link=B bytes=39 at_us=17792436 digest=e356c966f2edb9364974f3131a386333838f0dc4d5b2c6aba804930569d7c5aa local_port=4433 peer_port=4434 audit_seq=783
+t_us=17792449 event=udp_tx link=B path_id=1 bytes=39 audit_seq=784
+t_us=17792455 event=udp_rx link=B path_id=1 bytes=31 recv_us=17792388 rc=0 audit_seq=785
+t_us=17813114 event=iot91_udp_rx datagram=167 path=1 link=B bytes=40 at_us=17813110 digest=49d802beef2aa9d429b96aad9e10f062fbb3004f66cb77fc3f3cde05f75dd440 local_port=4433 peer_port=4434 audit_seq=786
+t_us=17813184 event=udp_rx link=B path_id=1 bytes=40 recv_us=17813110 rc=0 audit_seq=787
+t_us=17834892 event=iot91_udp_rx datagram=168 path=1 link=B bytes=31 at_us=17834888 digest=ae5604a2561ee391857224f8f7ec839912cebb15b537ad3ef5b7b52c707bae0b local_port=4433 peer_port=4434 audit_seq=788
+t_us=17834933 event=udp_rx link=B path_id=1 bytes=31 recv_us=17834888 rc=0 audit_seq=789
+t_us=17860585 event=iot91_udp_tx datagram=134 path=1 link=B bytes=40 at_us=17860559 digest=5a75fec239afd0666c258fddf6ed6227c7b51eed1ce95fda9efee75285e51a32 local_port=4433 peer_port=4434 audit_seq=790
+t_us=17860615 event=udp_tx link=B path_id=1 bytes=40 audit_seq=791
+t_us=17871437 event=iot91_udp_rx datagram=169 path=1 link=B bytes=31 at_us=17871433 digest=7d8c83b1237d2eb1be90b4e58fa53d7a6482f4b8edee50bf32de8b7db2c517db local_port=4433 peer_port=4434 audit_seq=792
+t_us=17871485 event=udp_rx link=B path_id=1 bytes=31 recv_us=17871433 rc=0 audit_seq=793
+t_us=17897123 event=iot91_udp_tx datagram=135 path=1 link=B bytes=40 at_us=17897097 digest=c6645889b7d317fe8fca92369b860f9d0912c1d590029744b48ea0bec81debb4 local_port=4433 peer_port=4434 audit_seq=794
+t_us=17897151 event=udp_tx link=B path_id=1 bytes=40 audit_seq=795
+t_us=17918995 event=iot91_udp_rx datagram=170 path=1 link=B bytes=31 at_us=17918992 digest=17c3a396a73c29ab0a3488d2eef59451c5942c44427b889c10f83480acb1a7ad local_port=4433 peer_port=4434 audit_seq=796
+t_us=17919042 event=udp_rx link=B path_id=1 bytes=31 recv_us=17918992 rc=0 audit_seq=797
+t_us=17944618 event=iot91_udp_tx datagram=136 path=1 link=B bytes=40 at_us=17944596 digest=c9fccfd2b78c8424e6f1579262ecf886bbfbf1ae300d96b5d954084a27d537a6 local_port=4433 peer_port=4434 audit_seq=798
+t_us=17944632 event=udp_tx link=B path_id=1 bytes=40 audit_seq=799
+t_us=18082774 event=stream_closed stream_id=54 id=37 fin=1 direction=rx active_tx=3 audit_seq=800
+t_us=18082861 event=iot91_udp_tx datagram=137 path=1 link=B bytes=31 at_us=18082836 digest=d1d9aa98d751d4d9354f2091b213397b8be5b6893137d95b6611d2f4b753735d local_port=4433 peer_port=4434 audit_seq=801
+t_us=18082864 event=udp_tx link=B path_id=1 bytes=31 audit_seq=802
+t_us=18083991 event=stream_closed stream_id=58 id=22 fin=1 direction=rx active_tx=3 audit_seq=803
+t_us=18093307 event=iot91_udp_rx datagram=171 path=1 link=B bytes=31 at_us=18093303 digest=f9d936b8376073df3f9929d5100f53980cfdb82c5c99d9b8f2f57df9d1132a73 local_port=4433 peer_port=4434 audit_seq=804
+t_us=18093377 event=iot91_udp_tx datagram=138 path=1 link=B bytes=31 at_us=18093362 digest=906ce5762a0948cc26df9f1ffac5b46c36a756710477254d40471756821ce32b local_port=4433 peer_port=4434 audit_seq=805
+t_us=18093380 event=udp_tx link=B path_id=1 bytes=31 audit_seq=806
+t_us=18093392 event=udp_rx link=B path_id=1 bytes=31 recv_us=18093303 rc=0 audit_seq=807
+t_us=18093395 event=iot91_udp_rx datagram=172 path=1 link=B bytes=31 at_us=18093395 digest=c0c830783b1a50e9e3bbea423638c51351f7d35f166f7c33bce7771dee38cd4e local_port=4433 peer_port=4434 audit_seq=808
+t_us=18093426 event=iot91_udp_tx datagram=139 path=1 link=B bytes=41 at_us=18093423 digest=1979e9a908a1c436774e1312f1cc7313febd04f8713e9cf68f42dd68de2990e9 local_port=4433 peer_port=4434 audit_seq=809
+t_us=18093428 event=udp_tx link=B path_id=1 bytes=41 audit_seq=810
+t_us=18093433 event=udp_rx link=B path_id=1 bytes=31 recv_us=18093395 rc=0 audit_seq=811
+t_us=18093435 event=iot91_udp_rx datagram=173 path=1 link=B bytes=31 at_us=18093435 digest=64170c2622502f1d0a5036fe701f8a9f8e64cdc6715a8c71b61d78722b5066aa local_port=4433 peer_port=4434 audit_seq=812
+t_us=18093441 event=udp_rx link=B path_id=1 bytes=31 recv_us=18093435 rc=0 audit_seq=813
+t_us=18103664 event=stream_closed stream_id=51 id=37 fin=1 direction=tx active_tx=2 audit_seq=814
+t_us=18103759 event=iot91_udp_rx datagram=174 path=1 link=B bytes=39 at_us=18103756 digest=e8d4086d010cace43ce264525fc65bc6b8047a65fa33647decc02f4c5ce892a8 local_port=4433 peer_port=4434 audit_seq=815
+t_us=18103788 event=udp_rx link=B path_id=1 bytes=39 recv_us=18103756 rc=0 audit_seq=816
+t_us=18114023 event=stream_closed stream_id=55 id=22 fin=1 direction=tx active_tx=1 audit_seq=817
+t_us=18114456 event=iot91_udp_rx datagram=175 path=1 link=B bytes=1216 at_us=18114452 digest=1329d32ec2ba1b1a607fb708b9e6f07001e0d22221c837d7a6ed7090bd653686 local_port=4433 peer_port=4434 audit_seq=818
+t_us=18114477 event=iot91_xquic tx_datagram=139 rx_datagram=175 kind=wire_rx path=1 pns=2 pn=179 stream=66 offset=0 length=1182 fin=0 audit_seq=819
+t_us=18114480 event=stream_open stream_id=66 direction=rx audit_seq=820
+t_us=18114487 event=udp_rx link=B path_id=1 bytes=1216 recv_us=18114452 rc=0 audit_seq=821
+t_us=18114507 event=iot91_udp_tx datagram=140 path=1 link=B bytes=41 at_us=18114496 digest=cbf348f649234681ab8e30e2b67d779458adfa4671b86028c0c6fe24f37f8772 local_port=4433 peer_port=4434 audit_seq=822
+t_us=18114509 event=udp_tx link=B path_id=1 bytes=41 audit_seq=823
+t_us=18114752 event=iot91_udp_rx datagram=176 path=1 link=B bytes=1216 at_us=18114750 digest=a433588ec770a938eabbbfa6bec7da6bf0e59ac03c9ab587a8f612cf4aca7416 local_port=4433 peer_port=4434 audit_seq=824
+t_us=18114771 event=iot91_xquic tx_datagram=140 rx_datagram=176 kind=wire_rx path=1 pns=2 pn=180 stream=66 offset=1182 length=1180 fin=0 audit_seq=825
+t_us=18114778 event=udp_rx link=B path_id=1 bytes=1216 recv_us=18114750 rc=0 audit_seq=826
+t_us=18115004 event=iot91_udp_rx datagram=177 path=1 link=B bytes=926 at_us=18115002 digest=6cecc58fc3f610e1cca60754cbfc72bd032e64d27534cb2df66418a9def8dccc local_port=4433 peer_port=4434 audit_seq=827
+t_us=18115021 event=iot91_xquic tx_datagram=140 rx_datagram=177 kind=wire_rx path=1 pns=2 pn=181 stream=66 offset=2362 length=890 fin=1 audit_seq=828
+t_us=18115029 event=udp_rx link=B path_id=1 bytes=926 recv_us=18115002 rc=0 audit_seq=829
+t_us=18115035 event=iot91_fin_read stream=66 bytes=3252 audit_seq=830
+t_us=18115041 event=iot_rx id=3 stream_id=66 kind=2 source=2 serial=902 priority=3 severity=2 payload_len=3200 hash=7574514702905782861 generated=14765657 deadline=15195657 maximum_age=0 received=18115037 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=831
+t_us=18115054 event=iot91_udp_tx datagram=141 path=1 link=B bytes=41 at_us=18115047 digest=0ec7022309737031eb5eeb5981a356d6fd1ec40df33558cc72d180c156fba115 local_port=4433 peer_port=4434 audit_seq=832
+t_us=18115056 event=udp_tx link=B path_id=1 bytes=41 audit_seq=833
+t_us=18115063 event=stream_open stream_id=63 direction=tx audit_seq=834
+t_us=18115080 event=iot91_udp_tx datagram=142 path=1 link=B bytes=77 at_us=18115077 digest=a9cf5df120d6d86f53b01342eb344db071627c1b7f80cd958ea0658dd60993a0 local_port=4433 peer_port=4434 audit_seq=835
+t_us=18115083 event=udp_tx link=B path_id=1 bytes=77 audit_seq=836
+t_us=18115087 event=iot91_xquic tx_datagram=142 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=135 choice=0 stream=63 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=837
+t_us=18115101 event=stream_fin_tx stream_id=63 id=3 bytes=44 audit_seq=838
+t_us=18115355 event=iot91_udp_rx datagram=178 path=1 link=B bytes=1216 at_us=18115354 digest=c6093916a000776357b36055551786dc306db4457df19a36c4ef304b0501d948 local_port=4433 peer_port=4434 audit_seq=839
+t_us=18115367 event=iot91_xquic tx_datagram=142 rx_datagram=178 kind=wire_rx path=1 pns=2 pn=182 stream=70 offset=0 length=1182 fin=0 audit_seq=840
+t_us=18115370 event=stream_open stream_id=70 direction=rx audit_seq=841
+t_us=18115375 event=udp_rx link=B path_id=1 bytes=1216 recv_us=18115354 rc=0 audit_seq=842
+t_us=18115604 event=iot91_udp_rx datagram=179 path=1 link=B bytes=954 at_us=18115602 digest=23719b3a4f569b356b2e3300106d82d3d18b804822588384884f46660368a4dc local_port=4433 peer_port=4434 audit_seq=843
+t_us=18115627 event=iot91_xquic tx_datagram=142 rx_datagram=179 kind=wire_rx path=1 pns=2 pn=183 stream=70 offset=1182 length=918 fin=1 audit_seq=844
+t_us=18115634 event=udp_rx link=B path_id=1 bytes=954 recv_us=18115602 rc=0 audit_seq=845
+t_us=18115640 event=iot91_fin_read stream=70 bytes=2100 audit_seq=846
+t_us=18115645 event=iot_rx id=38 stream_id=70 kind=1 source=9 serial=6 priority=1 severity=0 payload_len=2048 hash=3313529497773256082 generated=15735657 deadline=17235657 maximum_age=1250000 received=18115642 status=1 on_time=0 age_exceeded=1 latest_generated=15735657 latest_serial=6 audit_seq=847
+t_us=18115657 event=iot91_udp_tx datagram=143 path=1 link=B bytes=41 at_us=18115651 digest=9906e7bf00bf26c1f41019b2d5b068b4d1a2a4c69d2abf570bdac8916089ddfb local_port=4433 peer_port=4434 audit_seq=848
+t_us=18115659 event=udp_tx link=B path_id=1 bytes=41 audit_seq=849
+t_us=18115668 event=iot_stream_create blocked=1 id=38 active_tx=2 audit_seq=850
+t_us=18124888 event=iot91_udp_rx datagram=180 path=1 link=B bytes=31 at_us=18124885 digest=c2d80a1d0dc7be1a80c23506eb25ae0849b88e9358680aaa1502187125b976ae local_port=4433 peer_port=4434 audit_seq=851
+t_us=18124952 event=iot91_udp_tx datagram=144 path=1 link=B bytes=31 at_us=18124939 digest=fa05e95ebb8279e9af12b3c5b09b45292b1dc272bfade50be043e6b55c96b53b local_port=4433 peer_port=4434 audit_seq=852
+t_us=18124955 event=udp_tx link=B path_id=1 bytes=31 audit_seq=853
+t_us=18124970 event=iot91_udp_tx datagram=145 path=1 link=B bytes=31 at_us=18124966 digest=6a59311bee5ed4df55a29b05704a6c172e9fd6c2d3e6483ca43b6160ec3761bf local_port=4433 peer_port=4434 audit_seq=854
+t_us=18124972 event=udp_tx link=B path_id=1 bytes=31 audit_seq=855
+t_us=18124980 event=udp_rx link=B path_id=1 bytes=31 recv_us=18124885 rc=0 audit_seq=856
+t_us=18124984 event=iot91_udp_rx datagram=181 path=1 link=B bytes=31 at_us=18124984 digest=f5dc84084d8f5baf29c5fdfc96e01d2dc8ce70ced8e6685dcc961f47d002cd1c local_port=4433 peer_port=4434 audit_seq=857
+t_us=18125001 event=iot91_udp_tx datagram=146 path=1 link=B bytes=41 at_us=18124997 digest=5c8eae5f0175bfbe0efc5b0df9560d537eb6e94374036a0832563a55484823d9 local_port=4433 peer_port=4434 audit_seq=858
+t_us=18125003 event=udp_tx link=B path_id=1 bytes=41 audit_seq=859
+t_us=18125011 event=udp_rx link=B path_id=1 bytes=31 recv_us=18124984 rc=0 audit_seq=860
+t_us=18125431 event=iot91_udp_rx datagram=182 path=1 link=B bytes=31 at_us=18125429 digest=db2fc950f6e5b2bfc52d84c289f6d1f9a1aa17191e2d745c46191c413c03f664 local_port=4433 peer_port=4434 audit_seq=861
+t_us=18125457 event=udp_rx link=B path_id=1 bytes=31 recv_us=18125429 rc=0 audit_seq=862
+t_us=18135377 event=iot91_udp_rx datagram=183 path=1 link=B bytes=31 at_us=18135373 digest=0d7c20850b7206ee7ae1772d10d62ed44257c72c285ec2a8732c384cd7ba7cbb local_port=4433 peer_port=4434 audit_seq=863
+t_us=18135442 event=iot91_udp_tx datagram=147 path=1 link=B bytes=41 at_us=18135429 digest=f46c68376898f7a88dc5210eb81c4071ccf2dc5dd85c3c6198ab02081c1e860b local_port=4433 peer_port=4434 audit_seq=864
+t_us=18135445 event=udp_tx link=B path_id=1 bytes=41 audit_seq=865
+t_us=18135452 event=udp_rx link=B path_id=1 bytes=31 recv_us=18135373 rc=0 audit_seq=866
+t_us=18135455 event=iot91_udp_rx datagram=184 path=1 link=B bytes=41 at_us=18135454 digest=342d8a59350025911223124afc9e814b942414c5b5d479aadc0b0678ac352309 local_port=4433 peer_port=4434 audit_seq=867
+t_us=18135484 event=udp_rx link=B path_id=1 bytes=41 recv_us=18135454 rc=0 audit_seq=868
+t_us=18135491 event=stream_open stream_id=67 direction=tx audit_seq=869
+t_us=18135493 event=iot_stream_create blocked=0 id=38 active_tx=3 audit_seq=870
+t_us=18135517 event=iot91_udp_tx datagram=148 path=1 link=B bytes=78 at_us=18135513 digest=85f3d80da52ed1b979cd5b28114138ac55337f76d5298dd9589b12671c091105 local_port=4433 peer_port=4434 audit_seq=871
+t_us=18135519 event=udp_tx link=B path_id=1 bytes=78 audit_seq=872
+t_us=18135524 event=iot91_xquic tx_datagram=148 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=142 choice=0 stream=67 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=873
+t_us=18135530 event=stream_fin_tx stream_id=67 id=38 bytes=44 audit_seq=874
+t_us=18146107 event=iot91_udp_rx datagram=185 path=1 link=B bytes=41 at_us=18146103 digest=61b17b0d2b7e79d0e42f39466d789a6c15f26fea13ee3750b19fc36f694f0764 local_port=4433 peer_port=4434 audit_seq=875
+t_us=18146164 event=udp_rx link=B path_id=1 bytes=41 recv_us=18146103 rc=0 audit_seq=876
+t_us=18166559 event=stream_closed stream_id=62 id=24 fin=1 direction=rx active_tx=3 audit_seq=877
+t_us=18166620 event=iot91_udp_tx datagram=149 path=1 link=B bytes=31 at_us=18166598 digest=a6c2fec74a226b604a7c9d4924d971853c62c8d48924d7390bd4e9e29339aa5a local_port=4433 peer_port=4434 audit_seq=878
+t_us=18166623 event=udp_tx link=B path_id=1 bytes=31 audit_seq=879
+t_us=18177036 event=iot91_udp_rx datagram=186 path=1 link=B bytes=31 at_us=18177032 digest=0b9e56b80ce625b4b5751ebfd573ad68fce5ee1ad4a1354040b79dd00f1e1479 local_port=4433 peer_port=4434 audit_seq=880
+t_us=18177083 event=udp_rx link=B path_id=1 bytes=31 recv_us=18177032 rc=0 audit_seq=881
+t_us=18192919 event=iot91_udp_rx datagram=187 path=1 link=B bytes=1216 at_us=18192915 digest=e05d58c2cd8d0bc8556ef9a468e0679030f5953769e6656177482a7ec4c094e5 local_port=4433 peer_port=4434 audit_seq=882
+t_us=18192949 event=iot91_xquic tx_datagram=149 rx_datagram=187 kind=wire_rx path=1 pns=2 pn=191 stream=74 offset=0 length=1182 fin=0 audit_seq=883
+t_us=18192955 event=stream_open stream_id=74 direction=rx audit_seq=884
+t_us=18192962 event=udp_rx link=B path_id=1 bytes=1216 recv_us=18192915 rc=0 audit_seq=885
+t_us=18192987 event=iot91_udp_tx datagram=150 path=1 link=B bytes=39 at_us=18192974 digest=64d6cf8bd049bc665befe0372ea4bb1e7ea19c93ab8128af6f87bd7820e11048 local_port=4433 peer_port=4434 audit_seq=886
+t_us=18192989 event=udp_tx link=B path_id=1 bytes=39 audit_seq=887
+t_us=18193239 event=iot91_udp_rx datagram=188 path=1 link=B bytes=1216 at_us=18193237 digest=b02aa1136826c56feef88e67affe417b318979b4b3bb95fda98309a510997d38 local_port=4433 peer_port=4434 audit_seq=888
+t_us=18193252 event=iot91_xquic tx_datagram=150 rx_datagram=188 kind=wire_rx path=1 pns=2 pn=192 stream=74 offset=1182 length=1180 fin=0 audit_seq=889
+t_us=18193256 event=udp_rx link=B path_id=1 bytes=1216 recv_us=18193237 rc=0 audit_seq=890
+t_us=18193517 event=iot91_udp_rx datagram=189 path=1 link=B bytes=926 at_us=18193516 digest=7e067236e5ec14185ab604d9efa603e036d22b5adf08eeb34653d364a54c1b46 local_port=4433 peer_port=4434 audit_seq=891
+t_us=18193536 event=iot91_xquic tx_datagram=150 rx_datagram=189 kind=wire_rx path=1 pns=2 pn=193 stream=74 offset=2362 length=890 fin=1 audit_seq=892
+t_us=18193558 event=udp_rx link=B path_id=1 bytes=926 recv_us=18193516 rc=0 audit_seq=893
+t_us=18193565 event=iot91_fin_read stream=74 bytes=3252 audit_seq=894
+t_us=18193571 event=iot_rx id=19 stream_id=74 kind=2 source=2 serial=909 priority=3 severity=2 payload_len=3200 hash=8965717027024136375 generated=15085657 deadline=15665657 maximum_age=0 received=18193566 status=3 on_time=0 age_exceeded=0 latest_generated=0 latest_serial=0 audit_seq=895
+t_us=18193585 event=iot91_udp_tx datagram=151 path=1 link=B bytes=39 at_us=18193577 digest=1e7f6c73484b49308ceb1278b8124b15f203f4eb1ef20438b6fcb9995d4df110 local_port=4433 peer_port=4434 audit_seq=896
+t_us=18193587 event=udp_tx link=B path_id=1 bytes=39 audit_seq=897
+t_us=18193618 event=stream_open stream_id=71 direction=tx audit_seq=898
+t_us=18193637 event=iot91_udp_tx datagram=152 path=1 link=B bytes=78 at_us=18193632 digest=83d015f6b93cbce3f1372f3595ff6c702d89b7ffdbe7706ef0476df1f5f43123 local_port=4433 peer_port=4434 audit_seq=899
+t_us=18193639 event=udp_tx link=B path_id=1 bytes=78 audit_seq=900
+t_us=18193644 event=iot91_xquic tx_datagram=152 rx_datagram=0 kind=wire_tx path=1 pns=2 pn=146 choice=0 stream=71 offset=0 length=44 fin=1 repair=0 orig_path=0 orig_pns=0 orig_pn=0 audit_seq=901
+t_us=18193651 event=stream_fin_tx stream_id=71 id=19 bytes=44 audit_seq=902
+t_us=18202933 event=stream_closed stream_id=59 id=24 fin=1 direction=tx active_tx=3 audit_seq=903
+t_us=18203008 event=iot91_udp_rx datagram=190 path=1 link=B bytes=31 at_us=18203004 digest=225fb7f87cb663645e89708517f8edf133843168cabf65e1017e6b18906f0fbe local_port=4433 peer_port=4434 audit_seq=904
+t_us=18203036 event=udp_rx link=B path_id=1 bytes=31 recv_us=18203004 rc=0 audit_seq=905
+t_us=18203039 event=iot91_udp_rx datagram=191 path=1 link=B bytes=31 at_us=18203039 digest=83a0f2b71d9c26a80ec712ac65d2453b1b51f5d480bfc0bf2469e667c53005b5 local_port=4433 peer_port=4434 audit_seq=906
+t_us=18203065 event=iot91_udp_tx datagram=153 path=1 link=B bytes=39 at_us=18203051 digest=59598d2c4203ca990e02693b582e10fa56681854750379570cb0387b9ae0189e local_port=4433 peer_port=4434 audit_seq=907
+t_us=18203067 event=udp_tx link=B path_id=1 bytes=39 audit_seq=908
+t_us=18203074 event=udp_rx link=B path_id=1 bytes=31 recv_us=18203039 rc=0 audit_seq=909
+t_us=18203077 event=iot91_udp_rx datagram=192 path=1 link=B bytes=42 at_us=18203076 digest=518e2c3856545eea4ca545759ece074cf3affeba7d621fc66a4281ee2dca206d local_port=4433 peer_port=4434 audit_seq=910
+t_us=18203089 event=udp_rx link=B path_id=1 bytes=42 recv_us=18203076 rc=0 audit_seq=911
+t_us=18213498 event=iot91_udp_rx datagram=193 path=1 link=B bytes=31 at_us=18213492 digest=6d5837637c639b693b2707fadf09d8cd7edf10c74b69924331d8df818dca5534 local_port=4433 peer_port=4434 audit_seq=912
+t_us=18213567 event=udp_rx link=B path_id=1 bytes=31 recv_us=18213492 rc=0 audit_seq=913
+t_us=18229013 event=iot91_udp_rx datagram=194 path=1 link=B bytes=40 at_us=18229010 digest=85dd2c819602833e13e1871aa4b4587e0202bc6930a6ef8c7d3d45fdc8aad175 local_port=4433 peer_port=4434 audit_seq=914
+t_us=18229073 event=udp_rx link=B path_id=1 bytes=40 recv_us=18229010 rc=0 audit_seq=915
+t_us=18239333 event=iot91_udp_tx datagram=154 path=1 link=B bytes=40 at_us=18239312 digest=9c39f40d2ee892a428d6e66308538f509da78ce0dc0360d903ebd8cba235ed99 local_port=4433 peer_port=4434 audit_seq=916
+t_us=18239347 event=udp_tx link=B path_id=1 bytes=40 audit_seq=917
+t_us=18249717 event=iot91_udp_rx datagram=195 path=1 link=B bytes=31 at_us=18249713 digest=dbd653d57236f36110cd4b147c5fdc0362f1b32f5ed0c33d33f3d2f72f308c44 local_port=4433 peer_port=4434 audit_seq=918
+t_us=18249764 event=udp_rx link=B path_id=1 bytes=31 recv_us=18249713 rc=0 audit_seq=919
+t_us=18275358 event=iot91_udp_tx datagram=155 path=1 link=B bytes=40 at_us=18275337 digest=9f426f892d6419def70ef760e277a32a86a48de5bea2032add3e590cb6adb01b local_port=4433 peer_port=4434 audit_seq=920
+t_us=18275378 event=udp_tx link=B path_id=1 bytes=40 audit_seq=921
+t_us=18285785 event=iot91_udp_rx datagram=196 path=1 link=B bytes=31 at_us=18285781 digest=7c206fa1628ed6febf76c18a28fac316261883f95dd33737a244b488c4e1d194 local_port=4433 peer_port=4434 audit_seq=922
+t_us=18285827 event=udp_rx link=B path_id=1 bytes=31 recv_us=18285781 rc=0 audit_seq=923
+t_us=18311560 event=iot91_udp_tx datagram=156 path=1 link=B bytes=40 at_us=18311533 digest=2c9691ff5a1efaf9aded9a243bfbffa9e54db678eb5016e659e2cf2492e3c255 local_port=4433 peer_port=4434 audit_seq=924
+t_us=18311582 event=udp_tx link=B path_id=1 bytes=40 audit_seq=925
+t_us=18335501 event=iot91_udp_rx datagram=197 path=1 link=B bytes=31 at_us=18335497 digest=85df9bdc323aaa0e60b9d520254433a763987d4d41adf3e367aa810421d2caeb local_port=4433 peer_port=4434 audit_seq=926
+t_us=18335540 event=udp_rx link=B path_id=1 bytes=31 recv_us=18335497 rc=0 audit_seq=927
+t_us=18361144 event=iot91_udp_tx datagram=157 path=1 link=B bytes=40 at_us=18361123 digest=bab64ce95496b07453b03da73b94b0eecfee5a4467a2f8cd16fe57b873160a06 local_port=4433 peer_port=4434 audit_seq=928
+t_us=18361170 event=udp_tx link=B path_id=1 bytes=40 audit_seq=929
+t_us=18444862 event=iot91_udp_rx datagram=198 path=1 link=B bytes=44 at_us=18444858 digest=f916063bb0e72e7b7e31f931f7f0a7be52e314b705dae6c17f8a32cb2e5563c4 local_port=4433 peer_port=4434 audit_seq=930
+t_us=18444934 event=iot91_udp_tx datagram=158 path=1 link=B bytes=45 at_us=18444921 digest=17bef9d1a1ddf612feee2d66d07fe925f9530d80759d176505341be979d658cc local_port=4433 peer_port=4434 audit_seq=931
+t_us=18444937 event=udp_tx link=B path_id=1 bytes=45 audit_seq=932
+t_us=18444944 event=udp_rx link=B path_id=1 bytes=44 recv_us=18444858 rc=0 audit_seq=933
+t_us=18504359 event=stream_closed stream_id=66 id=3 fin=1 direction=rx active_tx=3 audit_seq=934
+t_us=18504441 event=iot91_udp_tx datagram=159 path=1 link=B bytes=31 at_us=18504421 digest=34a0eb5f4021b7f798919b4fc074184f71d29948a2c5b909f49f44d9eaa4b4c2 local_port=4433 peer_port=4434 audit_seq=935
+t_us=18504444 event=udp_tx link=B path_id=1 bytes=31 audit_seq=936
+t_us=18505576 event=stream_closed stream_id=70 id=38 fin=1 direction=rx active_tx=3 audit_seq=937
+t_us=18525001 event=stream_closed stream_id=63 id=3 fin=1 direction=tx active_tx=2 audit_seq=938
+t_us=18535287 event=stream_closed stream_id=67 id=38 fin=1 direction=tx active_tx=1 audit_seq=939
+t_us=18552799 event=iot91_udp_tx datagram=160 path=1 link=B bytes=31 at_us=18552780 digest=16c34830e0ffd9d103c223f4209f41bd72bcfdea646a4f2ec0cdf2b62c7b8b45 local_port=4433 peer_port=4434 audit_seq=940
+t_us=18552819 event=udp_tx link=B path_id=1 bytes=31 audit_seq=941
+t_us=18552831 event=iot91_udp_tx datagram=161 path=1 link=B bytes=31 at_us=18552829 digest=bf9292150a562d483cf2a0c5feef3d5e02ef47d8ad526579b06c27a128cd54eb local_port=4433 peer_port=4434 audit_seq=942
+t_us=18552833 event=udp_tx link=B path_id=1 bytes=31 audit_seq=943
+t_us=18583566 event=stream_closed stream_id=74 id=19 fin=1 direction=rx active_tx=1 audit_seq=944
+t_us=18618444 event=stream_closed stream_id=71 id=19 fin=1 direction=tx active_tx=0 audit_seq=945
+t_us=18649278 event=iot91_udp_tx datagram=162 path=1 link=B bytes=31 at_us=18649258 digest=3b536a1dd36f0a3b87a3ceefdc30a8fdcb5d41c67e35d8dfda8d0a1b747b3a0a local_port=4433 peer_port=4434 audit_seq=946
+t_us=18649299 event=udp_tx link=B path_id=1 bytes=31 audit_seq=947
+t_us=18649329 event=iot91_udp_tx datagram=163 path=1 link=B bytes=31 at_us=18649327 digest=0b843c57bfd98466670e6f689e1a4471b8378c6689cfb44759092700db52d687 local_port=4433 peer_port=4434 audit_seq=948
+t_us=18649331 event=udp_tx link=B path_id=1 bytes=31 audit_seq=949
+t_us=18834790 event=stream_closed stream_id=14 id=0 fin=0 direction=rx active_tx=0 audit_seq=950
+t_us=18834833 event=conn_closed error=0 audit_seq=951
+t_us=18834865 event=udp_summary link=A path_id=0 tx=24 rx=15 tx_bytes=3682 rx_bytes=3069 audit_seq=952
+t_us=18834867 event=udp_summary link=B path_id=1 tx=139 rx=183 tx_bytes=8264 rx_bytes=66849 audit_seq=953
+t_us=18838012 event=iot91_totals attempts=0 blocked=0 choices=0 tx=163 rx=198 audit_seq=954
+t_us=18838045 event=process_cpu user_us=15155 sys_us=45466 wall_us=4592467 audit_seq=955
+t_us=18838048 event=exit ok=0 audit_seq=956

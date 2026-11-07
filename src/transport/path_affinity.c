@@ -72,6 +72,9 @@ static xqc_path_ctx_t *choose_path(void *state, xqc_connection_t *conn, xqc_pack
     bool home_available = home && path_available(home);
     bool home_ready = home_available && xqc_scheduler_check_path_can_send(home, packet, check_cwnd);
     xqc_path_ctx_t *chosen = home_ready ? home : NULL;
+    const char *cause = !home_available ? "unavailable" : !home_ready ? "cwnd" : "none";
+    unsigned home_pto = 0;
+    double home_time = 0;
 
     if (repair && control->cross) {
         struct iot_path_sample original = {0};
@@ -79,6 +82,10 @@ static xqc_path_ctx_t *choose_path(void *state, xqc_connection_t *conn, xqc_pack
         if (home_available) {
             original = path_sample(home, 1);
             home_est = iot_estimate_path(&original, packet->po_used_size, slack);
+            home_pto = original.pto;
+            home_time = home_est.duration_us;
+            if (home_ready)
+                cause = home_pto ? "pto" : home_time >= slack ? "budget" : "none";
         }
         if (!home_ready || original.pto || home_est.duration_us >= slack) {
             double best_time = home_ready ? home_est.duration_us : INFINITY;
@@ -104,10 +111,19 @@ static xqc_path_ctx_t *choose_path(void *state, xqc_connection_t *conn, xqc_pack
     }
     if (blocked)
         *blocked = chosen == NULL && home_available;
+    if (control->integrity) {
+        packet->po_iot_decision = chosen ? ++control->decisions : 0;
+        if (chosen)
+            iot_trace_event("iot91_choice", "choice=%" PRIu64 " id=%u stream=%" PRIu64
+                            " home=%" PRIu64 " path=%" PRIu64 " repair=%d cause=%s home_ready=%d"
+                            " home_pto=%u home_time=%.17g slack=%.0f",
+                            packet->po_iot_decision, binding->id, sid, binding->home, chosen->path_id,
+                            repair, cause, home_ready, home_pto, home_time, slack);
+    }
     if (chosen)
-        printf("t_us=%" PRIu64 " event=iot_packet_path id=%u stream_id=%" PRIu64
-               " offset=%" PRIu64 " home=%" PRIu64 " chosen=%" PRIu64 " repair=%d\n",
-               now, binding->id, sid, packet->po_stream_offset, binding->home, chosen->path_id, repair);
+        iot_trace_event("iot_packet_path", "id=%u stream_id=%" PRIu64 " offset=%" PRIu64
+                        " home=%" PRIu64 " chosen=%" PRIu64 " repair=%d",
+                        binding->id, sid, packet->po_stream_offset, binding->home, chosen->path_id, repair);
     return chosen;
 }
 

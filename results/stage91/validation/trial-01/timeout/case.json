@@ -1,0 +1,67 @@
+{
+  "name": "timeout",
+  "scenario": "repair",
+  "seed": 8091,
+  "cell": "D",
+  "load": "directed",
+  "workload": "repair-probe",
+  "assignment_seed": 89396450,
+  "network_seed": 989366044,
+  "policy": "proposed-app",
+  "path_scheduler": "proposed-path",
+  "ablation": "full",
+  "repair": "strict",
+  "initial": {
+    "a": [
+      4,
+      30,
+      0
+    ],
+    "b": [
+      24,
+      12,
+      0
+    ]
+  },
+  "phases": [
+    {
+      "at_us": 100000,
+      "side": "client",
+      "links": {
+        "a": [
+          4,
+          30,
+          100
+        ]
+      }
+    },
+    {
+      "at_us": 1000000,
+      "links": {
+        "a": [
+          45,
+          6,
+          0
+        ],
+        "b": [
+          5,
+          30,
+          0
+        ]
+      }
+    }
+  ],
+  "horizon_us": 1200000,
+  "recovery_k": 2,
+  "tuning": {
+    "event_burst": 3,
+    "severity_weight": 2,
+    "waiting_weight": 1,
+    "slack_margin_us": 0,
+    "loss_scale": 1
+  },
+  "experiment_order": 17,
+  "required": {
+    "timeouts": 1
+  }
+}

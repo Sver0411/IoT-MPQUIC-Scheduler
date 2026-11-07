@@ -1,0 +1,75 @@
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/twc/.cache/iot-mpquic-stage1/tls
+ninja: no work to do.
+-- SSL_TYPE: boringssl
+-- SSL_PATH: /home/twc/.cache/iot-mpquic-stage1/boringssl
+-- SSL_LIB_PATH: /home/twc/.cache/iot-mpquic-stage1/tls/libssl.a;/home/twc/.cache/iot-mpquic-stage1/tls/libcrypto.a
+-- SSL_INC_PATH: /home/twc/.cache/iot-mpquic-stage1/boringssl/include
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/twc/.cache/iot-mpquic-stage1/app
+ninja: no work to do.
+ninja: no work to do.
+Internal ctest changing into directory: /home/twc/.cache/iot-mpquic-stage1/app
+Test project /home/twc/.cache/iot-mpquic-stage1/app
+    Start 1: scheduler-fifo
+1/9 Test #1: scheduler-fifo ...................   Passed    0.00 sec
+    Start 2: scheduler-strict-priority
+2/9 Test #2: scheduler-strict-priority ........   Passed    0.00 sec
+    Start 3: scheduler-edf
+3/9 Test #3: scheduler-edf ....................   Passed    0.00 sec
+    Start 4: scheduler-aoi
+4/9 Test #4: scheduler-aoi ....................   Passed    0.00 sec
+    Start 5: scheduler-latest-rr
+5/9 Test #5: scheduler-latest-rr ..............   Passed    0.00 sec
+    Start 6: scheduler-proposed-strict
+6/9 Test #6: scheduler-proposed-strict ........   Passed    0.00 sec
+    Start 7: scheduler-proposed-cross
+7/9 Test #7: scheduler-proposed-cross .........   Passed    0.00 sec
+    Start 8: scheduler-proposed-app
+8/9 Test #8: scheduler-proposed-app ...........   Passed    0.00 sec
+    Start 9: receiver-identities
+9/9 Test #9: receiver-identities ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Total Test time (real) =   0.03 sec
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.012s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+test_cross_repair_requires_prior_eligible_state (__main__.PathStateTests.test_cross_repair_requires_prior_eligible_state) ... ok
+test_migration_abort (__main__.PathStateTests.test_migration_abort) ... ok
+test_migration_commit (__main__.PathStateTests.test_migration_commit) ... ok
+test_migration_without_start (__main__.PathStateTests.test_migration_without_start) ... ok
+test_removed_path_cannot_recover (__main__.PathStateTests.test_removed_path_cannot_recover) ... ok
+test_change_actual_path_id (__main__.MutationTests.test_change_actual_path_id) ... ok
+test_cross_repair_original_packet_tampering (__main__.MutationTests.test_cross_repair_original_packet_tampering) ... ok
+test_delete_entire_blocked_attempt_and_renumber (__main__.MutationTests.test_delete_entire_blocked_attempt_and_renumber) ... ok
+test_delete_paired_blocked_logs_and_renumber (__main__.MutationTests.test_delete_paired_blocked_logs_and_renumber) ... ok
+test_delete_single_decision (__main__.MutationTests.test_delete_single_decision) ... ok
+test_duplicate_decision_after_renumbering (__main__.MutationTests.test_duplicate_decision_after_renumbering) ... ok
+test_early_fin_before_authenticated_fin (__main__.MutationTests.test_early_fin_before_authenticated_fin) ... ok
+test_forged_recovery_differs_from_raw_xquic (__main__.MutationTests.test_forged_recovery_differs_from_raw_xquic) ... ok
+test_migration_commit_on_wrong_socket (__main__.MutationTests.test_migration_commit_on_wrong_socket) ... ok
+test_missing_ack_log_after_renumbering (__main__.MutationTests.test_missing_ack_log_after_renumbering) ... ok
+test_queue_operation_removed_after_renumbering (__main__.MutationTests.test_queue_operation_removed_after_renumbering) ... ok
+test_swap_attempt_and_decision_after_renumbering (__main__.MutationTests.test_swap_attempt_and_decision_after_renumbering) ... ok
+test_archive_files_and_case_fingerprints (__main__.ArchiveTests.test_archive_files_and_case_fingerprints) ... ok
+test_attempts (__main__.EngineeringTests.test_attempts) ... ok
+test_lifecycle (__main__.EngineeringTests.test_lifecycle) ... ok
+test_migration (__main__.EngineeringTests.test_migration) ... ok
+test_repair (__main__.EngineeringTests.test_repair) ... ok
+test_timeout (__main__.EngineeringTests.test_timeout) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.383s
+
+OK

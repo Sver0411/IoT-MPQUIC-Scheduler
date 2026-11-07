@@ -1,0 +1,116 @@
+diff --git a/include/xquic/xquic.h b/include/xquic/xquic.h
+--- a/include/xquic/xquic.h
++++ b/include/xquic/xquic.h
+@@ -630,4 +630,6 @@
+  */
+ typedef struct xqc_transport_callbacks_s {
++    /* Enable observation-only packet and path logs for the Stage 9.1 lab. */
++    uint8_t iot_integrity_trace;
+     /**
+      * accept new connection callback. REQUIRED only for server \n
+diff --git a/src/transport/xqc_packet_out.h b/src/transport/xqc_packet_out.h
+--- a/src/transport/xqc_packet_out.h
++++ b/src/transport/xqc_packet_out.h
+@@ -117,4 +117,5 @@
+     /* Reinjection */
+     uint64_t                po_stream_offset;
++    uint64_t                po_iot_decision;
+     uint64_t                po_stream_id;
+ 
+diff --git a/src/transport/xqc_packet_out.c b/src/transport/xqc_packet_out.c
+--- a/src/transport/xqc_packet_out.c
++++ b/src/transport/xqc_packet_out.c
+@@ -153,4 +153,5 @@
+     xqc_memcpy(dst, src, sizeof(xqc_packet_out_t));
+     dst->po_origin_ref_cnt = 0;
++    dst->po_iot_decision = 0;
+ 
+     xqc_packet_out_t *origin = src->po_origin == NULL ? src : src->po_origin;
+diff --git a/src/transport/xqc_conn.c b/src/transport/xqc_conn.c
+--- a/src/transport/xqc_conn.c
++++ b/src/transport/xqc_conn.c
+@@ -2702,4 +2702,22 @@
+                 xqc_pkt_type_2_str(packet_out->po_pkt.pkt_type),
+                 xqc_frame_type_2_str(conn->engine, packet_out->po_frame_types), path->path_send_ctl->ctl_bytes_in_flight, now, packet_out->po_stream_id, packet_out->po_stream_offset);
++        if (conn->transport_cbs.iot_integrity_trace
++            && (packet_out->po_frame_types & XQC_FRAME_BIT_STREAM))
++        {
++            xqc_packet_out_t *original = packet_out->po_origin;
++            for (unsigned int i = 0; i < packet_out->po_stream_frames_idx; i++) {
++                xqc_po_stream_frame_t *frame = &packet_out->po_stream_frames[i];
++                if (!frame->ps_is_used || frame->ps_is_reset || frame->ps_is_reset_at) {
++                    continue;
++                }
++                xqc_log(conn->log, XQC_LOG_INFO,
++                        "|iot91|kind=wire_tx path=%ui pns=%d pn=%ui choice=%ui stream=%ui offset=%ui length=%ud fin=%ud repair=%d orig_path=%ui orig_pns=%d orig_pn=%ui|",
++                        path->path_id, packet_out->po_pkt.pkt_pns, packet_out->po_pkt.pkt_num,
++                        packet_out->po_iot_decision, frame->ps_stream_id, frame->ps_offset,
++                        frame->ps_length, frame->ps_has_fin, original != NULL,
++                        original ? original->po_path_id : 0, original ? original->po_pkt.pkt_pns : 0,
++                        original ? original->po_pkt.pkt_num : 0);
++            }
++        }
+         xqc_log_event(conn->log, TRA_PACKET_SENT, conn, packet_out, path, now, sent, 1);
+     }
+diff --git a/src/transport/xqc_frame.c b/src/transport/xqc_frame.c
+--- a/src/transport/xqc_frame.c
++++ b/src/transport/xqc_frame.c
+@@ -563,4 +563,11 @@
+     }
+ 
++    if (conn->transport_cbs.iot_integrity_trace && !(packet_in->pi_flag & XQC_PIF_FEC_RECOVERED)) {
++        xqc_log(conn->log, XQC_LOG_INFO,
++                "|iot91|kind=wire_rx path=%ui pns=%d pn=%ui stream=%ui offset=%ui length=%ud fin=%ud|",
++                packet_in->pi_path_id, packet_in->pi_pkt.pkt_pns, packet_in->pi_pkt.pkt_num,
++                stream_id, stream_frame->data_offset, stream_frame->data_length, stream_frame->fin);
++    }
++
+     stream_type = xqc_get_stream_type(stream_id);
+ 
+diff --git a/src/transport/xqc_multipath.c b/src/transport/xqc_multipath.c
+--- a/src/transport/xqc_multipath.c
++++ b/src/transport/xqc_multipath.c
+@@ -239,4 +239,9 @@
+     xqc_path_rebinding_t *rebinding = &path->rebinding;
+ 
++    if (path->parent_conn->transport_cbs.iot_integrity_trace
++        && rebinding->state != XQC_REBINDING_IDLE)
++    {
++        xqc_log(path->parent_conn->log, XQC_LOG_INFO, "|iot91|kind=migration_end path=%ui|", path->path_id);
++    }
+     /* Keep path lifetime counters when discarding a candidate. */
+     rebinding->addrlen = 0;
+@@ -268,4 +273,7 @@
+     rebinding->mtu_probe_retries = 0;
+     rebinding->state = XQC_REBINDING_ADDRESS_VALIDATING;
++    if (path->parent_conn->transport_cbs.iot_integrity_trace) {
++        xqc_log(path->parent_conn->log, XQC_LOG_INFO, "|iot91|kind=migration_start path=%ui|", path->path_id);
++    }
+     rebinding->initial_challenge_padded = XQC_FALSE;
+     return XQC_OK;
+@@ -415,4 +423,7 @@
+ 
+     xqc_memcpy(path->peer_addr, rebinding->addr, rebinding->addrlen);
++    if (conn->transport_cbs.iot_integrity_trace) {
++        xqc_log(conn->log, XQC_LOG_INFO, "|iot91|kind=migration_commit path=%ui|", path->path_id);
++    }
+     path->peer_addrlen = rebinding->addrlen;
+     path->addr_str_len = 0;
+@@ -637,4 +648,8 @@
+     }
+ 
++    if (conn->transport_cbs.iot_integrity_trace) {
++        xqc_log(conn->log, XQC_LOG_INFO, "|iot91|kind=path_state path=%ui before=%d after=%d|",
++                path->path_id, path->path_state, dst_state);
++    }
+     path->path_state = dst_state;
+ }
+@@ -1589,4 +1604,8 @@
+ 
+         xqc_log(conn->log, XQC_LOG_DEBUG, "|path:%ui|app_path_status:%d->%d|", path->path_id, last_status, status);
++        if (conn->transport_cbs.iot_integrity_trace) {
++            xqc_log(conn->log, XQC_LOG_INFO, "|iot91|kind=path_status path=%ui before=%d after=%d|",
++                    path->path_id, last_status, status);
++        }
+         path->app_path_status_changed_count++;
+         path->last_app_path_status_changed_time = xqc_monotonic_timestamp();
