@@ -599,7 +599,7 @@ static xqc_stream_t *open_iot_tx(struct endpoint *ep, struct record_stream *reco
     unsigned id = record->id;
     xqc_stream_t *stream = open_tx(ep, record);
     if (!stream) {
-        if (!iot->retry_delay)
+        if (!iot->retry_delay || iot->oracle)
             event("iot_stream_create", "blocked=1 id=%u active_tx=%u", id, ep->active_tx);
         // Each failed credit check in the pinned XQUIC can enqueue STREAMS_BLOCKED.
         uint64_t delay = iot->retry_delay ? iot->retry_delay * 2 : IOT_RETRY_MIN_US;
