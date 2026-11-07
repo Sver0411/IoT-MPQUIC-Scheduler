@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "case": "loss--mixed--proposed-cross",
+  "workload_sha256": "730db2946d0c171e554092fc09bb0913c08306c0e04114e936d862e3dc50c3bd",
+  "events": {
+    "generated": 9,
+    "received": 9,
+    "on_time": 9,
+    "deadline_success_ratio": 1.0,
+    "deadline_miss_ratio": 0.0,
+    "latency_p50_ms": 195.328,
+    "latency_p95_ms": 253.534,
+    "latency_p99_ms": 253.534
+  },
+  "states": {
+    "generated": 24,
+    "received": 9,
+    "on_time": 9,
+    "deadline_success_ratio": 0.375,
+    "deadline_miss_ratio": 0.625,
+    "latency_p50_ms": 195.311,
+    "latency_p95_ms": 277.387,
+    "latency_p99_ms": 277.387
+  },
+  "mean_aoi_ms": 854.834,
+  "peak_aoi_ms": 2003.335,
+  "jain_useful_state_delivery": 0.93103448,
+  "useful_goodput_bps": 86532.0,
+  "quic_detected_loss_ratio": 0.01834862,
+  "quic_detected_lost": 2,
+  "quic_counted_sent": 109,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 0,
+  "quic_tail_loss_probes": 0,
+  "cross_path_stream_packets": 0,
+  "pending_replaced": 15,
+  "acknowledged": 18,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 1575,
+      "received_udp_payload_share": 0.03104855,
+      "modeled_usable_capacity_fraction": 0.000105,
+      "udp_sent": 62,
+      "udp_received": 59,
+      "udp_non_delivery_ratio": 0.0483871
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 49152,
+      "received_udp_payload_share": 0.96895145,
+      "modeled_usable_capacity_fraction": 0.008192,
+      "udp_sent": 107,
+      "udp_received": 107,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 20677,
+      "sys_us": 15507,
+      "wall_us": 3231070,
+      "one_core_percent": 1.1199
+    },
+    "server": {
+      "user_us": 13229,
+      "sys_us": 36379,
+      "wall_us": 3277331,
+      "one_core_percent": 1.5137
+    }
+  },
+  "network_transitions": 1,
+  "max_transition_lag_us": 687,
+  "netem_random_seeded": false
+}

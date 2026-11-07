@@ -1,0 +1,26 @@
+diff --git a/include/xquic/xquic.h b/include/xquic/xquic.h
+--- a/include/xquic/xquic.h
++++ b/include/xquic/xquic.h
+@@ -1076,4 +1076,7 @@ typedef struct xqc_scheduler_callback_s {
+         xqc_connection_t *conn, xqc_scheduler_conn_event_t event, void *event_arg);
+ 
++    /* Opt in to scheduling STREAM-bearing PTO copies through get_path. */
++    uint8_t xqc_scheduler_schedule_stream_pto;
++
+ } xqc_scheduler_callback_t;
+ 
+diff --git a/src/transport/xqc_conn.c b/src/transport/xqc_conn.c
+--- a/src/transport/xqc_conn.c
++++ b/src/transport/xqc_conn.c
+@@ -2083,4 +2083,11 @@ xqc_conn_schedule_packets(xqc_connection_t *conn,  xqc_list_head_t *head,
+     xqc_list_for_each_safe(pos, next, head) {
+         packet_out = xqc_list_entry(pos, xqc_packet_out_t, po_list);
++        if (send_type == XQC_SEND_TYPE_PTO_PROBE
++            && (packet_out->po_frame_types & XQC_FRAME_BIT_STREAM)
++            && packet_out->po_path_flag == XQC_PATH_SPECIFIED_BY_PTO
++            && conn->scheduler_callback->xqc_scheduler_schedule_stream_pto)
++        {
++            packet_out->po_path_flag &= ~XQC_PATH_SPECIFIED_BY_PTO;
++        }
+         /* 1. 已设置特定路径发送的包，例如：PATH_CHALLENGE PATH_RESPONSE MP_ACK(原路径ACK) */
+         if (xqc_packet_out_on_specific_path(conn, packet_out, &path)) {

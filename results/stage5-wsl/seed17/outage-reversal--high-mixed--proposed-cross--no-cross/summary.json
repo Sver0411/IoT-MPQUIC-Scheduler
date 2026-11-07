@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "case": "outage-reversal--high-mixed--proposed-cross--no-cross",
+  "workload_sha256": "fccee4020e9957e4e11f9c182fbfee32697c17689f32c939d55b6bfe24bec071",
+  "events": {
+    "generated": 20,
+    "received": 20,
+    "on_time": 10,
+    "deadline_success_ratio": 0.5,
+    "deadline_miss_ratio": 0.5,
+    "latency_p50_ms": 925.348,
+    "latency_p95_ms": 7987.229,
+    "latency_p99_ms": 7993.296
+  },
+  "states": {
+    "generated": 33,
+    "received": 6,
+    "on_time": 3,
+    "deadline_success_ratio": 0.09090909,
+    "deadline_miss_ratio": 0.90909091,
+    "latency_p50_ms": 520.609,
+    "latency_p95_ms": 5232.308,
+    "latency_p99_ms": 5232.308
+  },
+  "mean_aoi_ms": 1659.713,
+  "peak_aoi_ms": 4000.0,
+  "jain_useful_state_delivery": 0.47605634,
+  "useful_goodput_bps": 119230.0,
+  "quic_detected_loss_ratio": 0.01060071,
+  "quic_detected_lost": 3,
+  "quic_counted_sent": 283,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 0,
+  "quic_tail_loss_probes": 14,
+  "cross_path_stream_packets": 0,
+  "pending_replaced": 27,
+  "acknowledged": 26,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 139,
+      "received_udp_payload_share": 0.0020695,
+      "modeled_usable_capacity_fraction": 4.907e-05,
+      "udp_sent": 28,
+      "udp_received": 17,
+      "udp_non_delivery_ratio": 0.39285714
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 67027,
+      "received_udp_payload_share": 0.9979305,
+      "modeled_usable_capacity_fraction": 0.00513905,
+      "udp_sent": 470,
+      "udp_received": 470,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 57551,
+      "sys_us": 62347,
+      "wall_us": 18092396,
+      "one_core_percent": 0.6627
+    },
+    "server": {
+      "user_us": 52888,
+      "sys_us": 81366,
+      "wall_us": 18156365,
+      "one_core_percent": 0.7394
+    }
+  },
+  "network_transitions": 2,
+  "max_transition_lag_us": 113,
+  "netem_random_seeded": false
+}

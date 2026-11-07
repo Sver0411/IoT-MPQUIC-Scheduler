@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "case": "outage-reversal--high-mixed--proposed-cross--no-aoi",
+  "workload_sha256": "fccee4020e9957e4e11f9c182fbfee32697c17689f32c939d55b6bfe24bec071",
+  "events": {
+    "generated": 20,
+    "received": 20,
+    "on_time": 10,
+    "deadline_success_ratio": 0.5,
+    "deadline_miss_ratio": 0.5,
+    "latency_p50_ms": 914.393,
+    "latency_p95_ms": 8067.777,
+    "latency_p99_ms": 8068.67
+  },
+  "states": {
+    "generated": 33,
+    "received": 6,
+    "on_time": 3,
+    "deadline_success_ratio": 0.09090909,
+    "deadline_miss_ratio": 0.90909091,
+    "latency_p50_ms": 505.617,
+    "latency_p95_ms": 5269.875,
+    "latency_p99_ms": 5269.875
+  },
+  "mean_aoi_ms": 1658.907,
+  "peak_aoi_ms": 4000.0,
+  "jain_useful_state_delivery": 0.47605634,
+  "useful_goodput_bps": 120322.0,
+  "quic_detected_loss_ratio": 0.01083032,
+  "quic_detected_lost": 3,
+  "quic_counted_sent": 277,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 0,
+  "quic_tail_loss_probes": 6,
+  "cross_path_stream_packets": 0,
+  "pending_replaced": 27,
+  "acknowledged": 26,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 139,
+      "received_udp_payload_share": 0.00205393,
+      "modeled_usable_capacity_fraction": 4.908e-05,
+      "udp_sent": 28,
+      "udp_received": 17,
+      "udp_non_delivery_ratio": 0.39285714
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 67536,
+      "received_udp_payload_share": 0.99794607,
+      "modeled_usable_capacity_fraction": 0.0051772,
+      "udp_sent": 450,
+      "udp_received": 450,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 67701,
+      "sys_us": 49237,
+      "wall_us": 18138356,
+      "one_core_percent": 0.6447
+    },
+    "server": {
+      "user_us": 44284,
+      "sys_us": 88569,
+      "wall_us": 18203164,
+      "one_core_percent": 0.7298
+    }
+  },
+  "network_transitions": 2,
+  "max_transition_lag_us": 112,
+  "netem_random_seeded": false
+}

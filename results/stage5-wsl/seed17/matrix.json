@@ -1,0 +1,1104 @@
+{
+  "seed": 17,
+  "suite": "full",
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "cases": [
+    {
+      "name": "outage-reversal--high-mixed--edf",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "edf",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross--no-cross",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "no-cross",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross--no-replace",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "no-replace",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "reversal--mixed--fifo",
+      "scenario": "reversal",
+      "workload": "mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "stable--mixed--proposed-cross",
+      "scenario": "stable",
+      "workload": "mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--latest-rr",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "latest-rr",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "stable--event-burst--fifo",
+      "scenario": "stable",
+      "workload": "event-burst",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "bandwidth--mixed--fifo",
+      "scenario": "bandwidth",
+      "workload": "mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "stable--event-burst--proposed-cross",
+      "scenario": "stable",
+      "workload": "event-burst",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--aoi",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "aoi",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "latency--mixed--fifo",
+      "scenario": "latency",
+      "workload": "mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              80,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "loss--mixed--fifo",
+      "scenario": "loss",
+      "workload": "mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross--no-event",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "no-event",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross--no-recovery",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "no-recovery",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "stable--state-only--fifo",
+      "scenario": "stable",
+      "workload": "state-only",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "loss--mixed--proposed-cross",
+      "scenario": "loss",
+      "workload": "mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "stable--mixed--fifo",
+      "scenario": "stable",
+      "workload": "mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "bandwidth--mixed--proposed-cross",
+      "scenario": "bandwidth",
+      "workload": "mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage--mixed--fifo",
+      "scenario": "outage",
+      "workload": "mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 300000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 950000,
+          "links": {
+            "a": [
+              4,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--strict-priority",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "strict-priority",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "latency--mixed--proposed-cross",
+      "scenario": "latency",
+      "workload": "mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              80,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross--no-aoi",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "no-aoi",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "reversal--mixed--proposed-cross",
+      "scenario": "reversal",
+      "workload": "mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage--mixed--proposed-cross",
+      "scenario": "outage",
+      "workload": "mixed",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 300000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 950000,
+          "links": {
+            "a": [
+              4,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--proposed-cross--fixed-path",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "proposed-cross",
+      "ablation": "fixed-path",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "stable--state-only--proposed-cross",
+      "scenario": "stable",
+      "workload": "state-only",
+      "policy": "proposed-cross",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    },
+    {
+      "name": "outage-reversal--high-mixed--fifo",
+      "scenario": "outage-reversal",
+      "workload": "high-mixed",
+      "policy": "fifo",
+      "ablation": "full",
+      "seed": 17,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2
+    }
+  ]
+}

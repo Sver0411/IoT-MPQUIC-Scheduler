@@ -1,0 +1,17 @@
+2026-11-06T17:29:51,352647368+00:00
+namespace=iotc-417 interface=iot-a
+qdisc netem 8005: root refcnt 5 limit 1000 delay 4ms rate 30Mbit
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+namespace=iotc-417 interface=iot-b
+qdisc netem 8006: root refcnt 5 limit 1000 delay 24ms rate 12Mbit
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+namespace=iots-417 interface=iot-a
+qdisc netem 8007: root refcnt 5 limit 1000 delay 4ms rate 30Mbit
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 90b 1p requeues 0
+namespace=iots-417 interface=iot-b
+qdisc netem 8008: root refcnt 5 limit 1000 delay 24ms rate 12Mbit
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 90b 1p requeues 0

@@ -1,0 +1,49 @@
+{
+  "name": "outage-reversal--high-mixed--proposed-cross--no-replace",
+  "scenario": "outage-reversal",
+  "workload": "high-mixed",
+  "policy": "proposed-cross",
+  "ablation": "no-replace",
+  "seed": 17,
+  "initial": {
+    "a": [
+      4,
+      30,
+      0
+    ],
+    "b": [
+      24,
+      12,
+      0
+    ]
+  },
+  "phases": [
+    {
+      "at_us": 120000,
+      "links": {
+        "a": [
+          4,
+          30,
+          100
+        ]
+      }
+    },
+    {
+      "at_us": 850000,
+      "links": {
+        "a": [
+          45,
+          6,
+          0
+        ],
+        "b": [
+          5,
+          30,
+          0
+        ]
+      }
+    }
+  ],
+  "horizon_us": 4000000,
+  "recovery_k": 2
+}

@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "client_max_streams_frames": 14,
+  "phases": [
+    {
+      "phase": 1,
+      "records": 64,
+      "record_bytes": 16384,
+      "server_complete_ms": 1757.023,
+      "client_ack_ms": 1761.209,
+      "link_b_share_of_server_quic_data_rx_bytes": 0.0134
+    },
+    {
+      "phase": 2,
+      "records": 64,
+      "record_bytes": 16384,
+      "server_complete_ms": 5195.749,
+      "client_ack_ms": 5200.991,
+      "link_b_share_of_server_quic_data_rx_bytes": 0.7483
+    }
+  ],
+  "links": {
+    "A": {
+      "path_id": 0,
+      "client": "10.47.1.1:4434",
+      "server": "10.47.1.2:4433",
+      "capture": {
+        "client_to_server": {
+          "packets": 1147,
+          "udp_payload_bytes": 1342522,
+          "socket_sent": 1147,
+          "socket_received": 1147
+        },
+        "server_to_client": {
+          "packets": 588,
+          "udp_payload_bytes": 26147,
+          "socket_sent": 588,
+          "socket_received": 588
+        }
+      },
+      "client_quic_data_tx_bytes_by_phase": [
+        1066040,
+        272608
+      ],
+      "server_quic_data_rx_bytes_by_phase": [
+        1066040,
+        272608
+      ],
+      "server_stream_packets": 1110,
+      "client_ack_mp_packets": 562,
+      "icmp_mean_rtt_ms_by_phase": [
+        9.781,
+        90.372
+      ]
+    },
+    "B": {
+      "path_id": 1,
+      "client": "10.47.2.1:4434",
+      "server": "10.47.2.2:4433",
+      "capture": {
+        "client_to_server": {
+          "packets": 691,
+          "udp_payload_bytes": 827586,
+          "socket_sent": 691,
+          "socket_received": 691
+        },
+        "server_to_client": {
+          "packets": 351,
+          "udp_payload_bytes": 16598,
+          "socket_sent": 351,
+          "socket_received": 351
+        }
+      },
+      "client_quic_data_tx_bytes_by_phase": [
+        14440,
+        810528
+      ],
+      "server_quic_data_rx_bytes_by_phase": [
+        14440,
+        810528
+      ],
+      "server_stream_packets": 684,
+      "client_ack_mp_packets": 344,
+      "icmp_mean_rtt_ms_by_phase": [
+        57.864,
+        10.17
+      ]
+    }
+  }
+}

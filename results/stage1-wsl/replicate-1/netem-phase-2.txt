@@ -1,0 +1,17 @@
+2026-11-06T17:13:34,794418996+00:00
+namespace=iotc-721 interface=iot-a
+qdisc netem 8001: root refcnt 5 limit 1000 delay 45ms rate 6Mbit
+ Sent 1108415 bytes 917 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+namespace=iotc-721 interface=iot-b
+qdisc netem 8002: root refcnt 5 limit 1000 delay 5ms rate 30Mbit
+ Sent 18468 bytes 26 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+namespace=iots-721 interface=iot-a
+qdisc netem 8003: root refcnt 5 limit 1000 delay 45ms rate 6Mbit
+ Sent 41308 bytes 477 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+namespace=iots-721 interface=iot-b
+qdisc netem 8004: root refcnt 5 limit 1000 delay 5ms rate 30Mbit
+ Sent 4098 bytes 21 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0

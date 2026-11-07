@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "case": "outage-reversal--high-mixed--proposed-cross--no-event",
+  "workload_sha256": "fccee4020e9957e4e11f9c182fbfee32697c17689f32c939d55b6bfe24bec071",
+  "events": {
+    "generated": 20,
+    "received": 20,
+    "on_time": 5,
+    "deadline_success_ratio": 0.25,
+    "deadline_miss_ratio": 0.75,
+    "latency_p50_ms": 3774.743,
+    "latency_p95_ms": 8192.335,
+    "latency_p99_ms": 10275.344
+  },
+  "states": {
+    "generated": 33,
+    "received": 8,
+    "on_time": 7,
+    "deadline_success_ratio": 0.21212121,
+    "deadline_miss_ratio": 0.78787879,
+    "latency_p50_ms": 134.592,
+    "latency_p95_ms": 1274.894,
+    "latency_p99_ms": 1274.894
+  },
+  "mean_aoi_ms": 1254.041,
+  "peak_aoi_ms": 4000.0,
+  "jain_useful_state_delivery": 0.58441558,
+  "useful_goodput_bps": 110764.0,
+  "quic_detected_loss_ratio": 0.01587302,
+  "quic_detected_lost": 6,
+  "quic_counted_sent": 378,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 3,
+  "quic_tail_loss_probes": 6,
+  "cross_path_stream_packets": 3,
+  "pending_replaced": 25,
+  "acknowledged": 28,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 4624,
+      "received_udp_payload_share": 0.07267012,
+      "modeled_usable_capacity_fraction": 0.00162953,
+      "udp_sent": 35,
+      "udp_received": 21,
+      "udp_non_delivery_ratio": 0.4
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 59006,
+      "received_udp_payload_share": 0.92732988,
+      "modeled_usable_capacity_fraction": 0.0045239,
+      "udp_sent": 418,
+      "udp_received": 418,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 45336,
+      "sys_us": 56670,
+      "wall_us": 12951962,
+      "one_core_percent": 0.7876
+    },
+    "server": {
+      "user_us": 29258,
+      "sys_us": 87774,
+      "wall_us": 14554307,
+      "one_core_percent": 0.8041
+    }
+  },
+  "network_transitions": 2,
+  "max_transition_lag_us": 189,
+  "netem_random_seeded": false
+}

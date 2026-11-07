@@ -1,0 +1,39 @@
+{
+  "name": "reversal--mixed--fifo",
+  "scenario": "reversal",
+  "workload": "mixed",
+  "policy": "fifo",
+  "ablation": "full",
+  "seed": 17,
+  "initial": {
+    "a": [
+      4,
+      30,
+      0
+    ],
+    "b": [
+      24,
+      12,
+      0
+    ]
+  },
+  "phases": [
+    {
+      "at_us": 550000,
+      "links": {
+        "a": [
+          45,
+          6,
+          0
+        ],
+        "b": [
+          5,
+          30,
+          0
+        ]
+      }
+    }
+  ],
+  "horizon_us": 4000000,
+  "recovery_k": 2
+}

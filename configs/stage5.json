@@ -1,0 +1,26 @@
+{
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "initial": {"a": [4, 30, 0], "b": [24, 12, 0]},
+  "scenarios": {
+    "stable": [],
+    "bandwidth": [{"at_us": 550000, "links": {"a": [4, 2, 0]}}],
+    "latency": [{"at_us": 550000, "links": {"a": [80, 30, 0]}}],
+    "loss": [{"at_us": 550000, "links": {"a": [4, 30, 12]}}],
+    "outage": [
+      {"at_us": 300000, "links": {"a": [4, 30, 100]}},
+      {"at_us": 950000, "links": {"a": [4, 30, 0]}}
+    ],
+    "reversal": [{"at_us": 550000, "links": {"a": [45, 6, 0], "b": [5, 30, 0]}}],
+    "outage-reversal": [
+      {"at_us": 120000, "links": {"a": [4, 30, 100]}},
+      {"at_us": 850000, "links": {"a": [45, 6, 0], "b": [5, 30, 0]}}
+    ],
+    "repair-probe": [
+      {"at_us": 100000, "side": "client", "links": {"a": [4, 30, 100]}},
+      {"at_us": 1000000, "links": {"a": [45, 6, 0], "b": [5, 30, 0]}}
+    ]
+  },
+  "baselines": ["fifo", "strict-priority", "edf", "aoi", "latest-rr"],
+  "ablations": ["no-replace", "no-event", "no-aoi", "fixed-path", "no-recovery", "no-cross"]
+}

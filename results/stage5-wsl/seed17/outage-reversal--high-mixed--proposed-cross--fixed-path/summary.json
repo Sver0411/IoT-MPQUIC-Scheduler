@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "case": "outage-reversal--high-mixed--proposed-cross--fixed-path",
+  "workload_sha256": "fccee4020e9957e4e11f9c182fbfee32697c17689f32c939d55b6bfe24bec071",
+  "events": {
+    "generated": 20,
+    "received": 20,
+    "on_time": 5,
+    "deadline_success_ratio": 0.25,
+    "deadline_miss_ratio": 0.75,
+    "latency_p50_ms": 2259.303,
+    "latency_p95_ms": 4236.933,
+    "latency_p99_ms": 4416.193
+  },
+  "states": {
+    "generated": 33,
+    "received": 6,
+    "on_time": 2,
+    "deadline_success_ratio": 0.06060606,
+    "deadline_miss_ratio": 0.93939394,
+    "latency_p50_ms": 1339.072,
+    "latency_p95_ms": 3023.285,
+    "latency_p99_ms": 3023.285
+  },
+  "mean_aoi_ms": 1600.932,
+  "peak_aoi_ms": 4000.0,
+  "jain_useful_state_delivery": 0.47605634,
+  "useful_goodput_bps": 137980.0,
+  "quic_detected_loss_ratio": 0.03135889,
+  "quic_detected_lost": 9,
+  "quic_counted_sent": 287,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 14,
+  "quic_tail_loss_probes": 0,
+  "cross_path_stream_packets": 14,
+  "pending_replaced": 27,
+  "acknowledged": 26,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 57168,
+      "received_udp_payload_share": 0.72208258,
+      "modeled_usable_capacity_fraction": 0.0201718,
+      "udp_sent": 128,
+      "udp_received": 109,
+      "udp_non_delivery_ratio": 0.1484375
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 22003,
+      "received_udp_payload_share": 0.27791742,
+      "modeled_usable_capacity_fraction": 0.00168654,
+      "udp_sent": 226,
+      "udp_received": 226,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 31898,
+      "sys_us": 27341,
+      "wall_us": 6132832,
+      "one_core_percent": 0.9659
+    },
+    "server": {
+      "user_us": 27767,
+      "sys_us": 46278,
+      "wall_us": 6562572,
+      "one_core_percent": 1.1283
+    }
+  },
+  "network_transitions": 2,
+  "max_transition_lag_us": 112,
+  "netem_random_seeded": false
+}

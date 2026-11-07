@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "case": "repair-probe--repair-probe--proposed-cross",
+  "workload_sha256": "889fc74bc03392015108fa3c4701483bf782df30dbd2ebe50a9281c6f54196a9",
+  "events": {
+    "generated": 17,
+    "received": 17,
+    "on_time": 0,
+    "deadline_success_ratio": 0.0,
+    "deadline_miss_ratio": 1.0,
+    "latency_p50_ms": 2473.592,
+    "latency_p95_ms": 5758.918,
+    "latency_p99_ms": 5758.918
+  },
+  "states": {
+    "generated": 22,
+    "received": 6,
+    "on_time": 3,
+    "deadline_success_ratio": 0.13636364,
+    "deadline_miss_ratio": 0.86363636,
+    "latency_p50_ms": 1195.184,
+    "latency_p95_ms": 2410.183,
+    "latency_p99_ms": 2410.183
+  },
+  "mean_aoi_ms": 1599.456,
+  "peak_aoi_ms": 4000.0,
+  "jain_useful_state_delivery": 0.61016652,
+  "useful_goodput_bps": 103168.0,
+  "quic_detected_loss_ratio": 0.02643172,
+  "quic_detected_lost": 6,
+  "quic_counted_sent": 227,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 15,
+  "quic_tail_loss_probes": 2,
+  "cross_path_stream_packets": 15,
+  "pending_replaced": 15,
+  "acknowledged": 23,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 79,
+      "received_udp_payload_share": 0.00122276,
+      "modeled_usable_capacity_fraction": 3.003e-05,
+      "udp_sent": 41,
+      "udp_received": 17,
+      "udp_non_delivery_ratio": 0.58536585
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 64529,
+      "received_udp_payload_share": 0.99877724,
+      "modeled_usable_capacity_fraction": 0.00507728,
+      "udp_sent": 233,
+      "udp_received": 233,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 19354,
+      "sys_us": 46451,
+      "wall_us": 8710368,
+      "one_core_percent": 0.7555
+    },
+    "server": {
+      "user_us": 21276,
+      "sys_us": 51063,
+      "wall_us": 6878540,
+      "one_core_percent": 1.0517
+    }
+  },
+  "network_transitions": 2,
+  "max_transition_lag_us": 95,
+  "netem_random_seeded": false,
+  "probe_latency_ms": 337.98,
+  "probe_received_before_restore": true,
+  "cross_path_packets_during_cut": 8
+}

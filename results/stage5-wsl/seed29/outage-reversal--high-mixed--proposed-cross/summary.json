@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "case": "outage-reversal--high-mixed--proposed-cross",
+  "workload_sha256": "c48fd488dafa13d089b77c33d23cd9cceab82071f0f7d3a304ab9193911d6616",
+  "events": {
+    "generated": 20,
+    "received": 20,
+    "on_time": 10,
+    "deadline_success_ratio": 0.5,
+    "deadline_miss_ratio": 0.5,
+    "latency_p50_ms": 825.798,
+    "latency_p95_ms": 8205.613,
+    "latency_p99_ms": 8634.522
+  },
+  "states": {
+    "generated": 33,
+    "received": 7,
+    "on_time": 5,
+    "deadline_success_ratio": 0.15151515,
+    "deadline_miss_ratio": 0.84848485,
+    "latency_p50_ms": 418.312,
+    "latency_p95_ms": 2787.176,
+    "latency_p99_ms": 2787.176
+  },
+  "mean_aoi_ms": 1503.342,
+  "peak_aoi_ms": 4000.0,
+  "jain_useful_state_delivery": 0.51578947,
+  "useful_goodput_bps": 121530.0,
+  "quic_detected_loss_ratio": 0.01056338,
+  "quic_detected_lost": 3,
+  "quic_counted_sent": 284,
+  "quic_spurious_loss": 0,
+  "stream_retransmission_packets": 0,
+  "quic_tail_loss_probes": 6,
+  "cross_path_stream_packets": 0,
+  "pending_replaced": 26,
+  "acknowledged": 27,
+  "paths": {
+    "A": {
+      "received_udp_payload_bytes_in_window": 139,
+      "received_udp_payload_share": 0.00203678,
+      "modeled_usable_capacity_fraction": 4.908e-05,
+      "udp_sent": 28,
+      "udp_received": 17,
+      "udp_non_delivery_ratio": 0.39285714
+    },
+    "B": {
+      "received_udp_payload_bytes_in_window": 68106,
+      "received_udp_payload_share": 0.99796322,
+      "modeled_usable_capacity_fraction": 0.00522247,
+      "udp_sent": 455,
+      "udp_received": 455,
+      "udp_non_delivery_ratio": 0.0
+    }
+  },
+  "cpu": {
+    "client": {
+      "user_us": 44899,
+      "sys_us": 67349,
+      "wall_us": 18161193,
+      "one_core_percent": 0.6181
+    },
+    "server": {
+      "user_us": 71362,
+      "sys_us": 56070,
+      "wall_us": 18225636,
+      "one_core_percent": 0.6992
+    }
+  },
+  "network_transitions": 2,
+  "max_transition_lag_us": 182,
+  "netem_random_seeded": false
+}
