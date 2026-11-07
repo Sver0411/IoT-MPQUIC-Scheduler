@@ -49,6 +49,8 @@ enum iot_class { IOT_NO_RECORD, IOT_NORMAL, IOT_RECOVERY, IOT_URGENT };
 struct iot_path_sample {
     uint64_t id, rtt_us, rttvar_us, rate_Bps, queued_bytes, in_flight_bytes;
     uint64_t recent_sent, recent_lost;
+    uint64_t sampled_us, rtt_updated_us, delivered_us, cwnd_bytes, total_lost;
+    double retransmission_rate;
     double loss, observed_loss;
     unsigned pto;
 };

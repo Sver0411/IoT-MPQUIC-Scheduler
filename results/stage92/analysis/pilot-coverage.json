@@ -1,0 +1,3144 @@
+[
+  {
+    "environment": "train-delay-step",
+    "cell": "all",
+    "split": "train",
+    "records": 640,
+    "connection_seeds": 4,
+    "record_status": {
+      "received": 192,
+      "stream-create-blocked": 11,
+      "unsubmitted-pending": 405,
+      "replaced": 32
+    },
+    "blocked_records": 118,
+    "no_candidate_records": 0,
+    "timeout_records": 69,
+    "effective_slack_us": {
+      "n": 192,
+      "min": -1179246,
+      "p50": -150847.5,
+      "p95": 135302.55,
+      "max": 209285
+    },
+    "budget_counts": {
+      "long": 17,
+      "expired": 142,
+      "short": 33
+    },
+    "short_dual_n": 33,
+    "short_path": {
+      "A": 22,
+      "B": 11
+    },
+    "short_positive": 30,
+    "short_negative": 3,
+    "short_seeds": 4,
+    "short_near_switch": 3,
+    "event_generated": 560,
+    "event_on_time": 26,
+    "short_yield_per_seed": {
+      "n": 4,
+      "min": 7,
+      "p50": 8.0,
+      "p95": 9.7,
+      "max": 10
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 33,
+        "brier": 0.11655348520053634,
+        "ece": 0.20327853279178082,
+        "observed": 0.9090909090909091,
+        "roc_auc": 0.9333333333333333,
+        "log_loss": 0.3500985505592856,
+        "calibration_intercept": 2.260124231831769,
+        "calibration_slope": 0.9767511455783977
+      },
+      "slack_only": {
+        "n": 33,
+        "brier": 0.015413734088622821,
+        "ece": 0.04371620899046268,
+        "observed": 0.9090909090909091,
+        "roc_auc": 1.0,
+        "log_loss": 0.05629600434271657,
+        "calibration_intercept": -0.512176909521763,
+        "calibration_slope": 0.9802334618733239
+      },
+      "completion_margin": {
+        "n": 33,
+        "brier": 0.07437246951562364,
+        "ece": 0.07799424412182332,
+        "observed": 0.9090909090909091,
+        "roc_auc": 0.8444444444444444,
+        "log_loss": 0.2308036796721271,
+        "calibration_intercept": 0.13163965360395302,
+        "calibration_slope": 0.8747103011278163
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 4,
+      "mean": 0.10047573042384735,
+      "median": 0.08959641723256523,
+      "sd": 0.033740536167280254,
+      "ci_low": 0.07749328342295646,
+      "ci_high": 0.13180332924257673,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": 44
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "high/regular/early",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "unsubmitted-pending": 90,
+      "stream-create-blocked": 2,
+      "replaced": 4
+    },
+    "blocked_records": 13,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -867184,
+      "p50": -268573.0,
+      "p95": 135518.95,
+      "max": 207478
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 18,
+      "short": 2
+    },
+    "short_dual_n": 2,
+    "short_path": {
+      "A": 2
+    },
+    "short_positive": 2,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 2,
+      "p50": 2,
+      "p95": 2.0,
+      "max": 2
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 2,
+        "brier": 0.006863283772020726,
+        "ece": 0.07733286882806767,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.08100557405898647,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 2,
+        "brier": 0.00043790402654102434,
+        "ece": 0.014797030337572625,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.015020897182882091,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 2,
+        "brier": 0.000524408073798696,
+        "ece": 0.016537136416771903,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.016805138677121637,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.0064253797454797024,
+      "median": 0.0064253797454797024,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "high/regular/late",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 90,
+      "replaced": 4
+    },
+    "blocked_records": 13,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -764868,
+      "p50": -254486.5,
+      "p95": 135727.8,
+      "max": 209201
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 17,
+      "short": 3
+    },
+    "short_dual_n": 3,
+    "short_path": {
+      "A": 1,
+      "B": 2
+    },
+    "short_positive": 2,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 3,
+      "p50": 3,
+      "p95": 3.0,
+      "max": 3
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 3,
+        "brier": 0.1229936464180076,
+        "ece": 0.3051218315441189,
+        "observed": 0.6666666666666666,
+        "roc_auc": 1.0,
+        "log_loss": 0.3980331304576683,
+        "calibration_intercept": 1.0011484254310474,
+        "calibration_slope": 1.7806621297678569
+      },
+      "slack_only": {
+        "n": 3,
+        "brier": 0.035772159675476,
+        "ece": 0.11350035858353975,
+        "observed": 0.6666666666666666,
+        "roc_auc": 1.0,
+        "log_loss": 0.13658617024608125,
+        "calibration_intercept": -0.6961442423874671,
+        "calibration_slope": 0.3986234308565339
+      },
+      "completion_margin": {
+        "n": 3,
+        "brier": 0.1744550935968385,
+        "ece": 0.2832509304794985,
+        "observed": 0.6666666666666666,
+        "roc_auc": 1.0,
+        "log_loss": 0.46276558049885197,
+        "calibration_intercept": -0.9380200912740202,
+        "calibration_slope": 0.7171661953871422
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.0872214867425316,
+      "median": 0.0872214867425316,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "high/short/early",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 90,
+      "replaced": 4
+    },
+    "blocked_records": 15,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -953425,
+      "p50": -385919.0,
+      "p95": 38142.099999999984,
+      "max": 59213
+    },
+    "budget_counts": {
+      "short": 5,
+      "expired": 19
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "A": 2,
+      "B": 3
+    },
+    "short_positive": 5,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.22112478303935693,
+        "ece": 0.3617161206958262,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.596589096017569,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.0014613711642809482,
+        "ece": 0.020683674380118644,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.021457464410749857,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.03384090916544833,
+        "ece": 0.13040348973814014,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.1522136928184861,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.21966341187507593,
+      "median": 0.21966341187507593,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "high/short/late",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "stream-create-blocked": 1,
+      "unsubmitted-pending": 91,
+      "replaced": 4
+    },
+    "blocked_records": 10,
+    "no_candidate_records": 0,
+    "timeout_records": 12,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -1179246,
+      "p50": -257046.5,
+      "p95": 39901.54999999998,
+      "max": 57066
+    },
+    "budget_counts": {
+      "short": 5,
+      "expired": 19
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "A": 4,
+      "B": 1
+    },
+    "short_positive": 5,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.10483440216677944,
+        "ece": 0.22274604931983438,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.32362353649288056,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.0019031909594663238,
+        "ece": 0.023420370701009774,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.0244367398977277,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.01532175924997409,
+        "ece": 0.07262138071691589,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.08196131843470776,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.10293121120731312,
+      "median": 0.10293121120731312,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "low/regular/early",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 11,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 13,
+    "no_candidate_records": 0,
+    "timeout_records": 9,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -613501,
+      "p50": -45837.0,
+      "p95": 197319.64999999985,
+      "max": 209285
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 15,
+      "short": 5
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "A": 4,
+      "B": 1
+    },
+    "short_positive": 4,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 4,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.050996699991888786,
+        "ece": 0.1658165028422483,
+        "observed": 0.8,
+        "roc_auc": 1.0,
+        "log_loss": 0.1995705189797336,
+        "calibration_intercept": 0.26912469113206416,
+        "calibration_slope": 1.5001619972376676
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.07429582084533827,
+        "ece": 0.13177364058868396,
+        "observed": 0.8,
+        "roc_auc": 1.0,
+        "log_loss": 0.19778940820150742,
+        "calibration_intercept": -1.0553187857349497,
+        "calibration_slope": 0.7681362345814362
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.14394941984769033,
+        "ece": 0.20055213832564173,
+        "observed": 0.8,
+        "roc_auc": 1.0,
+        "log_loss": 0.4044159101909076,
+        "calibration_intercept": -8.21162938953036,
+        "calibration_slope": 3.758834097167084
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": -0.023299120853449484,
+      "median": -0.023299120853449484,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "low/regular/late",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 10
+    },
+    "blocked_records": 18,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -316584,
+      "p50": -36701.5,
+      "p95": 197399.94999999984,
+      "max": 209063
+    },
+    "budget_counts": {
+      "long": 5,
+      "expired": 17,
+      "short": 2
+    },
+    "short_dual_n": 2,
+    "short_path": {
+      "A": 2
+    },
+    "short_positive": 2,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 4,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 2,
+      "p50": 2,
+      "p95": 2.0,
+      "max": 2
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 2,
+        "brier": 0.0015929236708457505,
+        "ece": 0.038961038961038974,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.039780911418092854,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 2,
+        "brier": 5.379068543661389e-06,
+        "ece": 0.0016399810053184805,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.0016431753908714083,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 2,
+        "brier": 0.0001732466737807032,
+        "ece": 0.009546070453867683,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.009633782889804302,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.001587544602302089,
+      "median": 0.001587544602302089,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "low/short/early",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 11,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 20,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -714451,
+      "p50": -151081.5,
+      "p95": 70110.44999999997,
+      "max": 93763
+    },
+    "budget_counts": {
+      "short": 6,
+      "expired": 18
+    },
+    "short_dual_n": 6,
+    "short_path": {
+      "B": 2,
+      "A": 4
+    },
+    "short_positive": 5,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 6,
+      "p50": 6,
+      "p95": 6.0,
+      "max": 6
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 6,
+        "brier": 0.10671434592537314,
+        "ece": 0.2237098703759426,
+        "observed": 0.8333333333333334,
+        "roc_auc": 1.0,
+        "log_loss": 0.32191739789708484,
+        "calibration_intercept": 3.5171070330147702,
+        "calibration_slope": 0.4162467647742988
+      },
+      "slack_only": {
+        "n": 6,
+        "brier": 0.0008418872347767387,
+        "ece": 0.016965562378728764,
+        "observed": 0.8333333333333334,
+        "roc_auc": 1.0,
+        "log_loss": 0.017403865396731905,
+        "calibration_intercept": 0.12209701210146795,
+        "calibration_slope": 0.45627444070518924
+      },
+      "completion_margin": {
+        "n": 6,
+        "brier": 0.1368280910128763,
+        "ece": 0.20296138664687816,
+        "observed": 0.8333333333333334,
+        "roc_auc": 0.8,
+        "log_loss": 0.3964602759082514,
+        "calibration_intercept": -0.0012587296870214537,
+        "calibration_slope": 0.5307945723252587
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.1058724586905964,
+      "median": 0.1058724586905964,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-delay-step",
+    "cell": "low/short/late",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 12
+    },
+    "blocked_records": 16,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -1157053,
+      "p50": -119774.0,
+      "p95": 67773.84999999998,
+      "max": 91112
+    },
+    "budget_counts": {
+      "short": 5,
+      "expired": 19
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "B": 2,
+      "A": 3
+    },
+    "short_positive": 5,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.18706123118711576,
+        "ece": 0.33018508152112913,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.5174319322591674,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.0014193882907735287,
+        "ece": 0.017615599125485937,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.0183680464987159,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.028600383267416808,
+        "ece": 0.10256963308175189,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.12072611637595412,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.18564184289634222,
+      "median": 0.18564184289634222,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "all",
+    "split": "train",
+    "records": 640,
+    "connection_seeds": 4,
+    "record_status": {
+      "received": 197,
+      "stream-create-blocked": 12,
+      "unsubmitted-pending": 396,
+      "replaced": 32,
+      "submitted-no-fin": 1,
+      "after-window": 2
+    },
+    "blocked_records": 108,
+    "no_candidate_records": 0,
+    "timeout_records": 79,
+    "effective_slack_us": {
+      "n": 200,
+      "min": -1854605,
+      "p50": -179032.0,
+      "p95": 135936.15,
+      "max": 209040
+    },
+    "budget_counts": {
+      "long": 18,
+      "expired": 139,
+      "short": 43
+    },
+    "short_dual_n": 43,
+    "short_path": {
+      "B": 13,
+      "A": 30
+    },
+    "short_positive": 40,
+    "short_negative": 3,
+    "short_seeds": 4,
+    "short_near_switch": 3,
+    "event_generated": 560,
+    "event_on_time": 28,
+    "short_yield_per_seed": {
+      "n": 4,
+      "min": 10,
+      "p50": 10.5,
+      "p95": 11.85,
+      "max": 12
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 43,
+        "brier": 0.09600449098105023,
+        "ece": 0.1538087613370835,
+        "observed": 0.9302325581395349,
+        "roc_auc": 0.8708333333333333,
+        "log_loss": 0.3013374194846644,
+        "calibration_intercept": 2.940981066710764,
+        "calibration_slope": 0.42407022196895766
+      },
+      "slack_only": {
+        "n": 43,
+        "brier": 0.004983529872013178,
+        "ece": 0.03251034984456884,
+        "observed": 0.9302325581395349,
+        "roc_auc": 1.0,
+        "log_loss": 0.035426978398280795,
+        "calibration_intercept": 0.5413898799102093,
+        "calibration_slope": 0.9539951999061674
+      },
+      "completion_margin": {
+        "n": 43,
+        "brier": 0.048218658423642126,
+        "ece": 0.09357050686766208,
+        "observed": 0.9302325581395349,
+        "roc_auc": 0.925,
+        "log_loss": 0.16355747374724602,
+        "calibration_intercept": 0.10149585641179693,
+        "calibration_slope": 0.9899451360262075
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 4,
+      "mean": 0.09089762428493109,
+      "median": 0.09132289606776564,
+      "sd": 0.01710217303901913,
+      "ci_low": 0.07628232245108366,
+      "ci_high": 0.10508765433594398,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": 30
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "high/regular/early",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 27,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 87,
+      "replaced": 4
+    },
+    "blocked_records": 17,
+    "no_candidate_records": 0,
+    "timeout_records": 11,
+    "effective_slack_us": {
+      "n": 27,
+      "min": -866922,
+      "p50": -296389,
+      "p95": 136497.1,
+      "max": 207873
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 19,
+      "short": 4
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "B": 2,
+      "A": 2
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.05962751123084237,
+        "ece": 0.18396982869600123,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.2262859053089075,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.003008674150148447,
+        "ece": 0.03158529578986288,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.03320625266378732,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.0031606731112741237,
+        "ece": 0.04475770413662106,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.04643472265956608,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.056618837080693915,
+      "median": 0.056618837080693915,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "high/regular/late",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "stream-create-blocked": 1,
+      "unsubmitted-pending": 91,
+      "replaced": 4
+    },
+    "blocked_records": 6,
+    "no_candidate_records": 0,
+    "timeout_records": 12,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -836723,
+      "p50": -227205.5,
+      "p95": 138622.25,
+      "max": 205958
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 16,
+      "short": 4
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "A": 4
+    },
+    "short_positive": 3,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.1979264695947692,
+        "ece": 0.2129571292773752,
+        "observed": 0.75,
+        "roc_auc": 1.0,
+        "log_loss": 0.5831917455799269,
+        "calibration_intercept": -6.069283610021964,
+        "calibration_slope": 3.0731279235124833
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.03308439161299521,
+        "ece": 0.12764204969473253,
+        "observed": 0.75,
+        "roc_auc": 1.0,
+        "log_loss": 0.14782741943922784,
+        "calibration_intercept": 0.016347649958952548,
+        "calibration_slope": 0.32385943143267065
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.2012546960273126,
+        "ece": 0.2398546069634559,
+        "observed": 0.75,
+        "roc_auc": 1.0,
+        "log_loss": 0.5806163207974844,
+        "calibration_intercept": -2.4297829942599964,
+        "calibration_slope": 1.029253422307874
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.16484207798177397,
+      "median": 0.16484207798177397,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "high/short/early",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 25,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 87,
+      "replaced": 4,
+      "after-window": 2
+    },
+    "blocked_records": 16,
+    "no_candidate_records": 0,
+    "timeout_records": 11,
+    "effective_slack_us": {
+      "n": 27,
+      "min": -1854605,
+      "p50": -298836,
+      "p95": 52949.099999999984,
+      "max": 72556
+    },
+    "budget_counts": {
+      "short": 6,
+      "expired": 21
+    },
+    "short_dual_n": 6,
+    "short_path": {
+      "A": 4,
+      "B": 2
+    },
+    "short_positive": 6,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 6,
+      "p50": 6,
+      "p95": 6.0,
+      "max": 6
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 6,
+        "brier": 0.12424722442551232,
+        "ece": 0.24399638956405764,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.37043954784904615,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 6,
+        "brier": 0.0005841426486201475,
+        "ece": 0.012123894835537996,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.012427795091302062,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 6,
+        "brier": 0.01645701762633316,
+        "ece": 0.07359879796913682,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.08386706909047881,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.12366308177689217,
+      "median": 0.12366308177689217,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "high/short/late",
+    "split": "train",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 25,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 88,
+      "replaced": 4,
+      "submitted-no-fin": 1
+    },
+    "blocked_records": 7,
+    "no_candidate_records": 0,
+    "timeout_records": 13,
+    "effective_slack_us": {
+      "n": 26,
+      "min": -1179024,
+      "p50": -344641.0,
+      "p95": 37540.75,
+      "max": 57833
+    },
+    "budget_counts": {
+      "short": 5,
+      "expired": 21
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "A": 3,
+      "B": 2
+    },
+    "short_positive": 5,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.22617050269723346,
+        "ece": 0.3358235621755874,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.6032047405886558,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.0014950447600962234,
+        "ece": 0.020741516884983158,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.021533835929332473,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.04324856439037749,
+        "ece": 0.13996271792298576,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.16870073337303032,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.22467545793713728,
+      "median": 0.22467545793713728,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "low/regular/early",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 10,
+      "stream-create-blocked": 2
+    },
+    "blocked_records": 16,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -1015958,
+      "p50": -103346.0,
+      "p95": 197738.14999999985,
+      "max": 209040
+    },
+    "budget_counts": {
+      "long": 5,
+      "short": 5,
+      "expired": 14
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "B": 1,
+      "A": 4
+    },
+    "short_positive": 5,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 5,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.04365380652006747,
+        "ece": 0.13869795792826486,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.1696910351927738,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 3.0969678711038772e-09,
+        "ece": 3.199020548438902e-05,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 3.234046800628481e-05,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.0012264431715769655,
+        "ece": 0.018335931612033618,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.018982665572996,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.0436538034230996,
+      "median": 0.0436538034230996,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "low/regular/late",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 11,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 16,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -560271,
+      "p50": -13240.0,
+      "p95": 196041.34999999986,
+      "max": 207278
+    },
+    "budget_counts": {
+      "long": 5,
+      "short": 7,
+      "expired": 12
+    },
+    "short_dual_n": 7,
+    "short_path": {
+      "B": 2,
+      "A": 5
+    },
+    "short_positive": 5,
+    "short_negative": 2,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 5,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 7,
+      "p50": 7,
+      "p95": 7.0,
+      "max": 7
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 7,
+        "brier": 0.008833855895402731,
+        "ece": 0.07035983520549716,
+        "observed": 0.7142857142857143,
+        "roc_auc": 1.0,
+        "log_loss": 0.0752453976443901,
+        "calibration_intercept": 2.7204107069240675,
+        "calibration_slope": 0.38940818652555204
+      },
+      "slack_only": {
+        "n": 7,
+        "brier": 0.005858215869099232,
+        "ece": 0.045915665682534634,
+        "observed": 0.7142857142857143,
+        "roc_auc": 1.0,
+        "log_loss": 0.04919122345852441,
+        "calibration_intercept": -0.005637982625134708,
+        "calibration_slope": 0.512817809147598
+      },
+      "completion_margin": {
+        "n": 7,
+        "brier": 0.11676645518044562,
+        "ece": 0.17970637669561182,
+        "observed": 0.7142857142857143,
+        "roc_auc": 1.0,
+        "log_loss": 0.34225134520443085,
+        "calibration_intercept": -2.256227616235946,
+        "calibration_slope": 1.2067655163981192
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.0029756400263034996,
+      "median": 0.0029756400263034996,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "low/short/early",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 11,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 15,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -727920,
+      "p50": -110858.0,
+      "p95": 67888.89999999997,
+      "max": 93180
+    },
+    "budget_counts": {
+      "short": 6,
+      "expired": 18
+    },
+    "short_dual_n": 6,
+    "short_path": {
+      "B": 3,
+      "A": 3
+    },
+    "short_positive": 6,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 6,
+      "p50": 6,
+      "p95": 6.0,
+      "max": 6
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 6,
+        "brier": 0.14867799987677083,
+        "ece": 0.2891048135803886,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.43115258044040444,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 6,
+        "brier": 0.0013931193949766752,
+        "ece": 0.020122359901680764,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.02086040807649855,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 6,
+        "brier": 0.01871792817513712,
+        "ece": 0.08076266380344177,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.09246852550341204,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.14728488048179414,
+      "median": 0.14728488048179414,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "train-rate-step",
+    "cell": "low/short/late",
+    "split": "train",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 24,
+      "replaced": 4,
+      "unsubmitted-pending": 11,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 15,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 24,
+      "min": -871827,
+      "p50": -186404.0,
+      "p95": 67134.74999999997,
+      "max": 92927
+    },
+    "budget_counts": {
+      "short": 6,
+      "expired": 18
+    },
+    "short_dual_n": 6,
+    "short_path": {
+      "A": 5,
+      "B": 1
+    },
+    "short_positive": 6,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 6,
+      "p50": 6,
+      "p95": 6.0,
+      "max": 6
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 6,
+        "brier": 0.008244550952448377,
+        "ece": 0.08201320508623439,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.08647483368844149,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 6,
+        "brier": 0.0015955331355660019,
+        "ece": 0.023713489620781014,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.02455445291847418,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 6,
+        "brier": 0.0008251561300918377,
+        "ece": 0.021671095734970947,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.02209620309648073,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.006649017816882374,
+      "median": 0.006649017816882374,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "all",
+    "split": "validation",
+    "records": 640,
+    "connection_seeds": 4,
+    "record_status": {
+      "received": 228,
+      "replaced": 31,
+      "stream-create-blocked": 15,
+      "unsubmitted-pending": 366
+    },
+    "blocked_records": 177,
+    "no_candidate_records": 0,
+    "timeout_records": 15,
+    "effective_slack_us": {
+      "n": 228,
+      "min": -1709333,
+      "p50": -143648.5,
+      "p95": 126997.09999999945,
+      "max": 208889
+    },
+    "budget_counts": {
+      "short": 30,
+      "expired": 180,
+      "long": 18
+    },
+    "short_dual_n": 30,
+    "short_path": {
+      "B": 15,
+      "A": 15
+    },
+    "short_positive": 27,
+    "short_negative": 3,
+    "short_seeds": 4,
+    "short_near_switch": 1,
+    "event_generated": 560,
+    "event_on_time": 29,
+    "short_yield_per_seed": {
+      "n": 4,
+      "min": 4,
+      "p50": 8.0,
+      "p95": 9.7,
+      "max": 10
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 30,
+        "brier": 0.05332568166351429,
+        "ece": 0.11911703243499024,
+        "observed": 0.9,
+        "roc_auc": 0.9753086419753086,
+        "log_loss": 0.19259928096256143,
+        "calibration_intercept": 1.2818005319355545,
+        "calibration_slope": 1.1050452722198192
+      },
+      "slack_only": {
+        "n": 30,
+        "brier": 0.01731711024829006,
+        "ece": 0.055374616357270014,
+        "observed": 0.9,
+        "roc_auc": 1.0,
+        "log_loss": 0.06841829588954358,
+        "calibration_intercept": 0.8530810803219282,
+        "calibration_slope": 0.8750463010131361
+      },
+      "completion_margin": {
+        "n": 30,
+        "brier": 0.0765111941184396,
+        "ece": 0.11268569130665362,
+        "observed": 0.9,
+        "roc_auc": 0.9629629629629629,
+        "log_loss": 0.23016633089396385,
+        "calibration_intercept": -2.6519121859052053,
+        "calibration_slope": 1.8001824916507363
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 4,
+      "mean": 0.02879106468825348,
+      "median": 0.01016216150036985,
+      "sd": 0.0414087082969839,
+      "ci_low": 0.004925681701031558,
+      "ci_high": 0.06925846539656162,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": 66
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "high/regular/early",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 28,
+      "stream-create-blocked": 3,
+      "unsubmitted-pending": 85,
+      "replaced": 4
+    },
+    "blocked_records": 20,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 28,
+      "min": -660949,
+      "p50": -241155.5,
+      "p95": 138926.5,
+      "max": 207120
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 21,
+      "short": 3
+    },
+    "short_dual_n": 3,
+    "short_path": {
+      "B": 2,
+      "A": 1
+    },
+    "short_positive": 2,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 3,
+      "p50": 3,
+      "p95": 3.0,
+      "max": 3
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 3,
+        "brier": 0.12936285741375333,
+        "ece": 0.301466645926921,
+        "observed": 0.6666666666666666,
+        "roc_auc": 1.0,
+        "log_loss": 0.3976650639960499,
+        "calibration_intercept": 0.4041743262803209,
+        "calibration_slope": 1.1008125821686876
+      },
+      "slack_only": {
+        "n": 3,
+        "brier": 0.13049233812166885,
+        "ece": 0.282792525314632,
+        "observed": 0.6666666666666666,
+        "roc_auc": 1.0,
+        "log_loss": 0.3870977328910765,
+        "calibration_intercept": 0.5830519579651645,
+        "calibration_slope": 0.8348959319345081
+      },
+      "completion_margin": {
+        "n": 3,
+        "brier": 0.24262165401680516,
+        "ece": 0.24673816918678912,
+        "observed": 0.6666666666666666,
+        "roc_auc": 1.0,
+        "log_loss": 0.6719140655209542,
+        "calibration_intercept": -3.508861513687066,
+        "calibration_slope": 1.9827380805488717
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": -0.0011294807079155046,
+      "median": -0.0011294807079155046,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "high/regular/late",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 28,
+      "stream-create-blocked": 3,
+      "unsubmitted-pending": 85,
+      "replaced": 4
+    },
+    "blocked_records": 22,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 28,
+      "min": -654931,
+      "p50": -249522.5,
+      "p95": 138122.55,
+      "max": 205694
+    },
+    "budget_counts": {
+      "long": 5,
+      "expired": 23
+    },
+    "short_dual_n": 0,
+    "short_path": {},
+    "short_positive": 0,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 0,
+      "p50": 0,
+      "p95": 0.0,
+      "max": 0
+    },
+    "descriptive_short_scores": {},
+    "descriptive_seed_brier_delta": {},
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "high/short/early",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 28,
+      "unsubmitted-pending": 87,
+      "replaced": 4,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 20,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 28,
+      "min": -918675,
+      "p50": -279943.0,
+      "p95": 30317.649999999998,
+      "max": 57927
+    },
+    "budget_counts": {
+      "short": 4,
+      "expired": 24
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "A": 3,
+      "B": 1
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.006210606596816495,
+        "ece": 0.06832090339743405,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.07168585423738388,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.0003486777265626644,
+        "ece": 0.014855831343131398,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.01503334990642946,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.000602704371424861,
+        "ece": 0.02271414762542523,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.023021211502501353,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.005861928870253831,
+      "median": 0.005861928870253831,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "high/short/late",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 28,
+      "stream-create-blocked": 3,
+      "unsubmitted-pending": 85,
+      "replaced": 4
+    },
+    "blocked_records": 25,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 28,
+      "min": -1146179,
+      "p50": -362791.0,
+      "p95": 30914.149999999998,
+      "max": 57993
+    },
+    "budget_counts": {
+      "short": 4,
+      "expired": 24
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "B": 4
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.004923899147263999,
+        "ece": 0.06145846199769431,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.06409773736124032,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.000243679459177146,
+        "ece": 0.0124340002824751,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.012557692345161287,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.0019614871822702658,
+        "ece": 0.039731258080463516,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.04074689277679262,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.004680219688086854,
+      "median": 0.004680219688086854,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "low/regular/early",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 34,
+      "replaced": 3,
+      "stream-create-blocked": 1,
+      "unsubmitted-pending": 2
+    },
+    "blocked_records": 13,
+    "no_candidate_records": 0,
+    "timeout_records": 15,
+    "effective_slack_us": {
+      "n": 34,
+      "min": -1175329,
+      "p50": -35537.5,
+      "p95": 161235.39999999985,
+      "max": 208889
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 24,
+      "short": 6
+    },
+    "short_dual_n": 6,
+    "short_path": {
+      "A": 3,
+      "B": 3
+    },
+    "short_positive": 5,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 6,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 6,
+      "p50": 6,
+      "p95": 6.0,
+      "max": 6
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 6,
+        "brier": 0.15018962049598625,
+        "ece": 0.28771971296749194,
+        "observed": 0.8333333333333334,
+        "roc_auc": 1.0,
+        "log_loss": 0.42933614125041547,
+        "calibration_intercept": 3.681947313311828,
+        "calibration_slope": 0.42759556740390914
+      },
+      "slack_only": {
+        "n": 6,
+        "brier": 0.0032548922692981334,
+        "ece": 0.037884118445598115,
+        "observed": 0.8333333333333334,
+        "roc_auc": 1.0,
+        "log_loss": 0.03963079093819636,
+        "calibration_intercept": 0.7763609121359569,
+        "calibration_slope": 0.5685437890278573
+      },
+      "completion_margin": {
+        "n": 6,
+        "brier": 0.13173440172534,
+        "ece": 0.21430796725465104,
+        "observed": 0.8333333333333334,
+        "roc_auc": 0.8,
+        "log_loss": 0.39214503147712526,
+        "calibration_intercept": 0.2640928074442852,
+        "calibration_slope": 0.5280346675265072
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.14693472822668813,
+      "median": 0.14693472822668813,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "low/regular/late",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 26,
+      "replaced": 4,
+      "unsubmitted-pending": 9,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 26,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 26,
+      "min": -245996,
+      "p50": -32560.5,
+      "p95": 188242.75,
+      "max": 206063
+    },
+    "budget_counts": {
+      "long": 5,
+      "short": 4,
+      "expired": 17
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "B": 1,
+      "A": 3
+    },
+    "short_positive": 3,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 5,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.050560543524411944,
+        "ece": 0.15577312757637035,
+        "observed": 0.75,
+        "roc_auc": 1.0,
+        "log_loss": 0.19131695458693748,
+        "calibration_intercept": -1.4388917611176053,
+        "calibration_slope": 1.748055192910983
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.02562618947882598,
+        "ece": 0.09478977402244441,
+        "observed": 0.75,
+        "roc_auc": 1.0,
+        "log_loss": 0.11099926502249634,
+        "calibration_intercept": 0.40932022408794033,
+        "calibration_slope": 0.3783404871870165
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.19021814030113426,
+        "ece": 0.2371504154796932,
+        "observed": 0.75,
+        "roc_auc": 1.0,
+        "log_loss": 0.5305295450061296,
+        "calibration_intercept": -3.9441196836212558,
+        "calibration_slope": 1.7278795524551183
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.02493435404558596,
+      "median": 0.02493435404558596,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "low/short/early",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 28,
+      "replaced": 4,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 6
+    },
+    "blocked_records": 24,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 28,
+      "min": -698761,
+      "p50": -147419.0,
+      "p95": 64677.39999999998,
+      "max": 92647
+    },
+    "budget_counts": {
+      "short": 5,
+      "expired": 23
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "B": 2,
+      "A": 3
+    },
+    "short_positive": 5,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.008085784758797204,
+        "ece": 0.07962590164455194,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.08401974093240738,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.0004731727049921807,
+        "ece": 0.011473502619605669,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.011717979600404058,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.0007817955666511546,
+        "ece": 0.017728225343364934,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.018133592752294352,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.007612612053805023,
+      "median": 0.007612612053805023,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-outage",
+    "cell": "low/short/late",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 28,
+      "replaced": 4,
+      "unsubmitted-pending": 7,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 27,
+    "no_candidate_records": 0,
+    "timeout_records": 0,
+    "effective_slack_us": {
+      "n": 28,
+      "min": -1709333,
+      "p50": -167030.5,
+      "p95": 50404.59999999996,
+      "max": 92713
+    },
+    "budget_counts": {
+      "short": 4,
+      "expired": 24
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "A": 2,
+      "B": 2
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.005833758455073876,
+        "ece": 0.0669695628063397,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.07011637499547906,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.00031672232117058635,
+        "ece": 0.009967567102595831,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.010129951321382733,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.0005065364745397358,
+        "ece": 0.016871004163045766,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.01712974512253369,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.00551703613390329,
+      "median": 0.00551703613390329,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "all",
+    "split": "validation",
+    "records": 640,
+    "connection_seeds": 4,
+    "record_status": {
+      "received": 130,
+      "replaced": 47,
+      "unsubmitted-pending": 450,
+      "stream-create-blocked": 12,
+      "after-window": 1
+    },
+    "blocked_records": 80,
+    "no_candidate_records": 0,
+    "timeout_records": 57,
+    "effective_slack_us": {
+      "n": 131,
+      "min": -1313303,
+      "p50": -191099,
+      "p95": 139369.5,
+      "max": 207784
+    },
+    "budget_counts": {
+      "short": 26,
+      "expired": 89,
+      "long": 16
+    },
+    "short_dual_n": 26,
+    "short_path": {
+      "A": 13,
+      "B": 13
+    },
+    "short_positive": 23,
+    "short_negative": 3,
+    "short_seeds": 4,
+    "short_near_switch": 3,
+    "event_generated": 560,
+    "event_on_time": 24,
+    "short_yield_per_seed": {
+      "n": 4,
+      "min": 6,
+      "p50": 6.5,
+      "p95": 7.0,
+      "max": 7
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 26,
+        "brier": 0.18533901476256032,
+        "ece": 0.2712817672606445,
+        "observed": 0.8846153846153846,
+        "roc_auc": 0.9130434782608695,
+        "log_loss": 0.5307225493621105,
+        "calibration_intercept": 2.806553365732102,
+        "calibration_slope": 1.1574919618877193
+      },
+      "slack_only": {
+        "n": 26,
+        "brier": 0.0007896751234792433,
+        "ece": 0.014709274834529888,
+        "observed": 0.8846153846153846,
+        "roc_auc": 1.0,
+        "log_loss": 0.01512351163168512,
+        "calibration_intercept": 0.29267588661082833,
+        "calibration_slope": 0.7522526805465634
+      },
+      "completion_margin": {
+        "n": 26,
+        "brier": 0.11056849607892084,
+        "ece": 0.16040407069754298,
+        "observed": 0.8846153846153846,
+        "roc_auc": 0.8840579710144928,
+        "log_loss": 0.313321194276287,
+        "calibration_intercept": 1.2107666465684435,
+        "calibration_slope": 0.6844158289048139
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 4,
+      "mean": 0.1837701129341296,
+      "median": 0.17364016576976044,
+      "sd": 0.05317053841439238,
+      "ci_low": 0.14329203757007397,
+      "ci_high": 0.2343781354625544,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": 109
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "high/regular/early",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 96,
+      "replaced": 6
+    },
+    "blocked_records": 11,
+    "no_candidate_records": 0,
+    "timeout_records": 6,
+    "effective_slack_us": {
+      "n": 16,
+      "min": -944810,
+      "p50": -197450.5,
+      "p95": 155604.0,
+      "max": 205191
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 10,
+      "short": 2
+    },
+    "short_dual_n": 2,
+    "short_path": {
+      "A": 1,
+      "B": 1
+    },
+    "short_positive": 1,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 2,
+      "p50": 2,
+      "p95": 2.0,
+      "max": 2
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 2,
+        "brier": 0.009128309021522767,
+        "ece": 0.08256281032833612,
+        "observed": 0.5,
+        "roc_auc": 1.0,
+        "log_loss": 0.08754629108127497,
+        "calibration_intercept": -0.5849480534239956,
+        "calibration_slope": 0.8141704879174946
+      },
+      "slack_only": {
+        "n": 2,
+        "brier": 0.0006638857603065881,
+        "ece": 0.018220070672578807,
+        "observed": 0.5,
+        "roc_auc": 1.0,
+        "log_loss": 0.018560304239337615,
+        "calibration_intercept": -1.2912498005481212,
+        "calibration_slope": 0.25550619275022046
+      },
+      "completion_margin": {
+        "n": 2,
+        "brier": 0.04983960319153589,
+        "ece": 0.1593392355082458,
+        "observed": 0.5,
+        "roc_auc": 1.0,
+        "log_loss": 0.1911722972089679,
+        "calibration_intercept": -1.6283553672953928,
+        "calibration_slope": 0.6459345065204078
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.008464423261216181,
+      "median": 0.008464423261216181,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "high/regular/late",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "unsubmitted-pending": 95,
+      "stream-create-blocked": 3,
+      "replaced": 6
+    },
+    "blocked_records": 10,
+    "no_candidate_records": 0,
+    "timeout_records": 4,
+    "effective_slack_us": {
+      "n": 16,
+      "min": -1035557,
+      "p50": -109278.0,
+      "p95": 156694.0,
+      "max": 207784
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 10,
+      "short": 2
+    },
+    "short_dual_n": 2,
+    "short_path": {
+      "B": 1,
+      "A": 1
+    },
+    "short_positive": 1,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 2,
+      "p50": 2,
+      "p95": 2.0,
+      "max": 2
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 2,
+        "brier": 0.11281983309663489,
+        "ece": 0.3321938010600268,
+        "observed": 0.5,
+        "roc_auc": 1.0,
+        "log_loss": 0.4065309847219404,
+        "calibration_intercept": 0.6779202964457597,
+        "calibration_slope": 3.0107550696092877
+      },
+      "slack_only": {
+        "n": 2,
+        "brier": 0.004724592068116114,
+        "ece": 0.04860408733498862,
+        "observed": 0.5,
+        "roc_auc": 1.0,
+        "log_loss": 0.051131576568928416,
+        "calibration_intercept": -1.5281754516172912,
+        "calibration_slope": 0.2691578537868529
+      },
+      "completion_margin": {
+        "n": 2,
+        "brier": 0.33736901710812384,
+        "ece": 0.43346511565430795,
+        "observed": 0.5,
+        "roc_auc": 1.0,
+        "log_loss": 0.8816304263487279,
+        "calibration_intercept": -6.44354768021379,
+        "calibration_slope": 2.844877458340722
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.10809524102851878,
+      "median": 0.10809524102851878,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "high/short/early",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "unsubmitted-pending": 97,
+      "replaced": 6,
+      "stream-create-blocked": 1
+    },
+    "blocked_records": 8,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 16,
+      "min": -1313303,
+      "p50": -344743.0,
+      "p95": 40790.75,
+      "max": 59960
+    },
+    "budget_counts": {
+      "short": 4,
+      "expired": 12
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "B": 1,
+      "A": 3
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.16636640774075545,
+        "ece": 0.24886221609495113,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.4602198046532334,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.0006671326028843572,
+        "ece": 0.015367560072807374,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.015712732020743095,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.09205869777425511,
+        "ece": 0.16636028167364597,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.24772631130161998,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.16569927513787108,
+      "median": 0.16569927513787108,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "high/short/late",
+    "split": "validation",
+    "records": 120,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "stream-create-blocked": 2,
+      "unsubmitted-pending": 96,
+      "replaced": 6
+    },
+    "blocked_records": 8,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 16,
+      "min": -1116338,
+      "p50": -275499.5,
+      "p95": 39562.75,
+      "max": 54955
+    },
+    "budget_counts": {
+      "short": 5,
+      "expired": 11
+    },
+    "short_dual_n": 5,
+    "short_path": {
+      "B": 4,
+      "A": 1
+    },
+    "short_positive": 4,
+    "short_negative": 1,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 110,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 5,
+      "p50": 5,
+      "p95": 5.0,
+      "max": 5
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 5,
+        "brier": 0.3598138556896223,
+        "ece": 0.48758333021334826,
+        "observed": 0.8,
+        "roc_auc": 1.0,
+        "log_loss": 0.9423065259924439,
+        "calibration_intercept": 4.473458048243098,
+        "calibration_slope": 1.5831618113250003
+      },
+      "slack_only": {
+        "n": 5,
+        "brier": 0.0006504728878758691,
+        "ece": 0.01721213518278357,
+        "observed": 0.8,
+        "roc_auc": 1.0,
+        "log_loss": 0.01754748331152814,
+        "calibration_intercept": 0.4733713745021757,
+        "calibration_slope": 0.5646163152639506
+      },
+      "completion_margin": {
+        "n": 5,
+        "brier": 0.1846043363125735,
+        "ece": 0.34707719635876383,
+        "observed": 0.8,
+        "roc_auc": 1.0,
+        "log_loss": 0.5161477436053484,
+        "calibration_intercept": 2.3852100829559943,
+        "calibration_slope": 1.4815963634727702
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.3591633828017464,
+      "median": 0.3591633828017464,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "low/regular/early",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "replaced": 6,
+      "unsubmitted-pending": 17,
+      "after-window": 1
+    },
+    "blocked_records": 12,
+    "no_candidate_records": 0,
+    "timeout_records": 9,
+    "effective_slack_us": {
+      "n": 17,
+      "min": -1085888,
+      "p50": -193633,
+      "p95": 205394.0,
+      "max": 207510
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 10,
+      "short": 3
+    },
+    "short_dual_n": 3,
+    "short_path": {
+      "B": 2,
+      "A": 1
+    },
+    "short_positive": 3,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 3,
+      "p50": 3,
+      "p95": 3.0,
+      "max": 3
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 3,
+        "brier": 0.08422622352357077,
+        "ece": 0.24727341866820265,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.30436682545321564,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 3,
+        "brier": 5.5233013137284924e-11,
+        "ece": 4.372489996740114e-06,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 4.956751499277006e-06,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 3,
+        "brier": 0.0014306070150636634,
+        "ece": 0.02920767813481584,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.029951540140341664,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.08422622346833775,
+      "median": 0.08422622346833775,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "low/regular/late",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "replaced": 6,
+      "unsubmitted-pending": 16,
+      "stream-create-blocked": 2
+    },
+    "blocked_records": 12,
+    "no_candidate_records": 0,
+    "timeout_records": 7,
+    "effective_slack_us": {
+      "n": 16,
+      "min": -660342,
+      "p50": -75845.0,
+      "p95": 207101.25,
+      "max": 207690
+    },
+    "budget_counts": {
+      "long": 4,
+      "expired": 10,
+      "short": 2
+    },
+    "short_dual_n": 2,
+    "short_path": {
+      "A": 2
+    },
+    "short_positive": 2,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 1,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 2,
+      "p50": 2,
+      "p95": 2.0,
+      "max": 2
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 2,
+        "brier": 0.0016540782112359352,
+        "ece": 0.03993855606758834,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.040789993496211444,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 2,
+        "brier": 4.35945986847722e-12,
+        "ece": 1.4834333061930494e-06,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 1.9763763999428513e-06,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 2,
+        "brier": 6.394176701709614e-06,
+        "ece": 0.0021750018501511814,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.002178206004565558,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.0016540782068764756,
+      "median": 0.0016540782068764756,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "low/short/early",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 18,
+      "replaced": 5,
+      "unsubmitted-pending": 17
+    },
+    "blocked_records": 5,
+    "no_candidate_records": 0,
+    "timeout_records": 8,
+    "effective_slack_us": {
+      "n": 18,
+      "min": -615525,
+      "p50": -279347.0,
+      "p95": 64740.34999999995,
+      "max": 94906
+    },
+    "budget_counts": {
+      "short": 4,
+      "expired": 14
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "A": 2,
+      "B": 2
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.24600047108448403,
+        "ece": 0.347862083438235,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.7364236526164819,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.0005442723542203712,
+        "ece": 0.013852029301593238,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.014132688359554276,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.15061133009572028,
+        "ece": 0.21306711819837046,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.3920638833995612,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.24545619873026367,
+      "median": 0.24545619873026367,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  },
+  {
+    "environment": "validation-reversal",
+    "cell": "low/short/late",
+    "split": "validation",
+    "records": 40,
+    "connection_seeds": 1,
+    "record_status": {
+      "received": 16,
+      "replaced": 6,
+      "unsubmitted-pending": 16,
+      "stream-create-blocked": 2
+    },
+    "blocked_records": 14,
+    "no_candidate_records": 0,
+    "timeout_records": 7,
+    "effective_slack_us": {
+      "n": 16,
+      "min": -898586,
+      "p50": -212158.0,
+      "p95": 66766.0,
+      "max": 94918
+    },
+    "budget_counts": {
+      "short": 4,
+      "expired": 12
+    },
+    "short_dual_n": 4,
+    "short_path": {
+      "A": 2,
+      "B": 2
+    },
+    "short_positive": 4,
+    "short_negative": 0,
+    "short_seeds": 1,
+    "short_near_switch": 0,
+    "event_generated": 30,
+    "event_on_time": 3,
+    "short_yield_per_seed": {
+      "n": 1,
+      "min": 4,
+      "p50": 4,
+      "p95": 4.0,
+      "max": 4
+    },
+    "descriptive_short_scores": {
+      "current_probability": {
+        "n": 4,
+        "brier": 0.21759861971199987,
+        "ece": 0.3667266816764787,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.5794612023538231,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "slack_only": {
+        "n": 4,
+        "brier": 0.0004141532778496764,
+        "ece": 0.011459427983629755,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.0116724049302883,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      },
+      "completion_margin": {
+        "n": 4,
+        "brier": 0.050589313752814745,
+        "ece": 0.15735263787936862,
+        "observed": 1.0,
+        "roc_auc": null,
+        "log_loss": 0.19165876870161194,
+        "calibration_intercept": null,
+        "calibration_slope": null
+      }
+    },
+    "descriptive_seed_brier_delta": {
+      "n": 1,
+      "mean": 0.2171844664341502,
+      "median": 0.2171844664341502,
+      "sd": null,
+      "ci_low": null,
+      "ci_high": null,
+      "paired_dz": null,
+      "sign_flip_p": null
+    },
+    "illustrative_seeds_for_brier_halfwidth_0_01": null
+  }
+]

@@ -52,13 +52,20 @@ def verify_network(root, case, origin):
                     row["end_us"] - origin - offset <= 250_000, "network transition missed timing tolerance")
         expected_qdiscs = {f"{side}-{link}" for side in sides for link in row["links"]}
         require(row["qdiscs"].keys() == expected_qdiscs, "missing directional qdisc snapshot")
-        for link, (delay, rate, loss) in row["links"].items():
+        for link, (delay, rate, loss, *jitter) in row["links"].items():
             for side in sides:
                 qdisc = row["qdiscs"][f"{side}-{link}"]
                 match = re.search(r"\bloss (?:random )?([\d.]+)%", qdisc)
                 actual_loss = float(match[1]) if match else 0
                 require("qdisc netem " in qdisc and f"delay {delay}ms" in qdisc and
                         f"rate {rate}Mbit" in qdisc and abs(actual_loss - loss) < .01, "tc profile mismatch")
+                if jitter:
+                    require(f"delay {delay}ms  {jitter[0]}ms" in qdisc or
+                            f"delay {delay}ms {jitter[0]}ms" in qdisc, "tc jitter mismatch")
+        if case.get("stage92"):
+            require(row["directions"].keys() == expected_qdiscs and all(
+                row["begin_us"] <= edge["start_us"] <= edge["done_us"] <= row["end_us"]
+                for edge in row["directions"].values()), "invalid per-direction command timing")
     return rows
 
 

@@ -38,6 +38,7 @@ struct iot_run {
     };
     uint64_t start, retry_at, retry_delay, horizon_us;
     uint64_t attempts, blocked_attempts;
+    bool no_candidate[IOT_MAX_RECORDS];
     bool window_blocked, bind_path, oracle;
     enum iot_path_rule path_rule;
     uint32_t assignment_seed;
@@ -59,6 +60,7 @@ struct endpoint {
     struct link links[PATHS];
     uint64_t timer;
     uint64_t tx_datagram, rx_datagram, current_rx_datagram;
+    uint64_t last_send_ns;
     unsigned lifecycle_step;
     bool exercise_lifecycle, exercise_migration, rebound;
     bool server, handshake, create_path, validated, closing, quic_closing, closed, failed;
@@ -79,7 +81,37 @@ struct record_stream {
 
 static volatile sig_atomic_t advance_phase;
 static bool integrity_trace;
+static bool measure, digest_enabled, path_features;
 static uint64_t integrity_sequence;
+static volatile unsigned digest_sink;
+
+struct duration {
+    uint64_t count, total_ns, max_ns;
+};
+
+static struct duration decision_time, create_time, submit_time, send_time, log_time, digest_time;
+
+uint64_t iot_profile_clock(void)
+{
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (uint64_t)ts.tv_sec * 1000000000 + ts.tv_nsec;
+}
+
+static void observe_duration(struct duration *duration, uint64_t ns)
+{
+    duration->count++;
+    duration->total_ns += ns;
+    if (duration->max_ns < ns)
+        duration->max_ns = ns;
+}
+
+static void observe_send(uint64_t selected_ns, void *user)
+{
+    struct endpoint *ep = user;
+    if (ep->last_send_ns >= selected_ns)
+        observe_duration(&send_time, ep->last_send_ns - selected_ns);
+}
 
 static void on_signal(int signal_number)
 {
@@ -96,6 +128,7 @@ static uint64_t now_us(void)
 
 void iot_trace_event(const char *name, const char *format, ...)
 {
+    uint64_t started = measure ? iot_profile_clock() : 0;
     printf("t_us=%" PRIu64 " event=%s", now_us(), name);
     if (*format) {
         putchar(' ');
@@ -107,6 +140,8 @@ void iot_trace_event(const char *name, const char *format, ...)
     if (integrity_trace)
         printf(" audit_seq=%" PRIu64, ++integrity_sequence);
     putchar('\n');
+    if (measure)
+        observe_duration(&log_time, iot_profile_clock() - started);
 }
 
 #define event iot_trace_event
@@ -118,10 +153,18 @@ static void datagram_event(const char *name, uint64_t index, uint64_t path, int 
     unsigned char digest[SHA256_DIGEST_LENGTH];
     char hex[2 * SHA256_DIGEST_LENGTH + 1];
     static const char digits[] = "0123456789abcdef";
-    SHA256(bytes, size, digest);
+    if (digest_enabled) {
+        uint64_t started = measure ? iot_profile_clock() : 0;
+        SHA256(bytes, size, digest);
+        digest_sink ^= digest[0];
+        if (measure)
+            observe_duration(&digest_time, iot_profile_clock() - started);
+    }
+    if (!integrity_trace)
+        return;
     for (size_t i = 0; i < sizeof(digest); i++) {
-        hex[2 * i] = digits[digest[i] >> 4];
-        hex[2 * i + 1] = digits[digest[i] & 15];
+        hex[2 * i] = digest_enabled ? digits[digest[i] >> 4] : '0';
+        hex[2 * i + 1] = digest_enabled ? digits[digest[i] & 15] : '0';
     }
     hex[sizeof(hex) - 1] = '\0';
     event(name, "datagram=%" PRIu64 " path=%" PRIu64 " link=%c bytes=%zu at_us=%" PRIu64
@@ -139,8 +182,11 @@ static void trace_log(xqc_log_level_t level, const void *buf, size_t size, void 
 {
     (void)level;
     struct endpoint *ep = user;
+    uint64_t started = measure ? iot_profile_clock() : 0;
     fwrite(buf, 1, size, ep->trace);
     fputc('\n', ep->trace);
+    if (measure)
+        observe_duration(&log_time, iot_profile_clock() - started);
     if (integrity_trace) {
         static const char marker[] = "|iot91|";
         const char *begin = memmem(buf, size, marker, sizeof(marker) - 1);
@@ -221,7 +267,9 @@ static ssize_t write_path(uint64_t id, const unsigned char *buf, size_t size,
         }
         link->tx++;
         link->tx_bytes += size;
-        if (integrity_trace)
+        if (measure)
+            ep->last_send_ns = iot_profile_clock();
+        if (integrity_trace || digest_enabled)
             datagram_event("iot91_udp_tx", ++ep->tx_datagram, id, i, buf, size, send_started,
                            &link->local, target);
         event("udp_tx", "link=%c path_id=%" PRIu64 " bytes=%zu", 'A' + i, id, size);
@@ -652,7 +700,10 @@ static xqc_stream_t *open_iot_tx(struct endpoint *ep, struct record_stream *reco
 {
     struct iot_run *iot = ep->iot;
     unsigned id = record->id;
+    uint64_t started = measure ? iot_profile_clock() : 0;
     xqc_stream_t *stream = open_tx(ep, record);
+    if (measure)
+        observe_duration(&create_time, iot_profile_clock() - started);
     if (!stream) {
         if (!iot->retry_delay || iot->oracle)
             event("iot_stream_create", "blocked=1 id=%u active_tx=%u", id, ep->active_tx);
@@ -828,13 +879,23 @@ static void progress_iot(struct endpoint *ep)
         struct iot_entry *entry;
         struct iot_path_sample paths[PATHS];
         size_t count = 0;
+        uint64_t planning_started = measure ? iot_profile_clock() : 0;
         uint64_t decision_us = now_us() - ep->iot->start;
         if (ep->iot->oracle && decision_us >= ep->iot->horizon_us)
             break;
         if (bind_path) {
-            count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale);
-            if (!count)
+            count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale, path_features);
+            if (!count) {
+                if (path_features) {
+                    for (size_t i = 0; i < workload->next; i++) {
+                        if (workload->entries[i].state == IOT_PENDING && !ep->iot->no_candidate[i]) {
+                            ep->iot->no_candidate[i] = true;
+                            event("iot92_no_candidate", "id=%u", workload->entries[i].record.id);
+                        }
+                    }
+                }
                 break;
+            }
         }
         if (proposed) {
             plan = iot_plan_record(scheduler, workload, decision_us, paths, count);
@@ -850,6 +911,8 @@ static void progress_iot(struct endpoint *ep)
             if (!ep->iot->oracle)
                 iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
         }
+        if (measure)
+            observe_duration(&decision_time, iot_profile_clock() - planning_started);
         if (integrity_trace)
             event("iot91_attempt", "attempt=%" PRIu64 " id=%u", ++ep->iot->attempts, entry->record.id);
         if (ep->iot->oracle)
@@ -864,6 +927,7 @@ static void progress_iot(struct endpoint *ep)
         if (!buffer)
             return;
         buffer->size = iot_encode_record(buffer->data, &record);
+        uint64_t submitting = measure ? iot_profile_clock() : 0;
         xqc_stream_t *stream = open_iot_tx(ep, buffer);
         if (!stream)
             return;
@@ -886,6 +950,12 @@ static void progress_iot(struct endpoint *ep)
                 (struct iot_binding){plan.path_id, due, record.id};
             for (size_t i = 0; i < count; i++) {
                 const struct iot_path_sample *path = &paths[i];
+                if (path_features)
+                    event("iot92_feature", "id=%u path_id=%" PRIu64 " sampled_us=%" PRIu64
+                          " rtt_updated_us=%" PRIu64 " delivered_us=%" PRIu64 " cwnd_bytes=%" PRIu64
+                          " total_lost=%" PRIu64 " retransmission_rate=%.9g",
+                          record.id, path->id, path->sampled_us, path->rtt_updated_us, path->delivered_us,
+                          path->cwnd_bytes, path->total_lost, path->retransmission_rate);
                 event("iot_path_sample", "id=%u path_id=%" PRIu64 " rtt_us=%" PRIu64
                       " rttvar_us=%" PRIu64 " rate_Bps=%" PRIu64 " queued_bytes=%" PRIu64
                       " in_flight_bytes=%" PRIu64 " scheduled_bytes=%" PRIu64
@@ -913,6 +983,8 @@ static void progress_iot(struct endpoint *ep)
         if (proposed)
             iot_commit_plan(scheduler, plan.category);
         iot_schedule_commit(scheduler, &entry->record);
+        if (measure)
+            observe_duration(&submit_time, iot_profile_clock() - submitting);
         event("iot_submit", "id=%u stream_id=%" PRIu64 " submitted=%" PRIu64
               " expired=%d active_tx=%u", record.id, entry->stream_id, entry->submitted,
               entry->submitted > record.deadline, ep->active_tx);
@@ -1039,7 +1111,7 @@ static void receive_packets(struct endpoint *ep, int index)
         uint64_t received_at = now_us();
         link->rx++;
         link->rx_bytes += (uint64_t)bytes;
-        if (integrity_trace) {
+        if (integrity_trace || digest_enabled) {
             ep->current_rx_datagram = ++ep->rx_datagram;
             datagram_event("iot91_udp_rx", ep->current_rx_datagram, link->id, index,
                            buf, (size_t)bytes, received_at, &link->local, &peer);
@@ -1213,6 +1285,9 @@ int main(int argc, char **argv)
         return 2;
     }
     integrity_trace = iot && getenv("IOT_STAGE91_TRACE");
+    measure = iot && getenv("IOT_STAGE92_PROFILE");
+    path_features = measure && !server && getenv("IOT_STAGE92_FEATURES");
+    digest_enabled = measure ? getenv("IOT_STAGE92_DIGEST") != NULL : integrity_trace;
     if (integrity_trace && (!horizon || (!server && (!oracle || !bind_path)))) {
         fprintf(stderr, "Stage 9.1 requires a fixed window and a bound Stage 8 client\n");
         return 2;
@@ -1250,6 +1325,7 @@ int main(int argc, char **argv)
         ep.iot->assignment_seed = assignment_seed;
         ep.iot->paths.cross = repair;
         ep.iot->paths.integrity = integrity_trace;
+        ep.iot->paths.profile = measure;
         if (!server && !iot_load_workload(&ep.iot->workload, argv[3]))
             goto fail;
     }
@@ -1284,6 +1360,7 @@ int main(int argc, char **argv)
     };
     xqc_transport_callbacks_t transport = {
         .iot_integrity_trace = integrity_trace,
+        .iot_send_observer = measure ? observe_send : NULL,
         .server_accept = server ? accept_connection : NULL,
         .write_socket = write_initial,
         .write_socket_ex = write_path,
@@ -1351,9 +1428,18 @@ cleanup:
     for (int i = 0; i < PATHS; i++)
         if (ep.links[i].fd >= 0)
             close(ep.links[i].fd);
+    uint64_t flush_started = measure ? iot_profile_clock() : 0;
     if (ep.trace && fclose(ep.trace) != 0) {
         perror("writing XQUIC trace");
         ep.failed = true;
+    }
+    if (measure) {
+        observe_duration(&log_time, iot_profile_clock() - flush_started);
+        const char *names[] = {"decision", "create", "submit", "choice_to_send", "log", "digest"};
+        const struct duration samples[] = {decision_time, create_time, submit_time, send_time, log_time, digest_time};
+        for (size_t i = 0; i < sizeof(samples) / sizeof(*samples); i++)
+            event("iot92_profile", "metric=%s n=%" PRIu64 " total_ns=%" PRIu64 " max_ns=%" PRIu64,
+                  names[i], samples[i].count, samples[i].total_ns, samples[i].max_ns);
     }
     if (ep.iot) {
         if (integrity_trace)
@@ -1371,6 +1457,8 @@ cleanup:
     if (getrusage(RUSAGE_SELF, &cpu) == 0) {
         uint64_t user_us = (uint64_t)cpu.ru_utime.tv_sec * 1000000 + cpu.ru_utime.tv_usec;
         uint64_t sys_us = (uint64_t)cpu.ru_stime.tv_sec * 1000000 + cpu.ru_stime.tv_usec;
+        if (measure)
+            event("iot92_rss", "peak_kib=%ld", cpu.ru_maxrss);
         event("process_cpu", "user_us=%" PRIu64 " sys_us=%" PRIu64 " wall_us=%" PRIu64,
               user_us, sys_us, now_us() - process_start);
     }

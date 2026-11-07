@@ -4,12 +4,12 @@ set -euo pipefail
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 stage=${1:-}
 windowed=false
-if [[ $stage == 7 || $stage == 8 || $stage == 91 ]]; then windowed=true; fi
+if [[ $stage == 7 || $stage == 8 || $stage == 91 || $stage == 92 ]]; then windowed=true; fi
 if ! { [[ $stage == 1 || $stage == 2 ]] && (( $# <= 2 )); } &&
    ! { [[ $stage == 3 ]] && (( $# == 4 )); } &&
    ! { [[ $stage == 4 ]] && (( $# == 5 )); } &&
    ! { { [[ $stage == 5 ]] || $windowed; } && (( $# == 7 )); }; then
-    echo "Usage: run-lab.sh {1|2} [DIRECTORY] | run-lab.sh 3 DIRECTORY POLICY WORKLOAD | run-lab.sh 4 DIRECTORY POLICY WORKLOAD K | run-lab.sh {5|7|8|91} DIRECTORY POLICY WORKLOAD K CASE ABLATION" >&2
+    echo "Usage: run-lab.sh {1|2} [DIRECTORY] | run-lab.sh 3 DIRECTORY POLICY WORKLOAD | run-lab.sh 4 DIRECTORY POLICY WORKLOAD K | run-lab.sh {5|7|8|91|92} DIRECTORY POLICY WORKLOAD K CASE ABLATION" >&2
     exit 2
 fi
 shift
@@ -99,8 +99,11 @@ fi
     if [[ $stage == 4 || $stage == 5 ]] || $windowed; then
         printf 'stream_pto_patch=%s\n' "$(sha256sum < "$root/patches/xquic/stream-pto-scheduler.patch" | cut -d ' ' -f 1)"
     fi
-    if [[ $stage == 91 ]]; then
+    if [[ $stage == 91 || $stage == 92 ]]; then
         sha256sum "$root/patches/xquic/stage91-integrity-trace.patch"
+    fi
+    if [[ $stage == 92 ]]; then
+        sha256sum "$root/patches/xquic/stage92-measurement.patch"
     fi
     for ns in "$client_ns" "$server_ns"; do
         echo "namespace=$ns"
@@ -156,17 +159,18 @@ openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:P-256 -nodes -days 1 \
 
 snaplen=96
 capture_filter='udp and port 4433 and port 4434'
-if [[ $stage == 91 ]]; then snaplen=0; fi
+if [[ $stage == 91 || $stage == 92 ]]; then snaplen=0; fi
 if [[ $stage == 91 && -n ${IOT_STAGE91_MIGRATION:-} ]]; then
     capture_filter='udp and port 4433 and (port 4434 or port 4435)'
 fi
 for link in a b; do
+    if [[ $stage == 92 && -z ${IOT_STAGE92_CAPTURE:-} ]]; then break; fi
     ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s "$snaplen" -U --immediate-mode -B 4096 -Z root \
         -w "$out/link-$link.pcap" "$capture_filter" \
         2> "$out/tcpdump-$link.log" &
     captures+=("$!")
     wait_log "$out/tcpdump-$link.log" 'listening on' "$!"
-    if [[ $stage == 91 ]]; then
+    if [[ $stage == 91 || $stage == 92 ]]; then
         ip netns exec "$client_ns" tcpdump -nn -i "iot-$link" -s 0 -U --immediate-mode -B 4096 -Z root \
             -w "$out/client-link-$link.pcap" "$capture_filter" \
             2> "$out/client-tcpdump-$link.log" &

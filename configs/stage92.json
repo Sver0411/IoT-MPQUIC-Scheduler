@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "horizon_us": 2400000,
+  "design_seed": 92002,
+  "pilot_repeats": 2,
+  "overhead_blocks": 6,
+  "calibration_repeats": 5,
+  "quality": {"max_edge_error_us": 5000, "max_direction_skew_us": 5000, "max_send_overhead_us": 500, "max_event_delta_pp": 1, "max_goodput_delta_percent": 5},
+  "environments": [
+    {"id": "train-delay-step", "split": "train", "family": "delay-step", "initial": {"a": [5, 24, 0], "b": [14, 24, 0]}, "after": {"a": [19, 24, 0]}},
+    {"id": "train-rate-step", "split": "train", "family": "rate-step", "initial": {"a": [6, 25, 0], "b": [13, 18, 0]}, "after": {"a": [6, 4, 0]}},
+    {"id": "validation-reversal", "split": "validation", "family": "two-path-reversal", "initial": {"a": [7, 28, 0], "b": [23, 12, 0]}, "after": {"a": [23, 12, 0], "b": [7, 28, 0]}},
+    {"id": "validation-outage", "split": "validation", "family": "one-way-short-outage", "initial": {"a": [4, 20, 0], "b": [12, 18, 0]}, "after": {"a": [4, 20, 100]}, "side": "client", "restore_us": 70000},
+    {"id": "sealed-jitter", "split": "sealed", "family": "rtt-variance-shift", "initial": {"a": [9, 27, 0, 2], "b": [15, 17, 0, 3]}, "after": {"a": [22, 27, 0, 8], "b": [11, 17, 0, 5]}},
+    {"id": "sealed-queue", "split": "sealed", "family": "asymmetric-rate-queue", "initial": {"a": [5, 33, 0], "b": [16, 19, 0]}, "after": {"a": [5, 2, 0]}, "side": "server", "queue_burst": {"side": "server", "link": "a", "packets": 32, "bytes": 1000}},
+    {"id": "sealed-loss", "split": "sealed", "family": "loss-pto-reversal", "initial": {"a": [8, 29, 0], "b": [27, 14, 0]}, "after": {"a": [31, 5, 100], "b": [6, 23, 0]}, "restore_us": 110000, "restore": {"a": [31, 5, 15], "b": [6, 23, 0]}}
+  ]
+}

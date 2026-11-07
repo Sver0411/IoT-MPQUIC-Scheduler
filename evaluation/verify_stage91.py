@@ -81,7 +81,7 @@ def verify_xquic_log(rows, file):
     require(raw_packets == observed_packets, "STREAM packets missing from telemetry")
 
 
-def verify_endpoint(rows, role, cross):
+def verify_endpoint(rows, role, cross, profiling=False):
     sequence(rows, role)
     grouped = by_event(rows)
     paths, attempts = Paths(), Attempts()
@@ -94,9 +94,10 @@ def verify_endpoint(rows, role, cross):
     wire_rx = []
     cutoff_seen = False
     totals_seen = False
+    final_events = ("process_cpu", "exit", "iot92_rss") if profiling else ("process_cpu", "exit")
     for row in rows:
         event = row["event"]
-        require(not totals_seen or event in ("process_cpu", "exit"), "activity after trace totals")
+        require(not totals_seen or event in final_events, "activity after trace totals")
         if role == "client":
             attempts.observe(row)
         if event == "iot_app_decision":
@@ -373,7 +374,7 @@ def verify_run(directory):
     results = {}
     for role in ("client", "server"):
         rows = log_rows(directory / f"{role}.log")
-        results[role] = verify_endpoint(rows, role, case["repair"] == "cross")
+        results[role] = verify_endpoint(rows, role, case["repair"] == "cross", profiling=case.get("stage92", False))
         verify_xquic_log(rows, directory / f"{role}.xquic.log")
     client, server = results["client"], results["server"]
     left, right = client["events"], server["events"]

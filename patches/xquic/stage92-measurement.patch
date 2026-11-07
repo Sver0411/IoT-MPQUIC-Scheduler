@@ -1,0 +1,58 @@
+diff --git a/include/xquic/xquic.h b/include/xquic/xquic.h
+--- a/include/xquic/xquic.h
++++ b/include/xquic/xquic.h
+@@ -632,4 +632,5 @@
+     /* Enable observation-only packet and path logs for the Stage 9.1 lab. */
+     uint8_t iot_integrity_trace;
++    void (*iot_send_observer)(uint64_t selected_ns, void *user);
+     /**
+      * accept new connection callback. REQUIRED only for server \n
+diff --git a/src/transport/xqc_packet_out.h b/src/transport/xqc_packet_out.h
+--- a/src/transport/xqc_packet_out.h
++++ b/src/transport/xqc_packet_out.h
+@@ -118,4 +118,5 @@
+     uint64_t                po_stream_offset;
+     uint64_t                po_iot_decision;
++    uint64_t                po_iot_selected_ns;
+     uint64_t                po_stream_id;
+ 
+diff --git a/src/transport/xqc_packet_out.c b/src/transport/xqc_packet_out.c
+--- a/src/transport/xqc_packet_out.c
++++ b/src/transport/xqc_packet_out.c
+@@ -154,4 +154,5 @@
+     dst->po_origin_ref_cnt = 0;
+     dst->po_iot_decision = 0;
++    dst->po_iot_selected_ns = 0;
+ 
+     xqc_packet_out_t *origin = src->po_origin == NULL ? src : src->po_origin;
+diff --git a/src/transport/xqc_conn.c b/src/transport/xqc_conn.c
+--- a/src/transport/xqc_conn.c
++++ b/src/transport/xqc_conn.c
+@@ -2702,4 +2702,7 @@
+                 xqc_pkt_type_2_str(packet_out->po_pkt.pkt_type),
+                 xqc_frame_type_2_str(conn->engine, packet_out->po_frame_types), path->path_send_ctl->ctl_bytes_in_flight, now, packet_out->po_stream_id, packet_out->po_stream_offset);
++        if (packet_out->po_iot_selected_ns && conn->transport_cbs.iot_send_observer) {
++            conn->transport_cbs.iot_send_observer(packet_out->po_iot_selected_ns, xqc_conn_get_user_data(conn));
++        }
+         if (conn->transport_cbs.iot_integrity_trace
+             && (packet_out->po_frame_types & XQC_FRAME_BIT_STREAM))
+diff --git a/src/transport/xqc_send_ctl.h b/src/transport/xqc_send_ctl.h
+--- a/src/transport/xqc_send_ctl.h
++++ b/src/transport/xqc_send_ctl.h
+@@ -102,4 +102,5 @@
+                                 ctl_minrtt,
+                                 ctl_latest_rtt;
++    xqc_usec_t                  ctl_iot_rtt_update_us;
+     xqc_usec_t                  ctl_first_rtt_sample_time; /* The time when the conn gets the first RTT sample. */
+ 
+diff --git a/src/transport/xqc_send_ctl.c b/src/transport/xqc_send_ctl.c
+--- a/src/transport/xqc_send_ctl.c
++++ b/src/transport/xqc_send_ctl.c
+@@ -1169,4 +1169,7 @@
+ 
+     xqc_send_ctl_latest_rtt_tracking(send_ctl, latest_rtt);
++    if (conn->transport_cbs.iot_send_observer) {
++        send_ctl->ctl_iot_rtt_update_us = xqc_monotonic_timestamp();
++    }
+ 
+     /* Based on {{RFC6298}}. */

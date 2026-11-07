@@ -1,0 +1,3371 @@
+{
+  "state": "closed",
+  "design_version": 1,
+  "build": {
+    "base_commit": "9ec77a455862195e61178fe9795cd8290f5d817b",
+    "binary_sha256": "470418e95f53ed1bfc63ee3d0fbafeb73a19f81e5b41ddea3ade850526aaf78c",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "tc_sha256": "1522bfcc3f5eba929081788db2282057909d5a29e2ca1c21c67f34b6521a8a8f",
+    "sources": {
+      "src/gateway/iot_queue.c": "a2ab6bd3100bda5a669c08a6937652b9350c07300e4e15a07cc8e1c011840aad",
+      "src/iot.h": "029212eeb4719629fa90861dd0145f888cef171cb01cb15b39b15de3c16d2a17",
+      "src/receiver/iot_receive.c": "4e2b101c370eaf2e4d18d360332edb7a22b86b26da45933763032492d2ccee5c",
+      "src/scheduler/proposed.c": "00e2a67b52c7acaa4b1ba5a69ebdd5226b346ca5bc6b3cccf773f698112a6d07",
+      "src/scheduler/scheduler.c": "322d5eb70b3be519b5fa13bee013ae4feab05ae47b4490c55dd28f6b9ba08612",
+      "src/scheduler/scheduler.h": "8304f9acb16069b3c2489edb09c858e895b837f5a8c5b072df0c810282b833c3",
+      "src/transport/endpoint.c": "d84c1b86190a920d2392b232f6ceffb5da1b274e8e79118acb34ae4c929fc1e0",
+      "src/transport/iot_wire.c": "e92cc654379ef5ccfb79d9de8219a6bde64e8bddc33b63ae6bae611a4de26741",
+      "src/transport/path_affinity.c": "ef59046ef7a2f6a6b0843c44cdd1cbf5e843553ca901aedf44a14a3bba89bc12",
+      "src/transport/path_affinity.h": "723cb514b4170af7a0c642fb8ac36433211dc6cac1c42d7152e5da70dcc9acc2",
+      "scripts/build.sh": "2fa24e71b763ae13f498f9c57c9f29083a279431276277fa292c7128522604cf",
+      "scripts/run-lab.sh": "1ca0c3f419f5c818f9fa9327126b45259277631b5d3d9028c8e2d8f7aab963a6",
+      "scripts/run-stage1.sh": "ba23812b138b148ab5cf4465ed2a9edd270b96e09671d8a9614bacadde2e2fff",
+      "scripts/run-stage2.sh": "1d4955c73aa062fdaba1f76f4749fbacf4e69b960fe68606d2666be7834f180f",
+      "scripts/run-stage3.sh": "3dc3fecf215815e79a9b99b922ae542193a48f434d14fcb82a0fd067186a3da2",
+      "scripts/run-stage4.sh": "7c00ba69ae480ad1aaf23419dfa342e35b3c0c684e07c49ed54b0f12c7cb772d",
+      "scripts/test.sh": "3d7b2799ea6c432160ff8642c41f3d466e4f40a4e71fa9d09b3201cd646e5203",
+      "patches/xquic/stage91-integrity-trace.patch": "083fff36df5b433730e2d20c2bf5e8bc6687381075f66b0a83c510ed3771efe9",
+      "patches/xquic/stage92-measurement.patch": "bdb4c9328a5b54651894fd6ffad3d89977e323ff7cb1151a3e53a3e8f3c2692d",
+      "patches/xquic/stream-pto-scheduler.patch": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd",
+      "configs/stage92.json": "bd3d4c47580e452fc86089428661d429911a73e8b1eaa2b599e63d833ac10f99",
+      "network/scenarios/stage5.py": "6d995eaa56822ab44cffaf59e66f1a036def2a3fde550c60e9f89cd98aa4ff01",
+      "network/scenarios/stage92_probe.py": "4b41962adc6283096bf81fc37b1c41ea8ced0e75107a864a6704cc8d64f6b9c0",
+      "network/scenarios/verify_seeded_netem.py": "d05c5dc151e9f5aedfcf7306ba2173da6335e50b003b3eabd1fdb64a0ec0836d",
+      "network/scenarios/performance-reversal.sh": "276b142d5461841fa3b13ca74ae2c8c205259c716d6c2422d59a81a8c9d8d895",
+      "network/topology/dual-veth.sh": "cb8b6201e4c715e9c7dfe6cccd9663a9648ad75cdac52f95b4268043d13d96a2",
+      "experiments/run_stage5.py": "bc17bcd101d8339f2e48f76acf10aa7c822e1d482ee4c38ca3251b73e38a61f0",
+      "experiments/run_stage7.py": "a7dcd7a6c990998645682c7a0a642e14ecbee9df7b88d6692f411f4159e155df",
+      "experiments/run_stage8.py": "9d9277df5e8bcbc42dc1bc4dc86a234d2d12f6cc2d570e7430bbc0646367b50b",
+      "experiments/run_stage91.py": "3d936a42f2ea7d38187500b24d0dfba2668c8fbc565f37315d248db12819d81f",
+      "experiments/run_stage92.py": "0ed00b239418a99a24297cd4922889e7e35a4ed206c142050b29346254c89bb8",
+      "experiments/stage92_design.py": "dd780dd13cb72da051b3a25bd761720930754b449ff99a39e1855cd2d8b70d8e",
+      "evaluation/stage6.py": "5c689e4fd03066654016a05e3dac05ecf78f1fd779f9484d386477b28c4b5dbe",
+      "evaluation/stage6_figures.py": "37867cfe8dcf7600a3383f1d0552790ba0bb150743acb0ba799e0763ba277aa5",
+      "evaluation/stage7.py": "a1f7ac6d1e61ec51474667dcf9978327cadb5bec22e589cb3b0f0b357197a23c",
+      "evaluation/stage7_figures.py": "b9f352a0c33d51a8a30a6ed8c7fb2611b04cccbb10214b31cc25f71304456df4",
+      "evaluation/stage7_statistics.py": "5d843340629b77a0cc9752da728961ab020a90770ce17730786a083d93558b02",
+      "evaluation/stage8.py": "e79ffc4f02c3c6dd7f1b9f62785e0c379896ecf1a0ce3732931e7a2a555de125",
+      "evaluation/stage8_figures.py": "1c82e7888859aa65396ead979238b7373063ce7381d72914d42d26b351a4fe29",
+      "evaluation/stage8_history.py": "77b835c2f5d8a968e81aec9f1315e7017ef54240191959fb5bc10564779d591a",
+      "evaluation/stage8_statistics.py": "b990ef751434e03cf13d7f0a7bc53ee72c6ef0cb69ed2a14374c9dbcd028a5f5",
+      "evaluation/stage92_timing.py": "b2298392deadf765e99a8ef27d3fc7ade2205bb8145029698faeedbafcdf6f53",
+      "evaluation/verify_stage1.py": "f256bfd5a9c9caaa5971e064f66172815a1675ebf0af0d400d5b9efab86f6aa3",
+      "evaluation/verify_stage2.py": "ca8eb1d3ee5405a8cf3bb9bb0199811b86eb0fe0d1d71e25f30ce06b055ef298",
+      "evaluation/verify_stage3.py": "514e4e2b6c584cb5ff67afc8e71ebe3e5a5715a1eda0049a697b9e17ac69fa0e",
+      "evaluation/verify_stage4.py": "9446fd689e9cd0321a1d0326e82f97de18f3932190f59145c129d36c02c7dfb5",
+      "evaluation/verify_stage5.py": "f18447a5125dd151646a793368f8d442d3fc4819cc5eb8dc26ee1c5bc07a4c2c",
+      "evaluation/verify_stage7.py": "24e5ae1a211b4aaf0d30d4cd16eacd6fb3eb29c91c8189c07955c94fe82d7710",
+      "evaluation/verify_stage8.py": "bcebfe2afce3bf77f72d365929f20851c76888d046c6a429cdf77f2986caabaf",
+      "evaluation/verify_stage91.py": "221e592868a1e246234ae0742cf3f583b3f7d45e95aa98721d20177b18a8a904",
+      "evaluation/verify_stage92.py": "d7cd13660ba7ffcf737758d578e1f43b5c25e0263a195c98dc7f91cddce97b4e",
+      "evaluation/oracle/app_scheduler_oracle.py": "09593054b2e1c593cf37df7db0f286c7d26b08dbc9f9d8f7972c5e81fc485891",
+      "evaluation/oracle/path_scheduler_oracle.py": "0707416fc4f47a577a29fa6d9fd24c392d7fc29e38c85e94775189c29c9217e0",
+      "evaluation/oracle/stage91_lifecycle.py": "f555a2835be12399cbdb6009a7ed296263fb561c6c43bfe2a3be79645f93fe0d"
+    }
+  },
+  "quality": {
+    "max_edge_error_us": 5000,
+    "max_direction_skew_us": 5000,
+    "max_send_overhead_us": 500,
+    "max_event_delta_pp": 1,
+    "max_goodput_delta_percent": 5
+  },
+  "cases": [
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--0--low--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920400,
+      "assignment_seed": 930400,
+      "network_seed": 940400,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--0--low--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "short",
+      "seed": 920400,
+      "assignment_seed": 930400,
+      "network_seed": 940400,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--0--high--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920400,
+      "assignment_seed": 930400,
+      "network_seed": 940400,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--0--high--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "short",
+      "seed": 920400,
+      "assignment_seed": 930400,
+      "network_seed": 940400,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--0--low--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920401,
+      "assignment_seed": 930401,
+      "network_seed": 940401,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--0--low--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "short",
+      "seed": 920401,
+      "assignment_seed": 930401,
+      "network_seed": 940401,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--0--high--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920401,
+      "assignment_seed": 930401,
+      "network_seed": 940401,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--0--high--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "short",
+      "seed": 920401,
+      "assignment_seed": 930401,
+      "network_seed": 940401,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--1--low--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920402,
+      "assignment_seed": 930402,
+      "network_seed": 940402,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--1--low--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "short",
+      "seed": 920402,
+      "assignment_seed": 930402,
+      "network_seed": 940402,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--1--high--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920402,
+      "assignment_seed": 930402,
+      "network_seed": 940402,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--early--1--high--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "short",
+      "seed": 920402,
+      "assignment_seed": 930402,
+      "network_seed": 940402,
+      "network_sha256": "f2513721e40a24bb09c4159a95b744ae6596b0ea82b2c7f89fb6046943a78be1",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--1--low--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920403,
+      "assignment_seed": 930403,
+      "network_seed": 940403,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--1--low--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "short",
+      "seed": 920403,
+      "assignment_seed": 930403,
+      "network_seed": 940403,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--1--high--regular",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920403,
+      "assignment_seed": 930403,
+      "network_seed": 940403,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-jitter--late--1--high--short",
+      "environment": "sealed-jitter",
+      "family": "rtt-variance-shift",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "short",
+      "seed": 920403,
+      "assignment_seed": 930403,
+      "network_seed": 940403,
+      "network_sha256": "8e247e5ca0965cd3b5e5141bb46007c1978e4afd327dd1bd708b3c0555f383b0",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          9,
+          27,
+          0,
+          2
+        ],
+        "b": [
+          15,
+          17,
+          0,
+          3
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              22,
+              27,
+              0,
+              8
+            ],
+            "b": [
+              11,
+              17,
+              0,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--0--low--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920500,
+      "assignment_seed": 930500,
+      "network_seed": 940500,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--0--low--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "short",
+      "seed": 920500,
+      "assignment_seed": 930500,
+      "network_seed": 940500,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--0--high--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920500,
+      "assignment_seed": 930500,
+      "network_seed": 940500,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--0--high--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "short",
+      "seed": 920500,
+      "assignment_seed": 930500,
+      "network_seed": 940500,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--0--low--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920501,
+      "assignment_seed": 930501,
+      "network_seed": 940501,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--0--low--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "short",
+      "seed": 920501,
+      "assignment_seed": 930501,
+      "network_seed": 940501,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--0--high--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920501,
+      "assignment_seed": 930501,
+      "network_seed": 940501,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--0--high--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "short",
+      "seed": 920501,
+      "assignment_seed": 930501,
+      "network_seed": 940501,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--1--low--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920502,
+      "assignment_seed": 930502,
+      "network_seed": 940502,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--1--low--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "short",
+      "seed": 920502,
+      "assignment_seed": 930502,
+      "network_seed": 940502,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--1--high--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920502,
+      "assignment_seed": 930502,
+      "network_seed": 940502,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--early--1--high--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "short",
+      "seed": 920502,
+      "assignment_seed": 930502,
+      "network_seed": 940502,
+      "network_sha256": "8c386a9c9c305b3ef630a78515896e3ad9cde98a6c19572e2a4a81fbf73cd039",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 710000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--1--low--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920503,
+      "assignment_seed": 930503,
+      "network_seed": 940503,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--1--low--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "short",
+      "seed": 920503,
+      "assignment_seed": 930503,
+      "network_seed": 940503,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--1--high--regular",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920503,
+      "assignment_seed": 930503,
+      "network_seed": 940503,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-queue--late--1--high--short",
+      "environment": "sealed-queue",
+      "family": "asymmetric-rate-queue",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "short",
+      "seed": 920503,
+      "assignment_seed": 930503,
+      "network_seed": 940503,
+      "network_sha256": "d4a9b9e40a99fc9d888a1e795698b806871187474fbb21df41f9dc1aa684d4f3",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          5,
+          33,
+          0
+        ],
+        "b": [
+          16,
+          19,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "server",
+          "links": {
+            "a": [
+              5,
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "queue_burst": {
+        "side": "server",
+        "link": "a",
+        "packets": 32,
+        "bytes": 1000,
+        "at_us": 1260000
+      }
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--0--low--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920600,
+      "assignment_seed": 930600,
+      "network_seed": 940600,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--0--low--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "short",
+      "seed": 920600,
+      "assignment_seed": 930600,
+      "network_seed": 940600,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--0--high--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920600,
+      "assignment_seed": 930600,
+      "network_seed": 940600,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--0--high--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "short",
+      "seed": 920600,
+      "assignment_seed": 930600,
+      "network_seed": 940600,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--0--low--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920601,
+      "assignment_seed": 930601,
+      "network_seed": 940601,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--0--low--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "short",
+      "seed": 920601,
+      "assignment_seed": 930601,
+      "network_seed": 940601,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--0--high--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920601,
+      "assignment_seed": 930601,
+      "network_seed": 940601,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--0--high--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "short",
+      "seed": 920601,
+      "assignment_seed": 930601,
+      "network_seed": 940601,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--1--low--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920602,
+      "assignment_seed": 930602,
+      "network_seed": 940602,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--1--low--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "low",
+      "budget": "short",
+      "seed": 920602,
+      "assignment_seed": 930602,
+      "network_seed": 940602,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--1--high--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920602,
+      "assignment_seed": 930602,
+      "network_seed": 940602,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--early--1--high--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "early",
+      "load": "high",
+      "budget": "short",
+      "seed": 920602,
+      "assignment_seed": 930602,
+      "network_seed": 940602,
+      "network_sha256": "5f02e0f2ac6ab3c52d6480ca934ec4ba40157295d4f4588e6dfbdb424f02e824",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 700000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 810000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--1--low--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "regular",
+      "seed": 920603,
+      "assignment_seed": 930603,
+      "network_seed": 940603,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--1--low--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "low",
+      "budget": "short",
+      "seed": 920603,
+      "assignment_seed": 930603,
+      "network_seed": 940603,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--1--high--regular",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "regular",
+      "seed": 920603,
+      "assignment_seed": 930603,
+      "network_seed": 940603,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage92": true,
+      "version": 1,
+      "policy": "proposed-app",
+      "repair": "strict",
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "ablation": "full",
+      "required": {},
+      "horizon_us": 2400000,
+      "name": "sealed-loss--late--1--high--short",
+      "environment": "sealed-loss",
+      "family": "loss-pto-reversal",
+      "split": "sealed",
+      "timing": "late",
+      "load": "high",
+      "budget": "short",
+      "seed": 920603,
+      "assignment_seed": 930603,
+      "network_seed": 940603,
+      "network_sha256": "16081264fe72b8cab2c88d59a64edcf6cd42e318ab566cb372d351fc047f07c7",
+      "path_scheduler": "random-path",
+      "trace": "full",
+      "features": true,
+      "initial": {
+        "a": [
+          8,
+          29,
+          0
+        ],
+        "b": [
+          27,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 1250000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              100
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1360000,
+          "side": "both",
+          "links": {
+            "a": [
+              31,
+              5,
+              15
+            ],
+            "b": [
+              6,
+              23,
+              0
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "comparison_policies": [
+    "fixed-minrtt",
+    "earliest-completion",
+    "proposed-path",
+    "random-path"
+  ],
+  "statistics": {
+    "unit": "independent connection seed",
+    "prediction": "paired Brier, effective slack (0,100000]",
+    "delivery": "generated short events including unsubmitted; received before deadline and window",
+    "interval": "paired seed bootstrap, 4000 draws; Holm by prespecified hypothesis family",
+    "missing": "retain every run and row; report coverage and invalid runs by environment"
+  },
+  "access": "Configuration only. An independent custodian must freeze candidate, sample size and software, verify the manifest and authorize a separate confirmatory runner. Development runner rejects this partition.",
+  "seal_sha256": "54fa0b2627210946929864a7b86386eb7fae3baec8b16d9667dd0107b1f280a0"
+}

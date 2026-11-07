@@ -9,3 +9,4 @@ ctest --test-dir "$build/app" --output-on-failure
 PYTHONDONTWRITEBYTECODE=1 python3 "$root/tests/stage7_test.py"
 PYTHONDONTWRITEBYTECODE=1 python3 "$root/tests/stage8_test.py"
 PYTHONDONTWRITEBYTECODE=1 python3 "$root/tests/stage91_test.py" "$@"
+PYTHONDONTWRITEBYTECODE=1 python3 "$root/tests/stage92_test.py"

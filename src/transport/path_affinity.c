@@ -39,14 +39,26 @@ static struct iot_path_sample path_sample(xqc_path_ctx_t *path, double loss_scal
 }
 
 size_t iot_path_samples(xqc_connection_t *conn, struct iot_path_sample *samples, size_t capacity,
-                        double loss_scale)
+                        double loss_scale, bool features)
 {
     size_t count = 0;
     xqc_list_head_t *pos, *next;
     xqc_list_for_each_safe(pos, next, &conn->conn_paths_list) {
         xqc_path_ctx_t *path = xqc_list_entry(pos, xqc_path_ctx_t, path_list);
-        if (path_available(path) && count < capacity)
-            samples[count++] = path_sample(path, loss_scale);
+        if (path_available(path) && count < capacity) {
+            struct iot_path_sample *sample = &samples[count++];
+            *sample = path_sample(path, loss_scale);
+            if (features) {
+                xqc_send_ctl_t *ctl = path->path_send_ctl;
+                sample->sampled_us = iot_profile_clock() / 1000;
+                sample->rtt_updated_us = ctl->ctl_iot_rtt_update_us;
+                sample->delivered_us = ctl->ctl_delivered_time;
+                if (ctl->ctl_cong && ctl->ctl_cong_callback->xqc_cong_ctl_get_cwnd)
+                    sample->cwnd_bytes = ctl->ctl_cong_callback->xqc_cong_ctl_get_cwnd(ctl->ctl_cong);
+                sample->total_lost = ctl->ctl_lost_count;
+                sample->retransmission_rate = xqc_send_ctl_get_retrans_rate(ctl);
+            }
+        }
     }
     return count;
 }
@@ -111,6 +123,8 @@ static xqc_path_ctx_t *choose_path(void *state, xqc_connection_t *conn, xqc_pack
     }
     if (blocked)
         *blocked = chosen == NULL && home_available;
+    if (control->profile)
+        packet->po_iot_selected_ns = chosen ? iot_profile_clock() : 0;
     if (control->integrity) {
         packet->po_iot_decision = chosen ? ++control->decisions : 0;
         if (chosen)
