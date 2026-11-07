@@ -29,6 +29,8 @@ IoT-MPQUIC-Scheduler 在同一条 QUIC 连接上通过两条独立的 UDP 路径
 
 归档包含 **42 次运行、84 份接口抓包和 1,830 条输入记录**。 [技术报告与全部图表](docs/stage6-research-report.md) · [运行指标](results/stage6/runs.csv) · [逐记录数据](results/stage6/records.csv) · [配对差值](results/stage6/paired-deltas.csv)
 
+Stage 7 分开评估应用层与路径层，在独立种子上复跑因子实验，并验证跨路径修复与完成概率校准。 [Stage 7 报告](docs/stage7-research-report.md) · [Stage 7 审计](results/stage7/audit.json)
+
 ## 快速开始
 
 在支持网络命名空间、veth 和 `sch_netem` 的 Linux shell 中运行。归档实验使用 Ubuntu 24.04 WSL2。在项目根目录执行以下命令。

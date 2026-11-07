@@ -29,6 +29,8 @@ In the event-only burst, the joint policy improved the on-time count from 11/18 
 
 The archive contains **42 runs, 84 interface captures and 1,830 input records**. [Technical report and all figures](docs/stage6-research-report.md) · [Run metrics](results/stage6/runs.csv) · [Per-record data](results/stage6/records.csv) · [Paired deltas](results/stage6/paired-deltas.csv)
 
+Stage 7 separates application and path scheduling, repeats the factorial across independent seeds, and evaluates cross-path repair and completion calibration. [Stage 7 report](docs/stage7-research-report.md) · [Stage 7 audit](results/stage7/audit.json)
+
 ## Quick start
 
 Use a Linux shell with network namespace, veth and `sch_netem` support. The archived runs used Ubuntu 24.04 on WSL2. From the repository checkout:

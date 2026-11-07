@@ -11,6 +11,7 @@ static const char *const policy_names[] = {
     [IOT_LATEST_RR] = "latest-rr",
     [IOT_PROPOSED_STRICT] = "proposed-strict",
     [IOT_PROPOSED_CROSS] = "proposed-cross",
+    [IOT_PROPOSED_APP] = "proposed-app",
 };
 
 static const char *const ablation_names[] = {
@@ -21,6 +22,7 @@ static const char *const ablation_names[] = {
     [IOT_FIXED_PATH] = "fixed-path",
     [IOT_NO_RECOVERY] = "no-recovery",
     [IOT_NO_CROSS] = "no-cross",
+    [IOT_NO_PROBABILITY] = "no-probability",
 };
 
 const char *iot_ablation_name(enum iot_ablation ablation)
@@ -61,6 +63,11 @@ bool iot_policy_replaces(enum iot_policy policy)
 }
 
 bool iot_policy_proposed(enum iot_policy policy)
+{
+    return iot_policy_joint(policy) || policy == IOT_PROPOSED_APP;
+}
+
+bool iot_policy_joint(enum iot_policy policy)
 {
     return policy == IOT_PROPOSED_STRICT || policy == IOT_PROPOSED_CROSS;
 }

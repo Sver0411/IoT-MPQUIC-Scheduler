@@ -14,7 +14,8 @@ struct iot_path_control {
     struct iot_binding bindings[IOT_MAX_RECORDS];
 };
 
-size_t iot_path_samples(xqc_connection_t *conn, struct iot_path_sample *samples, size_t capacity);
+size_t iot_path_samples(xqc_connection_t *conn, struct iot_path_sample *samples, size_t capacity,
+                        double loss_scale);
 extern const xqc_scheduler_callback_t iot_affinity_callback;
 
 #endif

@@ -1,0 +1,37 @@
+{
+  "name": "event-heavy--7104--A",
+  "scenario": "event-heavy",
+  "network_profile": "stable",
+  "workload": "event-heavy",
+  "cell": "A",
+  "policy": "fifo",
+  "path_scheduler": "minrtt",
+  "ablation": "full",
+  "application_scheduler": "fifo",
+  "repair": "native",
+  "seed": 7104,
+  "network_seed": 482677265,
+  "initial": {
+    "a": [
+      4,
+      30,
+      0
+    ],
+    "b": [
+      24,
+      12,
+      0
+    ]
+  },
+  "phases": [],
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "tuning": {
+    "event_burst": 3,
+    "severity_weight": 2,
+    "waiting_weight": 1,
+    "slack_margin_us": 0,
+    "loss_scale": 1
+  },
+  "experiment_order": 225
+}

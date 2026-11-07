@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "case": "partial-loss--7101--D",
+  "records": 33,
+  "submitted": 18,
+  "received": 18,
+  "replaced": 15,
+  "obsolete": 0,
+  "acked": 18,
+  "captured_paths": {
+    "A": {
+      "path_id": 0,
+      "capture": {
+        "client_to_server": {
+          "packets": 86,
+          "udp_payload_bytes": 12522
+        },
+        "server_to_client": {
+          "packets": 90,
+          "udp_payload_bytes": 5939
+        }
+      },
+      "server_stream_packets": 7
+    },
+    "B": {
+      "path_id": 1,
+      "capture": {
+        "client_to_server": {
+          "packets": 97,
+          "udp_payload_bytes": 41239
+        },
+        "server_to_client": {
+          "packets": 94,
+          "udp_payload_bytes": 6073
+        }
+      },
+      "server_stream_packets": 37
+    }
+  },
+  "workload_sha256": "d4beed44cbf8d770362c405525ccba66671c86aa307ee3e606a76bd036e15805",
+  "flow": {
+    "tx_window": 8,
+    "initial_uni_credit": 4,
+    "send_packets": 24
+  },
+  "build": {
+    "exe_sha256": "4d5bfbd6417d2747365ad3bd42f1e06412fdfc2dfcbaefd76c85bf84be8f3de6",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+  },
+  "cross_path_packets": 0,
+  "stream_packets_in_window": 44,
+  "transition_lag_us": 8317
+}

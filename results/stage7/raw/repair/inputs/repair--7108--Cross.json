@@ -1,0 +1,64 @@
+{
+  "name": "repair--7108--Cross",
+  "scenario": "repair",
+  "network_profile": "repair-probe",
+  "workload": "repair-probe",
+  "cell": "Cross",
+  "policy": "proposed-cross",
+  "path_scheduler": "proposed-path",
+  "ablation": "full",
+  "application_scheduler": "proposed-cross",
+  "repair": "cross",
+  "seed": 7108,
+  "network_seed": 830242017,
+  "initial": {
+    "a": [
+      4,
+      30,
+      0
+    ],
+    "b": [
+      24,
+      12,
+      0
+    ]
+  },
+  "phases": [
+    {
+      "at_us": 100000,
+      "side": "client",
+      "links": {
+        "a": [
+          4,
+          30,
+          100
+        ]
+      }
+    },
+    {
+      "at_us": 1000000,
+      "links": {
+        "a": [
+          45,
+          6,
+          0
+        ],
+        "b": [
+          5,
+          30,
+          0
+        ]
+      }
+    }
+  ],
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "tuning": {
+    "event_burst": 3,
+    "severity_weight": 2,
+    "waiting_weight": 1,
+    "slack_margin_us": 0,
+    "loss_scale": 1
+  },
+  "experiment_order": 2
+}

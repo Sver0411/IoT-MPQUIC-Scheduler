@@ -17,30 +17,34 @@ static bool path_available(const xqc_path_ctx_t *path)
            path->app_path_status != XQC_APP_PATH_STATUS_FROZEN;
 }
 
-static struct iot_path_sample path_sample(xqc_path_ctx_t *path)
+static struct iot_path_sample path_sample(xqc_path_ctx_t *path, double loss_scale)
 {
     xqc_send_ctl_t *ctl = path->path_send_ctl;
     uint64_t sent = (uint64_t)ctl->ctl_recent_send_count[0] + ctl->ctl_recent_send_count[1];
     uint64_t lost = (uint64_t)ctl->ctl_recent_lost_count[0] + ctl->ctl_recent_lost_count[1];
+    double loss = fmin(0.95, (lost + 1.0) / (sent + 20.0));
     return (struct iot_path_sample){
         .id = path->path_id,
         .rtt_us = xqc_send_ctl_get_srtt(ctl),
         .rttvar_us = ctl->ctl_rttvar,
         .rate_Bps = xqc_send_ctl_get_est_bw(ctl),
-        .queued_bytes = (uint64_t)ctl->ctl_bytes_in_flight + path->path_schedule_bytes,
-        .loss = fmin(0.95, (lost + 1.0) / (sent + 20.0)),
+        .queued_bytes = path->path_schedule_bytes,
+        .in_flight_bytes = ctl->ctl_bytes_in_flight,
+        .loss = fmin(0.95, loss * loss_scale),
+        .observed_loss = loss,
         .pto = ctl->ctl_pto_count,
     };
 }
 
-size_t iot_path_samples(xqc_connection_t *conn, struct iot_path_sample *samples, size_t capacity)
+size_t iot_path_samples(xqc_connection_t *conn, struct iot_path_sample *samples, size_t capacity,
+                        double loss_scale)
 {
     size_t count = 0;
     xqc_list_head_t *pos, *next;
     xqc_list_for_each_safe(pos, next, &conn->conn_paths_list) {
         xqc_path_ctx_t *path = xqc_list_entry(pos, xqc_path_ctx_t, path_list);
         if (path_available(path) && count < capacity)
-            samples[count++] = path_sample(path);
+            samples[count++] = path_sample(path, loss_scale);
     }
     return count;
 }
@@ -71,7 +75,7 @@ static xqc_path_ctx_t *choose_path(void *state, xqc_connection_t *conn, xqc_pack
         struct iot_path_sample original = {0};
         struct iot_estimate home_est = {0};
         if (home_available) {
-            original = path_sample(home);
+            original = path_sample(home, 1);
             home_est = iot_estimate_path(&original, packet->po_used_size, slack);
         }
         if (!home_ready || original.pto || home_est.duration_us >= slack) {
@@ -84,7 +88,7 @@ static xqc_path_ctx_t *choose_path(void *state, xqc_connection_t *conn, xqc_pack
                 if (path == home || !path_available(path) ||
                     !xqc_scheduler_check_path_can_send(path, packet, 1))
                     continue;
-                struct iot_path_sample alt = path_sample(path);
+                struct iot_path_sample alt = path_sample(path, 1);
                 struct iot_estimate estimate = iot_estimate_path(&alt, packet->po_used_size, slack);
                 bool healthier = home_ready && original.pto > 0 && alt.pto == 0;
                 if (healthier || estimate.probability > best_probability ||

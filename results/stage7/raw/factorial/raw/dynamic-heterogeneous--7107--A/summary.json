@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "case": "dynamic-heterogeneous--7107--A",
+  "records": 33,
+  "submitted": 28,
+  "received": 28,
+  "replaced": 0,
+  "obsolete": 0,
+  "acked": 16,
+  "captured_paths": {
+    "A": {
+      "path_id": 0,
+      "capture": {
+        "client_to_server": {
+          "packets": 129,
+          "udp_payload_bytes": 66397
+        },
+        "server_to_client": {
+          "packets": 83,
+          "udp_payload_bytes": 5784
+        }
+      },
+      "server_stream_packets": 64
+    },
+    "B": {
+      "path_id": 1,
+      "capture": {
+        "client_to_server": {
+          "packets": 60,
+          "udp_payload_bytes": 5062
+        },
+        "server_to_client": {
+          "packets": 106,
+          "udp_payload_bytes": 6192
+        }
+      },
+      "server_stream_packets": 0
+    }
+  },
+  "workload_sha256": "cb1a8682ff2e20850ee0d00bc4992a9d32bc2f7578c7cac40f1b33405dd21b68",
+  "flow": {
+    "tx_window": 8,
+    "initial_uni_credit": 4,
+    "send_packets": 24
+  },
+  "build": {
+    "exe_sha256": "4d5bfbd6417d2747365ad3bd42f1e06412fdfc2dfcbaefd76c85bf84be8f3de6",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+  },
+  "cross_path_packets": 0,
+  "stream_packets_in_window": 64,
+  "transition_lag_us": 21271
+}

@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "suites": {
+    "pilot": 39,
+    "factorial": 280,
+    "loss": 40,
+    "repair": 20,
+    "ablation": 130,
+    "sensitivity": 130
+  },
+  "runs": 639,
+  "captures": 1278,
+  "records": 30095,
+  "predictions": 7662,
+  "paired_deltas": 10790,
+  "seeds_per_condition": {
+    "ablation": {
+      "mechanisms": 10
+    },
+    "factorial": {
+      "dynamic-heterogeneous": 10,
+      "event-heavy": 10,
+      "high-load": 20,
+      "path-outage": 10,
+      "stable": 10,
+      "state-heavy": 10
+    },
+    "loss": {
+      "partial-loss": 10
+    },
+    "pilot": {
+      "dynamic-heterogeneous": 1,
+      "event-heavy": 1,
+      "high-load": 1,
+      "mechanisms": 1,
+      "path-outage": 1,
+      "repair": 1,
+      "stable": 1,
+      "state-heavy": 1
+    },
+    "repair": {
+      "repair": 10
+    },
+    "sensitivity": {
+      "sensitivity": 10
+    }
+  },
+  "build": {
+    "exe_sha256": "4d5bfbd6417d2747365ad3bd42f1e06412fdfc2dfcbaefd76c85bf84be8f3de6",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+  },
+  "figures": [
+    "01-conditions",
+    "02-factorial",
+    "03-tradeoff",
+    "04-baselines",
+    "05-path-traffic",
+    "06-reliability",
+    "07-repair-timeline",
+    "08-ablations",
+    "09-fairness",
+    "10-sensitivity"
+  ]
+}

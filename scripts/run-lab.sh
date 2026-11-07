@@ -6,8 +6,8 @@ stage=${1:-}
 if ! { [[ $stage == 1 || $stage == 2 ]] && (( $# <= 2 )); } &&
    ! { [[ $stage == 3 ]] && (( $# == 4 )); } &&
    ! { [[ $stage == 4 ]] && (( $# == 5 )); } &&
-   ! { [[ $stage == 5 ]] && (( $# == 7 )); }; then
-    echo "Usage: run-lab.sh {1|2} [DIRECTORY] | run-lab.sh 3 DIRECTORY POLICY WORKLOAD | run-lab.sh 4 DIRECTORY POLICY WORKLOAD K | run-lab.sh 5 DIRECTORY POLICY WORKLOAD K CASE ABLATION" >&2
+   ! { [[ $stage == 5 || $stage == 7 ]] && (( $# == 7 )); }; then
+    echo "Usage: run-lab.sh {1|2} [DIRECTORY] | run-lab.sh 3 DIRECTORY POLICY WORKLOAD | run-lab.sh 4 DIRECTORY POLICY WORKLOAD K | run-lab.sh {5|7} DIRECTORY POLICY WORKLOAD K CASE ABLATION" >&2
     exit 2
 fi
 shift
@@ -73,11 +73,20 @@ wait_log() {
 source "$root/network/topology/dual-veth.sh"
 source "$root/network/scenarios/performance-reversal.sh"
 setup_topology
+if [[ $stage == 7 && -n ${IOT_NETEM_TC:-} ]]; then
+    for ns in "$client_ns" "$server_ns"; do
+        ip netns exec "$ns" sysctl -qw net.ipv6.conf.all.disable_ipv6=1
+    done
+fi
 {
-    uname -a
+    if [[ $stage == 7 ]]; then uname -srvm; else uname -a; fi
     cat /etc/os-release
     ip -Version
     tc -Version
+    if [[ $stage == 7 && -n ${IOT_NETEM_TC:-} ]]; then
+        "$IOT_NETEM_TC" -Version
+        sha256sum "$IOT_NETEM_TC"
+    fi
     tcpdump --version
     sha256sum "$exe"
     local_xquic="$root/third_party/xquic"
@@ -85,7 +94,7 @@ setup_topology
     xquic_rev=$(git -c safe.directory="$local_xquic" -C "$local_xquic" rev-parse HEAD)
     tls_rev=$(git -c safe.directory="$local_tls" -C "$local_tls" rev-parse HEAD)
     printf 'xquic=%s\nboringssl=%s\n' "$xquic_rev" "$tls_rev"
-    if [[ $stage == 4 || $stage == 5 ]]; then
+    if [[ $stage == 4 || $stage == 5 || $stage == 7 ]]; then
         printf 'stream_pto_patch=%s\n' "$(sha256sum < "$root/patches/xquic/stream-pto-scheduler.patch" | cut -d ' ' -f 1)"
     fi
     for ns in "$client_ns" "$server_ns"; do
@@ -111,7 +120,7 @@ measure_profile() {
     ip netns exec "$client_ns" ping -n -I iot-b -c 5 -i 0.1 -W 1 10.47.2.2 > "$out/ping-B-$phase.txt"
 }
 
-if [[ $stage == 5 ]]; then
+if [[ $stage == 5 || $stage == 7 ]]; then
     cp -- "$5" "$out/case.json"
     python3 "$root/network/scenarios/stage5.py" initial "$out" "$client_ns" "$server_ns"
 else
@@ -133,9 +142,9 @@ if [[ $stage != 1 ]]; then
     printf 'seed=%s\n' "$seed" >> "$out/environment.txt"
     sha256sum "$out/workload.bin" >> "$out/environment.txt"
     client_args+=("$out/workload.bin")
-    if [[ $stage == 3 || $stage == 4 || $stage == 5 ]]; then client_args+=("$2"); fi
-    if [[ $stage == 4 ]]; then client_args+=("$4"); fi
-    if [[ $stage == 5 && $2 == proposed-cross ]]; then client_args+=("$4" "$6"); fi
+    if [[ $stage == 3 || $stage == 4 || $stage == 5 || $stage == 7 ]]; then client_args+=("$2"); fi
+    if [[ $stage == 4 || ( $stage == 7 && $2 == proposed-app ) ]]; then client_args+=("$4"); fi
+    if [[ ( $stage == 5 || $stage == 7 ) && $2 == proposed-cross ]]; then client_args+=("$4" "$6"); fi
 fi
 openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:P-256 -nodes -days 1 \
     -subj "/CN=iot-stage$stage" -keyout "$out/lab-key.pem" -out "$out/lab-cert.pem" 2> "$out/openssl.log"
@@ -170,13 +179,20 @@ if [[ $stage == 4 ]]; then
     python3 -c 'import time; print("restore_begin_us", time.monotonic_ns() // 1000)' >> "$out/transition.txt"
     measure_profile 2
 fi
-if [[ $stage == 5 ]]; then
+if [[ $stage == 5 || $stage == 7 ]]; then
     wait_log "$out/client.log" 'event=iot_start ' "$client_pid"
     python3 "$root/network/scenarios/stage5.py" timeline "$out" "$client_ns" "$server_ns"
 fi
-wait "$client_pid"
-client_pid=
-wait "$server_pid"
+if [[ $stage == 7 ]]; then
+    # The fixed-window verifier distinguishes a lost close or unfinished stream after cutoff.
+    wait "$client_pid" || echo "Client exited with status $?"
+    client_pid=
+    wait "$server_pid" || echo "Receiver exited with status $? after the client closed"
+else
+    wait "$client_pid"
+    client_pid=
+    wait "$server_pid"
+fi
 server_pid=
 stop_captures
 python3 "$root/evaluation/verify_stage$stage.py" "$out" | tee "$out/summary.json"

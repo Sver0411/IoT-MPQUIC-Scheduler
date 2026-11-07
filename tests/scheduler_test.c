@@ -5,7 +5,7 @@
 #include "scheduler/scheduler.h"
 
 static struct iot_workload workload;
-static struct iot_scheduler scheduler;
+static struct iot_scheduler scheduler = {.tuning = IOT_DEFAULT_TUNING};
 
 static void add(uint8_t kind, uint32_t source, uint64_t generated, uint64_t deadline,
                 uint64_t maximum_age, uint8_t priority)
@@ -162,8 +162,73 @@ static void test_proposed(void)
     assert(iot_plan_record(&scheduler, &workload, now, paths, 2).category == IOT_URGENT);
 }
 
+static void test_independent_factors(void)
+{
+    add(IOT_STATE, 1, 0, 100000, 100000, 1);
+    add(IOT_EVENT, 1, 0, 100000, 0, 4);
+    workload.entries[1].record.severity = 4;
+    admit(0);
+    admit(0);
+    struct iot_plan app = iot_plan_record(&scheduler, &workload, 1, NULL, 0);
+    assert(app.entry == &workload.entries[1]);
+    struct iot_path_sample paths[] = {
+        {.id = 0, .rtt_us = 300000, .rate_Bps = 100000},
+        {.id = 1, .rtt_us = 20000, .rate_Bps = 100000},
+    };
+    struct iot_plan with_samples = iot_plan_record(&scheduler, &workload, 1, paths, 2);
+    assert(with_samples.entry == app.entry && with_samples.score == app.score);
+    iot_plan_path(&app, iot_record_slack(&app.entry->record, 1), paths, 2, false);
+    assert(app.path_id == 1 && app.estimate.probability > 0);
+    paths[1].in_flight_bytes = 1000000;
+    iot_plan_path(&app, iot_record_slack(&app.entry->record, 1), paths, 2, false);
+    assert(app.path_id == 0 && app.estimate.probability == 0);
+    scheduler.policy = IOT_FIFO;
+    assert(iot_select(&scheduler, &workload) == &workload.entries[0]);
+
+    scheduler.policy = IOT_PROPOSED_APP;
+    workload.count = workload.next = 0;
+    for (size_t i = 0; i < IOT_MAX_RECORDS; i++) {
+        add(IOT_EVENT, 1, 0, 100000, 0, 1);
+        admit(0);
+    }
+    workload.entries[IOT_MAX_RECORDS - 1].record.severity = 5;
+    assert(iot_plan_record(&scheduler, &workload, 1, NULL, 0).entry ==
+           &workload.entries[IOT_MAX_RECORDS - 1]);
+}
+
+static void test_receiver(void)
+{
+    static struct iot_receiver receiver;
+    struct iot_record event = {.kind = IOT_EVENT, .source = 1, .serial = 8, .id = 1, .deadline = 3};
+    const struct iot_ack *ack = iot_receive(&receiver, &event, 2, 2);
+    assert(ack && ack->status == IOT_ACCEPTED && ack->on_time);
+    event.source = 2;
+    event.id = 2;
+    ack = iot_receive(&receiver, &event, 6, 4);
+    assert(ack && ack->status == IOT_ACCEPTED && !ack->on_time);
+    event.id = 3;
+    ack = iot_receive(&receiver, &event, 10, 4);
+    assert(ack && ack->status == IOT_DUPLICATE);
+    assert(!iot_receive(&receiver, &event, 14, 4));
+    struct iot_record state = {.kind = IOT_STATE, .source = 1, .id = 4};
+    ack = iot_receive(&receiver, &state, 14, 1);
+    assert(ack && ack->status == IOT_UPDATED);
+    state.id = 5;
+    ack = iot_receive(&receiver, &state, 18, 2);
+    assert(ack && ack->status == IOT_STALE);
+    state.id = 6;
+    state.source = 2;
+    ack = iot_receive(&receiver, &state, 22, 2);
+    assert(ack && ack->status == IOT_UPDATED);
+    iot_free_receiver(&receiver);
+}
+
 int main(int argc, char **argv)
 {
+    if (argc == 2 && !strcmp(argv[1], "receiver")) {
+        test_receiver();
+        return 0;
+    }
     assert(argc == 2 && iot_parse_policy(argv[1], &scheduler.policy));
     assert(!strcmp(iot_policy_name(scheduler.policy), argv[1]));
     enum iot_policy invalid;
@@ -174,6 +239,7 @@ int main(int argc, char **argv)
     case IOT_EDF: test_order((uint32_t[]){3, 4, 1, 2}); break;
     case IOT_AOI: test_aoi(); break;
     case IOT_LATEST_RR: test_round_robin(); break;
+    case IOT_PROPOSED_APP: test_independent_factors(); return 0;
     case IOT_PROPOSED_STRICT:
     case IOT_PROPOSED_CROSS:
         test_proposed();

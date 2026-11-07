@@ -1,0 +1,56 @@
+Stage 7 artifacts: /var/tmp/iot-stage7-final/high-extension/raw/high-load--7115--D
+{
+  "status": "passed",
+  "case": "high-load--7115--D",
+  "records": 53,
+  "submitted": 14,
+  "received": 14,
+  "replaced": 26,
+  "obsolete": 0,
+  "acked": 12,
+  "captured_paths": {
+    "A": {
+      "path_id": 0,
+      "capture": {
+        "client_to_server": {
+          "packets": 25,
+          "udp_payload_bytes": 11639
+        },
+        "server_to_client": {
+          "packets": 23,
+          "udp_payload_bytes": 3384
+        }
+      },
+      "server_stream_packets": 8
+    },
+    "B": {
+      "path_id": 1,
+      "capture": {
+        "client_to_server": {
+          "packets": 175,
+          "udp_payload_bytes": 54794
+        },
+        "server_to_client": {
+          "packets": 155,
+          "udp_payload_bytes": 8287
+        }
+      },
+      "server_stream_packets": 46
+    }
+  },
+  "workload_sha256": "449ec8e7dbabd2873ecc557963f639ee7b6d6e15e74ecd90477e51774a7148b0",
+  "flow": {
+    "tx_window": 8,
+    "initial_uni_credit": 4,
+    "send_packets": 24
+  },
+  "build": {
+    "exe_sha256": "4d5bfbd6417d2747365ad3bd42f1e06412fdfc2dfcbaefd76c85bf84be8f3de6",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+  },
+  "cross_path_packets": 0,
+  "stream_packets_in_window": 62,
+  "transition_lag_us": 20313
+}

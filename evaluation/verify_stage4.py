@@ -148,14 +148,15 @@ def verify_joint_queue(root, client, workload, origin, policy):
     return dropped
 
 
-def transmitted_streams(path):
-    pattern = re.compile(r"\|xqc_send_packet_with_pn\|<==\|.*?\|path:(\d+)\|.*?\|frame:([^|]+)"
+def transmitted_streams(path, include_bytes=False):
+    pattern = re.compile(r"\|xqc_send_packet_with_pn\|<==\|.*?\|path:(\d+)\|.*?\|sent:(\d+)\|.*?\|frame:([^|]+)"
                          r"\|.*?\|now:(\d+)\|stream_id:(\d+)\|stream_offset:(\d+)\|")
     with path.open() as file:
         for line in file:
             match = pattern.search(line)
-            if match and "STREAM" in match[2].split():
-                yield match[4], match[5], match[1], int(match[3])
+            if match and "STREAM" in match[3].split():
+                row = match[5], match[6], match[1], int(match[4])
+                yield (*row, int(match[2])) if include_bytes else row
 
 
 def verify_affinity(root, client, allow_cross):

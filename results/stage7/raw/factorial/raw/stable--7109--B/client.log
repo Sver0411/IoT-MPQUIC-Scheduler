@@ -1,0 +1,519 @@
+t_us=284144214 event=path_map link=A path_id=0 local=10.47.1.1:4434 peer=10.47.1.2:4433
+t_us=284144324 event=ready role=client
+t_us=284144447 event=conn_open
+t_us=284144466 event=udp_tx link=A path_id=0 bytes=1200
+t_us=284161862 event=udp_tx link=A path_id=0 bytes=1200
+t_us=284161875 event=udp_rx link=A path_id=0 bytes=1200 recv_us=284161744 rc=0
+t_us=284162054 event=handshake
+t_us=284162066 event=quic_stats phase=0 mp=1 mp_state=0 available=1 lost=0 sent=2 spurious=0
+t_us=284162069 event=quic_path phase=0 path_id=0 tx_packets=2 rx_packets=2 data_tx_bytes=0 data_rx_bytes=0
+t_us=284162080 event=udp_tx link=A path_id=0 bytes=84
+t_us=284162089 event=udp_tx link=A path_id=0 bytes=50
+t_us=284162093 event=udp_rx link=A path_id=0 bytes=688 recv_us=284161878 rc=0
+t_us=284162099 event=udp_rx link=A path_id=0 bytes=51 recv_us=284162096 rc=0
+t_us=284170636 event=udp_tx link=A path_id=0 bytes=61
+t_us=284170653 event=udp_tx link=A path_id=0 bytes=61
+t_us=284170674 event=udp_tx link=A path_id=0 bytes=61
+t_us=284170681 event=udp_tx link=A path_id=0 bytes=61
+t_us=284170685 event=udp_rx link=A path_id=0 bytes=30 recv_us=284170578 rc=0
+t_us=284170699 event=udp_tx link=A path_id=0 bytes=38
+t_us=284170703 event=udp_rx link=A path_id=0 bytes=68 recv_us=284170688 rc=0
+t_us=284170771 event=udp_rx link=A path_id=0 bytes=477 recv_us=284170720 rc=0
+t_us=284170781 event=udp_rx link=A path_id=0 bytes=50 recv_us=284170774 rc=0
+t_us=284170793 event=udp_tx link=A path_id=0 bytes=40
+t_us=284170798 event=udp_rx link=A path_id=0 bytes=61 recv_us=284170784 rc=0
+t_us=284170804 event=udp_rx link=A path_id=0 bytes=61 recv_us=284170800 rc=0
+t_us=284170813 event=udp_tx link=A path_id=0 bytes=40
+t_us=284170817 event=udp_rx link=A path_id=0 bytes=61 recv_us=284170806 rc=0
+t_us=284170823 event=udp_rx link=A path_id=0 bytes=61 recv_us=284170819 rc=0
+t_us=284178953 event=udp_rx link=A path_id=0 bytes=40 recv_us=284178909 rc=0
+t_us=284178967 event=udp_rx link=A path_id=0 bytes=40 recv_us=284178959 rc=0
+t_us=284178979 event=path_map link=B path_id=1 local=10.47.2.1:4434 peer=10.47.2.2:4433
+t_us=284179000 event=udp_tx link=A path_id=0 bytes=61
+t_us=284179020 event=udp_tx link=B path_id=1 bytes=1200
+t_us=284196419 event=udp_tx link=A path_id=0 bytes=41
+t_us=284212871 event=udp_rx link=A path_id=0 bytes=39 recv_us=284212842 rc=0
+t_us=284256385 event=udp_rx link=A path_id=0 bytes=61 recv_us=284256349 rc=0
+t_us=284277198 event=udp_tx link=B path_id=1 bytes=1200
+t_us=284277217 event=udp_rx link=B path_id=1 bytes=1200 recv_us=284277140 rc=0
+t_us=284277984 event=udp_tx link=B path_id=1 bytes=38
+t_us=284277991 event=udp_rx link=B path_id=1 bytes=1200 recv_us=284277965 rc=0
+t_us=284277993 event=paths_validated count=2
+t_us=284278001 event=quic_stats phase=0 mp=1 mp_state=1 available=2 lost=0 sent=10 spurious=0
+t_us=284278002 event=quic_path phase=0 path_id=0 tx_packets=8 rx_packets=15 data_tx_bytes=0 data_rx_bytes=0
+t_us=284278004 event=quic_path phase=0 path_id=1 tx_packets=2 rx_packets=2 data_tx_bytes=0 data_rx_bytes=0
+t_us=284278005 event=iot_start origin=284278005 records=33 tx_window=8 initial_uni_credit=4 send_packets=24 policy=proposed-app
+t_us=284278007 event=iot_recovery_config k=2 event_burst=3
+t_us=284278008 event=iot_ablation name=full
+t_us=284278009 event=iot_experiment path=minrtt repair=native horizon_us=4000000 cc=cubic pacing=1
+t_us=284278010 event=iot_tuning event_burst=3 severity_weight=2 waiting_weight=1 slack_margin_us=0 loss_scale=1
+t_us=284282129 event=udp_tx link=A path_id=0 bytes=39
+t_us=284302170 event=udp_rx link=B path_id=1 bytes=39 recv_us=284302149 rc=0
+t_us=284351813 event=udp_rx link=B path_id=1 bytes=39 recv_us=284351754 rc=0
+t_us=284500601 event=iot_input id=1 kind=2 source=1 serial=100 release=220000
+t_us=284500618 event=iot_input id=2 kind=2 source=1 serial=101 release=220000
+t_us=284500619 event=iot_input id=3 kind=2 source=1 serial=102 release=220000
+t_us=284500633 event=stream_open stream_id=2 direction=tx
+t_us=284500634 event=iot_submit id=2 stream_id=2 submitted=284500634 expired=0 active_tx=1
+t_us=284500673 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284500692 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284500698 event=udp_tx link=A path_id=0 bytes=1012
+t_us=284500702 event=stream_fin_tx stream_id=2 id=2 bytes=3341
+t_us=284500712 event=stream_open stream_id=6 direction=tx
+t_us=284500713 event=iot_submit id=1 stream_id=6 submitted=284500713 expired=0 active_tx=2
+t_us=284500722 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284500728 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284500734 event=udp_tx link=A path_id=0 bytes=369
+t_us=284500738 event=stream_fin_tx stream_id=6 id=1 bytes=2698
+t_us=284500747 event=stream_open stream_id=10 direction=tx
+t_us=284500748 event=iot_submit id=3 stream_id=10 submitted=284500748 expired=0 active_tx=3
+t_us=284500757 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284500763 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284500769 event=udp_tx link=A path_id=0 bytes=165
+t_us=284500773 event=stream_fin_tx stream_id=10 id=3 bytes=2494
+t_us=284509577 event=udp_rx link=A path_id=0 bytes=38 recv_us=284509534 rc=0
+t_us=284509934 event=stream_open stream_id=3 direction=rx
+t_us=284509956 event=udp_rx link=A path_id=0 bytes=77 recv_us=284509907 rc=0
+t_us=284509962 event=iot_ack id=2 stream_id=2 ack_stream_id=3 submitted=284500634 server_received=284505719 client_received=284509962 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=284510208 event=udp_rx link=A path_id=0 bytes=38 recv_us=284510191 rc=0
+t_us=284510667 event=udp_rx link=A path_id=0 bytes=38 recv_us=284510650 rc=0
+t_us=284510696 event=stream_open stream_id=7 direction=rx
+t_us=284510700 event=udp_rx link=A path_id=0 bytes=77 recv_us=284510672 rc=0
+t_us=284510704 event=iot_ack id=1 stream_id=6 ack_stream_id=7 submitted=284500713 server_received=284506495 client_received=284510704 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=284510717 event=udp_tx link=A path_id=0 bytes=38
+t_us=284511336 event=udp_rx link=A path_id=0 bytes=38 recv_us=284511318 rc=0
+t_us=284511358 event=stream_open stream_id=11 direction=rx
+t_us=284511363 event=udp_rx link=A path_id=0 bytes=77 recv_us=284511341 rc=0
+t_us=284511367 event=iot_ack id=3 stream_id=10 ack_stream_id=11 submitted=284500748 server_received=284507195 client_received=284511367 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=284521555 event=iot_input id=4 kind=1 source=1 serial=1 release=240000
+t_us=284521569 event=iot_input id=5 kind=1 source=2 serial=1 release=240000
+t_us=284521571 event=iot_input id=6 kind=1 source=3 serial=1 release=240000
+t_us=284521591 event=stream_open stream_id=14 direction=tx
+t_us=284521593 event=iot_submit id=4 stream_id=14 submitted=284521593 expired=0 active_tx=4
+t_us=284521634 event=udp_tx link=A path_id=0 bytes=1216
+t_us=284521647 event=udp_tx link=A path_id=0 bytes=338
+t_us=284521654 event=stream_fin_tx stream_id=14 id=4 bytes=1486
+t_us=284521665 event=iot_stream_create blocked=1 id=5 active_tx=4
+t_us=284530347 event=udp_tx link=A path_id=0 bytes=31
+t_us=284530376 event=udp_tx link=A path_id=0 bytes=31
+t_us=284530382 event=udp_rx link=A path_id=0 bytes=38 recv_us=284530292 rc=0
+t_us=284530394 event=stream_open stream_id=15 direction=rx
+t_us=284530399 event=udp_rx link=A path_id=0 bytes=77 recv_us=284530385 rc=0
+t_us=284530405 event=iot_ack id=4 stream_id=14 ack_stream_id=15 submitted=284521593 server_received=284526130 client_received=284530404 status=1 on_time=1 latest_generated=284518005 latest_serial=1
+t_us=284530411 event=udp_tx link=A path_id=0 bytes=38
+t_us=284538718 event=udp_rx link=A path_id=0 bytes=38 recv_us=284538677 rc=0
+t_us=284778400 event=iot_input id=7 kind=1 source=1 serial=2 release=500000
+t_us=284778412 event=iot_input id=8 kind=1 source=2 serial=2 release=500000
+t_us=284778414 event=iot_replace input=8 dropped=5 source=2
+t_us=284778415 event=iot_input id=9 kind=1 source=3 serial=2 release=500000
+t_us=284778417 event=iot_replace input=9 dropped=6 source=3
+t_us=284900739 event=iot_input id=10 kind=2 source=2 serial=103 release=620000
+t_us=284900754 event=iot_input id=11 kind=2 source=2 serial=104 release=620000
+t_us=284900756 event=iot_input id=12 kind=2 source=2 serial=105 release=620000
+t_us=285034827 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034842 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034848 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034853 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034858 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034864 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034869 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034874 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034879 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034884 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034889 event=udp_tx link=A path_id=0 bytes=31
+t_us=285034893 event=udp_rx link=A path_id=0 bytes=31 recv_us=285034765 rc=0
+t_us=285039989 event=iot_input id=13 kind=1 source=1 serial=3 release=760000
+t_us=285040015 event=iot_replace input=13 dropped=7 source=1
+t_us=285040019 event=iot_input id=14 kind=1 source=2 serial=3 release=760000
+t_us=285040020 event=iot_replace input=14 dropped=8 source=2
+t_us=285040021 event=iot_input id=15 kind=1 source=3 serial=3 release=760000
+t_us=285040023 event=iot_replace input=15 dropped=9 source=3
+t_us=285043153 event=udp_tx link=A path_id=0 bytes=38
+t_us=285043161 event=udp_rx link=A path_id=0 bytes=31 recv_us=285043119 rc=0
+t_us=285043172 event=udp_rx link=A path_id=0 bytes=38 recv_us=285043164 rc=0
+t_us=285043188 event=udp_rx link=A path_id=0 bytes=38 recv_us=285043174 rc=0
+t_us=285043194 event=udp_rx link=A path_id=0 bytes=38 recv_us=285043190 rc=0
+t_us=285043201 event=udp_rx link=A path_id=0 bytes=38 recv_us=285043196 rc=0
+t_us=285043206 event=udp_rx link=A path_id=0 bytes=38 recv_us=285043202 rc=0
+t_us=285058519 event=stream_open stream_id=18 direction=tx
+t_us=285058537 event=iot_stream_create blocked=0 id=10 active_tx=5
+t_us=285058538 event=iot_submit id=10 stream_id=18 submitted=285058538 expired=0 active_tx=5
+t_us=285058609 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058622 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058629 event=udp_tx link=A path_id=0 bytes=593
+t_us=285058633 event=stream_fin_tx stream_id=18 id=10 bytes=2922
+t_us=285058645 event=stream_open stream_id=22 direction=tx
+t_us=285058646 event=iot_submit id=11 stream_id=22 submitted=285058646 expired=0 active_tx=6
+t_us=285058656 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058662 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058667 event=udp_tx link=A path_id=0 bytes=1015
+t_us=285058671 event=stream_fin_tx stream_id=22 id=11 bytes=3344
+t_us=285058679 event=stream_open stream_id=26 direction=tx
+t_us=285058681 event=iot_submit id=12 stream_id=26 submitted=285058681 expired=0 active_tx=7
+t_us=285058689 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058706 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058712 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285058718 event=udp_tx link=A path_id=0 bytes=107
+t_us=285058722 event=stream_fin_tx stream_id=26 id=12 bytes=3617
+t_us=285058737 event=iot_stream_create blocked=1 id=14 active_tx=7
+t_us=285067167 event=udp_tx link=A path_id=0 bytes=31
+t_us=285067179 event=udp_tx link=A path_id=0 bytes=31
+t_us=285067184 event=udp_rx link=A path_id=0 bytes=38 recv_us=285067139 rc=0
+t_us=285067638 event=udp_rx link=A path_id=0 bytes=38 recv_us=285067618 rc=0
+t_us=285068026 event=udp_rx link=A path_id=0 bytes=31 recv_us=285068010 rc=0
+t_us=285068041 event=udp_tx link=A path_id=0 bytes=40
+t_us=285068048 event=udp_rx link=A path_id=0 bytes=31 recv_us=285068031 rc=0
+t_us=285068349 event=udp_rx link=A path_id=0 bytes=38 recv_us=285068328 rc=0
+t_us=285068938 event=udp_rx link=A path_id=0 bytes=38 recv_us=285068902 rc=0
+t_us=285069611 event=udp_rx link=A path_id=0 bytes=38 recv_us=285069595 rc=0
+t_us=285074714 event=stream_open stream_id=30 direction=tx
+t_us=285074728 event=iot_stream_create blocked=0 id=14 active_tx=8
+t_us=285074730 event=iot_submit id=14 stream_id=30 submitted=285074730 expired=0 active_tx=8
+t_us=285074768 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285074781 event=udp_tx link=A path_id=0 bytes=1186
+t_us=285074787 event=stream_fin_tx stream_id=30 id=14 bytes=2334
+t_us=285074788 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=285075461 event=udp_rx link=A path_id=0 bytes=31 recv_us=285075439 rc=0
+t_us=285075476 event=udp_rx link=A path_id=0 bytes=38 recv_us=285075466 rc=0
+t_us=285083694 event=udp_rx link=A path_id=0 bytes=38 recv_us=285083668 rc=0
+t_us=285101103 event=udp_tx link=A path_id=0 bytes=39
+t_us=285109389 event=udp_rx link=A path_id=0 bytes=31 recv_us=285109365 rc=0
+t_us=285109412 event=udp_tx link=A path_id=0 bytes=38
+t_us=285109418 event=udp_rx link=A path_id=0 bytes=31 recv_us=285109398 rc=0
+t_us=285303089 event=iot_input id=16 kind=1 source=1 serial=4 release=1020000
+t_us=285303099 event=iot_replace input=16 dropped=13 source=1
+t_us=285303100 event=iot_input id=17 kind=1 source=2 serial=4 release=1020000
+t_us=285303102 event=iot_input id=18 kind=1 source=3 serial=4 release=1020000
+t_us=285303103 event=iot_replace input=18 dropped=15 source=3
+t_us=285440568 event=iot_input id=19 kind=2 source=3 serial=106 release=1160000
+t_us=285440585 event=iot_input id=20 kind=2 source=3 serial=107 release=1160000
+t_us=285440587 event=iot_input id=21 kind=2 source=3 serial=108 release=1160000
+t_us=285562898 event=iot_input id=22 kind=1 source=1 serial=5 release=1280000
+t_us=285562907 event=iot_replace input=22 dropped=16 source=1
+t_us=285562908 event=iot_input id=23 kind=1 source=2 serial=5 release=1280000
+t_us=285562909 event=iot_replace input=23 dropped=17 source=2
+t_us=285562910 event=iot_input id=24 kind=1 source=3 serial=5 release=1280000
+t_us=285562911 event=iot_replace input=24 dropped=18 source=3
+t_us=285592404 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592362 rc=0
+t_us=285592424 event=udp_tx link=A path_id=0 bytes=38
+t_us=285592430 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592410 rc=0
+t_us=285592435 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592432 rc=0
+t_us=285592444 event=udp_tx link=A path_id=0 bytes=38
+t_us=285592447 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592437 rc=0
+t_us=285592453 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592450 rc=0
+t_us=285592461 event=udp_tx link=A path_id=0 bytes=41
+t_us=285592465 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592455 rc=0
+t_us=285592470 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592467 rc=0
+t_us=285592478 event=udp_tx link=A path_id=0 bytes=41
+t_us=285592482 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592472 rc=0
+t_us=285592487 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592483 rc=0
+t_us=285592500 event=udp_tx link=A path_id=0 bytes=41
+t_us=285592503 event=udp_rx link=A path_id=0 bytes=31 recv_us=285592489 rc=0
+t_us=285636379 event=stream_closed stream_id=3 id=2 fin=1 direction=rx active_tx=8
+t_us=285636401 event=stream_closed stream_id=2 id=2 fin=1 direction=tx active_tx=7
+t_us=285636424 event=udp_tx link=A path_id=0 bytes=31
+t_us=285636432 event=iot_window blocked=0 active_tx=7 limit=8
+t_us=285636437 event=stream_open stream_id=34 direction=tx
+t_us=285636438 event=iot_submit id=20 stream_id=34 submitted=285636438 expired=0 active_tx=8
+t_us=285636451 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285636459 event=udp_tx link=A path_id=0 bytes=771
+t_us=285636463 event=stream_fin_tx stream_id=34 id=20 bytes=1919
+t_us=285636464 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=285637545 event=stream_closed stream_id=6 id=1 fin=1 direction=tx active_tx=7
+t_us=285637558 event=stream_closed stream_id=7 id=1 fin=1 direction=rx active_tx=7
+t_us=285637578 event=stream_closed stream_id=10 id=3 fin=1 direction=tx active_tx=6
+t_us=285637583 event=stream_closed stream_id=11 id=3 fin=1 direction=rx active_tx=6
+t_us=285637589 event=iot_window blocked=0 active_tx=6 limit=8
+t_us=285637595 event=iot_stream_create blocked=1 id=19 active_tx=6
+t_us=285644659 event=udp_tx link=A path_id=0 bytes=31
+t_us=285644678 event=udp_tx link=A path_id=0 bytes=31
+t_us=285644686 event=udp_tx link=A path_id=0 bytes=31
+t_us=285644690 event=udp_rx link=A path_id=0 bytes=31 recv_us=285644635 rc=0
+t_us=285645024 event=udp_tx link=A path_id=0 bytes=41
+t_us=285645032 event=udp_rx link=A path_id=0 bytes=31 recv_us=285645000 rc=0
+t_us=285645049 event=udp_rx link=A path_id=0 bytes=38 recv_us=285645040 rc=0
+t_us=285652976 event=udp_rx link=A path_id=0 bytes=39 recv_us=285652935 rc=0
+t_us=285652989 event=udp_rx link=A path_id=0 bytes=39 recv_us=285652982 rc=0
+t_us=285652997 event=stream_open stream_id=38 direction=tx
+t_us=285652999 event=iot_stream_create blocked=0 id=19 active_tx=7
+t_us=285653000 event=iot_submit id=19 stream_id=38 submitted=285653000 expired=0 active_tx=7
+t_us=285653022 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285653032 event=udp_tx link=A path_id=0 bytes=989
+t_us=285653037 event=stream_fin_tx stream_id=38 id=19 bytes=2137
+t_us=285653042 event=stream_open stream_id=42 direction=tx
+t_us=285653044 event=iot_submit id=21 stream_id=42 submitted=285653043 expired=0 active_tx=8
+t_us=285653060 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285653072 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285653079 event=udp_tx link=A path_id=0 bytes=90
+t_us=285653083 event=stream_fin_tx stream_id=42 id=21 bytes=2419
+t_us=285653085 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=285657172 event=stream_closed stream_id=14 id=4 fin=1 direction=tx active_tx=7
+t_us=285657195 event=stream_closed stream_id=15 id=4 fin=1 direction=rx active_tx=7
+t_us=285657215 event=iot_window blocked=0 active_tx=7 limit=8
+t_us=285657221 event=stream_open stream_id=46 direction=tx
+t_us=285657222 event=iot_submit id=23 stream_id=46 submitted=285657222 expired=0 active_tx=8
+t_us=285657247 event=udp_tx link=A path_id=0 bytes=1216
+t_us=285657259 event=udp_tx link=A path_id=0 bytes=1077
+t_us=285657264 event=stream_fin_tx stream_id=46 id=23 bytes=2225
+t_us=285657265 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=285661859 event=udp_rx link=A path_id=0 bytes=39 recv_us=285661834 rc=0
+t_us=285662538 event=udp_rx link=A path_id=0 bytes=39 recv_us=285662519 rc=0
+t_us=285665887 event=stream_open stream_id=19 direction=rx
+t_us=285665900 event=udp_rx link=A path_id=0 bytes=77 recv_us=285665871 rc=0
+t_us=285665910 event=stream_open stream_id=23 direction=rx
+t_us=285665915 event=udp_rx link=A path_id=0 bytes=77 recv_us=285665903 rc=0
+t_us=285665920 event=iot_ack id=10 stream_id=18 ack_stream_id=19 submitted=285058538 server_received=285063517 client_received=285665919 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=285665924 event=iot_ack id=11 stream_id=22 ack_stream_id=23 submitted=285058646 server_received=285064470 client_received=285665924 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=285665937 event=udp_tx link=A path_id=0 bytes=31
+t_us=285665946 event=udp_tx link=A path_id=0 bytes=39
+t_us=285665959 event=stream_open stream_id=27 direction=rx
+t_us=285665964 event=udp_rx link=A path_id=0 bytes=77 recv_us=285665953 rc=0
+t_us=285665968 event=iot_ack id=12 stream_id=26 ack_stream_id=27 submitted=285058681 server_received=285065506 client_received=285665968 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=285666155 event=udp_tx link=A path_id=0 bytes=39
+t_us=285666168 event=udp_rx link=A path_id=0 bytes=31 recv_us=285666131 rc=0
+t_us=285666196 event=udp_rx link=A path_id=0 bytes=39 recv_us=285666171 rc=0
+t_us=285674230 event=udp_rx link=A path_id=0 bytes=31 recv_us=285674209 rc=0
+t_us=285684694 event=stream_open stream_id=31 direction=rx
+t_us=285684710 event=udp_rx link=A path_id=0 bytes=77 recv_us=285684673 rc=0
+t_us=285684717 event=iot_ack id=14 stream_id=30 ack_stream_id=31 submitted=285074730 server_received=285079522 client_received=285684716 status=1 on_time=1 latest_generated=285038005 latest_serial=3
+t_us=285684730 event=udp_tx link=A path_id=0 bytes=39
+t_us=285692994 event=udp_rx link=A path_id=0 bytes=31 recv_us=285692970 rc=0
+t_us=285693020 event=udp_tx link=A path_id=0 bytes=39
+t_us=285693025 event=udp_rx link=A path_id=0 bytes=31 recv_us=285693003 rc=0
+t_us=285700228 event=udp_rx link=A path_id=0 bytes=40 recv_us=285700203 rc=0
+t_us=285701236 event=udp_rx link=A path_id=0 bytes=31 recv_us=285701220 rc=0
+t_us=285726730 event=udp_tx link=A path_id=0 bytes=40
+t_us=285735020 event=udp_rx link=A path_id=0 bytes=31 recv_us=285734995 rc=0
+t_us=285760526 event=udp_tx link=A path_id=0 bytes=40
+t_us=285768785 event=udp_rx link=A path_id=0 bytes=31 recv_us=285768752 rc=0
+t_us=285794239 event=udp_tx link=A path_id=0 bytes=40
+t_us=285819702 event=iot_input id=25 kind=1 source=1 serial=6 release=1540000
+t_us=285819714 event=iot_replace input=25 dropped=22 source=1
+t_us=285819716 event=iot_input id=26 kind=1 source=2 serial=6 release=1540000
+t_us=285819717 event=iot_input id=27 kind=1 source=3 serial=6 release=1540000
+t_us=285819719 event=iot_replace input=27 dropped=24 source=3
+t_us=286079334 event=iot_input id=28 kind=1 source=1 serial=7 release=1800000
+t_us=286079353 event=iot_replace input=28 dropped=25 source=1
+t_us=286079356 event=iot_input id=29 kind=1 source=2 serial=7 release=1800000
+t_us=286079357 event=iot_replace input=29 dropped=26 source=2
+t_us=286079359 event=iot_input id=30 kind=1 source=3 serial=7 release=1800000
+t_us=286079360 event=iot_replace input=30 dropped=27 source=3
+t_us=286169202 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169182 rc=0
+t_us=286169221 event=udp_tx link=A path_id=0 bytes=39
+t_us=286169249 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169210 rc=0
+t_us=286169257 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169252 rc=0
+t_us=286169269 event=udp_tx link=A path_id=0 bytes=41
+t_us=286169272 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169260 rc=0
+t_us=286169277 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169274 rc=0
+t_us=286169284 event=udp_tx link=A path_id=0 bytes=41
+t_us=286169287 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169279 rc=0
+t_us=286169291 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169289 rc=0
+t_us=286169298 event=udp_tx link=A path_id=0 bytes=41
+t_us=286169301 event=udp_rx link=A path_id=0 bytes=31 recv_us=286169293 rc=0
+t_us=286177491 event=udp_rx link=A path_id=0 bytes=31 recv_us=286177460 rc=0
+t_us=286193914 event=stream_closed stream_id=18 id=10 fin=1 direction=tx active_tx=7
+t_us=286193942 event=iot_window blocked=0 active_tx=7 limit=8
+t_us=286193947 event=stream_open stream_id=50 direction=tx
+t_us=286193949 event=iot_submit id=30 stream_id=50 submitted=286193949 expired=0 active_tx=8
+t_us=286193974 event=udp_tx link=A path_id=0 bytes=1216
+t_us=286193985 event=udp_tx link=A path_id=0 bytes=1119
+t_us=286193991 event=stream_fin_tx stream_id=50 id=30 bytes=2267
+t_us=286193992 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=286195128 event=stream_closed stream_id=22 id=11 fin=1 direction=tx active_tx=7
+t_us=286195147 event=iot_window blocked=0 active_tx=7 limit=8
+t_us=286195154 event=iot_stream_create blocked=1 id=28 active_tx=7
+t_us=286196237 event=stream_closed stream_id=26 id=12 fin=1 direction=tx active_tx=6
+t_us=286196264 event=udp_tx link=A path_id=0 bytes=31
+t_us=286202589 event=udp_tx link=A path_id=0 bytes=31
+t_us=286202599 event=udp_tx link=A path_id=0 bytes=41
+t_us=286202603 event=udp_rx link=A path_id=0 bytes=31 recv_us=286202546 rc=0
+t_us=286202802 event=udp_rx link=A path_id=0 bytes=39 recv_us=286202784 rc=0
+t_us=286210027 event=stream_closed stream_id=30 id=14 fin=1 direction=tx active_tx=5
+t_us=286210854 event=udp_rx link=A path_id=0 bytes=39 recv_us=286210833 rc=0
+t_us=286215979 event=stream_open stream_id=54 direction=tx
+t_us=286215992 event=iot_stream_create blocked=0 id=28 active_tx=6
+t_us=286215993 event=iot_submit id=28 stream_id=54 submitted=286215993 expired=0 active_tx=6
+t_us=286216061 event=udp_tx link=A path_id=0 bytes=1216
+t_us=286216077 event=udp_tx link=A path_id=0 bytes=363
+t_us=286216083 event=stream_fin_tx stream_id=54 id=28 bytes=1511
+t_us=286216089 event=stream_open stream_id=58 direction=tx
+t_us=286216090 event=iot_submit id=29 stream_id=58 submitted=286216090 expired=0 active_tx=7
+t_us=286216102 event=udp_tx link=A path_id=0 bytes=1216
+t_us=286216110 event=udp_tx link=A path_id=0 bytes=449
+t_us=286216114 event=stream_fin_tx stream_id=58 id=29 bytes=1597
+t_us=286224801 event=udp_rx link=A path_id=0 bytes=31 recv_us=286224761 rc=0
+t_us=286224821 event=udp_rx link=A path_id=0 bytes=39 recv_us=286224808 rc=0
+t_us=286225213 event=udp_rx link=A path_id=0 bytes=39 recv_us=286225193 rc=0
+t_us=286250733 event=udp_tx link=A path_id=0 bytes=40
+t_us=286342609 event=iot_input id=31 kind=1 source=1 serial=8 release=2060000
+t_us=286342630 event=iot_input id=32 kind=1 source=2 serial=8 release=2060000
+t_us=286342632 event=iot_input id=33 kind=1 source=3 serial=8 release=2060000
+t_us=286342641 event=stream_open stream_id=62 direction=tx
+t_us=286342643 event=iot_submit id=33 stream_id=62 submitted=286342643 expired=0 active_tx=8
+t_us=286342692 event=udp_tx link=A path_id=0 bytes=1216
+t_us=286342707 event=udp_tx link=A path_id=0 bytes=808
+t_us=286342713 event=stream_fin_tx stream_id=62 id=33 bytes=1956
+t_us=286342714 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=286351279 event=udp_rx link=A path_id=0 bytes=31 recv_us=286351256 rc=0
+t_us=286351301 event=udp_tx link=A path_id=0 bytes=39
+t_us=286351306 event=udp_rx link=A path_id=0 bytes=31 recv_us=286351288 rc=0
+t_us=286351428 event=udp_rx link=A path_id=0 bytes=39 recv_us=286351410 rc=0
+t_us=286727337 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727313 rc=0
+t_us=286727367 event=udp_tx link=A path_id=0 bytes=39
+t_us=286727372 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727346 rc=0
+t_us=286727378 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727374 rc=0
+t_us=286727388 event=udp_tx link=A path_id=0 bytes=41
+t_us=286727391 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727381 rc=0
+t_us=286727396 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727393 rc=0
+t_us=286727404 event=udp_tx link=A path_id=0 bytes=41
+t_us=286727407 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727398 rc=0
+t_us=286727412 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727409 rc=0
+t_us=286727421 event=udp_tx link=A path_id=0 bytes=41
+t_us=286727424 event=udp_rx link=A path_id=0 bytes=31 recv_us=286727414 rc=0
+t_us=286749042 event=udp_rx link=A path_id=0 bytes=31 recv_us=286749006 rc=0
+t_us=286774540 event=udp_tx link=A path_id=0 bytes=42
+t_us=286779652 event=stream_closed stream_id=34 id=20 fin=1 direction=tx active_tx=7
+t_us=286779686 event=iot_window blocked=0 active_tx=7 limit=8
+t_us=286779691 event=stream_open stream_id=66 direction=tx
+t_us=286779693 event=iot_submit id=31 stream_id=66 submitted=286779693 expired=0 active_tx=8
+t_us=286779716 event=udp_tx link=A path_id=0 bytes=1216
+t_us=286779726 event=udp_tx link=A path_id=0 bytes=689
+t_us=286779730 event=stream_fin_tx stream_id=66 id=31 bytes=1835
+t_us=286779731 event=iot_window blocked=1 active_tx=8 limit=8
+t_us=286788303 event=stream_closed stream_id=38 id=19 fin=1 direction=tx active_tx=7
+t_us=286788328 event=udp_rx link=A path_id=0 bytes=31 recv_us=286788271 rc=0
+t_us=286788331 event=iot_window blocked=0 active_tx=7 limit=8
+t_us=286788338 event=stream_open stream_id=70 direction=tx
+t_us=286788340 event=iot_submit id=32 stream_id=70 submitted=286788340 expired=0 active_tx=8
+t_us=286788367 event=udp_tx link=A path_id=0 bytes=1216
+t_us=286788380 event=udp_tx link=A path_id=0 bytes=486
+t_us=286788385 event=stream_fin_tx stream_id=70 id=32 bytes=1632
+t_us=286788501 event=udp_rx link=A path_id=0 bytes=41 recv_us=286788482 rc=0
+t_us=286789588 event=stream_closed stream_id=42 id=21 fin=1 direction=tx active_tx=7
+t_us=286792794 event=stream_closed stream_id=19 id=10 fin=1 direction=rx active_tx=7
+t_us=286792813 event=stream_closed stream_id=23 id=11 fin=1 direction=rx active_tx=7
+t_us=286792819 event=stream_closed stream_id=27 id=12 fin=1 direction=rx active_tx=7
+t_us=286792823 event=stream_closed stream_id=46 id=23 fin=1 direction=tx active_tx=6
+t_us=286792871 event=udp_tx link=A path_id=0 bytes=31
+t_us=286797037 event=udp_tx link=A path_id=0 bytes=31
+t_us=286797052 event=udp_tx link=A path_id=0 bytes=39
+t_us=286797057 event=udp_rx link=A path_id=0 bytes=31 recv_us=286797012 rc=0
+t_us=286797078 event=udp_rx link=A path_id=0 bytes=41 recv_us=286797059 rc=0
+t_us=286805306 event=udp_rx link=A path_id=0 bytes=41 recv_us=286805273 rc=0
+t_us=286811484 event=stream_closed stream_id=31 id=14 fin=1 direction=rx active_tx=6
+t_us=286851133 event=stream_open stream_id=35 direction=rx
+t_us=286851161 event=udp_rx link=A path_id=0 bytes=77 recv_us=286851101 rc=0
+t_us=286851174 event=stream_open stream_id=39 direction=rx
+t_us=286851179 event=udp_rx link=A path_id=0 bytes=77 recv_us=286851165 rc=0
+t_us=286851187 event=stream_open stream_id=43 direction=rx
+t_us=286851191 event=udp_rx link=A path_id=0 bytes=77 recv_us=286851181 rc=0
+t_us=286851199 event=iot_ack id=20 stream_id=34 ack_stream_id=35 submitted=285636438 server_received=285641070 client_received=286851199 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=286851203 event=iot_ack id=19 stream_id=38 ack_stream_id=39 submitted=285653000 server_received=285657716 client_received=286851203 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=286851207 event=iot_ack id=21 stream_id=42 ack_stream_id=43 submitted=285653043 server_received=285658408 client_received=286851207 status=3 on_time=1 latest_generated=0 latest_serial=0
+t_us=286851224 event=udp_tx link=A path_id=0 bytes=31
+t_us=286851235 event=udp_tx link=A path_id=0 bytes=39
+t_us=286859520 event=udp_rx link=A path_id=0 bytes=31 recv_us=286859498 rc=0
+t_us=286859542 event=udp_tx link=A path_id=0 bytes=39
+t_us=286859547 event=udp_rx link=A path_id=0 bytes=31 recv_us=286859529 rc=0
+t_us=286867843 event=stream_open stream_id=47 direction=rx
+t_us=286867869 event=udp_rx link=A path_id=0 bytes=77 recv_us=286867820 rc=0
+t_us=286867876 event=iot_ack id=23 stream_id=46 ack_stream_id=47 submitted=285657222 server_received=285661984 client_received=286867875 status=1 on_time=1 latest_generated=285558005 latest_serial=5
+t_us=286876250 event=udp_tx link=A path_id=0 bytes=39
+t_us=286876273 event=udp_rx link=A path_id=0 bytes=31 recv_us=286876166 rc=0
+t_us=286876280 event=udp_rx link=A path_id=0 bytes=31 recv_us=286876276 rc=0
+t_us=286884507 event=udp_rx link=A path_id=0 bytes=40 recv_us=286884474 rc=0
+t_us=286901900 event=udp_tx link=A path_id=0 bytes=40
+t_us=286910194 event=udp_rx link=A path_id=0 bytes=31 recv_us=286910163 rc=0
+t_us=286910221 event=udp_tx link=A path_id=0 bytes=39
+t_us=286910227 event=udp_rx link=A path_id=0 bytes=31 recv_us=286910205 rc=0
+t_us=287312684 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312661 rc=0
+t_us=287312706 event=udp_tx link=A path_id=0 bytes=39
+t_us=287312712 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312693 rc=0
+t_us=287312718 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312714 rc=0
+t_us=287312736 event=udp_tx link=A path_id=0 bytes=41
+t_us=287312740 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312720 rc=0
+t_us=287312746 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312743 rc=0
+t_us=287312755 event=udp_tx link=A path_id=0 bytes=41
+t_us=287312758 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312748 rc=0
+t_us=287312764 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312760 rc=0
+t_us=287312772 event=udp_tx link=A path_id=0 bytes=41
+t_us=287312775 event=udp_rx link=A path_id=0 bytes=31 recv_us=287312766 rc=0
+t_us=287329134 event=stream_closed stream_id=50 id=30 fin=1 direction=tx active_tx=5
+t_us=287351569 event=stream_closed stream_id=54 id=28 fin=1 direction=tx active_tx=4
+t_us=287351592 event=stream_closed stream_id=58 id=29 fin=1 direction=tx active_tx=3
+t_us=287384323 event=udp_rx link=A path_id=0 bytes=31 recv_us=287384290 rc=0
+t_us=287409846 event=udp_tx link=A path_id=0 bytes=42
+t_us=287418140 event=udp_rx link=A path_id=0 bytes=31 recv_us=287418114 rc=0
+t_us=287443676 event=udp_tx link=A path_id=0 bytes=42
+t_us=287478393 event=stream_closed stream_id=62 id=33 fin=1 direction=tx active_tx=2
+t_us=287915501 event=stream_closed stream_id=66 id=31 fin=1 direction=tx active_tx=1
+t_us=287923733 event=stream_closed stream_id=70 id=32 fin=1 direction=tx active_tx=0
+t_us=287977798 event=stream_closed stream_id=35 id=20 fin=1 direction=rx active_tx=0
+t_us=287977877 event=stream_closed stream_id=39 id=19 fin=1 direction=rx active_tx=0
+t_us=287977883 event=stream_closed stream_id=43 id=21 fin=1 direction=rx active_tx=0
+t_us=287977899 event=udp_tx link=A path_id=0 bytes=31
+t_us=287986317 event=udp_tx link=A path_id=0 bytes=31
+t_us=287986338 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986289 rc=0
+t_us=287986348 event=udp_tx link=A path_id=0 bytes=41
+t_us=287986352 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986341 rc=0
+t_us=287986358 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986353 rc=0
+t_us=287986365 event=udp_tx link=A path_id=0 bytes=43
+t_us=287986368 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986360 rc=0
+t_us=287986378 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986370 rc=0
+t_us=287986385 event=udp_tx link=A path_id=0 bytes=43
+t_us=287986388 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986380 rc=0
+t_us=287986392 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986389 rc=0
+t_us=287986398 event=udp_tx link=A path_id=0 bytes=43
+t_us=287986401 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986394 rc=0
+t_us=287986405 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986403 rc=0
+t_us=287986412 event=udp_tx link=A path_id=0 bytes=43
+t_us=287986415 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986407 rc=0
+t_us=287986419 event=udp_rx link=A path_id=0 bytes=31 recv_us=287986417 rc=0
+t_us=287994570 event=stream_closed stream_id=47 id=23 fin=1 direction=rx active_tx=0
+t_us=287994592 event=udp_rx link=A path_id=0 bytes=41 recv_us=287994546 rc=0
+t_us=288012043 event=udp_tx link=A path_id=0 bytes=42
+t_us=288025569 event=stream_open stream_id=51 direction=rx
+t_us=288025584 event=udp_rx link=A path_id=0 bytes=77 recv_us=288025536 rc=0
+t_us=288025590 event=stream_open stream_id=55 direction=rx
+t_us=288025594 event=udp_rx link=A path_id=0 bytes=77 recv_us=288025586 rc=0
+t_us=288025599 event=stream_open stream_id=59 direction=rx
+t_us=288025602 event=udp_rx link=A path_id=0 bytes=77 recv_us=288025596 rc=0
+t_us=288025608 event=iot_ack id=30 stream_id=50 ack_stream_id=51 submitted=286193949 server_received=286198697 client_received=288025607 status=1 on_time=1 latest_generated=286078005 latest_serial=7
+t_us=288025612 event=iot_ack id=28 stream_id=54 ack_stream_id=55 submitted=286215993 server_received=286220596 client_received=288025611 status=1 on_time=1 latest_generated=286078005 latest_serial=7
+t_us=288025614 event=iot_ack id=29 stream_id=58 ack_stream_id=59 submitted=286216090 server_received=286221058 client_received=288025614 status=1 on_time=1 latest_generated=286078005 latest_serial=7
+t_us=288025628 event=udp_tx link=A path_id=0 bytes=31
+t_us=288025636 event=udp_tx link=A path_id=0 bytes=41
+t_us=288033912 event=udp_rx link=A path_id=0 bytes=31 recv_us=288033879 rc=0
+t_us=288033942 event=udp_tx link=A path_id=0 bytes=41
+t_us=288033948 event=udp_rx link=A path_id=0 bytes=31 recv_us=288033923 rc=0
+t_us=288042317 event=stream_open stream_id=63 direction=rx
+t_us=288042332 event=udp_rx link=A path_id=0 bytes=77 recv_us=288042296 rc=0
+t_us=288042340 event=iot_ack id=33 stream_id=62 ack_stream_id=63 submitted=286342643 server_received=286347319 client_received=288042339 status=1 on_time=1 latest_generated=286338005 latest_serial=8
+t_us=288059894 event=udp_tx link=A path_id=0 bytes=41
+t_us=288059912 event=udp_rx link=A path_id=0 bytes=31 recv_us=288059837 rc=0
+t_us=288059935 event=udp_rx link=A path_id=0 bytes=31 recv_us=288059915 rc=0
+t_us=288059945 event=udp_tx link=A path_id=0 bytes=41
+t_us=288059949 event=udp_rx link=A path_id=0 bytes=31 recv_us=288059938 rc=0
+t_us=288059962 event=udp_rx link=A path_id=0 bytes=40 recv_us=288059951 rc=0
+t_us=288279146 event=quic_stats phase=1 mp=1 mp_state=1 available=2 lost=0 sent=82 spurious=0
+t_us=288279155 event=quic_path phase=1 path_id=0 tx_packets=80 rx_packets=149 data_tx_bytes=43242 data_rx_bytes=1232
+t_us=288279157 event=quic_path phase=1 path_id=1 tx_packets=2 rx_packets=4 data_tx_bytes=0 data_rx_bytes=0
+t_us=288279158 event=iot_window_end elapsed=4001130 outstanding=2
+t_us=288280277 event=udp_tx link=A path_id=0 bytes=44
+t_us=288288586 event=udp_rx link=A path_id=0 bytes=45 recv_us=288288559 rc=0
+t_us=289151811 event=stream_closed stream_id=51 id=30 fin=1 direction=rx active_tx=0
+t_us=289151849 event=stream_closed stream_id=55 id=28 fin=1 direction=rx active_tx=0
+t_us=289151864 event=stream_closed stream_id=59 id=29 fin=1 direction=rx active_tx=0
+t_us=289151943 event=udp_tx link=A path_id=0 bytes=31
+t_us=289169307 event=stream_closed stream_id=63 id=33 fin=1 direction=rx active_tx=0
+t_us=289187825 event=udp_tx link=A path_id=0 bytes=31
+t_us=289187846 event=udp_tx link=A path_id=0 bytes=31
+t_us=289259355 event=udp_tx link=A path_id=0 bytes=31
+t_us=289259372 event=udp_tx link=A path_id=0 bytes=31
+t_us=289402156 event=udp_tx link=A path_id=0 bytes=31
+t_us=289402180 event=udp_tx link=A path_id=0 bytes=31
+t_us=289406312 event=conn_closed error=0
+t_us=289406354 event=udp_summary link=A path_id=0 tx=147 rx=150 tx_bytes=49541 rx_bytes=8203
+t_us=289406356 event=udp_summary link=B path_id=1 tx=3 rx=4 tx_bytes=2438 rx_bytes=2478
+t_us=289406425 event=process_cpu user_us=6585 sys_us=23049 wall_us=5262373
+t_us=289406427 event=exit ok=1

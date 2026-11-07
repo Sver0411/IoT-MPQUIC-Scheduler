@@ -1,0 +1,8209 @@
+{
+  "suite": "ablation",
+  "seeds": [
+    7101,
+    7102,
+    7103,
+    7104,
+    7105,
+    7106,
+    7107,
+    7108,
+    7109,
+    7110
+  ],
+  "jobs": 6,
+  "executable_sha256": "4d5bfbd6417d2747365ad3bd42f1e06412fdfc2dfcbaefd76c85bf84be8f3de6",
+  "cases": [
+    {
+      "name": "mechanisms--7108--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 1
+    },
+    {
+      "name": "mechanisms--7108--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 2
+    },
+    {
+      "name": "mechanisms--7108--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 3
+    },
+    {
+      "name": "mechanisms--7108--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 4
+    },
+    {
+      "name": "mechanisms--7108--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 5
+    },
+    {
+      "name": "mechanisms--7108--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 6
+    },
+    {
+      "name": "mechanisms--7108--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 7
+    },
+    {
+      "name": "mechanisms--7108--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 8
+    },
+    {
+      "name": "mechanisms--7108--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 9
+    },
+    {
+      "name": "mechanisms--7108--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 10
+    },
+    {
+      "name": "mechanisms--7108--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 11
+    },
+    {
+      "name": "mechanisms--7108--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 12
+    },
+    {
+      "name": "mechanisms--7108--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 13
+    },
+    {
+      "name": "mechanisms--7104--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 14
+    },
+    {
+      "name": "mechanisms--7104--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 15
+    },
+    {
+      "name": "mechanisms--7104--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 16
+    },
+    {
+      "name": "mechanisms--7104--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 17
+    },
+    {
+      "name": "mechanisms--7104--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 18
+    },
+    {
+      "name": "mechanisms--7104--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 19
+    },
+    {
+      "name": "mechanisms--7104--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 20
+    },
+    {
+      "name": "mechanisms--7104--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 21
+    },
+    {
+      "name": "mechanisms--7104--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 22
+    },
+    {
+      "name": "mechanisms--7104--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 23
+    },
+    {
+      "name": "mechanisms--7104--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 24
+    },
+    {
+      "name": "mechanisms--7104--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 25
+    },
+    {
+      "name": "mechanisms--7104--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 26
+    },
+    {
+      "name": "mechanisms--7109--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 27
+    },
+    {
+      "name": "mechanisms--7109--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 28
+    },
+    {
+      "name": "mechanisms--7109--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 29
+    },
+    {
+      "name": "mechanisms--7109--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 30
+    },
+    {
+      "name": "mechanisms--7109--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 31
+    },
+    {
+      "name": "mechanisms--7109--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 32
+    },
+    {
+      "name": "mechanisms--7109--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 33
+    },
+    {
+      "name": "mechanisms--7109--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 34
+    },
+    {
+      "name": "mechanisms--7109--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 35
+    },
+    {
+      "name": "mechanisms--7109--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 36
+    },
+    {
+      "name": "mechanisms--7109--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 37
+    },
+    {
+      "name": "mechanisms--7109--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 38
+    },
+    {
+      "name": "mechanisms--7109--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 39
+    },
+    {
+      "name": "mechanisms--7101--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 40
+    },
+    {
+      "name": "mechanisms--7101--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 41
+    },
+    {
+      "name": "mechanisms--7101--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 42
+    },
+    {
+      "name": "mechanisms--7101--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 43
+    },
+    {
+      "name": "mechanisms--7101--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 44
+    },
+    {
+      "name": "mechanisms--7101--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 45
+    },
+    {
+      "name": "mechanisms--7101--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 46
+    },
+    {
+      "name": "mechanisms--7101--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 47
+    },
+    {
+      "name": "mechanisms--7101--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 48
+    },
+    {
+      "name": "mechanisms--7101--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 49
+    },
+    {
+      "name": "mechanisms--7101--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 50
+    },
+    {
+      "name": "mechanisms--7101--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 51
+    },
+    {
+      "name": "mechanisms--7101--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 52
+    },
+    {
+      "name": "mechanisms--7105--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 53
+    },
+    {
+      "name": "mechanisms--7105--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 54
+    },
+    {
+      "name": "mechanisms--7105--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 55
+    },
+    {
+      "name": "mechanisms--7105--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 56
+    },
+    {
+      "name": "mechanisms--7105--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 57
+    },
+    {
+      "name": "mechanisms--7105--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 58
+    },
+    {
+      "name": "mechanisms--7105--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 59
+    },
+    {
+      "name": "mechanisms--7105--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 60
+    },
+    {
+      "name": "mechanisms--7105--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 61
+    },
+    {
+      "name": "mechanisms--7105--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 62
+    },
+    {
+      "name": "mechanisms--7105--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 63
+    },
+    {
+      "name": "mechanisms--7105--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 64
+    },
+    {
+      "name": "mechanisms--7105--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 65
+    },
+    {
+      "name": "mechanisms--7102--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 66
+    },
+    {
+      "name": "mechanisms--7102--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 67
+    },
+    {
+      "name": "mechanisms--7102--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 68
+    },
+    {
+      "name": "mechanisms--7102--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 69
+    },
+    {
+      "name": "mechanisms--7102--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 70
+    },
+    {
+      "name": "mechanisms--7102--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 71
+    },
+    {
+      "name": "mechanisms--7102--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 72
+    },
+    {
+      "name": "mechanisms--7102--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 73
+    },
+    {
+      "name": "mechanisms--7102--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 74
+    },
+    {
+      "name": "mechanisms--7102--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 75
+    },
+    {
+      "name": "mechanisms--7102--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 76
+    },
+    {
+      "name": "mechanisms--7102--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 77
+    },
+    {
+      "name": "mechanisms--7102--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 78
+    },
+    {
+      "name": "mechanisms--7107--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 79
+    },
+    {
+      "name": "mechanisms--7107--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 80
+    },
+    {
+      "name": "mechanisms--7107--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 81
+    },
+    {
+      "name": "mechanisms--7107--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 82
+    },
+    {
+      "name": "mechanisms--7107--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 83
+    },
+    {
+      "name": "mechanisms--7107--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 84
+    },
+    {
+      "name": "mechanisms--7107--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 85
+    },
+    {
+      "name": "mechanisms--7107--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 86
+    },
+    {
+      "name": "mechanisms--7107--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 87
+    },
+    {
+      "name": "mechanisms--7107--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 88
+    },
+    {
+      "name": "mechanisms--7107--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 89
+    },
+    {
+      "name": "mechanisms--7107--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 90
+    },
+    {
+      "name": "mechanisms--7107--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 91
+    },
+    {
+      "name": "mechanisms--7110--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 92
+    },
+    {
+      "name": "mechanisms--7110--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 93
+    },
+    {
+      "name": "mechanisms--7110--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 94
+    },
+    {
+      "name": "mechanisms--7110--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 95
+    },
+    {
+      "name": "mechanisms--7110--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 96
+    },
+    {
+      "name": "mechanisms--7110--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 97
+    },
+    {
+      "name": "mechanisms--7110--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 98
+    },
+    {
+      "name": "mechanisms--7110--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 99
+    },
+    {
+      "name": "mechanisms--7110--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 100
+    },
+    {
+      "name": "mechanisms--7110--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 101
+    },
+    {
+      "name": "mechanisms--7110--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 102
+    },
+    {
+      "name": "mechanisms--7110--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 103
+    },
+    {
+      "name": "mechanisms--7110--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 104
+    },
+    {
+      "name": "mechanisms--7106--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 105
+    },
+    {
+      "name": "mechanisms--7106--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 106
+    },
+    {
+      "name": "mechanisms--7106--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 107
+    },
+    {
+      "name": "mechanisms--7106--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 108
+    },
+    {
+      "name": "mechanisms--7106--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 109
+    },
+    {
+      "name": "mechanisms--7106--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 110
+    },
+    {
+      "name": "mechanisms--7106--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 111
+    },
+    {
+      "name": "mechanisms--7106--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 112
+    },
+    {
+      "name": "mechanisms--7106--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 113
+    },
+    {
+      "name": "mechanisms--7106--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 114
+    },
+    {
+      "name": "mechanisms--7106--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 115
+    },
+    {
+      "name": "mechanisms--7106--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 116
+    },
+    {
+      "name": "mechanisms--7106--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 117
+    },
+    {
+      "name": "mechanisms--7103--strict-priority",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "strict-priority",
+      "policy": "strict-priority",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "strict-priority",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 118
+    },
+    {
+      "name": "mechanisms--7103--fifo",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fifo",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 119
+    },
+    {
+      "name": "mechanisms--7103--no-aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-aoi",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-aoi",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 120
+    },
+    {
+      "name": "mechanisms--7103--no-event",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-event",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-event",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 121
+    },
+    {
+      "name": "mechanisms--7103--latest-rr",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "latest-rr",
+      "policy": "latest-rr",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "latest-rr",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 122
+    },
+    {
+      "name": "mechanisms--7103--full",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "full",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 123
+    },
+    {
+      "name": "mechanisms--7103--no-recovery",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-recovery",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-recovery",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 124
+    },
+    {
+      "name": "mechanisms--7103--no-probability",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-probability",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-probability",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 125
+    },
+    {
+      "name": "mechanisms--7103--no-cross",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-cross",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-cross",
+      "application_scheduler": "proposed-cross",
+      "repair": "strict",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 126
+    },
+    {
+      "name": "mechanisms--7103--aoi",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "aoi",
+      "policy": "aoi",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "aoi",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 127
+    },
+    {
+      "name": "mechanisms--7103--fixed-path",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "fixed-path",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "fixed-path",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 128
+    },
+    {
+      "name": "mechanisms--7103--edf",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "edf",
+      "policy": "edf",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "edf",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 129
+    },
+    {
+      "name": "mechanisms--7103--no-replace",
+      "scenario": "mechanisms",
+      "network_profile": "outage-reversal",
+      "workload": "high-mixed",
+      "cell": "no-replace",
+      "policy": "proposed-cross",
+      "path_scheduler": "proposed-path",
+      "ablation": "no-replace",
+      "application_scheduler": "proposed-cross",
+      "repair": "cross",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 130
+    }
+  ]
+}

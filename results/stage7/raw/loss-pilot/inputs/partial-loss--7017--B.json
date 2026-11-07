@@ -1,0 +1,48 @@
+{
+  "name": "partial-loss--7017--B",
+  "scenario": "partial-loss",
+  "network_profile": "loss",
+  "workload": "mixed",
+  "cell": "B",
+  "policy": "proposed-app",
+  "path_scheduler": "minrtt",
+  "ablation": "full",
+  "application_scheduler": "proposed-app",
+  "repair": "native",
+  "seed": 7017,
+  "network_seed": 643609567,
+  "initial": {
+    "a": [
+      4,
+      30,
+      0
+    ],
+    "b": [
+      24,
+      12,
+      0
+    ]
+  },
+  "phases": [
+    {
+      "at_us": 550000,
+      "links": {
+        "a": [
+          4,
+          30,
+          12
+        ]
+      }
+    }
+  ],
+  "horizon_us": 4000000,
+  "recovery_k": 2,
+  "tuning": {
+    "event_burst": 3,
+    "severity_weight": 2,
+    "waiting_weight": 1,
+    "slack_margin_us": 0,
+    "loss_scale": 1
+  },
+  "experiment_order": 1
+}

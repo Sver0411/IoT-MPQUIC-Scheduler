@@ -30,13 +30,15 @@ set_property(TARGET iot-mpquic PROPERTY LINKER_LANGUAGE CXX)
 
 enable_testing()
 add_executable(iot-scheduler-test EXCLUDE_FROM_ALL
-    tests/scheduler_test.c src/scheduler/scheduler.c src/scheduler/proposed.c src/gateway/iot_queue.c src/transport/iot_wire.c
+    tests/scheduler_test.c src/scheduler/scheduler.c src/scheduler/proposed.c
+    src/gateway/iot_queue.c src/transport/iot_wire.c src/receiver/iot_receive.c
 )
 target_compile_features(iot-scheduler-test PRIVATE c_std_11)
 target_compile_options(iot-scheduler-test PRIVATE -Wall -Wextra -Werror)
 target_include_directories(iot-scheduler-test PRIVATE src)
 target_link_libraries(iot-scheduler-test PRIVATE m)
 file(STRINGS configs/stage3-policies.txt IOT_BASELINES)
-foreach(policy IN ITEMS ${IOT_BASELINES} proposed-strict proposed-cross)
+foreach(policy IN ITEMS ${IOT_BASELINES} proposed-strict proposed-cross proposed-app)
     add_test(NAME "scheduler-${policy}" COMMAND iot-scheduler-test "${policy}")
 endforeach()
+add_test(NAME receiver-identities COMMAND iot-scheduler-test receiver)

@@ -70,7 +70,10 @@ struct iot_sensor {
 
 struct iot_receiver {
     struct iot_sensor sensors[IOT_MAX_RECORDS];
-    uint64_t event_ids[IOT_MAX_RECORDS];
+    struct iot_event_id {
+        uint32_t source;
+        uint64_t serial;
+    } event_ids[IOT_MAX_RECORDS];
     bool record_ids[IOT_MAX_RECORDS + 1];
     struct iot_ack acks[IOT_MAX_RECORDS];
     size_t sensors_count, events_count, count, next;

@@ -1,0 +1,1939 @@
+{
+  "suite": "loss",
+  "seeds": [
+    7101,
+    7102,
+    7103,
+    7104,
+    7105,
+    7106,
+    7107,
+    7108,
+    7109,
+    7110
+  ],
+  "jobs": 4,
+  "executable_sha256": "4d5bfbd6417d2747365ad3bd42f1e06412fdfc2dfcbaefd76c85bf84be8f3de6",
+  "cases": [
+    {
+      "name": "partial-loss--7103--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 1
+    },
+    {
+      "name": "partial-loss--7103--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 2
+    },
+    {
+      "name": "partial-loss--7103--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 3
+    },
+    {
+      "name": "partial-loss--7103--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7103,
+      "network_seed": 116365461,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 4
+    },
+    {
+      "name": "partial-loss--7108--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 5
+    },
+    {
+      "name": "partial-loss--7108--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 6
+    },
+    {
+      "name": "partial-loss--7108--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 7
+    },
+    {
+      "name": "partial-loss--7108--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7108,
+      "network_seed": 830242017,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 8
+    },
+    {
+      "name": "partial-loss--7101--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 9
+    },
+    {
+      "name": "partial-loss--7101--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 10
+    },
+    {
+      "name": "partial-loss--7101--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 11
+    },
+    {
+      "name": "partial-loss--7101--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7101,
+      "network_seed": 631901052,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 12
+    },
+    {
+      "name": "partial-loss--7104--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 13
+    },
+    {
+      "name": "partial-loss--7104--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 14
+    },
+    {
+      "name": "partial-loss--7104--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 15
+    },
+    {
+      "name": "partial-loss--7104--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7104,
+      "network_seed": 482677265,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 16
+    },
+    {
+      "name": "partial-loss--7107--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 17
+    },
+    {
+      "name": "partial-loss--7107--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 18
+    },
+    {
+      "name": "partial-loss--7107--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 19
+    },
+    {
+      "name": "partial-loss--7107--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7107,
+      "network_seed": 2069454666,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 20
+    },
+    {
+      "name": "partial-loss--7102--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 21
+    },
+    {
+      "name": "partial-loss--7102--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 22
+    },
+    {
+      "name": "partial-loss--7102--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 23
+    },
+    {
+      "name": "partial-loss--7102--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7102,
+      "network_seed": 2017698021,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 24
+    },
+    {
+      "name": "partial-loss--7106--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 25
+    },
+    {
+      "name": "partial-loss--7106--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 26
+    },
+    {
+      "name": "partial-loss--7106--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 27
+    },
+    {
+      "name": "partial-loss--7106--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7106,
+      "network_seed": 2073652511,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 28
+    },
+    {
+      "name": "partial-loss--7109--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 29
+    },
+    {
+      "name": "partial-loss--7109--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 30
+    },
+    {
+      "name": "partial-loss--7109--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 31
+    },
+    {
+      "name": "partial-loss--7109--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7109,
+      "network_seed": 376601769,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 32
+    },
+    {
+      "name": "partial-loss--7110--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 33
+    },
+    {
+      "name": "partial-loss--7110--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 34
+    },
+    {
+      "name": "partial-loss--7110--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 35
+    },
+    {
+      "name": "partial-loss--7110--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7110,
+      "network_seed": 1177710997,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 36
+    },
+    {
+      "name": "partial-loss--7105--C",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "C",
+      "policy": "fifo",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "strict",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 37
+    },
+    {
+      "name": "partial-loss--7105--B",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "B",
+      "policy": "proposed-app",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 38
+    },
+    {
+      "name": "partial-loss--7105--A",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "A",
+      "policy": "fifo",
+      "path_scheduler": "minrtt",
+      "ablation": "full",
+      "application_scheduler": "fifo",
+      "repair": "native",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 39
+    },
+    {
+      "name": "partial-loss--7105--D",
+      "scenario": "partial-loss",
+      "network_profile": "loss",
+      "workload": "mixed",
+      "cell": "D",
+      "policy": "proposed-app",
+      "path_scheduler": "proposed-path",
+      "ablation": "full",
+      "application_scheduler": "proposed-app",
+      "repair": "strict",
+      "seed": 7105,
+      "network_seed": 1302242798,
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 550000,
+          "links": {
+            "a": [
+              4,
+              30,
+              12
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 40
+    }
+  ]
+}

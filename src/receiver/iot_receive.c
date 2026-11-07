@@ -18,13 +18,10 @@ const struct iot_ack *iot_receive(struct iot_receiver *receiver, const struct io
         size_t i = 0;
         while (i < receiver->sensors_count && receiver->sensors[i].id != record->source)
             i++;
-        if (i == receiver->sensors_count) {
-            receiver->sensors[i].id = record->source;
-            receiver->sensors_count++;
-        }
+        bool first = i == receiver->sensors_count;
         struct iot_sensor *sensor = &receiver->sensors[i];
         ack.status = IOT_STALE;
-        if (record->generated > sensor->generated ||
+        if (first || record->generated > sensor->generated ||
             (record->generated == sensor->generated && record->serial > sensor->serial)) {
             unsigned char *payload = NULL;
             if (record->payload_len) {
@@ -38,17 +35,22 @@ const struct iot_ack *iot_receive(struct iot_receiver *receiver, const struct io
             sensor->payload_len = record->payload_len;
             sensor->generated = record->generated;
             sensor->serial = record->serial;
+            if (first) {
+                sensor->id = record->source;
+                receiver->sensors_count++;
+            }
             ack.status = IOT_UPDATED;
         }
         ack.latest_generated = sensor->generated;
         ack.latest_serial = sensor->serial;
     } else {
         size_t i = 0;
-        while (i < receiver->events_count && receiver->event_ids[i] != record->serial)
+        while (i < receiver->events_count && (receiver->event_ids[i].source != record->source ||
+                                               receiver->event_ids[i].serial != record->serial))
             i++;
         ack.status = IOT_DUPLICATE;
         if (i == receiver->events_count) {
-            receiver->event_ids[receiver->events_count++] = record->serial;
+            receiver->event_ids[receiver->events_count++] = (struct iot_event_id){record->source, record->serial};
             ack.status = IOT_ACCEPTED;
         }
     }
