@@ -1,0 +1,253 @@
+{
+  "status": "passed",
+  "source": "Stage 7 archive",
+  "findings": [
+    {
+      "raw_run": "raw/loss/raw/partial-loss--7106--D",
+      "suite": "loss",
+      "seed": 7106,
+      "cell": "D",
+      "start_utc": "2026-11-07T11:14:43.408990+00:00",
+      "end_utc": "2026-11-07T11:15:43.649181+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 3651,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 308490,
+          "exit_after_cutoff_us": 308593,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        },
+        "server": {
+          "closed_after_cutoff_us": 55824641,
+          "exit_after_cutoff_us": 55828040,
+          "exit_ok": 0,
+          "exception_evidence": [
+            {
+              "event": "timeout",
+              "stream_id": null,
+              "after_cutoff_us": 55824600
+            }
+          ],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 45,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 0,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    },
+    {
+      "raw_run": "raw/loss/raw/partial-loss--7106--B",
+      "suite": "loss",
+      "seed": 7106,
+      "cell": "B",
+      "start_utc": "2026-11-07T11:18:48.992548+00:00",
+      "end_utc": "2026-11-07T11:18:54.285721+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 2645,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 873734,
+          "exit_after_cutoff_us": 873843,
+          "exit_ok": 0,
+          "exception_evidence": [],
+          "stderr": "UDP recv: Connection refused"
+        },
+        "server": {
+          "closed_after_cutoff_us": 241661,
+          "exit_after_cutoff_us": 254499,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 45,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 0,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    },
+    {
+      "raw_run": "raw/loss/raw/partial-loss--7110--D",
+      "suite": "loss",
+      "seed": 7110,
+      "cell": "D",
+      "start_utc": "2026-11-07T11:15:08.434308+00:00",
+      "end_utc": "2026-11-07T11:16:08.686499+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 4348,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 389782,
+          "exit_after_cutoff_us": 389928,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        },
+        "server": {
+          "closed_after_cutoff_us": 55827791,
+          "exit_after_cutoff_us": 55831506,
+          "exit_ok": 0,
+          "exception_evidence": [
+            {
+              "event": "timeout",
+              "stream_id": null,
+              "after_cutoff_us": 55827725
+            }
+          ],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 45,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 0,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    },
+    {
+      "raw_run": "raw/repair/raw/repair--7105--Cross",
+      "suite": "repair",
+      "seed": 7105,
+      "cell": "Cross",
+      "start_utc": "2026-11-07T11:10:42.444176+00:00",
+      "end_utc": "2026-11-07T11:10:47.274827+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 969,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 131982,
+          "exit_after_cutoff_us": 132069,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        },
+        "server": {
+          "closed_after_cutoff_us": 396976,
+          "exit_after_cutoff_us": 400631,
+          "exit_ok": 0,
+          "exception_evidence": [
+            {
+              "event": "stream_closed",
+              "stream_id": "14",
+              "after_cutoff_us": 396948
+            }
+          ],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 52,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 1,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    },
+    {
+      "raw_run": "raw/repair/raw/repair--7101--Cross",
+      "suite": "repair",
+      "seed": 7101,
+      "cell": "Cross",
+      "start_utc": "2026-11-07T11:10:37.032256+00:00",
+      "end_utc": "2026-11-07T11:10:41.883169+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 612,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 130845,
+          "exit_after_cutoff_us": 130974,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        },
+        "server": {
+          "closed_after_cutoff_us": 397094,
+          "exit_after_cutoff_us": 401188,
+          "exit_ok": 0,
+          "exception_evidence": [
+            {
+              "event": "stream_closed",
+              "stream_id": "14",
+              "after_cutoff_us": 397077
+            }
+          ],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 52,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 1,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    },
+    {
+      "raw_run": "raw/repair/raw/repair--7107--Cross",
+      "suite": "repair",
+      "seed": 7107,
+      "cell": "Cross",
+      "start_utc": "2026-11-07T11:10:47.545336+00:00",
+      "end_utc": "2026-11-07T11:10:52.375015+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 3433,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 134085,
+          "exit_after_cutoff_us": 134217,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        },
+        "server": {
+          "closed_after_cutoff_us": 399838,
+          "exit_after_cutoff_us": 403588,
+          "exit_ok": 0,
+          "exception_evidence": [
+            {
+              "event": "stream_closed",
+              "stream_id": "14",
+              "after_cutoff_us": 399824
+            }
+          ],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 52,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 1,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    },
+    {
+      "raw_run": "raw/ablation/raw/mechanisms--7103--no-replace",
+      "suite": "ablation",
+      "seed": 7103,
+      "cell": "no-replace",
+      "start_utc": "2026-11-07T11:21:05.508159+00:00",
+      "end_utc": "2026-11-07T11:21:12.526999+00:00",
+      "time_source": "case-file-and-terminal-log-mtimes",
+      "window_end_lag_us": 2963,
+      "endpoints": {
+        "client": {
+          "closed_after_cutoff_us": 2328858,
+          "exit_after_cutoff_us": 2328988,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        },
+        "server": {
+          "closed_after_cutoff_us": 2334977,
+          "exit_after_cutoff_us": 2338434,
+          "exit_ok": 1,
+          "exception_evidence": [],
+          "stderr": ""
+        }
+      },
+      "metrics_recomputed_equal": 45,
+      "record_fin_after_window": 0,
+      "submitted_unfinished": 0,
+      "lifetime_cpu_includes_teardown": true,
+      "recommendation": "retain-window-results-and-flag-wall-clock-and-lifetime-cpu"
+    }
+  ]
+}

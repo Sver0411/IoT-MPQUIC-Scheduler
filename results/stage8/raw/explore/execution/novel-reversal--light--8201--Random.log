@@ -1,0 +1,61 @@
+Stage 8 artifacts: /var/tmp/iot-stage8/explore/runs/novel-reversal--light--8201--Random
+{
+  "status": "passed",
+  "case": "novel-reversal--light--8201--Random",
+  "records": 44,
+  "submitted": 29,
+  "received": 29,
+  "replaced": 15,
+  "obsolete": 0,
+  "acked": 24,
+  "captured_paths": {
+    "A": {
+      "path_id": 0,
+      "capture": {
+        "client_to_server": {
+          "packets": 188,
+          "udp_payload_bytes": 29253
+        },
+        "server_to_client": {
+          "packets": 189,
+          "udp_payload_bytes": 9918
+        }
+      },
+      "server_stream_packets": 27
+    },
+    "B": {
+      "path_id": 1,
+      "capture": {
+        "client_to_server": {
+          "packets": 49,
+          "udp_payload_bytes": 37551
+        },
+        "server_to_client": {
+          "packets": 41,
+          "udp_payload_bytes": 3883
+        }
+      },
+      "server_stream_packets": 36
+    }
+  },
+  "workload_sha256": "fc50db56b5175940b5b382990c682a4ec0fff3d9408deb5093ce1660c2e50b20",
+  "flow": {
+    "tx_window": 8,
+    "initial_uni_credit": 4,
+    "send_packets": 24
+  },
+  "build": {
+    "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+  },
+  "cross_path_packets": 0,
+  "stream_packets_in_window": 63,
+  "transition_lag_us": 34810,
+  "application_oracle": {
+    "admitted": 44,
+    "decisions": 85
+  },
+  "path_oracle_decisions": 29
+}

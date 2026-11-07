@@ -6,60 +6,69 @@
 
 IoT-MPQUIC-Scheduler 在同一条 QUIC 连接上通过两条独立的 UDP 路径传输周期传感器状态和独立事件，用来评估链路条件变化时，联合记录调度与路径选择能否同时改善事件按时交付和状态新鲜度。
 
-[实验结果](#实验结果) · [快速开始](#快速开始) · [复现实验](#复现实验) · [技术报告](docs/stage6-research-report.md)
+[实验结果](#实验结果) · [快速开始](#快速开始) · [复现实验](#复现实验) · [技术报告](docs/stage8-research-report.md)
 
 ## 工作方式
 
-- **应用调度。** 尚未提交的传感器状态可以被更新值替换，事件保留独立 ID。联合策略使用接收端 ACK、信息年龄（AoI）、截止预算、事件严重程度和路径估计，并通过恢复配额和服务配额给状态更新保留提交机会。
-- **路径调度。** 每条记录使用一个单向 QUIC Stream，初发绑定到一条路径。严格亲和模式沿原路修复，跨路径模式允许修复包走备用路径。服务端以完整接收记录的时刻判定截止，并通过独立的应用 ACK 返回结果。
-- **对照实验。** 提供 FIFO、严格优先级、最早截止优先、AoI-aware、最新值替换加轮转五种基线。各策略可重放相同 seed 的负载，运行时记录两端日志及双接口抓包。
+```mermaid
+flowchart LR
+    Q["事件与状态队列"] --> A["FIFO 或 Proposed-App"]
+    A --> P["原生 MinRTT 或绑定式选路"]
+    P --> S["QUIC Stream · 双 UDP 路径"]
+    S --> R["接收端 FIN · 截止与 AoI"]
+    R -->|"应用 ACK"| A
+    A --> O["独立应用 Oracle"]
+    P --> O2["独立路径 Oracle"]
+```
+
+Proposed-App 使用接收端 ACK、截止预算、事件严重度和状态新鲜度，并在队列内替换旧状态。自定义路径策略为每条 Stream 绑定初始路径。严格模式沿原路径修复，跨路径模式可以在备用路径发送修复包。两套 Oracle 分别重放实际队列选择与初始路径选择。
 
 ## 实验结果
 
-| 对照 | FIFO 或控制组 | 联合调度 |
-| --- | ---: | ---: |
-| 六种链路条件的按时事件，混合负载，seed 17 | 23/54 | **49/54** |
-| 同六种条件的等权平均 AoI | 1.329 秒 | **0.907 秒** |
-| 高混合负载的按时事件，seed 17 和 29 | 两次均为 1/20 | **两次均为 10/20** |
-| 定向中断探针完整接收，关闭与开启跨路径修复 | 1,529.6 ms | **338.0 ms** |
+### Stage 8 · 独立验证与泛化
 
-![六种链路条件下的按时事件数与平均 AoI](results/stage6/figures/01-dynamic-scenarios.png)
+Stage 8 完成 **400 次正式连接实测**。配对实验使用 20 个新种子，随机路径探索使用另外 20 个种子。
 
-纯事件突发中，联合策略将按时数从 11/18 提高到 14/18，事件 P95 从 1.36 秒升至 2.34 秒。高混合负载下，有效状态交付的 Jain 指数低于 FIFO。跨路径修复使中断探针在 A 路恢复前完成接收，两种模式均超出探针的 25 ms 截止。
+- 高负载下，概率选路把事件按时率从两种严格亲和基线的 **3.00% 提高到 24.75%**。在新的反转场景中，优势不明确。
+- 高负载的应用层与路径层交互为 **+5.00 个百分点**，Holm 校正后 `p = 0.0512`。
+- 跨路径修复将中断探针的平均完成时间从 **1,544 ms 降到 253 ms**。原始概率模型在独立测试上未稳定优于仅用剩余预算的基线。
 
-归档包含 **42 次运行、84 份接口抓包和 1,830 条输入记录**。 [技术报告与全部图表](docs/stage6-research-report.md) · [运行指标](results/stage6/runs.csv) · [逐记录数据](results/stage6/records.csv) · [配对差值](results/stage6/paired-deltas.csv)
+![两种网络条件下的路径策略与观测 AoI](results/stage8/figures/01-path-comparison.png)
 
-Stage 7 分开评估应用层与路径层，在独立种子上复跑因子实验，并验证跨路径修复与完成概率校准。 [Stage 7 报告](docs/stage7-research-report.md) · [Stage 7 审计](results/stage7/audit.json)
+[研究报告](docs/stage8-research-report.md) · [逐次指标](results/stage8/runs.csv) · [校准图](results/stage8/figures/03-reliability.png) · [实验审计](results/stage8/audit.json)
+
+### 历史实验
+
+- **Stage 7** 分开评估应用和路径调度，完成 600 次正式实测，重点高负载有 20 个种子。 [研究报告](docs/stage7-research-report.md) · [归档审计](results/stage7/audit.json)
+- **Stage 6 及之前** 保存 42 次动态网络和机制验证运行，包含双接口抓包和更早阶段的报告。 [Stage 6 报告](docs/stage6-research-report.md) · [Stage 5 报告](docs/stage5-report.md) · [文档目录](docs/)
 
 ## 快速开始
 
-在支持网络命名空间、veth 和 `sch_netem` 的 Linux shell 中运行。归档实验使用 Ubuntu 24.04 WSL2。在项目根目录执行以下命令。
+在支持网络命名空间、veth 和 `sch_netem` 的 Linux 环境中运行。归档使用 Ubuntu 24.04 WSL2。
 
 ```bash
-sudo apt-get update
 sudo apt-get install -y build-essential git cmake ninja-build iproute2 iputils-ping tcpdump openssl python3
 git submodule update --init
 bash scripts/build.sh
-sudo bash scripts/run-stage1.sh
+bash scripts/test.sh
+sudo python3 experiments/run_stage8.py results/runs/stage8-pilot --suite pilot --jobs 5
 ```
 
-快速测试会建立两条路径，在同一连接内反转链路条件，并将两路抓包与传输日志交叉核对。脚本会打印结果目录。 [环境配置与 WSL 构建路径](docs/experiment-environment.md)
+Pilot 会运行 20 次独立连接，并核对队列决策、路径决策、端点日志和双接口抓包。 [环境配置](docs/experiment-environment.md)
 
 ## 复现实验
 
-```bash
-sudo python3 experiments/run_stage5.py results/runs/stage5-seed17 --seed 17
-sudo python3 experiments/run_stage5.py results/runs/stage5-seed29 --seed 29 --suite high
-sudo python3 experiments/run_stage5.py results/runs/stage5-repair17 --seed 17 --suite repair
-```
-
-每次运行会保存负载、`tc netem` 配置与切换时间、两端日志和两份抓包。安装 `tcpdump` 后可离线复核主矩阵。
+在干净的代码 checkout 上构建后，运行完整配对和探索矩阵。安装 `evaluation/stage6-requirements.txt` 中的依赖可重新绘图。
 
 ```bash
-python3 evaluation/verify_stage5.py results/stage5-wsl/seed17 --matrix
+sudo python3 experiments/run_stage8.py results/runs/stage8-paired --suite paired --jobs 8
+sudo python3 experiments/run_stage8.py results/runs/stage8-explore --suite explore --jobs 8
+python3 evaluation/verify_stage8.py results/stage8 --archive
+python3 evaluation/stage8.py results/stage8/raw --out results/runs/stage8-recomputed \
+  --figures --compare results/stage8
 ```
 
-[实验配置](configs/stage5.json) · [指标定义与消融](docs/stage5-report.md) · [重建图表与数据表](docs/stage6-research-report.md#6-数据索引与复现)
+[实验配置](configs/stage8.json) · [实验计划](docs/stage8-experiment-plan.md) · [复现说明](docs/stage8-research-report.md#17-reproducibility-instructions--复现)
 
 ## 项目结构
 
@@ -73,7 +82,7 @@ python3 evaluation/verify_stage5.py results/stage5-wsl/seed17 --matrix
 
 ## 实验范围
 
-两条路径由同一台主机上的 IP 链路仿真提供。六种链路的主对照使用一个负载 seed，高负载对照使用两个。归档运行的 WSL 环境中，netem 的随机丢包序列随运行变化。两端使用相同的固定 XQUIC 构建，运行其 `XQC_MULTIPATH_10` 实现。 [XQUIC 版本与接口细节](docs/xquic-api.md) · [调度规则](docs/algorithm-spec.md)
+两条路径为同一宿主机上的仿真链路，业务负载为合成重放。事件延迟分位数以窗口内完整交付为条件。路径概率校准来自随机分配的已观测路径，保留在线原公式。两端运行固定的 XQUIC `XQC_MULTIPATH_10` 实现。 [XQUIC 版本](docs/xquic-api.md) · [调度规则](docs/stage7-algorithm-spec.md)
 
 ## 许可证
 

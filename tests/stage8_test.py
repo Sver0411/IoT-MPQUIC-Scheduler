@@ -6,6 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
 from oracle import app_scheduler_oracle as app, path_scheduler_oracle as path
+from stage8_statistics import fit_logistic, holm, model_metrics, sigmoid
 
 
 def state(source, generated=0, serial=1, deadline=100_000):
@@ -69,6 +70,28 @@ class OracleTest(unittest.TestCase):
             path.validate(case, record, plan, samples, {0, 1}, plan)
             with self.assertRaises(ValueError):
                 path.validate(case, record, dict(plan, home="0"), samples, {0, 1}, plan)
+        seed = 12345
+        selected = path.assignment(seed, 1, 100_000, 1148, 2)
+        a = samples[selected]
+        random_plan = dict(plan, home=str(selected), estimate_us=a["estimate_us"])
+        path.validate(dict(path_scheduler="random-path", assignment_seed=seed), record,
+                      random_plan, samples, {0, 1}, plan)
+        corrupted = [dict(row) for row in samples]
+        corrupted[0]["in_flight_bytes"] = 100
+        with self.assertRaisesRegex(ValueError, "queue sum"):
+            path.validate(dict(path_scheduler="random-path", assignment_seed=seed), record,
+                          random_plan, corrupted, {0, 1}, plan)
+
+    def test_calibration_fit_and_holm(self):
+        intercept, slope = fit_logistic([-1, -1, 1, 1], [0, 0, 1, 1])
+        self.assertAlmostEqual(intercept, 0)
+        self.assertGreater(sigmoid(intercept + slope), .5)
+        result, _ = model_metrics([(0, 0), (1, 1)])
+        self.assertEqual(result["brier"], 0)
+        self.assertGreater(result["log_loss"], 0)
+        rows = [{"sign_flip_p": p} for p in (.025, .02, .5)]
+        holm(rows)
+        self.assertEqual([row["holm_p"] for row in rows], [.06, .06, .5])
 
 
 if __name__ == "__main__":

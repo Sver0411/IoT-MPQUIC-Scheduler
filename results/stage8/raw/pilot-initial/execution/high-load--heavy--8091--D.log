@@ -1,0 +1,14 @@
+Stage 8 artifacts: /var/tmp/iot-stage8/pilot/runs/high-load--heavy--8091--D
+Traceback (most recent call last):
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/verify_stage8.py", line 56, in <module>
+    result = (verify_archive(args.directory, args.seal) if args.archive or args.seal else verify_run(args.directory))
+                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/verify_stage8.py", line 42, in verify_run
+    app_result = app.verify(records, rows, int(start["origin"]), case)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/oracle/app_scheduler_oracle.py", line 82, in verify
+    check(not expected_changes and attempted is None, row, "missing queue or stream-create outcome")
+  File "/mnt/d/File/IoT-MPQUIC-Scheduler/evaluation/oracle/app_scheduler_oracle.py", line 77, in check
+    raise ValueError(f"application oracle at {row['event']} {row.get('id', '')}: {reason}")
+ValueError: application oracle at iot_admission : missing queue or stream-create outcome
+Stage 8 failed. Inspect /var/tmp/iot-stage8/pilot/runs/high-load--heavy--8091--D

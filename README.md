@@ -6,60 +6,69 @@
 
 IoT-MPQUIC-Scheduler sends periodic sensor updates and independent events over one QUIC connection with two real UDP paths. It measures whether joint record scheduling and path selection can improve event deadline delivery while keeping sensor data fresh as link conditions change.
 
-[Results](#results) · [Quick start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Technical report](docs/stage6-research-report.md)
+[Results](#results) · [Quick start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Technical report](docs/stage8-research-report.md)
 
 ## How it works
 
-- **Application scheduling.** Pending sensor updates can be replaced by newer values. Events retain independent IDs. The joint policy uses receiver ACK feedback, age of information (AoI), deadline budget, event severity and path estimates. A configurable recovery threshold and a service quota reserve submission opportunities for state updates.
-- **Path scheduling.** Each record uses one unidirectional QUIC stream. The client binds its initial transmission to one path. Strict affinity keeps repair on that path, while cross-path mode can send repair packets on the other path. The receiver judges deadlines at complete record reception and returns a separate application ACK.
-- **Evaluation.** Five application baselines cover FIFO, strict priority, earliest deadline first, AoI-aware scheduling and latest-value replacement with round robin. The experiment runner replays the same seeded workload across policies and records both endpoints and both interfaces.
+```mermaid
+flowchart LR
+    Q["Event and state queue"] --> A["FIFO or Proposed-App"]
+    A --> P["Native MinRTT or bound path selection"]
+    P --> S["QUIC stream · two UDP paths"]
+    S --> R["Receiver FIN · deadline and AoI"]
+    R -->|"Application ACK"| A
+    A --> O["Independent application oracle"]
+    P --> O2["Independent path oracle"]
+```
+
+Proposed-App uses receiver ACKs, deadline budget, event severity and state freshness. It replaces older pending state. Custom path policies bind each stream to an initial path. Strict mode repairs on that path, while cross-path mode can repair over the alternate. Separate oracles replay the application choices and initial path choices.
 
 ## Results
 
-| Comparison | FIFO or control | Joint scheduler |
-| --- | ---: | ---: |
-| On-time events across six link scenarios, mixed workload, seed 17 | 23/54 | **49/54** |
-| Mean AoI across the same six scenarios, equal weight per scenario | 1.329 s | **0.907 s** |
-| On-time events under high mixed load, seeds 17 and 29 | 1/20 in each run | **10/20 in each run** |
-| Probe completion during a path outage, cross-path repair off vs. on | 1,529.6 ms | **338.0 ms** |
+### Stage 8 · Independent validation and generalization
 
-![Event deadline delivery and mean AoI across six link scenarios](results/stage6/figures/01-dynamic-scenarios.png)
+Stage 8 ran **400 formal connections** with 20 new seeds for paired comparisons and 20 separate seeds for randomized path exploration.
 
-In the event-only burst, the joint policy improved the on-time count from 11/18 to 14/18 while event P95 increased from 1.36 s to 2.34 s. Under high mixed load, it also had a lower Jain index for useful state delivery than FIFO. The outage probe completed before path A recovered with cross-path repair enabled. Both modes exceeded its 25 ms deadline.
+- Under high load, probability-based selection improved event deadline success from **3.00% to 24.75%** against both strict-affinity baselines. It showed no clear advantage in the unseen reversal scenario.
+- The high-load application–path interaction was **+5.00 percentage points** for event deadline success, with Holm-adjusted `p = 0.0512`.
+- Cross-path repair cut mean outage-probe completion from **1,544 ms to 253 ms**. The uncalibrated probability model did not consistently beat slack-only on held-out records.
 
-The archive contains **42 runs, 84 interface captures and 1,830 input records**. [Technical report and all figures](docs/stage6-research-report.md) · [Run metrics](results/stage6/runs.csv) · [Per-record data](results/stage6/records.csv) · [Paired deltas](results/stage6/paired-deltas.csv)
+![Path policies and observed mean AoI across two network environments](results/stage8/figures/01-path-comparison.png)
 
-Stage 7 separates application and path scheduling, repeats the factorial across independent seeds, and evaluates cross-path repair and completion calibration. [Stage 7 report](docs/stage7-research-report.md) · [Stage 7 audit](results/stage7/audit.json)
+[Research report](docs/stage8-research-report.md) · [Run metrics](results/stage8/runs.csv) · [Calibration figure](results/stage8/figures/03-reliability.png) · [Experiment audit](results/stage8/audit.json)
+
+### Historical experiments
+
+- **Stage 7** separated application and path scheduling across 600 formal runs, with 20 seeds for the high-load factorial. [Research report](docs/stage7-research-report.md) · [Archive audit](results/stage7/audit.json)
+- **Stage 6 and earlier** archived 42 dynamic network and mechanism runs with captures from both interfaces and earlier technical reports. [Stage 6 report](docs/stage6-research-report.md) · [Stage 5 report](docs/stage5-report.md) · [Documentation](docs/)
 
 ## Quick start
 
-Use a Linux shell with network namespace, veth and `sch_netem` support. The archived runs used Ubuntu 24.04 on WSL2. From the repository checkout:
+Use Linux with network namespaces, veth and `sch_netem`. The archived runs used Ubuntu 24.04 on WSL2.
 
 ```bash
-sudo apt-get update
 sudo apt-get install -y build-essential git cmake ninja-build iproute2 iputils-ping tcpdump openssl python3
 git submodule update --init
 bash scripts/build.sh
-sudo bash scripts/run-stage1.sh
+bash scripts/test.sh
+sudo python3 experiments/run_stage8.py results/runs/stage8-pilot --suite pilot --jobs 5
 ```
 
-The smoke test opens both paths, reverses the link conditions during the connection and checks the captures against the transport logs. The runner prints the artifact directory. [Environment setup and WSL build paths](docs/experiment-environment.md)
+The pilot runs 20 independent connections and checks scheduling decisions, endpoint traces and captures from both paths. [Environment setup](docs/experiment-environment.md)
 
 ## Reproduce the experiments
 
-```bash
-sudo python3 experiments/run_stage5.py results/runs/stage5-seed17 --seed 17
-sudo python3 experiments/run_stage5.py results/runs/stage5-seed29 --seed 29 --suite high
-sudo python3 experiments/run_stage5.py results/runs/stage5-repair17 --seed 17 --suite repair
-```
-
-Each run saves the workload, `tc netem` settings and change times, endpoint logs and two captures. To check the archived main matrix offline with `tcpdump` installed:
+Build from a clean code checkout to run the full paired and exploration matrices. Install the dependencies in `evaluation/stage6-requirements.txt` to render figures.
 
 ```bash
-python3 evaluation/verify_stage5.py results/stage5-wsl/seed17 --matrix
+sudo python3 experiments/run_stage8.py results/runs/stage8-paired --suite paired --jobs 8
+sudo python3 experiments/run_stage8.py results/runs/stage8-explore --suite explore --jobs 8
+python3 evaluation/verify_stage8.py results/stage8 --archive
+python3 evaluation/stage8.py results/stage8/raw --out results/runs/stage8-recomputed \
+  --figures --compare results/stage8
 ```
 
-[Experiment configuration](configs/stage5.json) · [Metric definitions and ablations](docs/stage5-report.md) · [Rebuild the figures and data tables](docs/stage6-research-report.md#6-数据索引与复现)
+[Experiment configuration](configs/stage8.json) · [Experimental plan](docs/stage8-experiment-plan.md) · [Reproduction details](docs/stage8-research-report.md#17-reproducibility-instructions--复现)
 
 ## Repository layout
 
@@ -73,7 +82,7 @@ python3 evaluation/verify_stage5.py results/stage5-wsl/seed17 --matrix
 
 ## Scope
 
-The two paths are emulated IP links on one host. The six-scenario comparison uses one workload seed, and the high-load comparison uses two. Random netem packet drops varied between runs in the archived WSL environment. The project runs the pinned XQUIC implementation of `XQC_MULTIPATH_10`, with both endpoints using the same build. [XQUIC version and API details](docs/xquic-api.md) · [Scheduling rules](docs/algorithm-spec.md)
+The two paths are emulated links on one host and the traffic is generated for replay. Event latency percentiles are conditional on completion inside the measurement window. Probability calibration uses observed outcomes on randomized paths and remains offline. Both endpoints use the pinned XQUIC `XQC_MULTIPATH_10` implementation. [XQUIC version](docs/xquic-api.md) · [Scheduling rules](docs/stage7-algorithm-spec.md)
 
 ## License
 

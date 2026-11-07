@@ -1,0 +1,6370 @@
+{
+  "suite": "explore",
+  "jobs": 8,
+  "provenance": {
+    "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+    "build": {
+      "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+      "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+      "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+      "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+    },
+    "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "cmake": "cmake version 3.28.3",
+    "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+    "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+  },
+  "config": {
+    "pilot_seed": 8091,
+    "paired_seeds": [
+      8101,
+      8120
+    ],
+    "exploration_seeds": [
+      8201,
+      8220
+    ],
+    "horizon_us": 4000000,
+    "recovery_k": 2,
+    "novel": {
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    "primary_metrics": [
+      "event_deadline_success",
+      "mean_aoi_ms"
+    ],
+    "primary_contrasts": [
+      "B-A",
+      "C-A",
+      "D-B-C+A",
+      "D-Fixed",
+      "D-Earliest",
+      "Cross-D"
+    ]
+  },
+  "cases": [
+    {
+      "name": "high-load--explore-heavy--8217--Random",
+      "scenario": "high-load",
+      "seed": 8217,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3399296146,
+      "network_seed": 2002928637,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 1,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8201--Random",
+      "scenario": "high-load",
+      "seed": 8201,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 1352480006,
+      "network_seed": 76944725,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 2,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8212--Random",
+      "scenario": "novel-reversal",
+      "seed": 8212,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 277076591,
+      "network_seed": 319152616,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 3,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8202--Random",
+      "scenario": "novel-reversal",
+      "seed": 8202,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3655204671,
+      "network_seed": 481355374,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 4,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8202--Random",
+      "scenario": "novel-reversal",
+      "seed": 8202,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 271848581,
+      "network_seed": 481355374,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 5,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8212--Random",
+      "scenario": "high-load",
+      "seed": 8212,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1426393929,
+      "network_seed": 980750861,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 6,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8216--Random",
+      "scenario": "novel-reversal",
+      "seed": 8216,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 888651609,
+      "network_seed": 1415440899,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 7,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8219--Random",
+      "scenario": "high-load",
+      "seed": 8219,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3957915557,
+      "network_seed": 1094691412,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 8,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8204--Random",
+      "scenario": "novel-reversal",
+      "seed": 8204,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3631425369,
+      "network_seed": 104220322,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 9,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8206--Random",
+      "scenario": "high-load",
+      "seed": 8206,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2370835419,
+      "network_seed": 291588872,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 10,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8214--Random",
+      "scenario": "high-load",
+      "seed": 8214,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1822420155,
+      "network_seed": 39882365,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 11,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8207--Random",
+      "scenario": "high-load",
+      "seed": 8207,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 222596257,
+      "network_seed": 261074066,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 12,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8209--Random",
+      "scenario": "high-load",
+      "seed": 8209,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3118088092,
+      "network_seed": 2052407707,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 13,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8205--Random",
+      "scenario": "novel-reversal",
+      "seed": 8205,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3434072274,
+      "network_seed": 1541328091,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 14,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8210--Random",
+      "scenario": "high-load",
+      "seed": 8210,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2832954693,
+      "network_seed": 1405487480,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 15,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8216--Random",
+      "scenario": "novel-reversal",
+      "seed": 8216,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 4215954979,
+      "network_seed": 1415440899,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 16,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8201--Random",
+      "scenario": "high-load",
+      "seed": 8201,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1178069441,
+      "network_seed": 76944725,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 17,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8207--Random",
+      "scenario": "high-load",
+      "seed": 8207,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1974423991,
+      "network_seed": 261074066,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 18,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8210--Random",
+      "scenario": "novel-reversal",
+      "seed": 8210,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 47275268,
+      "network_seed": 1582041076,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 19,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8215--Random",
+      "scenario": "novel-reversal",
+      "seed": 8215,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3842220504,
+      "network_seed": 1164076692,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 20,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8207--Random",
+      "scenario": "novel-reversal",
+      "seed": 8207,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2501823401,
+      "network_seed": 1278932528,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 21,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8212--Random",
+      "scenario": "novel-reversal",
+      "seed": 8212,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3887317566,
+      "network_seed": 319152616,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 22,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8211--Random",
+      "scenario": "high-load",
+      "seed": 8211,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1689356822,
+      "network_seed": 1380610842,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 23,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8209--Random",
+      "scenario": "high-load",
+      "seed": 8209,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3841174971,
+      "network_seed": 2052407707,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 24,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8214--Random",
+      "scenario": "novel-reversal",
+      "seed": 8214,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 195415153,
+      "network_seed": 966627977,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 25,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8213--Random",
+      "scenario": "novel-reversal",
+      "seed": 8213,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2720955015,
+      "network_seed": 1191446622,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 26,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8206--Random",
+      "scenario": "novel-reversal",
+      "seed": 8206,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 1916482857,
+      "network_seed": 1680612967,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 27,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8204--Random",
+      "scenario": "novel-reversal",
+      "seed": 8204,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1861517354,
+      "network_seed": 104220322,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 28,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8213--Random",
+      "scenario": "novel-reversal",
+      "seed": 8213,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2393987210,
+      "network_seed": 1191446622,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 29,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8212--Random",
+      "scenario": "high-load",
+      "seed": 8212,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 140364077,
+      "network_seed": 980750861,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 30,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8207--Random",
+      "scenario": "novel-reversal",
+      "seed": 8207,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3352805461,
+      "network_seed": 1278932528,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 31,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8214--Random",
+      "scenario": "high-load",
+      "seed": 8214,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 4284540217,
+      "network_seed": 39882365,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 32,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8213--Random",
+      "scenario": "high-load",
+      "seed": 8213,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2324688186,
+      "network_seed": 106590817,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 33,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8220--Random",
+      "scenario": "high-load",
+      "seed": 8220,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2018110745,
+      "network_seed": 1203800190,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 34,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8217--Random",
+      "scenario": "high-load",
+      "seed": 8217,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3894966194,
+      "network_seed": 2002928637,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 35,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8209--Random",
+      "scenario": "novel-reversal",
+      "seed": 8209,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3786977420,
+      "network_seed": 130474144,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 36,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8202--Random",
+      "scenario": "high-load",
+      "seed": 8202,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2010221929,
+      "network_seed": 1125947127,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 37,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8203--Random",
+      "scenario": "high-load",
+      "seed": 8203,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 1457302919,
+      "network_seed": 1739747697,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 38,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8201--Random",
+      "scenario": "novel-reversal",
+      "seed": 8201,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1507829650,
+      "network_seed": 273187984,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 39,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8201--Random",
+      "scenario": "novel-reversal",
+      "seed": 8201,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 839783377,
+      "network_seed": 273187984,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 40,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8216--Random",
+      "scenario": "high-load",
+      "seed": 8216,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 575598363,
+      "network_seed": 815414303,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 41,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8217--Random",
+      "scenario": "novel-reversal",
+      "seed": 8217,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2743211777,
+      "network_seed": 40548468,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 42,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8215--Random",
+      "scenario": "high-load",
+      "seed": 8215,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3364692831,
+      "network_seed": 1246818836,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 43,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8208--Random",
+      "scenario": "novel-reversal",
+      "seed": 8208,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 783266913,
+      "network_seed": 774082436,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 44,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8205--Random",
+      "scenario": "high-load",
+      "seed": 8205,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2848544128,
+      "network_seed": 284997694,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 45,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8218--Random",
+      "scenario": "novel-reversal",
+      "seed": 8218,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3554468213,
+      "network_seed": 836109166,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 46,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8202--Random",
+      "scenario": "high-load",
+      "seed": 8202,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 585832352,
+      "network_seed": 1125947127,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 47,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8213--Random",
+      "scenario": "high-load",
+      "seed": 8213,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2249896728,
+      "network_seed": 106590817,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 48,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8206--Random",
+      "scenario": "high-load",
+      "seed": 8206,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 789426207,
+      "network_seed": 291588872,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 49,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8211--Random",
+      "scenario": "novel-reversal",
+      "seed": 8211,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 4263141948,
+      "network_seed": 787676178,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 50,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8219--Random",
+      "scenario": "high-load",
+      "seed": 8219,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 894297301,
+      "network_seed": 1094691412,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 51,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8210--Random",
+      "scenario": "high-load",
+      "seed": 8210,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 683308847,
+      "network_seed": 1405487480,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 52,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8203--Random",
+      "scenario": "high-load",
+      "seed": 8203,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3424282132,
+      "network_seed": 1739747697,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 53,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8205--Random",
+      "scenario": "high-load",
+      "seed": 8205,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 149641297,
+      "network_seed": 284997694,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 54,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8211--Random",
+      "scenario": "novel-reversal",
+      "seed": 8211,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1307849769,
+      "network_seed": 787676178,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 55,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8215--Random",
+      "scenario": "novel-reversal",
+      "seed": 8215,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2481855766,
+      "network_seed": 1164076692,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 56,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8218--Random",
+      "scenario": "novel-reversal",
+      "seed": 8218,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3444639251,
+      "network_seed": 836109166,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 57,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8203--Random",
+      "scenario": "novel-reversal",
+      "seed": 8203,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3826260837,
+      "network_seed": 202609202,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 58,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8208--Random",
+      "scenario": "high-load",
+      "seed": 8208,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 1780551448,
+      "network_seed": 940507741,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 59,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8220--Random",
+      "scenario": "novel-reversal",
+      "seed": 8220,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 1641564643,
+      "network_seed": 12117487,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 60,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8211--Random",
+      "scenario": "high-load",
+      "seed": 8211,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2179431862,
+      "network_seed": 1380610842,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 61,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8215--Random",
+      "scenario": "high-load",
+      "seed": 8215,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 4109980525,
+      "network_seed": 1246818836,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 62,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8214--Random",
+      "scenario": "novel-reversal",
+      "seed": 8214,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2967773305,
+      "network_seed": 966627977,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 63,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8206--Random",
+      "scenario": "novel-reversal",
+      "seed": 8206,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2086158470,
+      "network_seed": 1680612967,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 64,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8218--Random",
+      "scenario": "high-load",
+      "seed": 8218,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3032499012,
+      "network_seed": 226388001,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 65,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8209--Random",
+      "scenario": "novel-reversal",
+      "seed": 8209,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 542872469,
+      "network_seed": 130474144,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 66,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8210--Random",
+      "scenario": "novel-reversal",
+      "seed": 8210,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3356959046,
+      "network_seed": 1582041076,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 67,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8204--Random",
+      "scenario": "high-load",
+      "seed": 8204,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 1330552775,
+      "network_seed": 1451594675,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 68,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8219--Random",
+      "scenario": "novel-reversal",
+      "seed": 8219,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 3300768764,
+      "network_seed": 2092815347,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 69,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8219--Random",
+      "scenario": "novel-reversal",
+      "seed": 8219,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2717506065,
+      "network_seed": 2092815347,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 70,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8220--Random",
+      "scenario": "high-load",
+      "seed": 8220,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 540152064,
+      "network_seed": 1203800190,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 71,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8220--Random",
+      "scenario": "novel-reversal",
+      "seed": 8220,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 2986026626,
+      "network_seed": 12117487,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 72,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8204--Random",
+      "scenario": "high-load",
+      "seed": 8204,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 3602913061,
+      "network_seed": 1451594675,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 73,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8217--Random",
+      "scenario": "novel-reversal",
+      "seed": 8217,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2709621250,
+      "network_seed": 40548468,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 74,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8205--Random",
+      "scenario": "novel-reversal",
+      "seed": 8205,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2533911479,
+      "network_seed": 1541328091,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 75,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--light--8203--Random",
+      "scenario": "novel-reversal",
+      "seed": 8203,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 605174056,
+      "network_seed": 202609202,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 76,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8218--Random",
+      "scenario": "high-load",
+      "seed": 8218,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 1769478272,
+      "network_seed": 226388001,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 77,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "novel-reversal--explore-heavy--8208--Random",
+      "scenario": "novel-reversal",
+      "seed": 8208,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 391404729,
+      "network_seed": 774082436,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          7,
+          16,
+          0
+        ],
+        "b": [
+          21,
+          25,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 575000,
+          "links": {
+            "a": [
+              43,
+              3,
+              0
+            ],
+            "b": [
+              8,
+              27,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              11,
+              20,
+              0
+            ],
+            "b": [
+              27,
+              12,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 78,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--light--8216--Random",
+      "scenario": "high-load",
+      "seed": 8216,
+      "cell": "Random",
+      "load": "light",
+      "workload": "short-light",
+      "assignment_seed": 96318950,
+      "network_seed": 815414303,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 79,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    },
+    {
+      "name": "high-load--explore-heavy--8208--Random",
+      "scenario": "high-load",
+      "seed": 8208,
+      "cell": "Random",
+      "load": "explore-heavy",
+      "workload": "short-burst",
+      "assignment_seed": 2028010602,
+      "network_seed": 940507741,
+      "policy": "proposed-app",
+      "path_scheduler": "random-path",
+      "ablation": "full",
+      "repair": "strict",
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "horizon_us": 4000000,
+      "recovery_k": 2,
+      "tuning": {
+        "event_burst": 3,
+        "severity_weight": 2,
+        "waiting_weight": 1,
+        "slack_margin_us": 0,
+        "loss_scale": 1
+      },
+      "experiment_order": 80,
+      "provenance": {
+        "commit": "d1fb64c48690d65f8dc30c1e412a4c5094ea9dca",
+        "build": {
+          "exe_sha256": "0a7c5c0ab43314bbf6fa875b2fb64fe4ed5ce0eb51d0162be9d104d8874f0ece",
+          "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa",
+          "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+          "stream_pto_patch_sha256": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "cmake": "cmake version 3.28.3",
+        "config_sha256": "91ec2c58f78ffd69786a742a9d5aef573cc3f27507678d399c42282176c97f8c",
+        "reference_network_sha256": "eb9131d68f01ec84a776861add36f446de85bc82d39ab580a4a9b2671b6d661f"
+      }
+    }
+  ]
+}
