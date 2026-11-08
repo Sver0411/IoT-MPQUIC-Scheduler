@@ -104,15 +104,18 @@ def overhead(config):
 def write_workload(path, case):
     rng = random.Random(case["seed"])
     records = []
-    for i in range(40):
-        release = 165_000 + i * 45_000 + rng.randrange(3000)
+    release_times = case.get("release_times_us")
+    budget_pattern = case.get("deadline_pattern_us", (35_000, 60_000, 95_000)
+                              if case["budget"] == "short" else (140_000, 210_000))
+    for i in range(len(release_times) if release_times else 40):
+        release = release_times[i] if release_times else 165_000 + i * 45_000 + rng.randrange(3000)
         for lane in range(3):
             data = rng.randbytes((240, 900, 2500)[(i + lane) % 3])
             severity = rng.randrange(1, 6)
             if case["load"] == "low" and lane:
                 continue
             kind = 1 if i % 4 == 0 and not lane else 2
-            budget = (35_000, 60_000, 95_000)[i % 3] if case["budget"] == "short" else (140_000, 210_000)[i % 2]
+            budget = budget_pattern[i % len(budget_pattern)]
             generated = release + lane * 1000
             age = budget * 4 // 5 if kind == 1 else 0
             records.append((generated, kind, severity, lane + 1, i + 1, budget, age, data))

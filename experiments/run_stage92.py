@@ -20,7 +20,8 @@ def git(root, *args):
 
 
 def provenance(build, tc):
-    scopes = ("src/**/*.[ch]", "scripts/*.sh", "patches/xquic/*.patch", "configs/stage92.json",
+    scopes = ("src/**/*.[ch]", "scripts/*.sh", "scripts/capture_usage.py", "patches/xquic/*.patch",
+              "configs/stage92*.json",
               "network/**/*.py", "network/**/*.sh", "experiments/*.py", "evaluation/*.py", "evaluation/oracle/*.py")
     return {"base_commit": git(ROOT, "rev-parse", "HEAD"),
             "binary_sha256": file_hash(build / "app/iot-mpquic"),
@@ -55,6 +56,10 @@ def run_case(folder, case, build, tc):
             env[key] = "1"
     if case["features"]:
         env["IOT_STAGE92_FEATURES"] = "1"
+    if case.get("stage92r"):
+        env["IOT_STAGE92R"] = "1"
+        if case.get("trace_arm") == "quiet":
+            env["IOT_STAGE92R_QUIET"] = "1"
     out = folder / "runs" / name
     started = stamp()
     print(name, flush=True)

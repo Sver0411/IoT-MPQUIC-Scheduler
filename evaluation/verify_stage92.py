@@ -123,6 +123,13 @@ def run_metrics(directory, case, records, client, server, origin):
             result[f"{role}_{name}_mean_us"] = total / n / 1000 if n else None
             result[f"{role}_{name}_max_us"] = maximum / 1000 if n else None
     result["capture_bytes"] = sum(file.stat().st_size for file in directory.glob("*.pcap"))
+    if case.get("stage92r"):
+        capture_usage = [json.loads(file.read_text()) for file in directory.glob("capture-*.json")]
+        expected = 4 if case["trace"] == "full" else 0
+        require(len(capture_usage) == expected and all(row["exit_code"] == 0 and row["cpu_us"] >= 0
+                and row["peak_rss_kib"] > 0 for row in capture_usage), "incomplete capture resource evidence")
+        result["capture_cpu_us"] = sum(row["cpu_us"] for row in capture_usage)
+        result["capture_peak_rss_sum_kib"] = sum(row["peak_rss_kib"] for row in capture_usage)
     for role, trace in (("client", client), ("server", server)):
         require(bool(trace["iot91_open"]) == (case["trace"] in ("logs", "full")) and
                 bool(result[f"{role}_digest_n"]) == (case["trace"] in ("digest", "full")), "trace switches disagree")

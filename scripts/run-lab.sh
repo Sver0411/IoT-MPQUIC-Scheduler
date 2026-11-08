@@ -165,13 +165,20 @@ if [[ $stage == 91 && -n ${IOT_STAGE91_MIGRATION:-} ]]; then
 fi
 for link in a b; do
     if [[ $stage == 92 && -z ${IOT_STAGE92_CAPTURE:-} ]]; then break; fi
-    ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s "$snaplen" -U --immediate-mode -B 4096 -Z root \
+    capture_prefix=()
+    if [[ $stage == 92 && -n ${IOT_STAGE92R:-} ]]; then
+        capture_prefix=(python3 -B "$root/scripts/capture_usage.py" "$out/capture-server-$link.json")
+    fi
+    "${capture_prefix[@]}" ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s "$snaplen" -U --immediate-mode -B 4096 -Z root \
         -w "$out/link-$link.pcap" "$capture_filter" \
         2> "$out/tcpdump-$link.log" &
     captures+=("$!")
     wait_log "$out/tcpdump-$link.log" 'listening on' "$!"
     if [[ $stage == 91 || $stage == 92 ]]; then
-        ip netns exec "$client_ns" tcpdump -nn -i "iot-$link" -s 0 -U --immediate-mode -B 4096 -Z root \
+        if [[ $stage == 92 && -n ${IOT_STAGE92R:-} ]]; then
+            capture_prefix=(python3 -B "$root/scripts/capture_usage.py" "$out/capture-client-$link.json")
+        fi
+        "${capture_prefix[@]}" ip netns exec "$client_ns" tcpdump -nn -i "iot-$link" -s 0 -U --immediate-mode -B 4096 -Z root \
             -w "$out/client-link-$link.pcap" "$capture_filter" \
             2> "$out/client-tcpdump-$link.log" &
         captures+=("$!")

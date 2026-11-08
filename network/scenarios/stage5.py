@@ -68,6 +68,10 @@ def run(mode, root, namespaces):
     if start is None:
         raise ValueError("client replay origin missing")
     origin = int(start[1])
+    if case.get("stage92r"):
+        from stage92r_control import live
+        live(case, root, namespaces, origin, seeded_tc)
+        return
     netem_help = subprocess.run([seeded_tc or "tc", "qdisc", "add", "netem", "help"],
                                 capture_output=True, text=True, check=False)
     seed_supported = re.search(r"\bseed\b", netem_help.stderr + netem_help.stdout)

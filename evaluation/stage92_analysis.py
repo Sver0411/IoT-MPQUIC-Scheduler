@@ -14,18 +14,17 @@ from verify_stage91 import by_event, log_rows
 from verify_stage92 import observation_rows, verify
 
 
-def paired_overhead(runs, quality):
+def paired_overhead(runs, quality, arms=("off", "logs", "digest", "capture", "full"), arm_key="trace"):
     blocks = defaultdict(dict)
-    arms = {"off", "logs", "digest", "capture", "full"}
     for case, metrics in runs:
         block = blocks[case["block"]]
-        if case["trace"] in block:
+        if case[arm_key] in block:
             raise ValueError("duplicate overhead arm")
-        block[case["trace"]] = case, metrics
+        block[case[arm_key]] = case, metrics
     deltas, excluded = defaultdict(list), []
-    comparisons = [("logs", "off"), ("digest", "off"), ("capture", "off"), ("full", "off")]
+    comparisons = [(arm, "off") for arm in arms if arm != "off"]
     for block, runs_by_arm in sorted(blocks.items()):
-        if runs_by_arm.keys() != arms:
+        if runs_by_arm.keys() != set(arms):
             excluded.append(block)
             continue
         reference = runs_by_arm["off"][0]

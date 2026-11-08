@@ -81,7 +81,7 @@ struct record_stream {
 
 static volatile sig_atomic_t advance_phase;
 static bool integrity_trace;
-static bool measure, digest_enabled, path_features;
+static bool measure, digest_enabled, path_features, quiet_diagnostics;
 static uint64_t integrity_sequence;
 static volatile unsigned digest_sink;
 
@@ -180,23 +180,25 @@ static void set_timer(xqc_usec_t delay, void *user)
 
 static void trace_log(xqc_log_level_t level, const void *buf, size_t size, void *user)
 {
-    (void)level;
     struct endpoint *ep = user;
     uint64_t started = measure ? iot_profile_clock() : 0;
+    static const char marker[] = "|iot91|";
+    const char *begin = integrity_trace ? memmem(buf, size, marker, sizeof(marker) - 1) : NULL;
+    // Keep the independent packet summary that the integrity verifier reconciles.
+    static const char packet[] = "|xqc_send_packet_with_pn|<==|";
+    if (quiet_diagnostics && level >= XQC_LOG_INFO && !begin &&
+        !memmem(buf, size, packet, sizeof(packet) - 1))
+        return;
     fwrite(buf, 1, size, ep->trace);
     fputc('\n', ep->trace);
     if (measure)
         observe_duration(&log_time, iot_profile_clock() - started);
-    if (integrity_trace) {
-        static const char marker[] = "|iot91|";
-        const char *begin = memmem(buf, size, marker, sizeof(marker) - 1);
-        if (begin) {
-            begin += sizeof(marker) - 1;
-            const char *end = memchr(begin, '|', (const char *)buf + size - begin);
-            if (end)
-                event("iot91_xquic", "tx_datagram=%" PRIu64 " rx_datagram=%" PRIu64 " %.*s",
-                      ep->tx_datagram, ep->current_rx_datagram, (int)(end - begin), begin);
-        }
+    if (begin) {
+        begin += sizeof(marker) - 1;
+        const char *end = memchr(begin, '|', (const char *)buf + size - begin);
+        if (end)
+            event("iot91_xquic", "tx_datagram=%" PRIu64 " rx_datagram=%" PRIu64 " %.*s",
+                  ep->tx_datagram, ep->current_rx_datagram, (int)(end - begin), begin);
     }
 }
 
@@ -1287,6 +1289,7 @@ int main(int argc, char **argv)
     integrity_trace = iot && getenv("IOT_STAGE91_TRACE");
     measure = iot && getenv("IOT_STAGE92_PROFILE");
     path_features = measure && !server && getenv("IOT_STAGE92_FEATURES");
+    quiet_diagnostics = measure && integrity_trace && getenv("IOT_STAGE92R_QUIET");
     digest_enabled = measure ? getenv("IOT_STAGE92_DIGEST") != NULL : integrity_trace;
     if (integrity_trace && (!horizon || (!server && (!oracle || !bind_path)))) {
         fprintf(stderr, "Stage 9.1 requires a fixed window and a bound Stage 8 client\n");
