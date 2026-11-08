@@ -1,0 +1,1024 @@
+{
+  "build": {
+    "base_commit": "95db2172afb88c484444feb960e044c19a9a41aa",
+    "binary_sha256": "ec0a25186b197f66b9ed92db716e8669c6328a7557add8a62e93ec0e0905873a",
+    "boringssl_commit": "b69a6175320af9b6fca7295fdbb4fb130f4804a2",
+    "sources": {
+      "configs/stage92.json": "4a941922da1c663992fc5dda2042e75bb1c7ac76a3ae4cb6c4e9706a0efeb447",
+      "configs/stage92r.json": "183910435a2a99027e2988e0c87aa03a8af53f3e74a7f8d389d9bc2e50426b7e",
+      "configs/stage92r2.json": "cf4b745f372d863c554001df0b584110cd1eb63957e9df87ea55935e1ff60548",
+      "evaluation/oracle/app_scheduler_oracle.py": "2d19ae7b29a866bed0a38b06178c4a0a3e38dcfa6a69890e1ec7a8cf38fdffe3",
+      "evaluation/oracle/path_scheduler_oracle.py": "e076b0f1e01e65e521a88453b76d29a0b76c540db09c4989a18180f3a5d2f78f",
+      "evaluation/oracle/stage91_lifecycle.py": "43f45ab42831105f777e7ed0fdcb41076e6ed9b3e1e5b123fd8bf732fe2b3138",
+      "evaluation/stage6.py": "5c689e4fd03066654016a05e3dac05ecf78f1fd779f9484d386477b28c4b5dbe",
+      "evaluation/stage6_figures.py": "37867cfe8dcf7600a3383f1d0552790ba0bb150743acb0ba799e0763ba277aa5",
+      "evaluation/stage7.py": "a1f7ac6d1e61ec51474667dcf9978327cadb5bec22e589cb3b0f0b357197a23c",
+      "evaluation/stage7_figures.py": "b9f352a0c33d51a8a30a6ed8c7fb2611b04cccbb10214b31cc25f71304456df4",
+      "evaluation/stage7_statistics.py": "5d843340629b77a0cc9752da728961ab020a90770ce17730786a083d93558b02",
+      "evaluation/stage8.py": "50ffe2fac268d420487c6c81b5c6c50ac37ba3e2d3e64ad77b668c5a97b8f0d7",
+      "evaluation/stage8_figures.py": "e86e1a82c43eb9cbd0ee196cbb931463022eb82be3b8c0b03fac5af24ce47e8d",
+      "evaluation/stage8_history.py": "3a875390f4d8853e4ef153732051a958c0cfbabf5c1314462612585023528b75",
+      "evaluation/stage8_statistics.py": "427eddc0a22ddfcc0ab5cfcffbfd2c832845b71e4dda1631864b522a2d62b4e1",
+      "evaluation/stage92_analysis.py": "de53323d9aaa832b68e6f5fb581c9fced20f289ef62fcd6004991d9f37fa6ea5",
+      "evaluation/stage92_timing.py": "2aa39d8f69588730afdfe00710cd70d63a59fb23cba3eec48ca615cbfa00e6a2",
+      "evaluation/stage92r2_analysis.py": "f582e61cf3f1c94da35531f809ef572872129ec58cddbbf8ec1dd080f372358d",
+      "evaluation/stage92r2_timing.py": "ee1858634d08652a640d26cf78b34c7ffcbf4ff01557c98baee19f8234efd46d",
+      "evaluation/stage92r_analysis.py": "af9eaf579a9cd1050c2e1a282d3767fa2b1e1464c376ff1ad95c103a9032c491",
+      "evaluation/stage93a.py": "39b7b1275f625e903c6fa746dd775596fd355c41033521dbd4ca9dabc9c3b136",
+      "evaluation/stage93a_features.py": "0dd035a23eb07b1238fd77a61f4f33d32f49ff258f17fb44d6e43d6c6dbfca27",
+      "evaluation/stage93a_statistics.py": "53ecae226ac4b42dff65aa200df1ad656fe679fbe8e53045985e7a0b047d6ef7",
+      "evaluation/stage93b.py": "4544c67b1bad51ea8695baea35ca62ead5a5c91a20b68dae8e7789a85160c0b6",
+      "evaluation/stage93b2.py": "38a220fbff2837be002ee803358ecae77da47786968b06706259f55b7750724c",
+      "evaluation/stage93b2_diagnostics.py": "930e040ae1ae7dc3d2cd1409ac754d74a8bf902e60ce0c52578832f2e84e3480",
+      "evaluation/stage93b2_model.py": "c8fc438c0c9a77afb20fa1a69f6aac0e06117f5b1c80ede6b3f5c41530f49482",
+      "evaluation/stage93b2_pilot.py": "42b4ef31dae4fbc174846258a15a5b3016393af86b3629bff54a20e2c05ca6bd",
+      "evaluation/stage93b_metrics.py": "158d4d11a80410cb30078b4ddbce76e59b381be14b39676dd80c4a3680e6c26b",
+      "evaluation/stage93b_model.py": "dfd788303359e82da30dce4d3d9ca70a6fdeedcc9d644fc049eba7293cfdcdcd",
+      "evaluation/stage93c.py": "3c1619b051af965db4917dc5d8143b986cc5054d7f3d919d3a725729b965bc20",
+      "evaluation/stage93c_evidence.py": "9c94901023abd0f1fb4070a9376f53758a24ed15e524e00fb247af85314ae39c",
+      "evaluation/verify_stage1.py": "f256bfd5a9c9caaa5971e064f66172815a1675ebf0af0d400d5b9efab86f6aa3",
+      "evaluation/verify_stage2.py": "ca8eb1d3ee5405a8cf3bb9bb0199811b86eb0fe0d1d71e25f30ce06b055ef298",
+      "evaluation/verify_stage3.py": "514e4e2b6c584cb5ff67afc8e71ebe3e5a5715a1eda0049a697b9e17ac69fa0e",
+      "evaluation/verify_stage4.py": "9446fd689e9cd0321a1d0326e82f97de18f3932190f59145c129d36c02c7dfb5",
+      "evaluation/verify_stage5.py": "7a41b6df8004350a1f4797f56ea0555f7fb2d096b77257b2304abc6ae6ee187d",
+      "evaluation/verify_stage7.py": "0ade09ae84286ad53a8645c8760929072db29163dccd54b63bbf48f710a746a8",
+      "evaluation/verify_stage8.py": "6e777ca1c7255e07680923d5874df9f389493aa8ed5763d13aafcf26f2c7dba1",
+      "evaluation/verify_stage91.py": "bf500460a39b736a8a1ce570f68ec9942683f95f4152f3ae2c3b25abe10a5ac5",
+      "evaluation/verify_stage92.py": "ef6c738fecb0a387a202bfabcc267e71ba0a360641247f2fb5605ce7501f528e",
+      "experiments/run_stage5.py": "bc17bcd101d8339f2e48f76acf10aa7c822e1d482ee4c38ca3251b73e38a61f0",
+      "experiments/run_stage7.py": "a7dcd7a6c990998645682c7a0a642e14ecbee9df7b88d6692f411f4159e155df",
+      "experiments/run_stage8.py": "377721eebee7246a4952b928fd2fa51d958bcba1af025ea565def65f497b9a59",
+      "experiments/run_stage91.py": "999102505f4186061a5372e9def72a36be7f0e32ce6273ec5bb2ba4080b7d4cb",
+      "experiments/run_stage92.py": "5cdc870d40ff6a0664497b1088dac976ac5042d4e651126ecb85c60b9fab5a99",
+      "experiments/run_stage92r.py": "6cc69bcf15a422f0a715eec4dda93046e77409621a9a66fe2f2281e5a19f0468",
+      "experiments/run_stage92r2.py": "8a23f26e47bf9d77f0fc5f2d4bb09cfa11552fa9694178259a027de1d2aafd17",
+      "experiments/run_stage93c.py": "3259f4e5f14917c87d59c0a0e3bbf6de799ff1f8555e2c8dd29b08d2aa72fb49",
+      "experiments/stage92_design.py": "ddb1e9e49664ac460dd9d7715fbbc66c0e46d981959f2ff7e91c3b1dcfeb25cd",
+      "network/scenarios/performance-reversal.sh": "276b142d5461841fa3b13ca74ae2c8c205259c716d6c2422d59a81a8c9d8d895",
+      "network/scenarios/stage5.py": "d6a18d0aba916e80c8fa1e0a0fd5051679901bea8c1ccd8ba9443fdb1171d47c",
+      "network/scenarios/stage92_probe.py": "bb818397172616396deb2daa74e5abcf1467b1b591d437d4b81b82d3f54916ef",
+      "network/scenarios/stage92r2_kernel.py": "54a30eae0a3b6b59eebf597aa258b7095c86b30b5014450d90cb7cedba867fcd",
+      "network/scenarios/stage92r_control.py": "2081959faa2b610d2ceaae3e978a62c8c17f1f9a7e59db3a065f9174d223b16e",
+      "network/scenarios/stage93c_probe.py": "fd7865a2d16abe5fdd7574d1fcce1831b376cf473ba76776bf765fb55870a928",
+      "network/scenarios/verify_seeded_netem.py": "d05c5dc151e9f5aedfcf7306ba2173da6335e50b003b3eabd1fdb64a0ec0836d",
+      "network/topology/dual-veth.sh": "cb8b6201e4c715e9c7dfe6cccd9663a9648ad75cdac52f95b4268043d13d96a2",
+      "patches/xquic/stage91-integrity-trace.patch": "083fff36df5b433730e2d20c2bf5e8bc6687381075f66b0a83c510ed3771efe9",
+      "patches/xquic/stage92-measurement.patch": "bdb4c9328a5b54651894fd6ffad3d89977e323ff7cb1151a3e53a3e8f3c2692d",
+      "patches/xquic/stream-pto-scheduler.patch": "2f1d8d47a4adcceb4f201fae129730ec80417d3a5a3ec22f6285825c5e3007bd",
+      "scripts/build.sh": "2fa24e71b763ae13f498f9c57c9f29083a279431276277fa292c7128522604cf",
+      "scripts/capture_usage.py": "10e25cec3b49ef9c7833d919bf3f6fc06dd5df17b2264f7568927954d0925cf2",
+      "scripts/run-lab.sh": "d4789952ed2f1fd86011e43cc7e9a8e56e56ce3ebce45cfbfab7e95433694ef3",
+      "scripts/run-stage1.sh": "ba23812b138b148ab5cf4465ed2a9edd270b96e09671d8a9614bacadde2e2fff",
+      "scripts/run-stage2.sh": "1d4955c73aa062fdaba1f76f4749fbacf4e69b960fe68606d2666be7834f180f",
+      "scripts/run-stage3.sh": "3dc3fecf215815e79a9b99b922ae542193a48f434d14fcb82a0fd067186a3da2",
+      "scripts/run-stage4.sh": "7c00ba69ae480ad1aaf23419dfa342e35b3c0c684e07c49ed54b0f12c7cb772d",
+      "scripts/test.sh": "9bcf058f4360fe8feb2186ef446379869392d175c3cc0c35080f9da7f619b585",
+      "src/gateway/iot_queue.c": "a2ab6bd3100bda5a669c08a6937652b9350c07300e4e15a07cc8e1c011840aad",
+      "src/iot.h": "029212eeb4719629fa90861dd0145f888cef171cb01cb15b39b15de3c16d2a17",
+      "src/receiver/iot_receive.c": "4e2b101c370eaf2e4d18d360332edb7a22b86b26da45933763032492d2ccee5c",
+      "src/scheduler/proposed.c": "ba4d01df8fd1f6108f27e4d5bf05622768aae39cd1aa646d9cb1e7f0c601cd06",
+      "src/scheduler/scheduler.c": "322d5eb70b3be519b5fa13bee013ae4feab05ae47b4490c55dd28f6b9ba08612",
+      "src/scheduler/scheduler.h": "f9b330b85e3fa11bad02aca8d1ba081adac7e9547eb3d626fa806e62681abd69",
+      "src/transport/endpoint.c": "6ed15e326efb5610be55112309ce6e55763e622a1c3be3f7f102543127265c88",
+      "src/transport/iot_wire.c": "e92cc654379ef5ccfb79d9de8219a6bde64e8bddc33b63ae6bae611a4de26741",
+      "src/transport/path_affinity.c": "1d24db730676789dc9c83826da9c6e3202c1f227375d101f1d2d3bd66d07a7e8",
+      "src/transport/path_affinity.h": "c1092678e319e0e587b9de26194567141b75efde2b9170bf6174d51374a49c50"
+    },
+    "tc_sha256": "28a8a72f5012c82095eb57bff8c0d3fc45e288c8c1c82ea26b6c26222451956a",
+    "xquic_commit": "dffd32c42a511edae544b87169976516b7c4cbfa"
+  },
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "frozen_pilot_executions": 0,
+  "frozen_plan_review": {
+    "case_cells": {
+      "b2-train-a-outage / train / high / 1300000": 49,
+      "b2-train-a-outage / train / high / 750000": 49,
+      "b2-train-a-outage / train / low / 1300000": 49,
+      "b2-train-a-outage / train / low / 750000": 49,
+      "b2-train-a-reversal / train / high / 1300000": 49,
+      "b2-train-a-reversal / train / high / 750000": 49,
+      "b2-train-a-reversal / train / low / 1300000": 49,
+      "b2-train-a-reversal / train / low / 750000": 49,
+      "b2-validation-b-outage / validation / high / 1300000": 49,
+      "b2-validation-b-outage / validation / high / 750000": 49,
+      "b2-validation-b-outage / validation / low / 1300000": 49,
+      "b2-validation-b-outage / validation / low / 750000": 49,
+      "b2-validation-b-reversal / validation / high / 1300000": 49,
+      "b2-validation-b-reversal / validation / high / 750000": 49,
+      "b2-validation-b-reversal / validation / low / 1300000": 49,
+      "b2-validation-b-reversal / validation / low / 750000": 49
+    },
+    "file_sha256": "85010bd35858a8fa2e22814abcef82d5652e532cdbf4800172129587fa02f4fe",
+    "schedule_sha256": "33f4afb35821924b1797c1ba2f9a9c4f62cf7e1a01e82001082414170e27b9ff"
+  },
+  "frozen_plan_sha256": "85010bd35858a8fa2e22814abcef82d5652e532cdbf4800172129587fa02f4fe",
+  "gate": {
+    "all_direction_witnesses_verified": false,
+    "instrumentation_equivalence": false,
+    "targeted": 12,
+    "unknown_fraction": 1.0,
+    "unknown_pass": false,
+    "unknown_targeted": 12
+  },
+  "kernel": "6.18.54.1-microsoft-standard-WSL2",
+  "pair_plan": {
+    "arm_order_seed": 93303,
+    "cap": 16,
+    "contrasts": [
+      "E1-E0",
+      "E2-E1 (outage only)"
+    ],
+    "formal_blocks_per_cell": 0,
+    "interval": "two-sided 90% paired Student t for Goodput/Event Delivery; existing 95% seed bootstrap for send overhead",
+    "planning_metrics": {
+      "event_on_time_pp": {
+        "equivalence_margin": 1,
+        "halfwidth_at_cap": 0.21085918640876372,
+        "historical_pairs": 48,
+        "historical_proxy_sd": {
+          "full_minus_off": 0.48112522432468824,
+          "full_minus_quiet": 0.0,
+          "quiet_minus_off": 0.48112522432468824
+        },
+        "planning_sd": 0.48112522432468824,
+        "required_blocks": 4,
+        "target_halfwidth": 0.75
+      },
+      "goodput_delta_percent": {
+        "equivalence_margin": 5,
+        "halfwidth_at_cap": 3.1997675543894224,
+        "historical_pairs": 48,
+        "historical_proxy_sd": {
+          "full_minus_off": 6.544481771286332,
+          "full_minus_quiet": 6.148232035642078,
+          "quiet_minus_off": 7.301028276795465
+        },
+        "planning_sd": 7.301028276795465,
+        "required_blocks": 18,
+        "target_halfwidth": 3.0
+      }
+    },
+    "send_overhead_limit_us": 500,
+    "source_sha256": "074a73e060d4624529b276f58ebca31bb529c5c8dabf2e3d8ed216269ce4aa1f",
+    "status": "NO-GO: historical variance exceeds capped precision"
+  },
+  "quality": {
+    "max_direction_skew_us": 5000,
+    "max_edge_error_us": 5000,
+    "max_event_delta_pp": 1,
+    "max_goodput_delta_percent": 5,
+    "max_send_overhead_us": 500
+  },
+  "raw_manifest_sha256": "113d1ccb9ef6ac584573f1ad772c23545c31d7a220907d7d1ae4512354404778",
+  "schedule": [
+    {
+      "ablation": "full",
+      "arm": "E2",
+      "assignment_seed": 3940000,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-000",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-train-a-outage",
+      "family": "engineering/b2-client-a-brief-blackhole",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          5,
+          25,
+          0
+        ],
+        "b": [
+          14,
+          25,
+          0
+        ]
+      },
+      "load": "high",
+      "name": "c93-000",
+      "network_seed": 3950000,
+      "network_sha256": "b7a179027dcf0660ff4c30196e955e613f8f57c3cae4eb61dc1a5f25dae459a7",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "a": [
+              5,
+              25,
+              100
+            ]
+          },
+          "side": "client"
+        },
+        {
+          "at_us": 835000,
+          "links": {
+            "a": [
+              5,
+              25,
+              0
+            ]
+          },
+          "side": "client"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        790000,
+        810000,
+        823000,
+        830000,
+        835000,
+        839000,
+        844000,
+        851000,
+        859000,
+        870000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "outage",
+      "seed": 3930000,
+      "serial": 0,
+      "shape": "b2-train-a-outage",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E2",
+      "assignment_seed": 3940001,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-001",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-train-a-outage",
+      "family": "engineering/b2-client-a-brief-blackhole",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          5,
+          25,
+          0
+        ],
+        "b": [
+          14,
+          25,
+          0
+        ]
+      },
+      "load": "low",
+      "name": "c93-001",
+      "network_seed": 3950001,
+      "network_sha256": "b7a179027dcf0660ff4c30196e955e613f8f57c3cae4eb61dc1a5f25dae459a7",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "a": [
+              5,
+              25,
+              100
+            ]
+          },
+          "side": "client"
+        },
+        {
+          "at_us": 835000,
+          "links": {
+            "a": [
+              5,
+              25,
+              0
+            ]
+          },
+          "side": "client"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        790000,
+        810000,
+        823000,
+        830000,
+        835000,
+        839000,
+        844000,
+        851000,
+        859000,
+        870000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "outage",
+      "seed": 3930001,
+      "serial": 1,
+      "shape": "b2-train-a-outage",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E1",
+      "assignment_seed": 3940002,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-002",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-train-a-reversal",
+      "family": "engineering/b2-a-to-b-delay-crossing",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          4,
+          25,
+          0
+        ],
+        "b": [
+          17,
+          25,
+          0
+        ]
+      },
+      "load": "high",
+      "name": "c93-002",
+      "network_seed": 3950002,
+      "network_sha256": "ca1c70837f2530a5df972ec8f92a801658f052a3e5ca1b16efe957ac5bb13e67",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "a": [
+              21,
+              25,
+              0
+            ],
+            "b": [
+              6,
+              25,
+              0
+            ]
+          },
+          "side": "both"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "reversal",
+      "seed": 3930002,
+      "serial": 2,
+      "shape": "b2-train-a-reversal",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E1",
+      "assignment_seed": 3940003,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-003",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-train-a-reversal",
+      "family": "engineering/b2-a-to-b-delay-crossing",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          4,
+          25,
+          0
+        ],
+        "b": [
+          17,
+          25,
+          0
+        ]
+      },
+      "load": "low",
+      "name": "c93-003",
+      "network_seed": 3950003,
+      "network_sha256": "ca1c70837f2530a5df972ec8f92a801658f052a3e5ca1b16efe957ac5bb13e67",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "a": [
+              21,
+              25,
+              0
+            ],
+            "b": [
+              6,
+              25,
+              0
+            ]
+          },
+          "side": "both"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "reversal",
+      "seed": 3930003,
+      "serial": 3,
+      "shape": "b2-train-a-reversal",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E2",
+      "assignment_seed": 3940004,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-004",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-validation-b-outage",
+      "family": "engineering/b2-server-b-blackhole-recovery",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          11,
+          26,
+          0
+        ],
+        "b": [
+          4,
+          19,
+          0
+        ]
+      },
+      "load": "high",
+      "name": "c93-004",
+      "network_seed": 3950004,
+      "network_sha256": "1f3c3222b4afc57531bc960bce263d94a5eb9520318bc18d7dbb70ad22b1c394",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "b": [
+              4,
+              19,
+              100
+            ]
+          },
+          "side": "server"
+        },
+        {
+          "at_us": 865000,
+          "links": {
+            "b": [
+              4,
+              19,
+              0
+            ]
+          },
+          "side": "server"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        820000,
+        840000,
+        853000,
+        860000,
+        865000,
+        869000,
+        874000,
+        881000,
+        889000,
+        900000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "outage",
+      "seed": 3930004,
+      "serial": 4,
+      "shape": "b2-validation-b-outage",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E2",
+      "assignment_seed": 3940005,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-005",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-validation-b-outage",
+      "family": "engineering/b2-server-b-blackhole-recovery",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          11,
+          26,
+          0
+        ],
+        "b": [
+          4,
+          19,
+          0
+        ]
+      },
+      "load": "low",
+      "name": "c93-005",
+      "network_seed": 3950005,
+      "network_sha256": "1f3c3222b4afc57531bc960bce263d94a5eb9520318bc18d7dbb70ad22b1c394",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "b": [
+              4,
+              19,
+              100
+            ]
+          },
+          "side": "server"
+        },
+        {
+          "at_us": 865000,
+          "links": {
+            "b": [
+              4,
+              19,
+              0
+            ]
+          },
+          "side": "server"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        820000,
+        840000,
+        853000,
+        860000,
+        865000,
+        869000,
+        874000,
+        881000,
+        889000,
+        900000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "outage",
+      "seed": 3930005,
+      "serial": 5,
+      "shape": "b2-validation-b-outage",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E1",
+      "assignment_seed": 3940006,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-006",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-validation-b-reversal",
+      "family": "engineering/b2-b-to-a-jitter-crossing",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          18,
+          27,
+          0,
+          1
+        ],
+        "b": [
+          5,
+          21,
+          0,
+          1
+        ]
+      },
+      "load": "high",
+      "name": "c93-006",
+      "network_seed": 3950006,
+      "network_sha256": "f3c66742e2f8388631878c133ff796fed92676ff485304070a37ba199d0c62f9",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "a": [
+              7,
+              27,
+              0,
+              1
+            ],
+            "b": [
+              24,
+              21,
+              0,
+              1
+            ]
+          },
+          "side": "both"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "reversal",
+      "seed": 3930006,
+      "serial": 6,
+      "shape": "b2-validation-b-reversal",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    },
+    {
+      "ablation": "full",
+      "arm": "E1",
+      "assignment_seed": 3940007,
+      "block": null,
+      "budget": "short",
+      "connection_id": "c93-engineering-007",
+      "deadline_pattern_us": [
+        12000,
+        18000,
+        24000,
+        32000
+      ],
+      "environment": "engineering/b2-validation-b-reversal",
+      "family": "engineering/b2-b-to-a-jitter-crossing",
+      "features": true,
+      "horizon_us": 2400000,
+      "initial": {
+        "a": [
+          18,
+          27,
+          0,
+          1
+        ],
+        "b": [
+          5,
+          21,
+          0,
+          1
+        ]
+      },
+      "load": "low",
+      "name": "c93-007",
+      "network_seed": 3950007,
+      "network_sha256": "f3c66742e2f8388631878c133ff796fed92676ff485304070a37ba199d0c62f9",
+      "path_scheduler": "random-path",
+      "phases": [
+        {
+          "at_us": 750000,
+          "links": {
+            "a": [
+              7,
+              27,
+              0,
+              1
+            ],
+            "b": [
+              24,
+              21,
+              0,
+              1
+            ]
+          },
+          "side": "both"
+        }
+      ],
+      "policy": "proposed-app",
+      "recovery_k": 2,
+      "release_times_us": [
+        160000,
+        230000,
+        310000,
+        450000,
+        705000,
+        725000,
+        738000,
+        745000,
+        750000,
+        754000,
+        759000,
+        766000,
+        774000,
+        785000,
+        1880000,
+        2020000,
+        2200000
+      ],
+      "repair": "strict",
+      "required": {},
+      "scenario": "reversal",
+      "seed": 3930007,
+      "serial": 7,
+      "shape": "b2-validation-b-reversal",
+      "split": "engineering",
+      "stage92": true,
+      "stage92r": true,
+      "stage92r2": true,
+      "timing": "750000",
+      "trace": "full",
+      "tuning": {
+        "event_burst": 3,
+        "loss_scale": 1,
+        "severity_weight": 2,
+        "slack_margin_us": 0,
+        "waiting_weight": 1
+      },
+      "version": 1
+    }
+  ],
+  "schedule_sha256": "a0f8a8f748a097e00f415ced1c924814eba153dc32e882e944652bfcb0aeeb3d",
+  "sealed_executions": 0,
+  "sealed_payload_reads": 0,
+  "settings": {
+    "confirm_count": 5,
+    "max_mapping_error_us": 100,
+    "max_pairs_per_cell": 16,
+    "max_probe_spacing_us": 1000,
+    "max_unknown_transition_fraction": 0.1,
+    "order_seed": 93303,
+    "pair_confidence": 0.9,
+    "planning_event_halfwidth_pp": 0.75,
+    "planning_goodput_halfwidth_pp": 3.0,
+    "pre_switch_window_us": 25000,
+    "probe_period_us": 650,
+    "target_window_us": 50000
+  },
+  "source_build_and_frozen_plan_unchanged": true,
+  "stage": "9.3-C",
+  "verdict": "NO-GO"
+}
