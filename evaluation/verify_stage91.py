@@ -400,9 +400,12 @@ def verify_run(directory):
         endpoint_teardown(directory, role, trace, cutoff)
     inputs = keyed(left["iot_input"], "id")
     require(inputs.keys() == {k for k, r in records.items() if r["release"] < horizon}, "incomplete workload admission")
-    app_result = app.verify(records, log_rows(directory / "client.log"), origin, case)
+    client_rows = log_rows(directory / "client.log")
+    app_result = app.verify(records, client_rows, origin, case)
     require(app_result["decisions"] == client["attempts"], "Oracle and attempt totals disagree")
     verify_binding(case, records, client)
+    if case["path_scheduler"] == "ack-adaptive":
+        path.verify_ack_feedback(client_rows)
     submits, arrivals, acks = (keyed(rows, "id") for rows in (left["iot_submit"], right["iot_rx"], left["iot_ack"]))
     require(acks.keys() <= arrivals.keys() <= submits.keys(), "unsolicited delivery or ACK")
     verify_arrivals(records, submits, arrivals, acks, origin)

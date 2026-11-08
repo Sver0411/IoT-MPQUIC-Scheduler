@@ -7,6 +7,7 @@
 struct iot_binding {
     uint64_t home, due_us;
     uint32_t id;
+    double base_estimate_us;
 };
 
 struct iot_path_control {

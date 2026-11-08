@@ -22,11 +22,25 @@ struct iot_estimate iot_estimate_path(const struct iot_path_sample *path, size_t
 {
     double rate = fmax(path->rate_Bps, 15000);
     double time = path->rtt_us * (path->pto ? 2.5 : 0.5) +
-                  (path->queued_bytes + (double)path->in_flight_bytes + bytes) * 1000000 / rate;
+                  (path->queued_bytes + (double)path->in_flight_bytes + bytes) * 1000000 / rate +
+                  path->delay_correction_us;
     double spread = fmax(path->rttvar_us, 1000);
     double arrival = slack_us > 0 ? fmin(1, fmax(0, (slack_us - time + spread) / (2 * spread))) : 0;
     double clean = pow(1 - path->loss, ceil((double)bytes / 1200));
     return (struct iot_estimate){time, arrival * clean};
+}
+
+void iot_update_path_feedback(struct iot_path_feedback *feedback, double residual_us)
+{
+    feedback->bias_us = 0.25 * residual_us + 0.75 * feedback->bias_us;
+    feedback->samples++;
+}
+
+double iot_path_correction(const struct iot_path_feedback *feedback)
+{
+    if (feedback->samples < 3)
+        return 0;
+    return fmax(0, feedback->bias_us) * fmin(1, (feedback->samples - 2) / 3.0);
 }
 
 double iot_record_slack(const struct iot_record *record, uint64_t elapsed)
@@ -72,7 +86,8 @@ size_t iot_choose_initial_path(const struct iot_record *record, double slack,
         bool better = candidate.duration_us < chosen.duration_us;
         if (rule == IOT_FIXED_MINRTT)
             better = paths[i].rtt_us < paths[best].rtt_us;
-        if (rule == IOT_PROBABILITY_PATH && candidate.probability != chosen.probability)
+        if ((rule == IOT_PROBABILITY_PATH || rule == IOT_ACK_ADAPTIVE) &&
+            candidate.probability != chosen.probability)
             better = candidate.probability > chosen.probability;
         if (better) {
             best = i;

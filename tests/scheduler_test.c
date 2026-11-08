@@ -164,6 +164,24 @@ static void test_proposed(void)
 
 static void test_independent_factors(void)
 {
+    struct iot_path_feedback feedback[2] = {0};
+    struct iot_path_sample candidates[] = {
+        {.id = 0, .rtt_us = 20000, .rate_Bps = 1000000},
+        {.id = 1, .rtt_us = 24000, .rate_Bps = 1000000},
+    };
+    struct iot_record probe = {0};
+    assert(iot_choose_initial_path(&probe, 11000, candidates, 2, IOT_ACK_ADAPTIVE, 0) == 0);
+    iot_update_path_feedback(&feedback[0], 20000);
+    iot_update_path_feedback(&feedback[0], 20000);
+    assert(iot_path_correction(&feedback[0]) == 0);
+    iot_update_path_feedback(&feedback[0], 20000);
+    assert(feedback[0].bias_us == 11562.5 && iot_path_correction(&feedback[0]) > 3800);
+    assert(feedback[1].samples == 0 && iot_path_correction(&feedback[1]) == 0);
+    candidates[0].delay_correction_us = iot_path_correction(&feedback[0]);
+    assert(iot_choose_initial_path(&probe, 11000, candidates, 2, IOT_ACK_ADAPTIVE, 0) == 1);
+    iot_update_path_feedback(&feedback[0], -40000);
+    assert(iot_path_correction(&feedback[0]) == 0);
+
     add(IOT_STATE, 1, 0, 100000, 100000, 1);
     add(IOT_EVENT, 1, 0, 100000, 0, 4);
     workload.entries[1].record.severity = 4;

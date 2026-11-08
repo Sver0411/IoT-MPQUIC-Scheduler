@@ -50,6 +50,7 @@ struct link {
     int fd;
     struct sockaddr_in local, peer;
     uint64_t id, tx, rx, tx_bytes, rx_bytes;
+    struct iot_path_feedback delivery;
     bool blocked;
 };
 
@@ -222,9 +223,19 @@ static void map_link(struct link *link, int index, uint64_t id)
     char local[22], peer[22];
     address_text(&link->local, local);
     address_text(&link->peer, peer);
+    if (link->id != id)
+        link->delivery = (struct iot_path_feedback){0};
     link->id = id;
     event("path_map", "link=%c path_id=%" PRIu64 " local=%s peer=%s",
           'A' + index, id, local, peer);
+}
+
+static struct iot_path_feedback *path_feedback(struct endpoint *ep, uint64_t path_id)
+{
+    for (int i = 0; i < PATHS; i++)
+        if (ep->links[i].id == path_id)
+            return &ep->links[i].delivery;
+    return NULL;
 }
 
 static bool migration_peer(const struct link *link, const struct sockaddr_in *peer)
@@ -556,6 +567,19 @@ static int finish_iot_record(xqc_stream_t *stream, struct record_stream *buffer)
           " status=%u on_time=%d latest_generated=%" PRIu64 " latest_serial=%" PRIu64,
           ack.id, ack.stream_id, stream_id, entry->submitted, ack.received, received, ack.status,
           ack.on_time, ack.latest_generated, ack.latest_serial);
+    if (ep->iot->path_rule == IOT_ACK_ADAPTIVE) {
+        const struct iot_binding *binding = &ep->iot->paths.bindings[ack.stream_id / 4];
+        struct iot_path_feedback *feedback = path_feedback(ep, binding->home);
+        if (feedback) {
+            uint64_t actual = ack.received - entry->submitted;
+            double residual = actual - binding->base_estimate_us;
+            iot_update_path_feedback(feedback, residual);
+            event("iot_path_bias", "id=%u stream_id=%" PRIu64 " path_id=%" PRIu64
+                  " base_us=%.9f actual_us=%" PRIu64 " residual_us=%.9f bias_us=%.9f samples=%u",
+                  ack.id, ack.stream_id, binding->home, binding->base_estimate_us,
+                  actual, residual, feedback->bias_us, feedback->samples);
+        }
+    }
     return 0;
 }
 
@@ -729,6 +753,7 @@ static const char *const path_rules[] = {
     [IOT_NATIVE_PATH] = "minrtt", [IOT_PROBABILITY_PATH] = "proposed-path",
     [IOT_FIXED_MINRTT] = "fixed-minrtt", [IOT_EARLIEST_COMPLETION] = "earliest-completion",
     [IOT_RANDOM_PATH] = "random-path",
+    [IOT_ACK_ADAPTIVE] = "ack-adaptive",
 };
 
 static void exercise_lifecycle(struct endpoint *ep, uint64_t elapsed)
@@ -812,6 +837,7 @@ static void progress_iot(struct endpoint *ep)
     bool proposed = iot_policy_proposed(scheduler->policy);
     bool joint = iot_policy_joint(scheduler->policy);
     bool bind_path = ep->iot->bind_path;
+    bool adaptive = ep->iot->path_rule == IOT_ACK_ADAPTIVE;
     if (!ep->iot->start) {
         ep->iot->start = now_us();
         event("iot_start", "origin=%" PRIu64 " records=%zu tx_window=%d initial_uni_credit=%d send_packets=%d policy=%s",
@@ -889,6 +915,13 @@ static void progress_iot(struct endpoint *ep)
             break;
         if (bind_path) {
             count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale, path_features);
+            if (adaptive) {
+                for (size_t i = 0; i < count; i++) {
+                    const struct iot_path_feedback *feedback = path_feedback(ep, paths[i].id);
+                    if (feedback)
+                        paths[i].delay_correction_us = iot_path_correction(feedback);
+                }
+            }
             if (!count) {
                 if (path_features) {
                     for (size_t i = 0; i < workload->next; i++) {
@@ -912,7 +945,7 @@ static void progress_iot(struct endpoint *ep)
         double slack = iot_record_slack(&entry->record, decision_us);
         if (bind_path && !joint) {
             plan.entry = entry;
-            if (!ep->iot->oracle)
+            if (!ep->iot->oracle && !adaptive)
                 iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
         }
         if (measure)
@@ -941,17 +974,21 @@ static void progress_iot(struct endpoint *ep)
         entry->state = IOT_SUBMITTED;
         workload->outstanding++;
         if (bind_path) {
-            if (ep->iot->oracle) {
+            double base_estimate_us = 0;
+            if (ep->iot->oracle || adaptive) {
                 size_t chosen = iot_choose_initial_path(&entry->record, slack, paths, count,
                                                         ep->iot->path_rule, ep->iot->assignment_seed);
                 plan.path_id = paths[chosen].id;
                 plan.estimate = iot_estimate_path(&paths[chosen], buffer->size, slack);
+                if (adaptive)
+                    base_estimate_us = plan.estimate.duration_us - paths[chosen].delay_correction_us;
             }
             uint64_t due = record.deadline;
             if (record.kind == IOT_STATE && record.maximum_age < due - record.generated)
                 due = record.generated + record.maximum_age;
             ep->iot->paths.bindings[entry->stream_id / 4] =
-                (struct iot_binding){plan.path_id, due, record.id};
+                (struct iot_binding){.home = plan.path_id, .due_us = due, .id = record.id,
+                                     .base_estimate_us = base_estimate_us};
             for (size_t i = 0; i < count; i++) {
                 const struct iot_path_sample *path = &paths[i];
                 if (path_features)
@@ -970,9 +1007,9 @@ static void progress_iot(struct endpoint *ep)
                 if (ep->iot->oracle) {
                     struct iot_estimate estimate = iot_estimate_path(path, buffer->size, slack);
                     event("iot_path_forecast", "id=%u path_id=%" PRIu64 " recent_sent=%" PRIu64
-                          " recent_lost=%" PRIu64 " estimate_us=%.9f probability=%.17g",
+                          " recent_lost=%" PRIu64 " estimate_us=%.9f probability=%.17g correction_us=%.9f",
                           record.id, path->id, path->recent_sent, path->recent_lost,
-                          estimate.duration_us, estimate.probability);
+                          estimate.duration_us, estimate.probability, path->delay_correction_us);
                 }
             }
             event("iot_plan", "id=%u stream_id=%" PRIu64 " class=%d home=%" PRIu64
@@ -1242,11 +1279,16 @@ int main(int argc, char **argv)
     const char *path_policy = getenv("IOT_PATH_POLICY");
     if (iot && !server && path_policy) {
         size_t rule = 0;
-        size_t count = oracle ? sizeof(path_rules) / sizeof(*path_rules) : IOT_PROBABILITY_PATH + 1;
+        size_t count = sizeof(path_rules) / sizeof(*path_rules);
         while (rule < count && strcmp(path_policy, path_rules[rule]))
             rule++;
-        if (rule == count || (bind_path && rule == IOT_NATIVE_PATH)) {
+        if (rule == count || (bind_path && rule == IOT_NATIVE_PATH) ||
+            (!oracle && rule > IOT_PROBABILITY_PATH && rule != IOT_ACK_ADAPTIVE)) {
             fprintf(stderr, "Invalid path policy or MinRTT requested for a joint policy\n");
+            return 2;
+        }
+        if (rule == IOT_ACK_ADAPTIVE && policy != IOT_PROPOSED_APP) {
+            fprintf(stderr, "ack-adaptive requires proposed-app\n");
             return 2;
         }
         path_rule = (enum iot_path_rule)rule;
