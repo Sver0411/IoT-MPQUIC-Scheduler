@@ -17,6 +17,7 @@ from stage92_design import ROOT, file_hash, fingerprint, write_workload
 
 sys.path[:0] = [str(ROOT / "evaluation"), str(ROOT / "network/scenarios")]
 from stage5 import configure
+from stage92_probe import fixed_rate_reversal
 from stage92r_control import transitions
 from stage93a import write_json
 from stage93c import limits, make_schedule, pair_plan, validate_frozen
@@ -124,7 +125,11 @@ def run_case(folder, case, build, tc, cpus, settings, execution_log):
                        stdout=execution_log, stderr=execution_log)
         for name in names:
             subprocess.run(["ip", "netns", "exec", name, "sysctl", "-qw", "net.ipv6.conf.all.disable_ipv6=1"], check=True)
-        initial = configure(names, case["initial"], None, None, seeded_tc=str(tc), detailed=True)
+        delay_leaf = case["scenario"] == "reversal"
+        if delay_leaf:
+            initial = fixed_rate_reversal(names, str(tc), case["initial"])
+        else:
+            initial = configure(names, case["initial"], None, None, seeded_tc=str(tc), detailed=True)
         (folder / "network.jsonl").write_text(json.dumps(initial) + "\n")
         with tempfile.TemporaryDirectory(prefix="stage93c-tls-") as tls:
             cert, key = Path(tls) / "cert.pem", Path(tls) / "key.pem"
@@ -155,7 +160,8 @@ def run_case(folder, case, build, tc, cpus, settings, execution_log):
             probes = []
             if case["arm"] != "E0":
                 for i, side in enumerate(SIDES):
-                    args = ["taskset", "-c", str(cpus[i + 2]), "ip", "netns", "exec", namespaces[side], sys.executable,
+                    args = ["chrt", "-f", "1", "taskset", "-c", str(cpus[i + 2]), "ip", "netns", "exec",
+                            namespaces[side], sys.executable,
                             "-B", ROOT / "network/scenarios/stage93c_probe.py", side, folder, str(settings["probe_period_us"])]
                     fds = (trace[1].fileno(),) if trace else ()
                     if fds:
@@ -190,7 +196,7 @@ def run_case(folder, case, build, tc, cpus, settings, execution_log):
                 write_json(gate, {"identity": identity(case), "origin_us": origin})
                 gate.rename(folder / "probe-gate.json")
             with (folder / "network.jsonl").open("a") as timeline:
-                for row in transitions(names, case["phases"], origin, case["network_seed"], str(tc)):
+                for row in transitions(names, case["phases"], origin, case["network_seed"], str(tc), delay_leaf):
                     timeline.write(json.dumps(row) + "\n")
                     timeline.flush()
             results = {side: proc.wait(timeout=10) for side, proc in endpoints.items()}

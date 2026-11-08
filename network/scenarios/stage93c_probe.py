@@ -104,7 +104,8 @@ def probe(side, folder, period_us, marker):
                 next_clock = now + 100_000_000
             timeout = min(.001, max(0, tick - time.monotonic_ns()) / 1e9) if tick < end else .001
             for sock in select.select(sockets, [], [], timeout)[0]:
-                while True:
+                # Drain only until the next send is due, even if the peer's queue stays readable.
+                while tick >= end or time.monotonic_ns() < tick:
                     try:
                         payload, ancillary, flags, _ = sock.recvmsg(128, 64, socket.MSG_DONTWAIT)
                     except BlockingIOError:
@@ -122,6 +123,7 @@ def probe(side, folder, period_us, marker):
         raise
     finally:
         evidence["ended_ns"] = time.monotonic_ns()
+        evidence["cpu_us"] = time.process_time_ns() // 1000
         evidence["clock"].append(clock_sample())
         (folder / f"probe-{side}.json").write_text(json.dumps(evidence, separators=(",", ":")) + "\n")
         for sock in sockets:

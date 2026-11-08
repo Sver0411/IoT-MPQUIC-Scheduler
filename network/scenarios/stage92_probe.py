@@ -135,23 +135,23 @@ def stop_child(child):
         child.wait(timeout=3)
 
 
-def fixed_rate_reversal(namespaces, tc):
-    """Keep the fixed 25 Mbit/s limiter separate from the changing delay queues."""
+def fixed_rate_reversal(namespaces, tc, links=INITIAL):
+    """Keep the fixed per-link limiter separate from the changing delay queues."""
     started = clock_us()
     directions = {}
     for side, namespace in zip(("client", "server"), namespaces):
-        for link, (delay, rate, _) in INITIAL.items():
+        for link, (delay, rate, _, *jitter) in links.items():
             prefix = ["ip", "netns", "exec", namespace, tc, "qdisc"]
             device = ["dev", f"iot-{link}"]
             begin = clock_us()
             subprocess.run([*prefix, "replace", *device, "root", "handle", "1:", "tbf", "rate", f"{rate}mbit",
                             "burst", "32kb", "latency", "50ms"], check=True)
             subprocess.run([*prefix, "replace", *device, "parent", "1:1", "handle", "10:", "netem",
-                            "delay", f"{delay}ms", "limit", "1000"], check=True)
+                            "delay", f"{delay}ms", *(f"{value}ms" for value in jitter), "limit", "1000"], check=True)
             done = clock_us()
             snapshot = subprocess.check_output([*prefix, "show", *device], text=True).strip()
             directions[f"{side}-{link}"] = {"start_us": begin, "done_us": done, "qdisc": snapshot}
-    return {"offset_us": None, "links": INITIAL, "begin_us": started, "end_us": clock_us(),
+    return {"offset_us": None, "links": links, "begin_us": started, "end_us": clock_us(),
             "directions": directions, "qdiscs": {k: v["qdisc"] for k, v in directions.items()}}
 
 
