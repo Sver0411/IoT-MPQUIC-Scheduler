@@ -1,0 +1,16 @@
+{
+  "train_environments": ["train-delay-step", "train-rate-step"],
+  "validation_environments": ["validation-reversal", "validation-outage"],
+  "ridge_candidates": [0.001, 0.01, 0.1, 1.0],
+  "cv_folds": 5,
+  "cv_seed": 93031,
+  "validation_bootstrap_draws": 4000,
+  "validation_bootstrap_seed": 93032,
+  "coefficient_bootstrap_draws": 400,
+  "coefficient_bootstrap_seed": 93033,
+  "support": {"per_class_rows": 20, "seed_clusters": 12},
+  "budget_windows_us": {"0-100ms": [0, 100000], "0-25ms": [0, 25000], "25-50ms": [25000, 50000], "50-100ms": [50000, 100000]},
+  "slack_grid_edges_us": [0, 10000, 15000, 20000, 25000, 50000, 100000],
+  "srtt_grid_edges_us": [0, 15000, 30000, 60000, null],
+  "go_minimum_brier_reduction": 0.01
+}

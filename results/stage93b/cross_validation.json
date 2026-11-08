@@ -1,0 +1,4429 @@
+{
+  "config": {
+    "budget_windows_us": {
+      "0-100ms": [
+        0,
+        100000
+      ],
+      "0-25ms": [
+        0,
+        25000
+      ],
+      "25-50ms": [
+        25000,
+        50000
+      ],
+      "50-100ms": [
+        50000,
+        100000
+      ]
+    },
+    "coefficient_bootstrap_draws": 400,
+    "coefficient_bootstrap_seed": 93033,
+    "cv_folds": 5,
+    "cv_seed": 93031,
+    "go_minimum_brier_reduction": 0.01,
+    "ridge_candidates": [
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "slack_grid_edges_us": [
+      0,
+      10000,
+      15000,
+      20000,
+      25000,
+      50000,
+      100000
+    ],
+    "srtt_grid_edges_us": [
+      0,
+      15000,
+      30000,
+      60000,
+      null
+    ],
+    "support": {
+      "per_class_rows": 20,
+      "seed_clusters": 12
+    },
+    "train_environments": [
+      "train-delay-step",
+      "train-rate-step"
+    ],
+    "validation_bootstrap_draws": 4000,
+    "validation_bootstrap_seed": 93032,
+    "validation_environments": [
+      "validation-reversal",
+      "validation-outage"
+    ]
+  },
+  "fold_groups": [
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 920000
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 920001
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 920002
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 920003
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 964000
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964001
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 964002
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964003
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 964004
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 964005
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 964006
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 964007
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 964008
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 964009
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 964010
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 964011
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964012
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964013
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 964014
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964015
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 964016
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 964017
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 964018
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964019
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964020
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 964021
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964022
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 964023
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964024
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964025
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 964026
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964027
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964028
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 964029
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 964030
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 964031
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 1064000
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064001
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064002
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064003
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 1064004
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064005
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 1064006
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 1064007
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064008
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064009
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 1064010
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064011
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 1064012
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064013
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064014
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 1064015
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 1064016
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 1064017
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 1064018
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 1064019
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 1064020
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 4,
+      "seed": 1064021
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 1064022
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064023
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064024
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 2,
+      "seed": 1064025
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 1064026
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064027
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 3,
+      "seed": 1064028
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 1,
+      "seed": 1064029
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 1064030
+    },
+    {
+      "environment": "train-delay-step",
+      "held_out_fold": 0,
+      "seed": 1064031
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 920100
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 920101
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 920102
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 920103
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 964100
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 964101
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 964102
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964103
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964104
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 964105
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 964106
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964107
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964108
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964109
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 964110
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 964111
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 964112
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964113
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964114
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 964115
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964116
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 964117
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 964118
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964119
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 964120
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964121
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964122
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 964123
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 964124
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 964125
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 964126
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 964127
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964128
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 964129
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 964130
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 964131
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064100
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 1064101
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 1064102
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 1064103
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 1064104
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064105
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064106
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 1064107
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064108
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 1064109
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 1064110
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064111
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 1064112
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064113
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 1064114
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064115
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 1064116
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064117
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 1064118
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064119
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064120
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 1064121
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 3,
+      "seed": 1064122
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 1064123
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 1064124
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 1064125
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064126
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064127
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 4,
+      "seed": 1064128
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 2,
+      "seed": 1064129
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 0,
+      "seed": 1064130
+    },
+    {
+      "environment": "train-rate-step",
+      "held_out_fold": 1,
+      "seed": 1064131
+    }
+  ],
+  "model_row_sha256": "fd475c06a48a48935c9e04d8e1bdabf872af9719d824972890d8037a5fab12ac",
+  "models": {
+    "D0": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.1635484670027268,
+          "folds": [
+            {
+              "brier": 0.15692786775029335,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.18077292670641512,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.15657431521922377,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17158218976611153,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.16970504706587114,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.16095859167401902,
+            "train-rate-step": 0.1661383423314346
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.16381919190619817,
+          "folds": [
+            {
+              "brier": 0.15645263546752539,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1809069388530266,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.15667988263956034,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17164038481569233,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.16916062293750406,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.16100367230919974,
+            "train-rate-step": 0.16663471150319661
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.16995134022770725,
+          "folds": [
+            {
+              "brier": 0.15773757922524742,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.18601638928417888,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1615949936303454,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17662326763846978,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17033770607088614,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.16636593255932422,
+            "train-rate-step": 0.1735367478960903
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.19733612966267905,
+          "folds": [
+            {
+              "brier": 0.17632694656699016,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.21031274211653342,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1859166609877802,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.20179449123056178,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.18950062877677304,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1943499322218982,
+            "train-rate-step": 0.20032232710345987
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "D1": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.11783138360846965,
+          "folds": [
+            {
+              "brier": 0.11319963308673617,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1381913727278671,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.11437083761529186,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.11824466512404067,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12366499054970588,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.11896157137969432,
+            "train-rate-step": 0.11670119583724498
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.11894026885529829,
+          "folds": [
+            {
+              "brier": 0.11383766998767997,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.13806094860562487,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.11509183500337716,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12001538034494953,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12427105537130902,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.11924073890256393,
+            "train-rate-step": 0.11863979880803266
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.13509781479393326,
+          "folds": [
+            {
+              "brier": 0.1255114451697886,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.15018782831249022,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.12914865766816622,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1379623890559865,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1364886568763684,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1330620725170635,
+            "train-rate-step": 0.13713355707080302
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.1872178529102409,
+          "folds": [
+            {
+              "brier": 0.16678902733987172,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.19881843022407578,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1764500875048252,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.19067179569423848,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.18007568572775542,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.18460522749047253,
+            "train-rate-step": 0.18983047833000924
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M0": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.13923143248347436,
+          "folds": [
+            {
+              "brier": 0.12842366316020926,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.13449793635997906,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.12509960127118108,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12533850112844788,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12721457110897988,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1491062890830076,
+            "train-rate-step": 0.12935657588394114
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.13944941695754628,
+          "folds": [
+            {
+              "brier": 0.12726670936587064,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.13687232137452426,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.12790286352512029,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12805526646114426,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12851496463141265,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.14675162652444573,
+            "train-rate-step": 0.13214720739064684
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.1624655317354277,
+          "folds": [
+            {
+              "brier": 0.14316028201808964,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1645504338460944,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.15211207534477525,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1576061225813587,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.15230034449148874,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.16495303415664897,
+            "train-rate-step": 0.1599780293142064
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.19835945512462672,
+          "folds": [
+            {
+              "brier": 0.17407809730179563,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.20657866969817493,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1865313589586495,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.19959633732325494,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.18809652690641962,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.19708820231656957,
+            "train-rate-step": 0.19963070793268387
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M2": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.09920084535141455,
+          "folds": [
+            {
+              "brier": 0.09586196719706602,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.11716862506977709,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.09670555127164786,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10330540906203939,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10489570682846981,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1029708219564534,
+            "train-rate-step": 0.09543086874637569
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.09994090058604536,
+          "folds": [
+            {
+              "brier": 0.09646293295051699,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.11598188029521973,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.09847121602513852,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10512545973296832,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10509015672694763,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1030147750157837,
+            "train-rate-step": 0.09686702615630703
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.12264278228638661,
+          "folds": [
+            {
+              "brier": 0.11440880640204315,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1341972036423263,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.12043184117948368,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12919535203792923,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.12397528196028049,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1234998747616482,
+            "train-rate-step": 0.12178568981112502
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.18514629780047337,
+          "folds": [
+            {
+              "brier": 0.16473048363620524,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.19522390133983297,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.17556336434544684,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1893469617495329,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1780413425079757,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.18349940854890173,
+            "train-rate-step": 0.18679318705204503
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M3": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.04462177140237687,
+          "folds": [
+            {
+              "brier": 0.0459506694210366,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.04254853493514864,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.05222759286926324,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05088911609052201,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.04316960782166433,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.04587737559023425,
+            "train-rate-step": 0.043366167214519497
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.05949281690785366,
+          "folds": [
+            {
+              "brier": 0.058472930626228596,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.06552637270816872,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.0632661439788979,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.06285800322539263,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05790581544986168,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.05952885080427874,
+            "train-rate-step": 0.05945678301142858
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.1107614632175944,
+          "folds": [
+            {
+              "brier": 0.10084542986418558,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.12128776876031605,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.10729879470781371,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.11142883100381856,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10916640780864982,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.10996689610659777,
+            "train-rate-step": 0.11155603032859104
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.18362735959671384,
+          "folds": [
+            {
+              "brier": 0.16226140170720688,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.19389004922205963,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.17325362359842006,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.18603710905132245,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17599447130665755,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.18160393232972688,
+            "train-rate-step": 0.18565078686370076
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M4": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.04469593170775972,
+          "folds": [
+            {
+              "brier": 0.045901374009003744,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.042497569433460725,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.05238426361816312,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05077107508008269,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.04311516372978597,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.045855054027992025,
+            "train-rate-step": 0.043536809387527416
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.059976076154499965,
+          "folds": [
+            {
+              "brier": 0.05839833696150951,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.0662954245936584,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.06280852779655044,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.06364510214489488,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.06020684184535227,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.0602988381412526,
+            "train-rate-step": 0.05965331416774733
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.10802554294425287,
+          "folds": [
+            {
+              "brier": 0.09812734455159426,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.12016159942993682,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.10288537259055108,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10902273331107598,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10969531038767805,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.10761433496592754,
+            "train-rate-step": 0.1084367509225782
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.17589416238248934,
+          "folds": [
+            {
+              "brier": 0.15622524436281843,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.18735082740684963,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1655236672245843,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17872893346484864,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1704841333881825,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.17377529010168544,
+            "train-rate-step": 0.1780130346632932
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M5": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.04605867013330603,
+          "folds": [
+            {
+              "brier": 0.045965695418184085,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.043323478503668064,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.052824079852049156,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.0560776524360038,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.04176804070511661,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.04762283175424885,
+            "train-rate-step": 0.0444945085123632
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.06032486277026229,
+          "folds": [
+            {
+              "brier": 0.057569189346221745,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.06503456436944542,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.06357771126283703,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.06792567993789682,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05653181847394927,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.061523303507683334,
+            "train-rate-step": 0.05912642203284125
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.10871506140083743,
+          "folds": [
+            {
+              "brier": 0.09846812887338692,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.11675922153430192,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.10600712833763776,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.11491319849201266,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10632077254460513,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.11060889439457416,
+            "train-rate-step": 0.1068212284071007
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.18090552338175747,
+          "folds": [
+            {
+              "brier": 0.1600648128313858,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1904490029602466,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.17132005260627917,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.18557381012597782,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17335745315816176,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.18045290726489618,
+            "train-rate-step": 0.1813581394986188
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M6": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.03838739419698384,
+          "folds": [
+            {
+              "brier": 0.04055136749966545,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.041746028278382794,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.04363495330133094,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.03825903934375669,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.03516879426497104,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.03385703447145807,
+            "train-rate-step": 0.042917753922509606
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.05446855476239337,
+          "folds": [
+            {
+              "brier": 0.05251714842745788,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.06385215558754555,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.055212704530848256,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05190590770804733,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.050910855246121385,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.04920536864340915,
+            "train-rate-step": 0.0597317408813776
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.10708765764799817,
+          "folds": [
+            {
+              "brier": 0.09494698517035424,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.11914566738602395,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1020221052275801,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10402761390926972,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10300983436556192,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.10327611916499968,
+            "train-rate-step": 0.11089919613099666
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.18161440016372365,
+          "folds": [
+            {
+              "brier": 0.15961424671690339,
+              "fit": {
+                "connections": 114,
+                "n": 711,
+                "negative": 212,
+                "positive": 499,
+                "seed_clusters": 108
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 188,
+                "negative": 46,
+                "positive": 142,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.19232262641782216,
+              "fit": {
+                "connections": 114,
+                "n": 719,
+                "negative": 199,
+                "positive": 520,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 30,
+                "n": 180,
+                "negative": 59,
+                "positive": 121,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.1710961112693328,
+              "fit": {
+                "connections": 116,
+                "n": 716,
+                "negative": 208,
+                "positive": 508,
+                "seed_clusters": 109
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 183,
+                "negative": 50,
+                "positive": 133,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1831854552118305,
+              "fit": {
+                "connections": 115,
+                "n": 709,
+                "negative": 199,
+                "positive": 510,
+                "seed_clusters": 109
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 190,
+                "negative": 59,
+                "positive": 131,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17340797724187296,
+              "fit": {
+                "connections": 117,
+                "n": 741,
+                "negative": 214,
+                "positive": 527,
+                "seed_clusters": 110
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 158,
+                "negative": 44,
+                "positive": 114,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.17879102568001123,
+            "train-rate-step": 0.18443777464743608
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    },
+    "M7": {
+      "candidates": [
+        {
+          "environment_equal_seed_equal_brier": 0.03967057292568679,
+          "folds": [
+            {
+              "brier": 0.03707088482520084,
+              "fit": {
+                "connections": 113,
+                "n": 428,
+                "negative": 105,
+                "positive": 323,
+                "seed_clusters": 107
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 118,
+                "negative": 23,
+                "positive": 95,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.05280666149982989,
+              "fit": {
+                "connections": 114,
+                "n": 443,
+                "negative": 104,
+                "positive": 339,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 29,
+                "n": 103,
+                "negative": 24,
+                "positive": 79,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.040971723345920696,
+              "fit": {
+                "connections": 115,
+                "n": 432,
+                "negative": 101,
+                "positive": 331,
+                "seed_clusters": 108
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 114,
+                "negative": 27,
+                "positive": 87,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.042512527912411245,
+              "fit": {
+                "connections": 114,
+                "n": 423,
+                "negative": 95,
+                "positive": 328,
+                "seed_clusters": 108
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 123,
+                "negative": 33,
+                "positive": 90,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.040617358400364297,
+              "fit": {
+                "connections": 116,
+                "n": 458,
+                "negative": 107,
+                "positive": 351,
+                "seed_clusters": 109
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 88,
+                "negative": 21,
+                "positive": 67,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.001,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.03605369381409415,
+            "train-rate-step": 0.043287452037279434
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.053753401929497964,
+          "folds": [
+            {
+              "brier": 0.05142673267950578,
+              "fit": {
+                "connections": 113,
+                "n": 428,
+                "negative": 105,
+                "positive": 323,
+                "seed_clusters": 107
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 118,
+                "negative": 23,
+                "positive": 95,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.066816879290391,
+              "fit": {
+                "connections": 114,
+                "n": 443,
+                "negative": 104,
+                "positive": 339,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 29,
+                "n": 103,
+                "negative": 24,
+                "positive": 79,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05625848341396505,
+              "fit": {
+                "connections": 115,
+                "n": 432,
+                "negative": 101,
+                "positive": 331,
+                "seed_clusters": 108
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 114,
+                "negative": 27,
+                "positive": 87,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.06173202174956745,
+              "fit": {
+                "connections": 114,
+                "n": 423,
+                "negative": 95,
+                "positive": 328,
+                "seed_clusters": 108
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 123,
+                "negative": 33,
+                "positive": 90,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.05490126060054798,
+              "fit": {
+                "connections": 116,
+                "n": 458,
+                "negative": 107,
+                "positive": 351,
+                "seed_clusters": 109
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 88,
+                "negative": 21,
+                "positive": 67,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.01,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.05023729172598965,
+            "train-rate-step": 0.05726951213300628
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.09836757493032366,
+          "folds": [
+            {
+              "brier": 0.08765972626574949,
+              "fit": {
+                "connections": 113,
+                "n": 428,
+                "negative": 105,
+                "positive": 323,
+                "seed_clusters": 107
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 118,
+                "negative": 23,
+                "positive": 95,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.09995036238873019,
+              "fit": {
+                "connections": 114,
+                "n": 443,
+                "negative": 104,
+                "positive": 339,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 29,
+                "n": 103,
+                "negative": 24,
+                "positive": 79,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10007375168941474,
+              "fit": {
+                "connections": 115,
+                "n": 432,
+                "negative": 101,
+                "positive": 331,
+                "seed_clusters": 108
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 114,
+                "negative": 27,
+                "positive": 87,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.11484447028831057,
+              "fit": {
+                "connections": 114,
+                "n": 423,
+                "negative": 95,
+                "positive": 328,
+                "seed_clusters": 108
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 123,
+                "negative": 33,
+                "positive": 90,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.10264233094047603,
+              "fit": {
+                "connections": 116,
+                "n": 458,
+                "negative": 107,
+                "positive": 351,
+                "seed_clusters": 109
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 88,
+                "negative": 21,
+                "positive": 67,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 0.1,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.10372212729484849,
+            "train-rate-step": 0.09301302256579885
+          }
+        },
+        {
+          "environment_equal_seed_equal_brier": 0.15481876444594717,
+          "folds": [
+            {
+              "brier": 0.1333120662427007,
+              "fit": {
+                "connections": 113,
+                "n": 428,
+                "negative": 105,
+                "positive": 323,
+                "seed_clusters": 107
+              },
+              "fold": 0,
+              "held_out": {
+                "connections": 30,
+                "n": 118,
+                "negative": 23,
+                "positive": 95,
+                "seed_clusters": 28
+              }
+            },
+            {
+              "brier": 0.14945972886731193,
+              "fit": {
+                "connections": 114,
+                "n": 443,
+                "negative": 104,
+                "positive": 339,
+                "seed_clusters": 108
+              },
+              "fold": 1,
+              "held_out": {
+                "connections": 29,
+                "n": 103,
+                "negative": 24,
+                "positive": 79,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.15245944643348064,
+              "fit": {
+                "connections": 115,
+                "n": 432,
+                "negative": 101,
+                "positive": 331,
+                "seed_clusters": 108
+              },
+              "fold": 2,
+              "held_out": {
+                "connections": 28,
+                "n": 114,
+                "negative": 27,
+                "positive": 87,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.17150189404359895,
+              "fit": {
+                "connections": 114,
+                "n": 423,
+                "negative": 95,
+                "positive": 328,
+                "seed_clusters": 108
+              },
+              "fold": 3,
+              "held_out": {
+                "connections": 29,
+                "n": 123,
+                "negative": 33,
+                "positive": 90,
+                "seed_clusters": 27
+              }
+            },
+            {
+              "brier": 0.1553564523046286,
+              "fit": {
+                "connections": 116,
+                "n": 458,
+                "negative": 107,
+                "positive": 351,
+                "seed_clusters": 109
+              },
+              "fold": 4,
+              "held_out": {
+                "connections": 27,
+                "n": 88,
+                "negative": 21,
+                "positive": 67,
+                "seed_clusters": 26
+              }
+            }
+          ],
+          "ridge": 1.0,
+          "seed_equal_brier_by_environment": {
+            "train-delay-step": 0.1647525248721763,
+            "train-rate-step": 0.14488500401971802
+          }
+        }
+      ],
+      "selected_ridge": 0.001
+    }
+  },
+  "provenance": {
+    "development_pilots": {
+      "stage92": {
+        "archive_sha256": "dfd1bb7c33704a8c3e18130912db4435b18d0df6f304a0e9dbe3f258719960d7",
+        "endpoint_binary_sha256": "470418e95f53ed1bfc63ee3d0fbafeb73a19f81e5b41ddea3ade850526aaf78c",
+        "verified_runs": 32
+      },
+      "stage92r": {
+        "archive_sha256": "3509249288571147f92f7ece3abd1664661b4f47766b74b1b24c23877f13a5f0",
+        "endpoint_binary_sha256": "d8eebaa225c2b92a93c24d1a9d2c107a58a8c0daac44de59c6ac1d940f1781ff",
+        "verified_runs": 128
+      },
+      "stage92r2": {
+        "archive_sha256": "b6284d73c29ee112232b1acb8340477d13e1381848fb4f0afc29d64320ec97eb",
+        "endpoint_binary_sha256": "ec0a25186b197f66b9ed92db716e8669c6328a7557add8a62e93ec0e0905873a",
+        "verified_runs": 128
+      }
+    },
+    "sealed_access": {
+      "configuration_count": 48,
+      "executions": 0,
+      "payload_reads": 0
+    },
+    "stage93a_byte_identical": {
+      "data_quality_summary.json": "a18c94915d5f752bcfc70932a3837c8889baac36dc6cc001130b23b12c125f59",
+      "environment_coverage.json": "3f2a3130a148f8d0f1364976c8da39e0bfed1c030ad41424f98754d1c612dcb2",
+      "feature_dictionary.json": "d5e3979067800367a18cd05f698b3700d52f552351a5666a39b0d1f48aa5415e",
+      "feature_distribution.json": "d4044c17d7686ec18dade3f0f5525a8dc8caade18839f113f0b470bd0873317a"
+    }
+  },
+  "tuning": "environment-equal, seed-equal out-of-fold Brier; ties to stronger ridge",
+  "versions": {
+    "numpy": "2.2.6",
+    "python": "3.12.3",
+    "scipy": "1.15.3"
+  }
+}
