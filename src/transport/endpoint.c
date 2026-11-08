@@ -81,7 +81,7 @@ struct record_stream {
 
 static volatile sig_atomic_t advance_phase;
 static bool integrity_trace;
-static bool measure, digest_enabled, path_features, quiet_diagnostics;
+static bool measure, digest_enabled, path_features, quiet_diagnostics, buffered_trace;
 static uint64_t integrity_sequence;
 static volatile unsigned digest_sink;
 
@@ -833,6 +833,8 @@ static void progress_iot(struct endpoint *ep)
                   scheduler->tuning.slack_margin_us, scheduler->tuning.loss_scale);
         if (ep->iot->oracle)
             event("iot_oracle", "assignment_seed=%u", ep->iot->assignment_seed);
+        if (buffered_trace && fflush(stdout) != 0)
+            ep->failed = true;
     }
     uint64_t elapsed = now_us() - ep->iot->start;
     if (ep->iot->horizon_us && elapsed >= ep->iot->horizon_us) {
@@ -1295,7 +1297,12 @@ int main(int argc, char **argv)
         fprintf(stderr, "Stage 9.1 requires a fixed window and a bound Stage 8 client\n");
         return 2;
     }
-    setvbuf(stdout, NULL, _IOLBF, 0);
+    buffered_trace = measure && integrity_trace && getenv("IOT_STAGE92R2");
+    static char trace_buffer[65536];
+    if (buffered_trace)
+        setvbuf(stdout, trace_buffer, _IOFBF, sizeof(trace_buffer));
+    else
+        setvbuf(stdout, NULL, _IOLBF, 0);
     struct sigaction action = {.sa_handler = on_signal};
     sigemptyset(&action.sa_mask);
     if (sigaction(SIGUSR1, &action, NULL) < 0) {
@@ -1405,6 +1412,8 @@ int main(int argc, char **argv)
         goto fail;
     }
     event("ready", "role=%s", server ? "server" : "client");
+    if (buffered_trace && fflush(stdout) != 0)
+        goto fail;
     if (server) {
         xqc_server_set_conn_settings(ep.engine, &settings);
     } else {

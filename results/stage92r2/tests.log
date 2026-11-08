@@ -1,0 +1,115 @@
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/twc/.cache/iot-mpquic-stage1/tls
+ninja: no work to do.
+-- SSL_TYPE: boringssl
+-- SSL_PATH: /home/twc/.cache/iot-mpquic-stage1/boringssl
+-- SSL_LIB_PATH: /home/twc/.cache/iot-mpquic-stage1/tls/libssl.a;/home/twc/.cache/iot-mpquic-stage1/tls/libcrypto.a
+-- SSL_INC_PATH: /home/twc/.cache/iot-mpquic-stage1/boringssl/include
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/twc/.cache/iot-mpquic-stage1/app
+ninja: no work to do.
+ninja: no work to do.
+Internal ctest changing into directory: /home/twc/.cache/iot-mpquic-stage1/app
+Test project /home/twc/.cache/iot-mpquic-stage1/app
+    Start 1: scheduler-fifo
+1/9 Test #1: scheduler-fifo ...................   Passed    0.00 sec
+    Start 2: scheduler-strict-priority
+2/9 Test #2: scheduler-strict-priority ........   Passed    0.00 sec
+    Start 3: scheduler-edf
+3/9 Test #3: scheduler-edf ....................   Passed    0.00 sec
+    Start 4: scheduler-aoi
+4/9 Test #4: scheduler-aoi ....................   Passed    0.00 sec
+    Start 5: scheduler-latest-rr
+5/9 Test #5: scheduler-latest-rr ..............   Passed    0.00 sec
+    Start 6: scheduler-proposed-strict
+6/9 Test #6: scheduler-proposed-strict ........   Passed    0.00 sec
+    Start 7: scheduler-proposed-cross
+7/9 Test #7: scheduler-proposed-cross .........   Passed    0.00 sec
+    Start 8: scheduler-proposed-app
+8/9 Test #8: scheduler-proposed-app ...........   Passed    0.00 sec
+    Start 9: receiver-identities
+9/9 Test #9: receiver-identities ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Total Test time (real) =   0.02 sec
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.012s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+test_cross_repair_requires_prior_eligible_state (__main__.PathStateTests.test_cross_repair_requires_prior_eligible_state) ... ok
+test_migration_abort (__main__.PathStateTests.test_migration_abort) ... ok
+test_migration_commit (__main__.PathStateTests.test_migration_commit) ... ok
+test_migration_without_start (__main__.PathStateTests.test_migration_without_start) ... ok
+test_removed_path_cannot_recover (__main__.PathStateTests.test_removed_path_cannot_recover) ... ok
+test_change_actual_path_id (__main__.MutationTests.test_change_actual_path_id) ... ok
+test_cross_repair_original_packet_tampering (__main__.MutationTests.test_cross_repair_original_packet_tampering) ... ok
+test_delete_entire_blocked_attempt_and_renumber (__main__.MutationTests.test_delete_entire_blocked_attempt_and_renumber) ... ok
+test_delete_paired_blocked_logs_and_renumber (__main__.MutationTests.test_delete_paired_blocked_logs_and_renumber) ... ok
+test_delete_single_decision (__main__.MutationTests.test_delete_single_decision) ... ok
+test_duplicate_decision_after_renumbering (__main__.MutationTests.test_duplicate_decision_after_renumbering) ... ok
+test_early_fin_before_authenticated_fin (__main__.MutationTests.test_early_fin_before_authenticated_fin) ... ok
+test_forged_recovery_differs_from_raw_xquic (__main__.MutationTests.test_forged_recovery_differs_from_raw_xquic) ... ok
+test_migration_commit_on_wrong_socket (__main__.MutationTests.test_migration_commit_on_wrong_socket) ... ok
+test_missing_ack_log_after_renumbering (__main__.MutationTests.test_missing_ack_log_after_renumbering) ... ok
+test_queue_operation_removed_after_renumbering (__main__.MutationTests.test_queue_operation_removed_after_renumbering) ... ok
+test_swap_attempt_and_decision_after_renumbering (__main__.MutationTests.test_swap_attempt_and_decision_after_renumbering) ... ok
+test_archive_files_and_case_fingerprints (__main__.ArchiveTests.test_archive_files_and_case_fingerprints) ... ok
+test_attempts (__main__.EngineeringTests.test_attempts) ... ok
+test_lifecycle (__main__.EngineeringTests.test_lifecycle) ... ok
+test_migration (__main__.EngineeringTests.test_migration) ... ok
+test_repair (__main__.EngineeringTests.test_repair) ... ok
+test_timeout (__main__.EngineeringTests.test_timeout) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.451s
+
+OK
+test_missing_fin_and_unsubmitted_labels (__main__.AnalysisTests.test_missing_fin_and_unsubmitted_labels) ... ok
+test_paired_effect_and_missing_block (__main__.AnalysisTests.test_paired_effect_and_missing_block) ... ok
+test_short_budget_boundaries_and_coverage (__main__.AnalysisTests.test_short_budget_boundaries_and_coverage) ... ok
+test_cross_product_and_partition (__main__.DesignTests.test_cross_product_and_partition) ... ok
+test_seal_tampering_and_runner_gate (__main__.DesignTests.test_seal_tampering_and_runner_gate) ... ok
+test_seeded_pair_reuses_identical_payload (__main__.DesignTests.test_seeded_pair_reuses_identical_payload) ... ok
+test_probe_evidence_differs_from_command (__main__.TimingTests.test_probe_evidence_differs_from_command) ... ok
+test_probe_rejects_unmatched_packet (__main__.TimingTests.test_probe_rejects_unmatched_packet) ... ok
+test_restore_requires_observed_outage (__main__.TimingTests.test_restore_requires_observed_outage) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.078s
+
+OK
+test_overhead_matched_and_requires_all_three_arms (__main__.DesignTests.test_overhead_matched_and_requires_all_three_arms) ... ok
+test_schedule_excludes_sealed_identity_and_relabeling (__main__.DesignTests.test_schedule_excludes_sealed_identity_and_relabeling) ... ok
+test_label_late_and_unobserved (__main__.EvidenceTests.test_label_late_and_unobserved) ... ok
+test_queue_requires_asymmetric_delay_and_recovery (__main__.EvidenceTests.test_queue_requires_asymmetric_delay_and_recovery) ... ok
+test_joint_error_uses_outer_skew_bound (__main__.TimingTests.test_joint_error_uses_outer_skew_bound) ... ok
+test_netlink_request_binds_root_and_sequence (__main__.TimingTests.test_netlink_request_binds_root_and_sequence) ... ok
+test_packet_measurement_uses_probe_timestamps (__main__.TimingTests.test_packet_measurement_uses_probe_timestamps) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.039s
+
+OK
+test_coverage_counts_only_observed_selected_path (__main__.CoverageTests.test_coverage_counts_only_observed_selected_path) ... ok
+test_state_uses_observed_configuration_window (__main__.CoverageTests.test_state_uses_observed_configuration_window) ... ok
+test_development_schedule_excludes_relabelled_seal (__main__.DesignTests.test_development_schedule_excludes_relabelled_seal) ... ok
+test_fixed_blocks_and_only_remaining_timing_scenarios (__main__.DesignTests.test_fixed_blocks_and_only_remaining_timing_scenarios) ... ok
+test_bandwidth_requires_sustained_receives_and_queue_growth (__main__.TimingTests.test_bandwidth_requires_sustained_receives_and_queue_growth) ... ok
+test_loss_ack_and_first_missing_probe_are_separate (__main__.TimingTests.test_loss_ack_and_first_missing_probe_are_separate) ... ok
+test_loss_witness_requires_matching_socket_send_and_kernel_drop (__main__.TimingTests.test_loss_witness_requires_matching_socket_send_and_kernel_drop) ... ok
+test_ranking_requires_paired_path_samples (__main__.TimingTests.test_ranking_requires_paired_path_samples) ... ok
+test_stable_edge_preserves_gap_and_rejects_second_old_state (__main__.TimingTests.test_stable_edge_preserves_gap_and_rejects_second_old_state) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.026s
+
+OK

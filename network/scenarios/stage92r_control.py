@@ -24,18 +24,20 @@ def attr(kind, value):
     return struct.pack("=HH", size, kind) + value + bytes(-size % 4)
 
 
-def request(ifindex, profile, seed, seq):
+def request(ifindex, profile, seed, seq, delay_leaf=False):
     delay, rate, loss, *jitter = profile
     if delay < 0 or rate <= 0 or not 0 <= loss <= 100 or len(jitter) > 1:
         raise ValueError("invalid netem profile")
     # A zero handle changes the existing root netem. Delay and jitter use nanoseconds.
     options = struct.pack("=6I", 0, 1000, round(loss * 0xffffffff / 100), 0, 0, 0)
-    options += attr(NETEM_RATE, struct.pack("=IiIi", int(rate * 125_000), 0, 0, 0))
+    if not delay_leaf:
+        options += attr(NETEM_RATE, struct.pack("=IiIi", int(rate * 125_000), 0, 0, 0))
     options += attr(NETEM_LATENCY64, struct.pack("=q", int(delay * 1_000_000)))
     options += attr(NETEM_JITTER64, struct.pack("=q", int(jitter[0] * 1_000_000) if jitter else 0))
     if seed is not None:
         options += attr(NETEM_PRNG_SEED, struct.pack("=Q", seed))
-    body = TCMSG.pack(0, 0, 0, ifindex, 0, TC_H_ROOT, 0)
+    handle, parent = (0x100000, 0x10001) if delay_leaf else (0, TC_H_ROOT)
+    body = TCMSG.pack(0, 0, 0, ifindex, handle, parent, 0)
     body += attr(TCA_KIND, b"netem\0") + attr(TCA_OPTIONS, options)
     return NLMSG.pack(NLMSG.size + len(body), RTM_NEWQDISC, NLM_F_REQUEST_ACK, seq, 0) + body
 
@@ -52,7 +54,8 @@ def worker(link, tc):
     interface = f"iot-{link}"
     jobs = json.load(sys.stdin)
     index = socket.if_nametoindex(interface)
-    prepared = [request(index, job["profile"], job["seed"], seq) for seq, job in enumerate(jobs, 1)]
+    prepared = [request(index, job["profile"], job["seed"], seq, job.get("delay_leaf", False))
+                for seq, job in enumerate(jobs, 1)]
     with socket.socket(socket.AF_NETLINK, socket.SOCK_RAW, socket.NETLINK_ROUTE) as sock:
         sock.bind((0, 0))
         sock.settimeout(2)
@@ -72,7 +75,7 @@ def worker(link, tc):
                               "snapshot_us": clock_us(), "qdisc": snapshot}), flush=True)
 
 
-def transitions(namespaces, phases, origin, seed, tc):
+def transitions(namespaces, phases, origin, seed, tc, delay_leaf=False):
     jobs = {}
     for i, phase in enumerate(phases):
         for side, namespace in zip(("client", "server"), namespaces):
@@ -83,7 +86,8 @@ def transitions(namespaces, phases, origin, seed, tc):
                 direction_seed = seed + 4 * i + (side == "server") + 2 * (link == "b")
                 jobs.setdefault((namespace, link, direction), []).append({
                     "index": i, "planned_us": origin + phase["at_us"], "profile": profile,
-                    "seed": direction_seed if 0 < profile[2] < 100 or len(profile) > 3 else None})
+                    "seed": direction_seed if 0 < profile[2] < 100 or len(profile) > 3 else None,
+                    **({"delay_leaf": True} if delay_leaf else {})})
     children = {}
     try:
         for (namespace, link, direction), schedule in jobs.items():

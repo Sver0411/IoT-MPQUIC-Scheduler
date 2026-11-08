@@ -158,6 +158,8 @@ openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:P-256 -nodes -days 1 \
     -subj "/CN=iot-stage$stage" -keyout "$out/lab-key.pem" -out "$out/lab-cert.pem" 2> "$out/openssl.log"
 
 snaplen=96
+capture_flush=(-U --immediate-mode)
+if [[ $stage == 92 && -n ${IOT_STAGE92R2:-} ]]; then capture_flush=(--immediate-mode); fi
 capture_filter='udp and port 4433 and port 4434'
 if [[ $stage == 91 || $stage == 92 ]]; then snaplen=0; fi
 if [[ $stage == 91 && -n ${IOT_STAGE91_MIGRATION:-} ]]; then
@@ -169,7 +171,10 @@ for link in a b; do
     if [[ $stage == 92 && -n ${IOT_STAGE92R:-} ]]; then
         capture_prefix=(python3 -B "$root/scripts/capture_usage.py" "$out/capture-server-$link.json")
     fi
-    "${capture_prefix[@]}" ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s "$snaplen" -U --immediate-mode -B 4096 -Z root \
+    if [[ -n ${IOT_STAGE92R2_CAPTURE_CPUS:-} ]]; then
+        capture_prefix=(taskset -c "$IOT_STAGE92R2_CAPTURE_CPUS" "${capture_prefix[@]}")
+    fi
+    "${capture_prefix[@]}" ip netns exec "$server_ns" tcpdump -nn -i "iot-$link" -s "$snaplen" "${capture_flush[@]}" -B 4096 -Z root \
         -w "$out/link-$link.pcap" "$capture_filter" \
         2> "$out/tcpdump-$link.log" &
     captures+=("$!")
@@ -178,7 +183,10 @@ for link in a b; do
         if [[ $stage == 92 && -n ${IOT_STAGE92R:-} ]]; then
             capture_prefix=(python3 -B "$root/scripts/capture_usage.py" "$out/capture-client-$link.json")
         fi
-        "${capture_prefix[@]}" ip netns exec "$client_ns" tcpdump -nn -i "iot-$link" -s 0 -U --immediate-mode -B 4096 -Z root \
+        if [[ -n ${IOT_STAGE92R2_CAPTURE_CPUS:-} ]]; then
+            capture_prefix=(taskset -c "$IOT_STAGE92R2_CAPTURE_CPUS" "${capture_prefix[@]}")
+        fi
+        "${capture_prefix[@]}" ip netns exec "$client_ns" tcpdump -nn -i "iot-$link" -s 0 "${capture_flush[@]}" -B 4096 -Z root \
             -w "$out/client-link-$link.pcap" "$capture_filter" \
             2> "$out/client-tcpdump-$link.log" &
         captures+=("$!")
@@ -186,11 +194,19 @@ for link in a b; do
     fi
 done
 
-ip netns exec "$server_ns" "$exe" "$server_role" "$out/server.xquic.log" "$out/lab-cert.pem" "$out/lab-key.pem" \
+server_prefix=()
+client_prefix=()
+if [[ -n ${IOT_STAGE92R2_CAPTURE_CPUS:-} ]]; then
+    server_prefix=(taskset -c "$IOT_STAGE92R2_SERVER_CPU")
+    client_prefix=(taskset -c "$IOT_STAGE92R2_CLIENT_CPU")
+    printf 'cpu_affinity client=%s server=%s capture=%s\n' \
+        "$IOT_STAGE92R2_CLIENT_CPU" "$IOT_STAGE92R2_SERVER_CPU" "$IOT_STAGE92R2_CAPTURE_CPUS" >> "$out/environment.txt"
+fi
+"${server_prefix[@]}" ip netns exec "$server_ns" "$exe" "$server_role" "$out/server.xquic.log" "$out/lab-cert.pem" "$out/lab-key.pem" \
     > "$out/server.log" 2> "$out/server.stderr" &
 server_pid=$!
 wait_log "$out/server.log" 'event=ready role=server' "$server_pid"
-ip netns exec "$client_ns" "$exe" "$client_role" "$out/client.xquic.log" "${client_args[@]}" \
+"${client_prefix[@]}" ip netns exec "$client_ns" "$exe" "$client_role" "$out/client.xquic.log" "${client_args[@]}" \
     > "$out/client.log" 2> "$out/client.stderr" &
 client_pid=$!
 

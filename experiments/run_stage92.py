@@ -60,6 +60,14 @@ def run_case(folder, case, build, tc):
         env["IOT_STAGE92R"] = "1"
         if case.get("trace_arm") == "quiet":
             env["IOT_STAGE92R_QUIET"] = "1"
+    if case.get("stage92r2"):
+        env["IOT_STAGE92R2"] = "1"
+        if "trace_arm" in case:
+            cpus = sorted(os.sched_getaffinity(0))
+            if len(cpus) < 4:
+                raise ValueError("Stage 9.2R2 overhead requires at least four available CPUs")
+            env.update(IOT_STAGE92R2_CLIENT_CPU=str(cpus[0]), IOT_STAGE92R2_SERVER_CPU=str(cpus[1]),
+                       IOT_STAGE92R2_CAPTURE_CPUS=f"{cpus[2]},{cpus[3]}")
     out = folder / "runs" / name
     started = stamp()
     print(name, flush=True)
