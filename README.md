@@ -6,7 +6,7 @@
 
 IoT-MPQUIC-Scheduler sends periodic sensor updates and independent events over one QUIC connection with two real UDP paths. It measures whether joint record scheduling and path selection can improve event deadline delivery while keeping sensor data fresh as link conditions change.
 
-[Results](#results) · [Quick start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Technical report](docs/stage8-research-report.md)
+[Results](#results) · [Quick start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Latest report](docs/stage93a-data-quality-feature-analysis.md)
 
 ## How it works
 
@@ -25,17 +25,28 @@ Proposed-App uses receiver ACKs, deadline budget, event severity and state fresh
 
 ## Results
 
+### Stage 9 · Experimental infrastructure and data audit
+
+Stage 9.3-A audited **288 XQUIC connections** across four development environments. It verified **6,072 labeled submissions**, including **1,688** with a positive remaining budget of at most 100 ms. Of 503 short-budget failures, 496 occurred with 25 ms or less remaining. The data support offline model development with Slack and SRTT as the starting features. Evidence around link transitions and at longer budgets remains sparse. The 48 sealed configurations remain closed with zero runs. [Research plan](docs/stage9-research-plan.md) · [Data and feature audit](docs/stage93a-data-quality-feature-analysis.md) · [Machine-readable results](results/stage93a/)
+
+| Stage | Outcome |
+| --- | --- |
+| 9.1 | Validated the trace chain from scheduling decisions through actual XQUIC transmission and application delivery. [Acceptance report](docs/stage91-integrity-acceptance.md) |
+| 9.2 and 9.2R | Engineering acceptance remained NO-GO on switch timing, tracing overhead and short-budget coverage. [Feasibility report](docs/stage92-feasibility-report.md) · [Reliability report](docs/stage92r-reliability-report.md) |
+| 9.2R2 | Passed the engineering gates for 5 ms switch timing, ±5% Goodput equivalence and per-environment sample coverage. [Closure report](docs/stage92r2-targeted-closure-report.md) |
+
 ### Stage 8 · Independent validation and generalization
 
 Stage 8 ran **400 formal connections** with 20 new seeds for paired comparisons and 20 separate seeds for randomized path exploration.
 
-- Under high load, probability-based selection improved event deadline success from **3.00% to 24.75%** against both strict-affinity baselines. It showed no clear advantage in the unseen reversal scenario.
-- The high-load application–path interaction was **+5.00 percentage points** for event deadline success, with Holm-adjusted `p = 0.0512`.
-- Cross-path repair cut mean outage-probe completion from **1,544 ms to 253 ms**. The uncalibrated probability model did not consistently beat slack-only on held-out records.
+- High-load event deadline success was **5.00%** for FIFO + Native, **2.75%** for Proposed-App + Native, **3.00%** each for Fixed MinRTT and Earliest Completion, and **24.75%** for Proposed Probability. The advantage did not recur in the unseen reversal scenario.
+- The high-load application–path interaction was **+5.00 percentage points** with Holm-adjusted `p = 0.0512`, just above the prespecified 0.05 threshold.
+- Cross-path repair cut mean outage-probe completion from **1,544 ms to 253 ms**. Both means exceeded the **25 ms** deadline.
+- The uncalibrated probability model did not consistently beat Slack-only. The offline calibrated model had insufficient statistical evidence of improvement.
 
 ![Path policies and observed mean AoI across two network environments](results/stage8/figures/01-path-comparison.png)
 
-[Research report](docs/stage8-research-report.md) · [Run metrics](results/stage8/runs.csv) · [Calibration figure](results/stage8/figures/03-reliability.png) · [Experiment audit](results/stage8/audit.json)
+[Research report](docs/stage8-research-report.md) · [Final review](docs/stage8-final-review.md) · [Run metrics](results/stage8/runs.csv) · [Calibration figure](results/stage8/figures/03-reliability.png) · [Experiment audit](results/stage8/audit.json)
 
 ### Historical experiments
 
@@ -58,6 +69,21 @@ The pilot runs 20 independent connections and checks scheduling decisions, endpo
 
 ## Reproduce the experiments
 
+### Stage 9 archive replay
+
+Use Python 3.12 or later to regenerate the four Stage 9.3-A outputs from the archived development runs. The reports above describe replay for the earlier Stage 9 suites.
+
+```bash
+bash scripts/test.sh --evidence results/stage91/final
+python3 -B tests/stage92r_test.py
+python3 -B tests/stage92r2_test.py
+python3 -B tests/stage93a_test.py
+python3 -B evaluation/stage93a.py results/runs/stage93a-recomputed
+diff -rq results/stage93a results/runs/stage93a-recomputed
+```
+
+### Stage 8 experiments
+
 Build from a clean code checkout to run the full paired and exploration matrices. Install the dependencies in `evaluation/stage6-requirements.txt` to render figures.
 
 ```bash
@@ -77,7 +103,7 @@ python3 evaluation/stage8.py results/stage8/raw --out results/runs/stage8-recomp
 | `src/` | Gateway queue, scheduling policies, XQUIC endpoints and workload generator |
 | `network/` | Dual-veth topology and timed link changes |
 | `experiments/`, `evaluation/` | Matrix runner, offline verification and figure generation |
-| `patches/xquic/` | Opt-in STREAM PTO scheduling patch, applied to the build copy |
+| `patches/xquic/` | STREAM PTO scheduling, integrity tracing and measurement patches applied to the build copy |
 | `results/`, `docs/` | Raw evidence, derived tables, figures and technical documentation |
 
 ## Scope
