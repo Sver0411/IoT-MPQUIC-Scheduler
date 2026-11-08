@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "diagnostic_threshold": 0.5,
+  "urgent_priority_minimum": 5,
+  "short_budget_edges_us": [0, 5000, 10000, 15000, 20000, 25000],
+  "feature_min_cv_brier_reduction": 0.005,
+  "feature_min_cv_coverage": 0.8,
+  "interaction_anchors_us": {"srtt": 100000, "rtt_age": 50000},
+  "pilot": {
+    "seed_base": 2100000,
+    "order_seed": 93302,
+    "switch_times_us": [750000, 1300000],
+    "loads": ["low", "high"],
+    "target_brier_halfwidth": 0.02,
+    "usable_seed_fraction": 0.8,
+    "min_scheduled_seeds_per_environment": 48,
+    "max_probe_spacing_us": 1000,
+    "pre_switch_window_us": 25000,
+    "min_phase_seed_groups": 20,
+    "min_phase_rows_per_class": 20,
+    "max_unknown_transition_fraction": 0.1
+  }
+}
