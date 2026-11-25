@@ -50,13 +50,15 @@ struct iot_path_sample {
     uint64_t id, rtt_us, rttvar_us, rate_Bps, queued_bytes, in_flight_bytes;
     uint64_t recent_sent, recent_lost;
     uint64_t sampled_us, rtt_updated_us, delivered_us, cwnd_bytes, total_lost;
+    uint64_t last_probe_us;
     double retransmission_rate;
     double loss, observed_loss, delay_correction_us;
     unsigned pto;
 };
 
 enum iot_path_rule { IOT_NATIVE_PATH, IOT_PROBABILITY_PATH, IOT_FIXED_MINRTT,
-                     IOT_EARLIEST_COMPLETION, IOT_RANDOM_PATH, IOT_ACK_ADAPTIVE };
+                     IOT_EARLIEST_COMPLETION, IOT_RANDOM_PATH, IOT_ACK_ADAPTIVE,
+                     IOT_BLEST_PATH, IOT_FRESH_AWARE, IOT_FRESH_NOPROBE };
 
 struct iot_path_feedback {
     double bias_us;
@@ -91,6 +93,7 @@ struct iot_entry *iot_select(const struct iot_scheduler *scheduler, struct iot_w
 void iot_schedule_commit(struct iot_scheduler *scheduler, const struct iot_record *record);
 bool iot_obsolete(const struct iot_scheduler *scheduler, const struct iot_record *record);
 struct iot_estimate iot_estimate_path(const struct iot_path_sample *path, size_t bytes, double slack_us);
+struct iot_estimate iot_estimate_path_cwnd(const struct iot_path_sample *path, size_t bytes, double slack_us);
 void iot_update_path_feedback(struct iot_path_feedback *feedback, double residual_us);
 double iot_path_correction(const struct iot_path_feedback *feedback);
 double iot_record_slack(const struct iot_record *record, uint64_t elapsed);

@@ -6,7 +6,7 @@
 
 IoT-MPQUIC-Scheduler 在同一条 QUIC 连接上通过两条独立的 UDP 路径传输周期传感器状态和独立事件，用来评估链路条件变化时，联合记录调度与路径选择能否同时改善事件按时交付和状态新鲜度。
 
-[实验结果](#实验结果) · [快速开始](#快速开始) · [复现实验](#复现实验) · [最新报告](docs/stage93a-data-quality-feature-analysis.md)
+[实验结果](#实验结果) · [快速开始](#快速开始) · [复现实验](#复现实验) · [IEEE 论文 (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [Stage 10 报告](docs/stage10-fap-mpquic-report.md)
 
 ## 工作方式
 
@@ -24,6 +24,31 @@ flowchart LR
 Proposed-App 使用接收端 ACK、截止预算、事件严重度和状态新鲜度，并在队列内替换旧状态。自定义路径策略为每条 Stream 绑定初始路径。严格模式沿原路径修复，跨路径模式可以在备用路径发送修复包。两套 Oracle 分别重放实际队列选择与初始路径选择。
 
 ## 实验结果
+
+### Stage 10 · 新鲜度与阻塞感知 `FAP-MPQUIC`（576 次真实 XQUIC 连接实测）
+
+Stage 10 提出并实现了 **`FAP-MPQUIC`**（`fresh-aware`），将拥塞窗口阻塞感知的概率估计与健康门控陈旧路径新鲜度探测结合到生产级 C 语言 `XQUIC`（`XQC_MULTIPATH_10`）协议栈中；同时补齐经典 **`BLEST`** 基线和 **`FAP-NoProbe`** 消融组，在 **4 种动态双路径场景 × 16 个留出种子 = 576 次真实 `XQUIC` 连接**（100% 运行成功）上完成配对评测，采用 5,000 次种子自助法 95% 置信区间、20,000 次符号翻转置换检验与全局 Holm-Bonferroni 校正。
+
+![FAP-MPQUIC 图形摘要](papers/iot-mpquic-scheduler/graphical_abstract.png)
+
+| 场景（16 种子 × 9 策略） | `FIFO+MinRTT` | `App+MinRTT` | `Fixed-MinRTT` | `ECF` | `BLEST` | `Prob (Stg. 8)` | `FAP-NoProbe` | **`FAP-MPQUIC` (Strict)** |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **S1** 断路+反转 — 事件按时率 (%) / AoI (ms) | 4.4 / 2,644 | 3.1 / 1,993 | 3.1 / 2,194 | 3.1 / 2,195 | 2.8 / 2,246 | 24.7 / 1,878 | 25.3 / 1,875 | **25.0 / 1,901** |
+| **S2** 非对称反转 — AoI (ms) / 有效吞吐 (kbps) | 2,326 / 109.8 | 1,996 / 111.0 | 2,059 / 104.5 | 1,996 / 112.9 | 2,053 / 102.5 | 2,003 / 113.6 | 2,052 / 106.8 | **1,927 / 117.3** |
+| **S3** 双向反转+抖动 — AoI (ms) / Path-B 占比 | 2,348 / 32.8% | 2,092 / 30.9% | 2,074 / 24.0% | 2,112 / 7.9% | 2,097 / 25.0% | 2,031 / 50.4% | 2,010 / 49.2% | **1,940 / 58.9%** |
+| **S4** 途中黑洞 — 按时率 (%) / AoI (ms) / 吞吐 (kbps) | 33.3 / 1,786 / 78.6 | 63.9 / 1,222 / 70.1 | 52.8 / 1,133 / 70.3 | 55.6 / 1,118 / 71.0 | 54.2 / 1,083 / 71.0 | 88.9 / 902 / 81.6 | 88.2 / 915 / 80.0 | **85.4 / 915 / 79.8** |
+
+- **高负载断路+反转（S1）：** `FAP-MPQUIC` 事件按时率较全部 5 个经典基线高 **+20.62 至 +22.19 个百分点**（$p_{\text{Holm}} \le 0.0025$，$d_z = 5.43\text{–}6.66$），同时平均 AoI 较 `Fixed-MinRTT`/`ECF`/`BLEST`/`FIFO+MinRTT` 降低 **293.9–743.6 ms**（$p_{\text{Holm}} \le 0.0031$）。
+- **纯延迟反转与双向反转（S2、S3）：** `FAP-MPQUIC` 取得**全部 9 策略最低平均 AoI**（S2 **1,927.0 ms**，S3 **1,939.6 ms**），经 Holm 校正显著优于全部 5 个经典基线（$p_{\text{Holm}} \le 0.0034$）；在 S3 中还经 Holm 校正显著优于自身的无探测消融 `FAP-NoProbe`（**−70.1 ms AoI**，$p_{\text{Holm}} = 0.0123$），验证健康门控探测的独立因果增益。
+- **途中黑洞切换（S4）：** `FAP-MPQUIC` 在**事件按时率（+21.5–32.6 pp，$p_{\text{Holm}} \le 0.023$）、AoI（−168.2 至 −307.7 ms，$p_{\text{Holm}} \le 0.0063$）与有效吞吐（+8.9–9.8 kbps，$p_{\text{Holm}} \le 0.0072$）三项指标上同时严格帕累托支配全部 4 个经典选路基线**，且凭借健康门控零浪费探测与 Stage 8 `Prob` 统计持平（$p_{\text{Holm}} = 1.0$）。
+
+![Stage 10 四个场景真实 XQUIC 主结果](results/stage10/figures/fig02_stage10_main.png)
+
+![Stage 10 AoI 与事件按时率帕累托前沿及路径切换](results/stage10/figures/fig03_pareto_and_path_shift.png)
+
+![Stage 10 配对自助法效应量与 Holm 显著性](results/stage10/figures/fig04_paired_effects.png)
+
+[IEEEtran 英文论文 (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [论文构建说明](papers/iot-mpquic-scheduler/README.md) · [Stage 10 中文技术报告](docs/stage10-fap-mpquic-report.md) · [汇总 CSV](results/stage10/summary.csv) · [配对统计 CSV](results/stage10/paired_effects.csv) · [跨路径修复与消融图](results/stage10/figures/fig05_repair_and_calibration.png)
 
 ### Stage 9 · 实验基础设施与数据审查
 
@@ -69,6 +94,18 @@ Pilot 会运行 20 次独立连接，并核对队列决策、路径决策、端�
 
 ## 复现实验
 
+### Stage 10 正式实测矩阵与 IEEE 论文编译
+
+在支持 `ip netns` 与 `tc/netem` 的 Linux 环境下复现完整 576 次连接矩阵（16 留出种子 `10101–10116` × 4 场景 × 9 策略），重绘矢量插图并编译 8 页 IEEEtran 论文：
+
+```bash
+bash scripts/build.sh
+bash scripts/test.sh
+sudo python3 experiments/run_stage10_fap.py results/stage10 --jobs 6
+python3 papers/iot-mpquic-scheduler/build_figures.py
+cd papers/iot-mpquic-scheduler && tectonic manuscript.tex
+```
+
 ### Stage 9 归档回放
 
 使用 Python 3.12 或更高版本，从开发集原始归档重算 Stage 9.3-A 的四份结果。更早的 Stage 9 套件复算步骤见各阶段报告。
@@ -105,6 +142,7 @@ python3 evaluation/stage8.py results/stage8/raw --out results/runs/stage8-recomp
 | `experiments/`、`evaluation/` | 实验矩阵、离线验收和绘图 |
 | `patches/xquic/` | 对构建副本应用的 STREAM PTO 调度、完整性追踪和测量补丁 |
 | `results/`、`docs/` | 原始证据、整理后的数据、图表及技术文档 |
+| `papers/` | 独立 IEEEtran 英文论文（`manuscript.tex`/`.pdf`）、29 条核验参考文献、矢量绘图脚本与图形摘要 |
 
 ## 实验范围
 

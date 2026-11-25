@@ -1,0 +1,254 @@
+{
+  "suite": "formal",
+  "seeds": [
+    10101,
+    10102,
+    10103,
+    10104,
+    10105,
+    10106,
+    10107,
+    10108,
+    10109,
+    10110,
+    10111,
+    10112,
+    10113,
+    10114,
+    10115,
+    10116
+  ],
+  "n_runs": 576,
+  "elapsed_s": 883.95,
+  "scenarios": {
+    "S1_outage_reversal": {
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 120000,
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 850000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "workload": "high-mixed",
+      "horizon_us": 4000000
+    },
+    "S2_asymmetric_reversal": {
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 500000,
+          "links": {
+            "a": [
+              120,
+              0.8,
+              0,
+              10
+            ],
+            "b": [
+              6,
+              28,
+              0
+            ]
+          }
+        }
+      ],
+      "workload": "high-mixed",
+      "horizon_us": 4000000
+    },
+    "S3_double_reversal": {
+      "initial": {
+        "a": [
+          5,
+          24,
+          0
+        ],
+        "b": [
+          24,
+          14,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 450000,
+          "links": {
+            "a": [
+              110,
+              1.0,
+              0,
+              12
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        },
+        {
+          "at_us": 1250000,
+          "links": {
+            "a": [
+              6,
+              28,
+              0
+            ],
+            "b": [
+              110,
+              1.0,
+              0,
+              12
+            ]
+          }
+        }
+      ],
+      "workload": "high-mixed",
+      "horizon_us": 4000000
+    },
+    "S4_mid_blackout": {
+      "initial": {
+        "a": [
+          4,
+          30,
+          0
+        ],
+        "b": [
+          24,
+          12,
+          0
+        ]
+      },
+      "phases": [
+        {
+          "at_us": 450000,
+          "side": "client",
+          "links": {
+            "a": [
+              4,
+              30,
+              100
+            ]
+          }
+        },
+        {
+          "at_us": 1150000,
+          "links": {
+            "a": [
+              45,
+              6,
+              0
+            ],
+            "b": [
+              5,
+              30,
+              0
+            ]
+          }
+        }
+      ],
+      "workload": "mixed",
+      "horizon_us": 4000000
+    }
+  },
+  "arms": [
+    [
+      "fifo_minrtt",
+      "fifo",
+      "minrtt",
+      "native"
+    ],
+    [
+      "app_minrtt",
+      "proposed-app",
+      "minrtt",
+      "native"
+    ],
+    [
+      "fixed_minrtt",
+      "proposed-app",
+      "fixed-minrtt",
+      "strict"
+    ],
+    [
+      "ecf",
+      "proposed-app",
+      "earliest-completion",
+      "strict"
+    ],
+    [
+      "blest",
+      "proposed-app",
+      "blest",
+      "strict"
+    ],
+    [
+      "prob_strict",
+      "proposed-app",
+      "proposed-path",
+      "strict"
+    ],
+    [
+      "fap_noprobe",
+      "proposed-app",
+      "fresh-aware-noprobe",
+      "strict"
+    ],
+    [
+      "fap_strict",
+      "proposed-app",
+      "fresh-aware",
+      "strict"
+    ],
+    [
+      "fap_cross",
+      "proposed-app",
+      "fresh-aware",
+      "cross"
+    ]
+  ],
+  "all_client_ok": true,
+  "exe_sha256": "9bb6994c5a6074df926099faddb84a3703e0e5d99f9f7c0c3727741b05c9f555"
+}

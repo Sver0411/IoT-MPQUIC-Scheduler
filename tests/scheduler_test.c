@@ -182,6 +182,34 @@ static void test_independent_factors(void)
     iot_update_path_feedback(&feedback[0], -40000);
     assert(iot_path_correction(&feedback[0]) == 0);
 
+    /* Stage 10 unit checks: BLEST + CWND-aware FAP-MPQUIC + stale-path probing */
+    struct iot_path_sample s10[] = {
+        {.id = 0, .rtt_us = 10000, .rttvar_us = 1000, .rate_Bps = 2000000,
+         .in_flight_bytes = 20000, .cwnd_bytes = 14000, .sampled_us = 800000,
+         .rtt_updated_us = 795000, .last_probe_us = 795000},
+        {.id = 1, .rtt_us = 30000, .rttvar_us = 2000, .rate_Bps = 1000000,
+         .in_flight_bytes = 0, .cwnd_bytes = 24000, .sampled_us = 800000,
+         .rtt_updated_us = 500000, .last_probe_us = 500000},
+    };
+    struct iot_record ev_rec = {.id = 99, .kind = IOT_EVENT, .payload_len = 1200};
+    struct iot_record st_rec = {.id = 100, .kind = IOT_STATE, .payload_len = 256};
+    /* CWND-blocked primary path 0 should trigger spill in fresh-aware-noprobe / fresh-aware */
+    assert(iot_estimate_path_cwnd(&s10[0], 1252, 40000).duration_us > iot_estimate_path(&s10[0], 1252, 40000).duration_us);
+    assert(iot_choose_initial_path(&ev_rec, 25000, s10, 2, IOT_FRESH_NOPROBE, 0) == 1);
+    assert(iot_choose_initial_path(&ev_rec, 25000, s10, 2, IOT_FRESH_AWARE, 0) == 1);
+    /* Non-congested primary path 0 + stale alternate path 1 (age 300ms >= 150ms):
+     * state record probes path 1, while urgent event stays on healthy fast path 0. */
+    s10[0].in_flight_bytes = 0;
+    assert(iot_choose_initial_path(&ev_rec, 50000, s10, 2, IOT_FRESH_AWARE, 0) == 0);
+    assert(iot_choose_initial_path(&st_rec, 200000, s10, 2, IOT_FRESH_AWARE, 0) == 1);
+    assert(iot_choose_initial_path(&st_rec, 200000, s10, 2, IOT_FRESH_NOPROBE, 0) == 0);
+    /* BLEST picks fast unblocked path 0, and spills if fast path is CWND-blocked with bounded X */
+    assert(iot_choose_initial_path(&ev_rec, 50000, s10, 2, IOT_BLEST_PATH, 0) == 0);
+    s10[0].in_flight_bytes = 13500;
+    s10[0].cwnd_bytes = 14000;
+    s10[1].rtt_us = 18000;
+    assert(iot_choose_initial_path(&ev_rec, 50000, s10, 2, IOT_BLEST_PATH, 0) == 1);
+
     add(IOT_STATE, 1, 0, 100000, 100000, 1);
     add(IOT_EVENT, 1, 0, 100000, 0, 4);
     workload.entries[1].record.severity = 4;

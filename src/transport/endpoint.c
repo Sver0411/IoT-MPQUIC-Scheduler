@@ -49,7 +49,7 @@ struct iot_run {
 struct link {
     int fd;
     struct sockaddr_in local, peer;
-    uint64_t id, tx, rx, tx_bytes, rx_bytes;
+    uint64_t id, tx, rx, tx_bytes, rx_bytes, last_probe_us;
     struct iot_path_feedback delivery;
     bool blocked;
 };
@@ -754,6 +754,9 @@ static const char *const path_rules[] = {
     [IOT_FIXED_MINRTT] = "fixed-minrtt", [IOT_EARLIEST_COMPLETION] = "earliest-completion",
     [IOT_RANDOM_PATH] = "random-path",
     [IOT_ACK_ADAPTIVE] = "ack-adaptive",
+    [IOT_BLEST_PATH] = "blest",
+    [IOT_FRESH_AWARE] = "fresh-aware",
+    [IOT_FRESH_NOPROBE] = "fresh-aware-noprobe",
 };
 
 static void exercise_lifecycle(struct endpoint *ep, uint64_t elapsed)
@@ -838,6 +841,9 @@ static void progress_iot(struct endpoint *ep)
     bool joint = iot_policy_joint(scheduler->policy);
     bool bind_path = ep->iot->bind_path;
     bool adaptive = ep->iot->path_rule == IOT_ACK_ADAPTIVE;
+    bool stage10_rule = ep->iot->path_rule == IOT_BLEST_PATH ||
+                        ep->iot->path_rule == IOT_FRESH_AWARE ||
+                        ep->iot->path_rule == IOT_FRESH_NOPROBE;
     if (!ep->iot->start) {
         ep->iot->start = now_us();
         event("iot_start", "origin=%" PRIu64 " records=%zu tx_window=%d initial_uni_credit=%d send_packets=%d policy=%s",
@@ -914,12 +920,23 @@ static void progress_iot(struct endpoint *ep)
         if (ep->iot->oracle && decision_us >= ep->iot->horizon_us)
             break;
         if (bind_path) {
-            count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale, path_features);
+            count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale,
+                                     path_features || stage10_rule);
             if (adaptive) {
                 for (size_t i = 0; i < count; i++) {
                     const struct iot_path_feedback *feedback = path_feedback(ep, paths[i].id);
                     if (feedback)
                         paths[i].delay_correction_us = iot_path_correction(feedback);
+                }
+            }
+            if (stage10_rule) {
+                for (size_t i = 0; i < count; i++) {
+                    for (int k = 0; k < PATHS; k++) {
+                        if (ep->links[k].id == paths[i].id) {
+                            paths[i].last_probe_us = ep->links[k].last_probe_us;
+                            break;
+                        }
+                    }
                 }
             }
             if (!count) {
@@ -945,7 +962,7 @@ static void progress_iot(struct endpoint *ep)
         double slack = iot_record_slack(&entry->record, decision_us);
         if (bind_path && !joint) {
             plan.entry = entry;
-            if (!ep->iot->oracle && !adaptive)
+            if (!ep->iot->oracle && !adaptive && !stage10_rule)
                 iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
         }
         if (measure)
@@ -975,13 +992,24 @@ static void progress_iot(struct endpoint *ep)
         workload->outstanding++;
         if (bind_path) {
             double base_estimate_us = 0;
-            if (ep->iot->oracle || adaptive) {
+            if (ep->iot->oracle || adaptive || stage10_rule) {
                 size_t chosen = iot_choose_initial_path(&entry->record, slack, paths, count,
                                                         ep->iot->path_rule, ep->iot->assignment_seed);
                 plan.path_id = paths[chosen].id;
-                plan.estimate = iot_estimate_path(&paths[chosen], buffer->size, slack);
+                bool use_cwnd_est = ep->iot->path_rule == IOT_FRESH_AWARE || ep->iot->path_rule == IOT_FRESH_NOPROBE;
+                plan.estimate = use_cwnd_est
+                                    ? iot_estimate_path_cwnd(&paths[chosen], buffer->size, slack)
+                                    : iot_estimate_path(&paths[chosen], buffer->size, slack);
                 if (adaptive)
                     base_estimate_us = plan.estimate.duration_us - paths[chosen].delay_correction_us;
+                if (stage10_rule) {
+                    for (int k = 0; k < PATHS; k++) {
+                        if (ep->links[k].id == paths[chosen].id) {
+                            ep->links[k].last_probe_us = paths[chosen].sampled_us;
+                            break;
+                        }
+                    }
+                }
             }
             uint64_t due = record.deadline;
             if (record.kind == IOT_STATE && record.maximum_age < due - record.generated)
@@ -1005,7 +1033,10 @@ static void progress_iot(struct endpoint *ep)
                       path->queued_bytes + path->in_flight_bytes, path->in_flight_bytes,
                       path->queued_bytes, path->loss, path->observed_loss, path->pto);
                 if (ep->iot->oracle) {
-                    struct iot_estimate estimate = iot_estimate_path(path, buffer->size, slack);
+                    bool use_cwnd_est = ep->iot->path_rule == IOT_FRESH_AWARE || ep->iot->path_rule == IOT_FRESH_NOPROBE;
+                    struct iot_estimate estimate = use_cwnd_est
+                                                       ? iot_estimate_path_cwnd(path, buffer->size, slack)
+                                                       : iot_estimate_path(path, buffer->size, slack);
                     event("iot_path_forecast", "id=%u path_id=%" PRIu64 " recent_sent=%" PRIu64
                           " recent_lost=%" PRIu64 " estimate_us=%.9f probability=%.17g correction_us=%.9f",
                           record.id, path->id, path->recent_sent, path->recent_lost,
@@ -1283,12 +1314,14 @@ int main(int argc, char **argv)
         while (rule < count && strcmp(path_policy, path_rules[rule]))
             rule++;
         if (rule == count || (bind_path && rule == IOT_NATIVE_PATH) ||
-            (!oracle && rule > IOT_PROBABILITY_PATH && rule != IOT_ACK_ADAPTIVE)) {
+            (!oracle && rule > IOT_PROBABILITY_PATH && rule != IOT_ACK_ADAPTIVE &&
+             rule != IOT_BLEST_PATH && rule != IOT_FRESH_AWARE && rule != IOT_FRESH_NOPROBE)) {
             fprintf(stderr, "Invalid path policy or MinRTT requested for a joint policy\n");
             return 2;
         }
-        if (rule == IOT_ACK_ADAPTIVE && policy != IOT_PROPOSED_APP) {
-            fprintf(stderr, "ack-adaptive requires proposed-app\n");
+        if ((rule == IOT_ACK_ADAPTIVE || rule == IOT_BLEST_PATH ||
+             rule == IOT_FRESH_AWARE || rule == IOT_FRESH_NOPROBE) && policy != IOT_PROPOSED_APP) {
+            fprintf(stderr, "adaptive/stage10 path policies require proposed-app\n");
             return 2;
         }
         path_rule = (enum iot_path_rule)rule;
@@ -1296,8 +1329,9 @@ int main(int argc, char **argv)
     }
     const char *cross = getenv("IOT_STAGE8_REPAIR");
     if (oracle && cross) {
-        if (strcmp(cross, "cross") || path_rule != IOT_PROBABILITY_PATH) {
-            fprintf(stderr, "Stage 8 cross repair requires Proposed Probability\n");
+        if (strcmp(cross, "cross") ||
+            (path_rule != IOT_PROBABILITY_PATH && path_rule != IOT_FRESH_AWARE && path_rule != IOT_FRESH_NOPROBE)) {
+            fprintf(stderr, "Stage 8 cross repair requires Proposed Probability or Fresh-Aware\n");
             return 2;
         }
         repair = true;
