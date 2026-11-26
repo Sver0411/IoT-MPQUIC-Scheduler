@@ -46,7 +46,7 @@ ARMS_SHOW = [
     ("fixed_minrtt", "Fixed-MinRTT",  "#cc7722", "v"),
     ("ecf",          "ECF",           "#cc3311", "^"),
     ("blest",        "BLEST",         "#bb8833", "h"),
-    ("prob_strict",  "Prob (Stage8)", "#228833", "s"),
+    ("prob_strict",  "Prob-Only",     "#228833", "s"),
     ("fap_noprobe",  "FAP-NoProbe",   "#6699cc", "P"),
     ("fap_strict",   "FAP-MPQUIC",    "#004488", "o"),
     ("fap_cross",    "FAP-Cross",     "#aa3377", "D"),
@@ -180,7 +180,7 @@ def build_fig04_paired_effects(effects: list[dict]) -> None:
     fig, axes = plt.subplots(1, 2, figsize=(IEEE_W, 2.65))
     comps = [("fifo_minrtt", "FIFO+MinRTT"), ("app_minrtt", "App+MinRTT"),
              ("fixed_minrtt", "Fixed-MinRTT"), ("ecf", "ECF"), ("blest", "BLEST"),
-             ("prob_strict", "Prob (Stg8)"), ("fap_noprobe", "FAP-NoProbe")]
+             ("prob_strict", "Prob-Only"), ("fap_noprobe", "FAP-NoProbe")]
 
     # Panel (a): Event Deadline Success Delta (pp) on S1 and S4
     y = np.arange(len(comps))
@@ -233,7 +233,7 @@ def build_fig05_historical_repair_and_cal() -> None:
                      ha="center", fontsize=6.3, color="#004488", fontweight="bold",
                      arrowprops=dict(arrowstyle="->", color="#004488", lw=0.9),
                      bbox=dict(fc="#f4f8fc", ec="#004488", pad=2.0))
-    axes[0].set(title="(a) Directed Outage Failover (Stage 8, 20 Seeds)", xticks=[0, 1], xticklabels=cats,
+    axes[0].set(title="(a) Directed Outage Failover (20 Seeds)", xticks=[0, 1], xticklabels=cats,
                 ylabel="Mean Probe Completion (ms) ↓", ylim=(0, 1820))
     axes[0].grid(axis="y")
 
@@ -304,7 +304,7 @@ def build_graphical_abstract(runs: list[dict]) -> None:
     # Panel 3: S4 Mid-Run Blackout
     ax3 = fig.add_axes([0.72, 0.17, 0.26, 0.61])
     pols3 = ["fifo_minrtt", "ecf", "blest", "prob_strict", "fap_strict"]
-    lbls3 = ["FIFO+\nMinRTT", "ECF", "BLEST", "Prob\n(Stg8)", "FAP\n(Ours)"]
+    lbls3 = ["FIFO+\nMinRTT", "ECF", "BLEST", "Prob-\nOnly", "FAP\n(Ours)"]
     cols3 = ["#777777", "#cc3311", "#bb8833", "#228833", "#004488"]
     ev4 = [_seed_ci(runs, "S4_mid_blackout", p, "event_deadline_success", 100.0)[0] for p in pols3]
     aoi4 = [_seed_ci(runs, "S4_mid_blackout", p, "mean_aoi_ms", 1.0)[0] / 1000.0 for p in pols3]
