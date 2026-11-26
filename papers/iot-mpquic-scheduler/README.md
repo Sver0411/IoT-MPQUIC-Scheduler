@@ -1,6 +1,6 @@
-# IoT-MPQUIC-Scheduler IEEE Manuscript
+# IoT-MPQUIC-Scheduler Manuscript (Computer Networks, Elsevier)
 
-Standalone 8-page IEEE Transactions/Journal two-column manuscript (`IEEEtran`) documenting real C XQUIC multipath scheduling (`FAP-MPQUIC`) against MinRTT, Fixed MinRTT, ECF, BLEST, Stage 8 Probability, and ACK-Adaptive across 1,596+ audited dual-path Linux `netns` + `tc/netem` connections.
+Standalone two-column manuscript documenting real C XQUIC multipath scheduling (`FAP-MPQUIC`) against MinRTT, Fixed-MinRTT, ECF, BLEST, Prob-Only, and internal ablations (`FAP-NoProbe`, `FAP-Cross`) across 1,596+ dual-path Linux `netns` + `tc-netem` connections.
 
 ## Build Instructions
 
@@ -11,5 +11,6 @@ tectonic manuscript.tex
 ```
 
 Outputs:
-- `manuscript.pdf` — 8-page IEEEtran PDF with 5 native figures (1 TikZ + 4 7.16-in vector PDFs), 2 theoretical propositions with proofs, and 29 verified peer-reviewed citations.
+- `manuscript.pdf` — Compiled vector PDF with 5 native figures (1 TikZ + 4 7.16-in vector PDFs), 2 theoretical propositions with proofs, Elsevier end-of-manuscript declarations, and 31 verified peer-reviewed citations.
+- `highlights.txt` — Elsevier submission highlights (4 bullets, each <= 85 characters).
 - `graphical_abstract.png` / `graphical_abstract.pdf` — 3-panel summary graphic.
