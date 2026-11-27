@@ -1,7 +1,16 @@
-\documentclass[journal]{IEEEtran}
+\documentclass[preprint,12pt,number]{elsarticle}
 
-\usepackage[T1]{fontenc}
-\usepackage{cite}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{newtxtext,newtxmath}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Times New Roman}
+\fi
+
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -9,72 +18,122 @@
 \usepackage{array}
 \usepackage{microtype}
 \usepackage{url}
+\def\UrlBreaks{\do\/\do-\do_}
 \usepackage{placeins}
+\usepackage{lineno}
 \usepackage[hidelinks]{hyperref}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
 
+\emergencystretch=1.5em
+
 \newtheorem{proposition}{Proposition}
+
+\journal{Internet of Things}
 
 \begin{document}
 
-\title{Freshness- and Stall-Aware Multipath QUIC Scheduling for Deadline-Constrained IoT Traffic: Real-Stack Evaluation}
+\begin{frontmatter}
 
-\author{Weicheng~Tong%
-\thanks{W.~Tong is with Shandong Agricultural Engineering University, Jinan, Shandong, China (e-mail: \texttt{Sver0411@outlook.com}). Source code, Linux \texttt{netns}/\texttt{netem} scripts, independent Oracles, and 1,596+ connection archives are available at \url{https://github.com/Sver0411/IoT-MPQUIC-Scheduler}.}}
+\title{Freshness- and Stall-Aware Multipath QUIC Scheduling for Deadline-Constrained IoT Traffic: Real-Stack Evaluation and Operating-Envelope Synthesis}
 
-\markboth{FAP-MPQUIC: FRESHNESS- AND STALL-AWARE MULTIPATH QUIC SCHEDULING FOR IOT TRAFFIC}%
-{Tong: FAP-MPQUIC for Deadline-Constrained IoT Traffic}
+\author[1]{Weicheng Tong\corref{cor1}}
+\ead{Sver0411@outlook.com}
+\cortext[cor1]{Corresponding author. ORCID: 0009-0001-2090-2277.}
 
-\maketitle
+\affiliation[1]{organization={Shandong Agriculture and Engineering University},
+            city={Jinan},
+            state={Shandong},
+            country={China}}
 
 \begin{abstract}
-Industrial and cyber-physical Internet of Things (IoT) gateways increasingly aggregate dual heterogeneous links using Multipath QUIC (MPQUIC) to carry both sporadic, hard-deadline alarm events and overwriteable periodic state telemetry. Classical multipath schedulers---including native MinRTT, Earliest Completion First (ECF), and BLEST---rank paths using cached round-trip times (RTT) and ignore deadline slack, overwrite freshness (Age of Information, AoI), and stale-RTT blindness on idle backup paths. Consequently, when the primary path undergoes an asymmetric reversal or silent blackout, these schedulers remain pinned to the degraded path and miss critical deadlines. We present \texttt{FAP-MPQUIC}, a lightweight C multipath scheduler built directly on Alibaba's \texttt{XQUIC} (\texttt{XQC\_MULTIPATH\_10}) stack that combines a freshness- and deadline-aware application queue with congestion-window-blocking-aware timely delivery estimation and health-gated stale-path freshness probing using zero extra control frames. Across a held-out real-stack evaluation of 576 dual-path \texttt{XQUIC} connections (16 seeds $\times$ 4 dynamic Linux \texttt{netns}/\texttt{tc-netem} regimes $\times$ 9 policies, alongside 1,020+ failover and calibration connections), loss- and slack-aware binding in \texttt{FAP-MPQUIC} (shared with \texttt{Prob-Only}) increases event deadline success by +20.6 to +22.2\,pp under outage-reversal ($p_{\text{Holm}}{\le}0.0025$) and +21.5 to +52.1\,pp under mid-connection blackout ($p_{\text{Holm}}{\le}0.0230$) over \texttt{MinRTT}, \texttt{ECF}, and \texttt{BLEST}, while reducing state AoI by 168--308\,ms. Under non-blackout reversals, where \texttt{Prob-Only} and no-probe ablations remain caught in stale cached RTTs, the health-gated probing variants (\texttt{FAP-MPQUIC} and \texttt{FAP-Cross}) achieve the lowest observed AoI of all nine policies (1,925--1,940\,ms; \texttt{FAP-MPQUIC} beats \texttt{FAP-NoProbe} by $-$70.1\,ms in S3, $p_{\text{Holm}}{=}0.0123$) with zero active-blackout credit waste.
+Industrial Internet of Things (IoT) gateways increasingly bond dual heterogeneous links with Multipath QUIC (MPQUIC) to carry sporadic, hard-deadline alarms alongside overwriteable periodic state telemetry. Classical multipath schedulers---MinRTT, Earliest Completion First (ECF), and BLEST---rank paths from cached round-trip times (RTT) without accounting for deadline slack, packet loss, Age of Information (AoI), or stale RTT estimates on idle backup links. During an abrupt blackout or link reversal, they keep binding scarce QUIC stream credits onto the degraded path and miss deadlines. We present \texttt{FAP-MPQUIC}, a lightweight C scheduler built directly into Alibaba's \texttt{XQUIC} (\texttt{XQC\_MULTIPATH\_10}) stack that pairs an overwrite-freshness application queue with congestion-window- and loss-aware timely delivery estimation and health-gated stale-path probing using zero extra control frames. Across 576 held-out dual-path \texttt{XQUIC} connections over Linux \texttt{netns}/\texttt{tc-netem} (16 seeds $\times$ 4 dynamic 4\,s regimes $\times$ 9 policies) plus 1,020+ failover and calibration runs, we isolate two distinct operating regimes. Under sudden blackouts, loss- and slack-aware binding (shared with \texttt{Prob-Only}) raises event deadline success by +20.6 to +52.1 percentage points ($p_{\text{Holm}} \le 0.0230$) and cuts observed-span AoI by 168--872\,ms relative to MinRTT, ECF, and BLEST. Under non-blackout reversals, health-gated probing breaks the stale-RTT trap to achieve the lowest observed-span AoI of all nine policies (1,927--1,940\,ms; $-$70.1\,ms vs.\ \texttt{FAP-NoProbe} in S3, $p_{\text{Holm}}=0.0123$) while excluding busy or lossy paths from probe selection.
 \end{abstract}
 
-\vspace{3pt}
-\noindent\textbf{\textit{Keywords---}}Age of Information (AoI), deadline-aware scheduling, Internet of Things (IoT), Multipath QUIC (MPQUIC), path probing, XQUIC.
-\vspace{4pt}
+\begin{highlights}
+\item FAP-MPQUIC schedules mixed deadline and AoI IoT traffic on real C XQUIC stacks.
+\item Loss- and slack-aware binding raises blackout deadline success by 20.6--52.1 pp.
+\item Health-gated probing cuts reversal AoI by 70.1 ms while excluding lossy paths.
+\item Operating-envelope synthesis clarifies where probing, binding, or repair excels.
+\item Audited across 576 held-out and 1,020+ mechanism dual-path XQUIC connections.
+\end{highlights}
+
+\begin{keyword}
+Age of Information (AoI) \sep Deadline-aware scheduling \sep Internet of Things (IoT) \sep Multipath QUIC (MPQUIC) \sep Stale-path probing \sep XQUIC
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
 
 \section{Introduction}
-\IEEEPARstart{M}{odern} edge gateways in smart agriculture, industrial monitoring, and connected robotics frequently possess dual heterogeneous wireless interfaces---such as local Wi-Fi alongside cellular LTE/5G or Sub-GHz backhaul---to protect time-critical sensing streams against single-link congestion, fading, and blackouts~\cite{deconinck2017mpquic,kahraman2024survey}. Multipath QUIC (MPQUIC), building on QUIC's stream-multiplexed UDP transport~\cite{rfc9000,rfc9002}, eliminates inter-stream head-of-line (HoL) blocking while enabling fine-grained per-stream path selection across heterogeneous interfaces~\cite{zheng2021xlink,yang2024mams}.
+\label{sec:intro}
 
-IoT gateway traffic, however, differs fundamentally from bulk file transfers or continuous video streams~\cite{guo2017dems,zheng2021xlink}. Gateways multiplex two conflicting record classes over a small QUIC concurrency credit window: (i) \emph{sporadic alarm events} carrying strict completion deadlines~\cite{liu1973scheduling,chen2024damps}, and (ii) \emph{periodic sensor state updates} whose utility depends on receiver freshness---quantified by Age of Information (AoI)~\cite{kaul2012realtime,yates2021age}---where newer readings supersede stale pending updates.
+Field gateways in industrial telemetry, precision agriculture, and connected robotics increasingly carry two heterogeneous wireless interfaces---typically local Wi-Fi paired with cellular LTE/5G or Sub-GHz backhaul---so that time-sensitive traffic can survive single-link fading, congestion, and temporary outages~\cite{deconinck2017mpquic,kahraman2024survey}. Multipath QUIC (MPQUIC), built over QUIC's encrypted, stream-multiplexed UDP transport~\cite{rfc9000,rfc9002}, removes inter-stream head-of-line (HoL) blocking and lets a sender bind individual streams onto distinct physical paths~\cite{zheng2021xlink,yang2024mams}.
 
-Evaluating real \texttt{XQUIC} connections over Linux \texttt{netns}/\texttt{tc-netem} dual paths reveals two structural failure modes in existing multipath schedulers:
+Yet IoT gateway workloads behave very differently from bulk downloads or continuous adaptive video~\cite{guo2017dems,zheng2021xlink}. A single gateway typically shares a tight QUIC unidirectional stream credit budget across two competing traffic classes: (i)~\emph{sporadic alarm events} governed by hard completion deadlines~\cite{liu1973scheduling,chen2024damps}, where late delivery has zero utility, and (ii)~\emph{periodic sensor state telemetry} governed by receiver freshness---measured via Age of Information (AoI)~\cite{kaul2012realtime,yates2021age}---where newer readings supersede older queued samples.
+
+Evaluating real encrypted \texttt{XQUIC} connections across dynamic Linux \texttt{netns}/\texttt{tc-netem} dual-path links exposes two structural failure modes that classical multipath schedulers do not resolve:
 \begin{enumerate}
-\item \textbf{Ignoring Loss, Variance, and Deadlines:} Native \texttt{MinRTT}~\cite{rfc8684}, \texttt{ECF}~\cite{lim2017ecf}, and \texttt{BLEST}~\cite{ferlin2016blest} rank paths primarily by smoothed RTT and queue drain time without modeling deadline slack, RTT variance, or packet loss. Under sudden Path-A outages or reversals, they bind scarce QUIC stream credits onto the degraded path, collapsing event deadline delivery to 2.8--5.0\% (high-load outage) and 52.8--55.6\% (mid-run blackout).
-\item \textbf{Stale-RTT Path Trap and Unchecked Probing Hazard:} Pure greedy schedulers---even loss- and probability-aware binders without probing (\texttt{Prob-Only})---pin traffic onto the initially faster Path~A, leaving Path~B's cached SRTT frozen at stale pre-reversal values ($>$1\,s old). Prior application-ACK residual adaptation proved too slow (930--960\,ms feedback lag vs.\ 25--100\,ms deadlines). Conversely, naively probing a stale path on a fixed timer wastes scarce QUIC \texttt{MAX\_STREAMS} credits whenever that alternate path is actually blacked out.
+    \item \textbf{Blindness to packet loss, RTT variance, and deadline slack.} Classical heuristics---native \texttt{MinRTT}~\cite{rfc8684}, Earliest Completion First (\texttt{ECF})~\cite{lim2017ecf}, and \texttt{BLEST}~\cite{ferlin2016blest}---rank paths mainly by smoothed RTT and estimated queue drain time. When the initially faster Path~A suffers a sudden blackout or abrupt degradation, these heuristics continue binding scarce QUIC \texttt{MAX\_STREAMS} credits onto the stalled link until probe timeouts (PTOs) accumulate. Under high-load outage-reversal (S1) and mid-connection blackout (S4), this credit lockup drives alarm deadline success down to 2.8--4.4\% and 33.3--55.6\%, respectively.
+    \item \textbf{The stale-RTT path trap and the unchecked probing hazard.} Greedy schedulers---even loss- and probability-aware binders without probing (\texttt{Prob-Only})---concentrate traffic on the initially faster Path~A, leaving Path~B's transport RTT estimate frozen at pre-reversal values that can be more than 1\,s old. When Path~A slows down without packet loss (a cellular-style asymmetric reversal), the scheduler never sends on Path~B and therefore never observes that Path~B has become much faster. Application-level ACK feedback reacts too slowly to close this gap (930--960\,ms lag against 25--100\,ms deadlines). Conversely, blind periodic probing on a fixed timer wastes scarce QUIC stream credits whenever the alternate link is actually blacked out.
 \end{enumerate}
 
-To address both limitations inside a real C production QUIC stack, we introduce \textbf{\texttt{FAP-MPQUIC}} (Freshness- and Stall-Aware Probability MPQUIC) and make four contributions:
+To resolve both failure modes directly inside a production C QUIC stack without protocol extensions or extra control frames, we design and evaluate \textbf{\texttt{FAP-MPQUIC}} (Freshness- and Stall-Aware Probability MPQUIC). Rather than claiming uniform dominance across every metric and regime, this paper systematically separates \emph{which} mechanism drives gains in \emph{which} network regime, and documents the exact operating boundaries where probing, probability binding, strict affinity, or credit limits dominate. Our specific contributions are fourfold:
 \begin{enumerate}
-\item \textbf{Health-Gated Freshness Probing \& CWND-Aware Estimation:} \texttt{FAP-MPQUIC} augments timely delivery probability estimation with explicit \texttt{in\_flight} $>$ \texttt{cwnd} round penalties and dispatches zero-overhead freshness probes using replaceable state streams \emph{only} when a stale alternate path ($\ge$150\,ms old) is clean and idle ($\text{PTO}{=}0$, $\text{recent\_lost}{=}0$, $\text{in\_flight}{=}0$).
-\item \textbf{Analytical Guarantees (Propositions~1--2):} We prove a bounded post-reversal discovery latency via transport-layer QUIC ACKs, a zero-blackout-waste invariant under Path-A blackouts, and strictly $O(K{+}|\mathcal{Q}|)$ per-submission complexity.
-\item \textbf{Held-Out Real \texttt{XQUIC} Dual-Path Evaluation:} Across 576 held-out real connections (16 seeds $\times$ 4 dynamic Linux \texttt{netns}/\texttt{tc-netem} regimes $\times$ 9 policies) plus 1,020+ mechanism, failover, and calibration connections with dual-interface PCAPs and independent Oracles, we benchmark \texttt{FAP-MPQUIC} against native \texttt{MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}, \texttt{BLEST}, probability-only binding (\texttt{Prob-Only}), and two internal ablations (\texttt{FAP-NoProbe}, \texttt{FAP-Cross}).
-\item \textbf{Two-Layer Mechanistic Evaluation and Scope Boundaries:} We separate (i) blackout regimes, where loss- and slack-aware probability binding outperforms classical RTT schedulers, from (ii) non-blackout asymmetric and double reversals, where health-gated probing breaks the stale-RTT trap ($-$70.1\,ms vs.\ \texttt{FAP-NoProbe}, $p_{\text{Holm}}{=}0.0123$) with zero blackout credit waste, alongside targeted failover and calibration analyses.
+    \item \textbf{CWND-aware timely delivery estimation and health-gated freshness probing.} Inside Alibaba's \texttt{XQUIC} stack, \texttt{FAP-MPQUIC} pairs an overwrite-freshness application queue with a timely completion probability model that penalizes congestion-window saturation ($f_k > W_k$) without falsely penalizing clean slow-start backup links. It refreshes stale alternate paths ($\ge 150$\,ms old) using replaceable state streams---zero extra control frames---only when the candidate path is clean and idle ($\text{pto}_j{=}0$, $m_j{=}0$, $f_j{=}0$).
+    \item \textbf{Analytical characterization (Propositions~\ref{prop:fap}--\ref{prop:complex}).} We formalize the exact probe-branch binding condition, bound post-transmission transport-ACK refresh latency to $R_B^{\text{new}} + \delta_{\text{ack}}$ (decoupled from application-ACK queueing), prove a per-decision gating invariant that excludes busy or lossy paths from probe selection, and establish strictly $O(|\mathcal{Q}| + K)$ complexity with zero heap allocation.
+    \item \textbf{Held-out real-stack evaluation across 1,596+ audited \texttt{XQUIC} connections.} Across 16 strictly held-out seeds, four dynamic 4\,s Linux \texttt{netns}/\texttt{tc-netem} regimes, and nine policies (576 primary connections) plus 1,020+ failover, calibration, and trace-integrity connections with dual-interface PCAPs and independent Oracles, we benchmark \texttt{FAP-MPQUIC} against five classical baselines (\texttt{FIFO+MinRTT}, \texttt{App+MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST}), probability-only binding (\texttt{Prob-Only}), and two internal ablations (\texttt{FAP-NoProbe} and \texttt{FAP-Cross}).
+    \item \textbf{Mechanistic trend analysis and operating-envelope synthesis.} We explain the transport-layer mechanisms behind every empirical trend---including why classical schedulers report misleadingly high raw goodput during S1 recovery, why \texttt{ECF} stalls at 7.9\% Path-B utilization in S3, why \texttt{FIFO+MinRTT} combines high coverage with poor AoI, why strict affinity diverges from cross-path repair on stranded single streams ($-$83.6\% failover latency), and why static calibration faces a step-shift floor on 0--100\,ms budgets---and synthesize all regimes into an explicit operating-envelope guide (Section~\ref{sec:synthesis}).
 \end{enumerate}
+
+The remainder of the paper is organized as follows. Section~\ref{sec:related} situates \texttt{FAP-MPQUIC} against existing multipath transport and AoI scheduling literature. Section~\ref{sec:design} details the application queue, path binder, and analytical guarantees. Section~\ref{sec:setup} describes the real-stack testbed, workload regimes, and statistical protocol. Section~\ref{sec:results} presents the mechanistic experimental findings and cross-regime synthesis, Section~\ref{sec:discussion} discusses deployment implications and scope limits, and Section~\ref{sec:conclusion} concludes.
 
 \section{Related Work}
-\paragraph{Multipath Transport and Heuristic Schedulers}
-Multipath TCP (RFC~8684~\cite{rfc8684}) and Multipath QUIC~\cite{deconinck2017mpquic} enable concurrent transmission over heterogeneous links using QUIC's loss detection and CUBIC congestion control~\cite{rfc9000,rfc9002,ha2008cubic}. To mitigate HoL blocking across asymmetric paths, Ferlin et al.~\cite{ferlin2016blest} proposed \texttt{BLEST} to avoid slow paths that block the fast path's send window; Lim et al.~\cite{lim2017ecf} introduced \texttt{ECF} to wait for the fast path when it completes earlier; Guo et al.~\cite{guo2017dems} developed \texttt{DEMS} for synchronized chunk completion; and Zeng et al.~\cite{zeng2022optimizing} optimized MPQUIC scheduling over heterogeneous paths to curb lowest-RTT-first inefficiencies. Production systems such as Alibaba's \texttt{XLINK}~\cite{zheng2021xlink} demonstrate MPQUIC QoE gains in large-scale video delivery. However, these schedulers optimize bulk completion time rather than mixed IoT deadlines and overwriteable state freshness.
+\label{sec:related}
 
-\paragraph{Learning-Based and Deadline-Aware MPQUIC}
-To cope with dynamic wireless paths, \texttt{Peekaboo}~\cite{wu2020peekaboo} applies multi-armed bandits in MPQUIC, while recent works introduce mobility-aware scheduling (\texttt{MAMS}~\cite{yang2024mams}), contextual bandits~\cite{yang2024qos}, meta-RL for live video (\texttt{Meta-DAMS}~\cite{sepahi2024metadams}), cost-aware VoD multipath splitting for 5G ATSSS~\cite{amend2024cost}, and deadline-aware packet scheduling for real-time mobile video/XR (\texttt{DaMPS}~\cite{chen2024damps}). Note that these recent deadline-aware and RL/MAB controllers target continuous video-frame or chunk streaming rather than IoT overwriteable AoI semantics plus sporadic hard-deadline alarms, and incur online exploration variance that complicates deterministic per-stream Oracle auditing inside a compact C transport callback. Calibration under distribution shift~\cite{guo2017calibration,ovadia2019uncertainty} further warns that uncalibrated probability predictors can misrank paths after sudden link shifts---a phenomenon we observe directly on \texttt{XQUIC} traces.
+\subsection{Heuristic Multipath Transport Schedulers}
+Multipath TCP (RFC~8684~\cite{rfc8684}) and Multipath QUIC~\cite{deconinck2017mpquic} aggregate heterogeneous paths on top of congestion control such as CUBIC~\cite{ha2008cubic} and QUIC loss recovery~\cite{rfc9000,rfc9002}. Because lowest-RTT-first (\texttt{MinRTT}) triggers severe receive-buffer blocking on asymmetric links, Ferlin et al.~\cite{ferlin2016blest} introduced \texttt{BLEST} to skip slow paths predicted to stall the fast path's send window, while Lim et al.~\cite{lim2017ecf} proposed \texttt{ECF} to wait for the fast path whenever it finishes earlier than sending immediately on the slow path. Guo et al.~\cite{guo2017dems} developed \texttt{DEMS} for synchronized chunk delivery, Zeng et al.~\cite{zeng2022optimizing} refined heterogeneous MPQUIC path selection, and Alibaba's \texttt{XLINK}~\cite{zheng2021xlink} deployed MPQUIC at scale for short-video quality of experience (QoE). All of these schedulers optimize bulk completion time or video stall metrics rather than mixed hard-deadline alarms and overwriteable state freshness, and none explicitly breaks stale-RTT blindness on idle backup links.
 
-\paragraph{Age of Information and IoT Scheduling}
-Since Kaul et al.~\cite{kaul2012realtime}, AoI optimization over unreliable IoT networks has expanded across stochastic arrivals~\cite{yates2021age,kadota2021minimizing,kahraman2024survey}, semantic staleness~\cite{maatouk2020aoii}, nonlinear Whittle indices~\cite{tripathi2024whittle}, soft AoI deadlines~\cite{li2025soft}, heterogeneous access~\cite{wu2024paoi}, edge offloading~\cite{jiang2023aoi}, and Sub-GHz LPWAN scheduling~\cite{garridohidalgo2021lorawan,lima2021adaptive}. Most AoI schedulers assume single-path slotted models rather than real encrypted MPQUIC stacks with CUBIC pacing, \texttt{MAX\_STREAMS} credit limits, and PTO recovery. Our work bridges real MPQUIC transport engineering with AoI- and deadline-aware IoT scheduling.
+\subsection{Learning-Based and Deadline-Aware MPQUIC}
+To adapt to non-stationary wireless paths, \texttt{Peekaboo}~\cite{wu2020peekaboo} employs contextual multi-armed bandits inside MPQUIC, followed by mobility-aware scheduling (\texttt{MAMS}~\cite{yang2024mams}), QoS-driven bandits~\cite{yang2024qos}, hybrid meta-reinforcement learning for live video (\texttt{Meta-DAMS}~\cite{sepahi2024metadams}), cost-aware 5G ATSSS video splitting~\cite{amend2024cost}, and deadline-aware mobile video/XR scheduling (\texttt{DaMPS}~\cite{chen2024damps}). These controllers target continuous video frames or chunks rather than overwriteable IoT telemetry under tight stream-credit budgets, and their online exploration introduces stochastic variance that complicates deterministic per-stream auditing inside a compact C transport callback. Work on predictive calibration under distribution shift~\cite{guo2017calibration,ovadia2019uncertainty} further cautions that static probability predictors miscalibrate under abrupt regime transitions---a boundary we quantify directly on held-out \texttt{XQUIC} traces.
+
+\subsection{Age of Information and IoT Scheduling}
+Following Kaul et al.~\cite{kaul2012realtime}, AoI scheduling has grown to cover stochastic arrivals~\cite{yates2021age,kadota2021minimizing,kahraman2024survey}, Age of Incorrect Information~\cite{maatouk2020aoii}, nonlinear Whittle-index policies~\cite{tripathi2024whittle}, soft AoI deadlines~\cite{li2025soft}, heterogeneous Aloha access~\cite{wu2024paoi}, mobile-edge offloading~\cite{jiang2023aoi}, and Sub-GHz LPWAN scheduling~\cite{garridohidalgo2021lorawan,lima2021adaptive}. Most AoI formulations assume discrete slotted single-path channels and abstract away encrypted transport mechanics such as CUBIC pacing, \texttt{MAX\_STREAMS} credit exhaustion, and PTO timers. Table~\ref{tab:related} summarizes how \texttt{FAP-MPQUIC} bridges real multipath transport engineering and mixed-traffic IoT freshness control.
+
+\begin{table*}[t]
+\centering
+\caption{Structural comparison of multipath schedulers for mixed deadline and AoI IoT gateway traffic.}
+\label{tab:related}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Scheduler family & Primary objective & Loss \& CWND aware & Overwriteable AoI & Stale-RTT refresh & Extra ctrl / RL var. & Real C stack audit \\
+\midrule
+\texttt{MinRTT}~\cite{rfc8684} & Lowest cached SRTT & No & No & No & Zero & Yes \\
+\texttt{ECF}~\cite{lim2017ecf} & Earliest bulk finish & Queue drain only & No & No & Zero & Yes \\
+\texttt{BLEST}~\cite{ferlin2016blest} & Avoid send-win HoL & Window estimate & No & No & Zero & Yes \\
+\texttt{Peekaboo} / \texttt{MAMS}~\cite{wu2020peekaboo,yang2024mams} & Bulk / QoE reward & Implicit (reward) & No & Exploration & Online RL/MAB & Partial \\
+\texttt{DaMPS}~\cite{chen2024damps} & Video frame deadline & Path delay/loss & No (video stream) & No & Lightweight & QUIC sim / proto \\
+\texttt{Prob-Only} (ablation) & Timely delivery prob. & Loss + PTO only & Yes (app queue) & No & Zero & Yes (\texttt{XQUIC}) \\
+\textbf{\texttt{FAP-MPQUIC} (ours)} & \textbf{Deadline + AoI} & \textbf{Loss + PTO + CWND} & \textbf{Yes (app queue)} & \textbf{Health-gated} & \textbf{Zero} & \textbf{Yes (\texttt{XQUIC})} \\
+\bottomrule
+\end{tabular}}
+\end{table*}
 
 \section{System Architecture and FAP-MPQUIC Design}
+\label{sec:design}
 
-Fig.~\ref{fig:arch} illustrates our end-to-end dual-path \texttt{XQUIC} architecture. A gateway client and receiver communicate over one MPQUIC connection (\texttt{XQC\_MULTIPATH\_10}, CUBIC + pacing, initial unidirectional stream credit $C{=}4$, active window $W{=}8$) spanning two isolated Linux \texttt{veth} interfaces (\texttt{Path~A} and \texttt{Path~B}) controlled by timed \texttt{tc-netem} schedules.
+Fig.~\ref{fig:arch} presents our end-to-end dual-path \texttt{XQUIC} architecture. A gateway client and server communicate over a single encrypted MPQUIC connection (\texttt{XQC\_MULTIPATH\_10}, CUBIC congestion control with pacing, initial unidirectional stream credit $C{=}4$, active window $W{=}8$) spanning two isolated Linux virtual Ethernet links (\texttt{Path~A} and \texttt{Path~B}) shaped by timed \texttt{tc-netem} schedules.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
-\resizebox{0.97\textwidth}{!}{%
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
     font=\sffamily\footnotesize,
-    box/.style={draw, rounded corners=2pt, align=center, minimum height=10mm, inner sep=4.5pt, fill=white, line width=0.6pt},
+    box/.style={draw, rounded corners=2pt, align=center, minimum height=10.5mm, inner sep=4.5pt, fill=white, line width=0.6pt},
     ctrl/.style={box, fill=blue!8, draw=blue!60!black, line width=0.85pt},
     hw/.style={box, fill=teal!8, draw=teal!60!black, line width=0.8pt},
     arr/.style={-{Stealth[length=2.2mm]}, line width=0.75pt},
@@ -90,202 +149,285 @@ Fig.~\ref{fig:arch} illustrates our end-to-end dual-path \texttt{XQUIC} architec
 \draw[arr] (app.east) -- node[above=2pt, font=\scriptsize]{Record $r$} (fap.west);
 \draw[arr] (fap.east) -- node[above=2pt, font=\scriptsize]{Bind Path $k^\star$} (xqc.west);
 \draw[arr] (xqc.east) -- (rx.west);
-\draw[dasharr] (xqc.south) -- ++(0,-0.62) -| node[pos=0.25, below=1.5pt, font=\scriptsize, text=blue!60!black]{Causal XQUIC State (\texttt{srtt}, \texttt{rttvar}, \texttt{cwnd}, \texttt{in\_flight}, \texttt{rtt\_updated\_us}, \texttt{pto})} (fap.south);
+\draw[dasharr] (xqc.south) -- ++(0,-0.65) -| node[pos=0.25, below=1.5pt, font=\scriptsize, text=blue!60!black]{Causal XQUIC State (\texttt{srtt}, \texttt{rttvar}, \texttt{cwnd}, \texttt{in\_flight}, \texttt{rtt\_updated\_us}, \texttt{pto})} (fap.south);
 \end{tikzpicture}%
 }
-\caption{IoT-MPQUIC-Scheduler end-to-end architecture on production C \texttt{XQUIC}. \texttt{Proposed-App} selects the next record using overwrite state freshness and deadline urgency; \texttt{FAP-MPQUIC} binds each new unidirectional QUIC stream to Path~A or Path~B using strictly causal transport telemetry from \texttt{xqc\_send\_ctl\_t} and health-gated stale-path probing. All runs capture dual-interface PCAPs for independent Oracle auditing.}
+\caption{End-to-end dual-path \texttt{XQUIC} architecture. \texttt{Proposed-App} selects the next record using overwrite state freshness and deadline urgency; \texttt{FAP-MPQUIC} binds each new unidirectional QUIC stream to Path~A or Path~B from strictly causal \texttt{xqc\_send\_ctl\_t} telemetry and health-gated stale-path probing. Dual-interface PCAPs enable independent offline Oracle auditing.}
 \label{fig:arch}
-\end{figure*}
+\end{figure}
 
-\subsection{Application-Layer Queue and Freshness Scoring}
-Each record $r$ is transmitted on a dedicated unidirectional QUIC stream with wire size $B = 52 + \text{payload\_len}$. For a decision at elapsed time $t$, an event's remaining deadline budget is $s = d_r - t$, while a state record's effective freshness budget is $s = \min(d_r,\, g_r + M_r) - t$ (generation time $g_r$, max age $M_r$). \texttt{Proposed-App} replaces older pending state records per sensor, discards obsolete records superseded by receiver ACKs, and partitions candidates into \texttt{event}, \texttt{normal state}, and \texttt{recovery state} ($s \le 0$). With $\operatorname{sat}(x) = x/(1+x)$ and $H = 100$\,ms, normal/event records score
+\subsection{Application-Layer Freshness and Urgency Queue}
+Each IoT record $r$ is transmitted on a dedicated unidirectional QUIC stream with wire size $B = 52 + \text{payload\_len}$ bytes. At scheduling instant $t$, a sporadic alarm event has remaining deadline slack $s = d_r - t$, whereas a periodic state update has effective freshness budget $s = \min(d_r,\, g_r + M_r) - t$, where $g_r$ is generation time and $M_r$ is the sensor's maximum permissible age.
+
+\texttt{Proposed-App} performs latest-value overwrite per sensor so stale pending readings never consume stream credits, purges records already superseded by receiver ACKs, and partitions remaining entries into \texttt{event}, \texttt{normal state}, and \texttt{recovery state} ($s \le 0$). Defining $\operatorname{sat}(x) = x/(1+x)$ with scale $H = 100$\,ms, active event and normal state records are prioritized by
 \begin{equation}
-\begin{aligned}
-U_{\text{app}}(r, t) &= \operatorname{sat}(p_r) + 2\operatorname{sat}(\sigma_r) + G_r \\
-&\quad + \operatorname{sat}\!\left(\frac{w_r}{H}\right) + \frac{H}{H + \max(0, s)},
-\end{aligned}
 \label{eq:app}
+U_{\text{app}}(r, t) = \operatorname{sat}(p_r) + 2\operatorname{sat}(\sigma_r) + G_r + \operatorname{sat}\!\left(\frac{w_r}{H}\right) + \frac{H}{H + \max(0, s)},
 \end{equation}
-where $G_r$ is saturated potential AoI improvement from the latest receiver ACK ($0$ for events), $w_r$ is queue wait, and bounded quotas (event burst limit $3$, recovery cadence $K{=}2$) prevent state starvation.
+where $p_r$ is static priority, $\sigma_r$ is record criticality, $G_r$ is saturated potential AoI reduction relative to the latest acknowledged state ($G_r{=}0$ for events), and $w_r$ is queue waiting time. Bounded service quotas (maximum event burst length $3$, recovery cadence $K{=}2$) prevent alarm bursts from starving periodic state telemetry.
 
 \subsection{FAP-MPQUIC: CWND-Aware Estimation and Health-Gated Probing}
-At stream creation, the path sampler queries each active, unfrozen \texttt{XQUIC} path $k \in \{1,\dots,K\}$ for its real-time \texttt{xqc\_send\_ctl\_t} state: smoothed RTT $R_k$, RTT variance $V_k = \max(\text{rttvar}_k, 1\,\text{ms})$, estimated bandwidth $v_k$, scheduled bytes $q_k$, in-flight bytes $f_k$, congestion window $W_k$, recent packet counts $(n_k, m_k)$, PTO count $\text{pto}_k$, current monotonic clock $t_s$, and last transport RTT update timestamp $t_{\text{rtt},k}$.
+Whenever a new stream is created, the path binder reads strictly causal transport telemetry from \texttt{xqc\_send\_ctl\_t} for each active, unfrozen path $k \in \{1,\dots,K\}$: smoothed RTT $R_k$, RTT dispersion $V_k = \max(\text{rttvar}_k, 1\,\text{ms})$, bandwidth estimate $v_k$, queued bytes $q_k$, in-flight bytes $f_k$, congestion window $W_k$, recent packet and loss counts $(n_k, m_k)$, PTO counter $\text{pto}_k$, monotonic clock $t_s$, and last transport RTT update timestamp $t_{\text{rtt},k}$.
 
 \paragraph{CWND-Blocking-Aware Delivery Probability}
-Let $Q_k = q_k + f_k + B$ be total offered bytes and $L_k = \min\!\big(0.95,\; (m_k + 1)/(n_k + 20)\big)$ be smoothed per-packet loss. Whereas the probability-only ablation (\texttt{Prob-Only}) ignores congestion window saturation, \texttt{FAP-MPQUIC} adds a linear RTT blocking round penalty whenever actual in-flight bytes already exceed $W_k$:
+Let $Q_k = q_k + f_k + B$ denote total offered bytes and $L_k = \min\!\big(0.95,\; (m_k + 1)/(n_k + 20)\big)$ denote Laplace-smoothed packet loss. Unlike the probability-only ablation (\texttt{Prob-Only}), which omits congestion-window saturation, \texttt{FAP-MPQUIC} appends a linear RTT blocking penalty whenever actual in-flight bytes exceed $W_k$:
 \begin{align}
-\Delta^{\text{cwnd}}_k &= \begin{cases} R_k\,\dfrac{f_k - W_k}{\max(W_k, 1200)}, & W_k{>}0,\; f_k{>}W_k, \\ 0, & \text{otherwise}, \end{cases} \label{eq:cwnd}\\
-T^{\text{cwnd}}_k &= R_k\big(0.5 + 2\,\mathbb{I}[\text{pto}_k{>}0]\big) + \frac{Q_k \cdot 10^6}{\max(v_k, 15000)} + \Delta^{\text{cwnd}}_k, \label{eq:time}\\
-P^{\text{cwnd}}_k &= \mathbb{I}[s{>}0]\,\operatorname{clip}_{[0,1]}\!\left(\frac{s{-}T^{\text{cwnd}}_k{+}V_k}{2V_k}\right)(1{-}L_k)^{\lceil B/1200\rceil}. \label{eq:prob}
+\Delta^{\text{cwnd}}_k &= \begin{cases} R_k\,\dfrac{f_k - W_k}{\max(W_k, 1200)}, & W_k > 0,\; f_k > W_k, \\ 0, & \text{otherwise}, \end{cases} \label{eq:cwnd}\\
+T^{\text{cwnd}}_k &= R_k\big(0.5 + 2\,\mathbb{I}[\text{pto}_k > 0]\big) + \frac{Q_k \cdot 10^6}{\max(v_k, 15000)} + \Delta^{\text{cwnd}}_k, \label{eq:time}\\
+P^{\text{cwnd}}_k &= \mathbb{I}[s > 0]\,\operatorname{clip}_{[0,1]}\!\left(\frac{s - T^{\text{cwnd}}_k + V_k}{2V_k}\right)(1 - L_k)^{\lceil B/1200\rceil}. \label{eq:prob}
 \end{align}
-Conditioning Eq.~(\ref{eq:cwnd}) on $f_k > W_k$ rather than $Q_k > W_k$ avoids falsely penalizing a clean slow-start backup path ($W_k \approx 10$\,MSS, $f_k{=}0$) during a sudden primary blackout. Let $i^\star = \arg\max_k (P^{\text{cwnd}}_k, -T^{\text{cwnd}}_k)$ denote the greedy primary choice.
+Conditioning Eq.~\eqref{eq:cwnd} on $f_k > W_k$ rather than $Q_k > W_k$ is an intentional engineering safeguard: during a sudden primary blackout, an idle backup link in slow start ($W_k \approx 10$\,MSS, $f_k{=}0$) incurs $\Delta^{\text{cwnd}}_k = 0$ and is not falsely penalized. The greedy primary path is $i^\star = \arg\max_k \big(P^{\text{cwnd}}_k,\, -T^{\text{cwnd}}_k\big)$.
 
 \paragraph{Health-Gated Stale-Path Freshness Probing}
-Let $\Delta_{\text{stale},k} = \max(0, t_s - t_{\text{rtt},k})$ be path $k$'s RTT staleness and $\Delta_{\text{probe},k} = t_s - t_{\text{last\_probe},k}$ be elapsed time since our last dispatch on path $k$, with freshness horizon $\tau_{\text{stale}} = 150$\,ms. Define path $j \ne i^\star$ as \emph{probe-eligible} if and only if:
+Let $\Delta_{\text{stale},k} = \max(0, t_s - t_{\text{rtt},k})$ denote path $k$'s RTT staleness and $\Delta_{\text{probe},k} = t_s - t_{\text{last\_probe},k}$ denote elapsed time since the previous dispatch on path $k$, with freshness horizon $\tau_{\text{stale}} = 150$\,ms. An alternate path $j \ne i^\star$ is \emph{probe-eligible} if and only if
 \begin{equation}
-\begin{aligned}
-\mathcal{E}(j) \iff{} & (\text{pto}_j{=}0) \wedge (m_j{=}0) \wedge (f_j{=}0) \\
-                      & \wedge (\Delta_{\text{stale},j} \ge \tau_{\text{stale}}) \wedge (\Delta_{\text{probe},j} \ge \tau_{\text{stale}}).
-\end{aligned}
 \label{eq:probe_gate}
+\mathcal{E}(j) \iff (\text{pto}_j{=}0) \wedge (m_j{=}0) \wedge (f_j{=}0) \wedge (\Delta_{\text{stale},j} \ge \tau_{\text{stale}}) \wedge (\Delta_{\text{probe},j} \ge \tau_{\text{stale}}).
 \end{equation}
-\texttt{FAP-MPQUIC} dispatches record $r$ onto the stalest path $j \in \mathcal{E}$ (zero extra control packets) if and only if \emph{either} (a) $r$ is a replaceable \texttt{state} record (zero deadline risk to urgent events), \emph{or} (b) $r$ is an \texttt{event} whose primary path $i^\star$ is stressed ($\text{pto}_{i^\star}{>}0$, $W_{i^\star}{>}0 \wedge Q_{i^\star}{>}W_{i^\star}$, or $s{>}0 \wedge P^{\text{cwnd}}_{i^\star}{<}0.25$). Otherwise it binds $r$ to $i^\star$. Notice the critical safety gate $f_j{=}0 \wedge m_j{=}0 \wedge \text{pto}_j{=}0$: any path with unacknowledged in-flight bytes is already being probed---and a blacked-out path keeps $f_j{>}0$ until PTO/loss triggers---preventing repeated probes from ever burning scarce \texttt{MAX\_STREAMS} credits on a dead path. We isolate three ablations: \texttt{Prob-Only} (probability binding without Eq.~(\ref{eq:cwnd}) or Eq.~(\ref{eq:probe_gate})), \texttt{FAP-NoProbe} (Eqs.~(\ref{eq:cwnd})--(\ref{eq:prob}) without Eq.~(\ref{eq:probe_gate})), and \texttt{FAP-Cross} (adding cross-path PTO/budget repair on retransmissions).
+\texttt{FAP-MPQUIC} routes record $r$ onto the stalest path $j \in \mathcal{E}$---piggybacking the probe on an actual application record with zero extra control frames---if and only if either (a)~$r$ is a replaceable \texttt{state} record, or (b)~$r$ is an \texttt{event} whose primary path $i^\star$ is visibly stressed ($\text{pto}_{i^\star} > 0$, $W_{i^\star} > 0 \wedge Q_{i^\star} > W_{i^\star}$, or $s > 0 \wedge P^{\text{cwnd}}_{i^\star} < 0.25$). Otherwise, $r$ binds to $i^\star$.
 
-\subsection{Analytical Properties of FAP-MPQUIC}
-\begin{proposition}[Bounded Reversal Discovery and Blackout-Waste Bound]
+To isolate each component cleanly in our experiments, we evaluate three internal ablations alongside \texttt{FAP-MPQUIC}: \texttt{Prob-Only} (probability binding without Eq.~\eqref{eq:cwnd} or Eq.~\eqref{eq:probe_gate}), \texttt{FAP-NoProbe} (Eqs.~\eqref{eq:cwnd}--\eqref{eq:prob} without probing), and \texttt{FAP-Cross} (adding cross-path PTO/budget retransmission repair on top of \texttt{FAP-MPQUIC}).
+
+\subsection{Analytical Properties}
+\begin{proposition}[Probe-Branch Binding, Refresh Latency, and Gating Invariant]
 \label{prop:fap}
-Consider a two-path MPQUIC connection where a reversal improves idle Path~$B$ to true RTT $R_B^{\text{new}}$ at time $t_0$:
+Consider a dual-path MPQUIC connection governed by \texttt{FAP-MPQUIC} with probe-eligibility predicate $\mathcal{E}(\cdot)$ in Eq.~\eqref{eq:probe_gate}:
 \begin{enumerate}
-\item[(i)] \emph{Bounded Discovery Time:} Suppose Path~$B$ was idle and clean before $t_0$ ($f_B{=}m_B{=}\text{pto}_B{=}0$), a stream credit is available ($<C$ active streams), the application scheduler selects a state record within interval $\delta_s$ after $t_0{+}\tau_{\text{stale}}$, and Path~$B$ delivers the probe without loss. Then \texttt{FAP-MPQUIC} dispatches a state stream onto Path~$B$ no later than $t_0 + \tau_{\text{stale}} + \delta_s$, refreshing XQUIC's transport SRTT $R_B$ via a single QUIC ACK within total latency $\le \tau_{\text{stale}} + \delta_s + R_B^{\text{new}}$---independent of application-ACK queueing delay.
-\item[(ii)] \emph{Active-Blackout Zero-Waste Invariant:} Conversely, if active Path~$A$ enters a 100\% packet blackout at $t_b$ while carrying $\ge 1$ in-flight packet ($f_A > 0$), then for every subsequent slot until loss/PTO recovery, $\mathcal{E}(A) = \text{false}$ in Eq.~(\ref{eq:probe_gate}); hence \texttt{FAP-MPQUIC} dispatches \emph{zero} probe streams onto Path~$A$, preserving at least $C{-}1$ stream credits for the healthy path. Moreover, if an initially idle backup path ($f_B{=}0$) silently enters blackout, at most one probe stream can be sent before $f_B > 0$ closes $\mathcal{E}(B)$ until loss/PTO recovery.
+    \item[(i)] \emph{Probe-branch binding and transport refresh time:} Whenever RFC~9000 \texttt{MAX\_STREAMS} credit permits opening a new unidirectional stream for a selected \texttt{state} record and the alternate path $B \neq i^\star$ satisfies $\mathcal{E}(B)$, the probe branch binds that stream onto Path~$B$. Starting from the wire departure instant $t_{\text{tx}}$ on Path~$B$ (after any stream-selection, pacing, or send-queue wait), if Path~$B$ delivers the probe without loss at true round-trip time $R_B^{\text{new}}$ with peer ACK delay $\delta_{\text{ack}}$, \texttt{XQUIC} refreshes its transport SRTT $R_B$ upon the first valid transport-layer QUIC ACK within $R_B^{\text{new}} + \delta_{\text{ack}}$---independent of application-ACK queueing delay.
+    \item[(ii)] \emph{Per-decision gating invariant:} At any scheduling decision, any path exhibiting nonzero in-flight bytes ($f_k > 0$), recent packet loss ($m_k > 0$), or an active PTO count ($\text{pto}_k > 0$) is excluded from probe-branch selection.
 \end{enumerate}
 \end{proposition}
-\begin{IEEEproof}
-For (i), once $t \ge t_0 + \tau_{\text{stale}}$ (or immediately at $t_0$ if $\Delta_{\text{stale},B} \ge \tau_{\text{stale}}$ already held), $\Delta_{\text{stale},B} \ge \tau_{\text{stale}}$ and $\Delta_{\text{probe},B} \ge \tau_{\text{stale}}$ hold concurrently with $f_B{=}m_B{=}\text{pto}_B{=}0$. When a stream credit is available and \texttt{Proposed-App} schedules a state record within $\delta_s$, Eq.~(\ref{eq:probe_gate}) holds, binding that stream to Path~$B$; under lossless delivery on Path~$B$, the transport-layer QUIC ACK returns in $\approx R_B^{\text{new}}$, updating \texttt{ctl\_srtt} and \texttt{ctl\_iot\_rtt\_update\_us} without waiting for application ACK serialization. For (ii), while active Path~$A$ drops 100\% of packets, its first unacknowledged datagram keeps $f_A > 0$ until RFC~9002 PTO/loss detection fires, upon which $\text{pto}_A > 0$ and $m_A > 0$; thus $f_A{=}0 \wedge m_A{=}0 \wedge \text{pto}_A{=}0$ is never satisfied during blackout. Similarly, if an idle backup path ($f_B{=}0$) suffers silent blackout, the first probe immediately sets $f_B > 0$ and blocks further probes until recovery.
-\end{IEEEproof}
+\begin{proof}
+For (i), when \texttt{MAX\_STREAMS} permits opening a stream for the chosen \texttt{state} record and Eq.~\eqref{eq:probe_gate} holds for $B \neq i^\star$, the state-probe clause unconditionally selects the stalest eligible path (Path~$B$ in a two-path connection). Once the probe packet leaves the wire on Path~$B$ at $t_{\text{tx}}$ and arrives intact, the receiver's transport-layer QUIC ACK returns after one round-trip $R_B^{\text{new}}$ plus peer ACK delay $\delta_{\text{ack}}$~\cite{rfc9000,rfc9002}, directly updating \texttt{ctl\_srtt} and \texttt{ctl\_iot\_rtt\_update\_us} without waiting for application-level ACK serialization. (Bounding total wall-clock latency from a link-reversal instant $t_0$ additionally depends on the stream-selection and send-queue wait prior to $t_{\text{tx}}$.) For (ii), Eq.~\eqref{eq:probe_gate} requires the conjunction $f_k{=}0 \wedge m_k{=}0 \wedge \text{pto}_k{=}0$; whenever any of $f_k > 0$, $m_k > 0$, or $\text{pto}_k > 0$ holds at decision time, $\mathcal{E}(k)$ evaluates to $\text{false}$, so Path~$k$ cannot enter the probe branch. Pre-existing stream bindings, greedy primary selection $i^\star$, loss recovery, and peer \texttt{MAX\_STREAMS} updates remain governed by standard \texttt{XQUIC} transport rules~\cite{rfc9000,rfc9002}.
+\end{proof}
 
-\begin{proposition}[Per-Submission Complexity and Causal Verifiability]
+\begin{proposition}[Per-Submission Complexity and Causal Auditability]
 \label{prop:complex}
-For $K$ active paths and $|\mathcal{Q}| \le 1024$ pending records, each scheduling step runs in $O(|\mathcal{Q}| + K)$ arithmetic operations with zero heap allocation in the path binder, and every binding decision is a deterministic function of strictly causal logged snapshots.
+For $K$ active paths and $|\mathcal{Q}| \le 1024$ queued records, each scheduling call executes in $O(|\mathcal{Q}| + K)$ arithmetic operations with zero heap allocation in the path binder, and every binding choice is a deterministic function of strictly causal logged snapshots.
 \end{proposition}
-\begin{IEEEproof}
-\texttt{iot\_plan\_record} scans pending entries once ($O(|\mathcal{Q}|)$) with $O(1)$ per-entry arithmetic, and \texttt{iot\_choose\_initial\_path} performs at most two linear scans over $K{=}2$ path samples ($O(K)$) reading only monotonic XQUIC counters and \texttt{last\_probe\_us}. No dynamic allocation occurs during path selection, and every input counter is archived in the logged causal path features for offline Oracle replay.
-\end{IEEEproof}
+\begin{proof}
+\texttt{iot\_plan\_record} scans pending queue slots once ($O(|\mathcal{Q}|)$) using $O(1)$ arithmetic per record, while \texttt{iot\_choose\_initial\_path} performs at most two linear passes over $K$ path structures ($O(K)$) reading only monotonic \texttt{XQUIC} counters and \texttt{last\_probe\_us}. No dynamic memory allocation occurs during path selection, and every input feature is recorded into causal telemetry logs for offline Oracle replay.
+\end{proof}
 
 \section{Experimental Setup and Real-Stack Protocol}
+\label{sec:setup}
 
-All experiments execute real encrypted \texttt{XQUIC} (commit \texttt{dffd32c}) + \texttt{BoringSSL} endpoints inside isolated Linux network namespaces (\texttt{client\_ns}, \texttt{server\_ns}, Linux kernel~6.12) linked by two virtual Ethernet pairs (\texttt{iot-a}, \texttt{iot-b}) with timed \texttt{tc-netem} qdiscs and dual-interface \texttt{tcpdump} PCAP capture over a fixed 4\,s observation window. We configure the QUIC connection with an initial unidirectional stream credit limit of $C{=}4$ to model the tight concurrency budget of resource-constrained IoT gateways; operating under a compact credit window directly exposes how head-of-line credit occupation on a degraded or blacked-out path blocks subsequent deadline-critical alarms.
+All experiments run real encrypted \texttt{XQUIC} (commit \texttt{dffd32c}) with \texttt{BoringSSL} endpoints inside isolated Linux network namespaces (\texttt{client\_ns}, \texttt{server\_ns}, Linux kernel~6.12). Two virtual Ethernet pairs (\texttt{iot-a}, \texttt{iot-b}) carry \texttt{Path~A} and \texttt{Path~B} through timed \texttt{tc-netem} qdiscs while dual-interface \texttt{tcpdump} records packet-level PCAPs over a 4\,s observation horizon. We set the initial unidirectional QUIC stream credit limit to $C{=}4$ to capture the tight concurrency window of resource-constrained IoT gateways, where stream-credit lockup on a stalled path directly blocks subsequent deadline-critical alarms.
 
-\paragraph{Held-Out Real-Stack Evaluation Matrix (576 Connections, 16 Seeds)}
-Using 16 strictly held-out seeds (\texttt{10101--10116}, disjoint from all prior development and pilot seeds), we evaluate \textbf{9 policies}---five classical/system baselines (\texttt{FIFO+MinRTT}, \texttt{App+MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}~\cite{lim2017ecf}, and \texttt{BLEST}~\cite{ferlin2016blest}), probability-only binding (\texttt{Prob-Only}), two ablations (\texttt{FAP-NoProbe}, \texttt{FAP-Cross}), and \textbf{\texttt{FAP-MPQUIC}}---across four dynamic dual-path regimes (randomized arm order per seed block, identical binary workload per seed):
+\subsection{Held-Out Real-Stack Evaluation Matrix (576 Connections)}
+Using 16 strictly held-out seeds (\texttt{10101--10116}, disjoint from all development and tuning runs), we benchmark \textbf{9 policies}---five classical baselines (\texttt{FIFO+MinRTT}, \texttt{App+MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}~\cite{lim2017ecf}, and \texttt{BLEST}~\cite{ferlin2016blest}), probability-only binding (\texttt{Prob-Only}), two ablations (\texttt{FAP-NoProbe}, \texttt{FAP-Cross}), and \textbf{\texttt{FAP-MPQUIC}}---across four dynamic dual-path regimes (randomized execution order per seed block, identical binary workload per seed):
 \begin{itemize}
-\item \textbf{S1 (Outage-Reversal, high-mixed):} \texttt{A} starts at $[4\,\text{ms}, 30\,\text{Mbps}]$, suffers 100\% blackout at $120\,\text{ms}$, and recovers degraded ($[45\,\text{ms}, 6\,\text{Mbps}]$) at $850\,\text{ms}$ while \texttt{B} upgrades to $[5\,\text{ms}, 30\,\text{Mbps}]$.
-\item \textbf{S2 (Asymmetric-Reversal, high-mixed):} Pure non-blackout cellular-style reversal at $500\,\text{ms}$: \texttt{A} degrades to $[120\,\text{ms}, 0.8\,\text{Mbps}, 10\,\text{ms jitter}]$ while \texttt{B} improves to $[6\,\text{ms}, 28\,\text{Mbps}]$.
-\item \textbf{S3 (Double-Reversal, high-mixed):} Bidirectional reversal: \texttt{A}$\to$\texttt{B} at $450\,\text{ms}$ ($[110\,\text{ms}, 1\,\text{Mbps}, 12\,\text{ms jitter}]$ vs.\ $[5\,\text{ms}, 30\,\text{Mbps}]$), then \texttt{B}$\to$\texttt{A} at $1250\,\text{ms}$.
-\item \textbf{S4 (Mid-Blackout, mixed):} Sudden mid-connection client-side Path~A blackout at $450\,\text{ms}$ followed by degraded recovery and reversal at $1150\,\text{ms}$.
+    \item \textbf{S1 (Outage-Reversal, high-mixed):} \texttt{Path~A} starts fast (4\,ms, 30\,Mbps), suffers a 100\% blackout at 120\,ms, and recovers degraded (45\,ms, 6\,Mbps) at 850\,ms while \texttt{Path~B} upgrades to 5\,ms and 30\,Mbps.
+    \item \textbf{S2 (Asymmetric-Reversal, high-mixed):} Non-blackout cellular-style reversal at 500\,ms: \texttt{Path~A} slows to 120\,ms, 0.8\,Mbps, and 10\,ms jitter while \texttt{Path~B} improves to 6\,ms and 28\,Mbps.
+    \item \textbf{S3 (Double-Reversal, high-mixed):} Bidirectional reversal: \texttt{Path~A} degrades to 110\,ms, 1\,Mbps, and 12\,ms jitter against \texttt{Path~B} (5\,ms, 30\,Mbps) at 450\,ms, and the link roles invert back at 1250\,ms.
+    \item \textbf{S4 (Mid-Blackout, mixed):} Sudden mid-connection client-side \texttt{Path~A} blackout at 450\,ms followed by degraded recovery and reversal at 1150\,ms.
 \end{itemize}
-All 576 connections completed without client-side errors. Paired seed-level differences use 5,000 bootstrap resamples (95\% CIs), two-sided exact sign-flip permutation tests (20,000 draws), and global Holm-Bonferroni correction~\cite{holm1979simple} ($\alpha{=}0.05$) per metric across all 32 scenario$\times$comparator contrasts. We also include an independent mechanism analysis (20-seed directed outage failover probes and 1,031-record randomized-path offline calibration) alongside 1,000+ factorial and trace-integrity verification connections.
 
-\section{Experimental Results}
+\subsection{Metrics and Statistical Inference}
+All 576 connections completed with zero client errors. From receiver logs and dual-interface PCAPs, we report: (i)~\texttt{EvSucc} (\%), the percentage of admitted alarm events delivered on or before their hard deadline; (ii)~\texttt{AoI} (ms), time-averaged state AoI over each sensor's \emph{post-first-update observed span}, paired with \texttt{Cov.} (\%) (fraction of the 4\,s horizon covered after each sensor's first accepted state update) and full-window max-age violation ratio (counting pre-first-update intervals as violations); (iii)~\texttt{Rx GP} (kbps), accepted payload goodput across all accepted events (including late arrivals) and state updates that advance receiver state; and (iv)~\texttt{Path-B} (\%), received UDP byte share carried over Path~B.
 
-To separate the contribution of each mechanism, we organize the evaluation into two operational layers---blackout regimes (S1, S4) and non-blackout link reversals (S2, S3)---followed by standalone failover and calibration analyses.
+Paired seed-level contrasts use 5,000 bootstrap resamples (95\% confidence intervals), two-sided Monte Carlo sign-flip permutation tests (20,000 draws), and global Holm-Bonferroni correction~\cite{holm1979simple} ($\alpha{=}0.05$) per metric across all 32 scenario$\times$comparator contrasts. To dissect single-stream failover and probability calibration in isolation, we also include 20-seed directed outage failover tests and a 1,031-record held-out randomized-path calibration study (bringing the total audited archive to 1,596+ connections).
 
-\begin{figure*}[t]
+\section{Experimental Results and Mechanistic Analysis}
+\label{sec:results}
+
+Table~\ref{tab:main} and Figs.~\ref{fig:main}--\ref{fig:repair} summarize the entire real-stack campaign. To clarify how each mechanism operates and where its advantages begin and end, we analyze blackout regimes (Section~\ref{sec:blackout}), non-blackout link reversals (Section~\ref{sec:reversal}), isolated failover and calibration mechanisms (Section~\ref{sec:mech}), and a unified cross-regime synthesis (Section~\ref{sec:synthesis}).
+
+\begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig02_stage10_main.pdf}
-\caption{Held-out real \texttt{XQUIC} dual-path evaluation (576 connections, 16 seeds, 95\% seed-bootstrap CIs): (a)--(b) event deadline success on outage/blackout scenarios S1 and S4 (higher is better); (c)--(d) observed receiver mean state AoI on pure asymmetric and double reversals S2 and S3 (lower is better).}
+\caption{Held-out real \texttt{XQUIC} dual-path evaluation (576 connections, 16 seeds, 95\% seed-bootstrap CIs): (a)--(b)~event deadline success on blackout scenarios S1 and S4 (higher is better); (c)--(d)~post-first-update observed mean state AoI on non-blackout asymmetric and double reversals S2 and S3 (lower is better).}
 \label{fig:main}
-\end{figure*}
+\end{figure}
 
 \begin{table*}[t]
 \centering
-\caption{Held-Out Real \texttt{XQUIC} Dual-Path Summary Across 4 Dynamic Scenarios (16 Seeds = 576 Connections)}
+\caption{Held-out real \texttt{XQUIC} dual-path performance across four dynamic 4\,s regimes (16 held-out seeds = 576 connections).}
 \label{tab:main}
 \scriptsize
-\setlength{\tabcolsep}{3.6pt}
-\begin{tabular}{@{}llccccc@{}}
+\setlength{\tabcolsep}{3.0pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llcccccc@{}}
 \toprule
-Scenario & Policy Arm & EvSucc (\%) $\uparrow$ & AoI (ms) $\downarrow$ & GP (kbps) $\uparrow$ & Path-B (\%) & \texttt{FAP-MPQUIC} vs.\ Arm ($\Delta$Ev / $\Delta$AoI / $\Delta$GP) \\
+Scenario & Policy arm & EvSucc (\%) $\uparrow$ & AoI (ms) $\downarrow$ & Cov.\ (\%) $\uparrow$ & Rx GP (kbps) & Path-B (\%) & \texttt{FAP-MPQUIC} vs.\ arm ($\Delta$Ev / $\Delta$AoI / $\Delta$GP) \\
 \midrule
 \multirow{7}{*}{S1: Outage+Rev}
-& FIFO + MinRTT & 4.38 & 2644.2 & 93.8 & 94.7 & \textbf{+20.62\,pp}$^\dagger$ / \textbf{$-$743.6\,ms}$^\dagger$ / \textbf{+15.9\,k}$^\dagger$ \\
-& App + MinRTT & 3.12 & 1993.1 & 87.4 & 94.4 & \textbf{+21.88\,pp}$^\dagger$ / $-$92.6\,ms / \textbf{+22.3\,k}$^\dagger$ \\
-& Fixed-MinRTT & 3.12 & 2194.4 & 144.5 & 80.8 & \textbf{+21.88\,pp}$^\dagger$ / \textbf{$-$293.9\,ms}$^\dagger$ / $-$34.8\,k$^\dagger$ \\
-& ECF~\cite{lim2017ecf} & 3.12 & 2195.2 & 144.0 & 80.8 & \textbf{+21.88\,pp}$^\dagger$ / \textbf{$-$294.6\,ms}$^\dagger$ / $-$34.4\,k$^\dagger$ \\
-& BLEST~\cite{ferlin2016blest} & 2.81 & 2245.7 & 147.9 & 81.1 & \textbf{+22.19\,pp}$^\dagger$ / \textbf{$-$345.2\,ms}$^\dagger$ / $-$38.2\,k$^\dagger$ \\
-& Prob-Only & 24.69 & 1878.1 & 109.9 & 86.8 & +0.31\,pp (n.s.) / +22.5\,ms (n.s.) / $-$0.2\,k \\
-& \textbf{FAP-MPQUIC} & \textbf{25.00} & \textbf{1900.6} & \textbf{109.7} & \textbf{87.1} & Ref.\ (NoProbe: 25.31\%, 1875\,ms) \\
+& FIFO + MinRTT & 4.38 & 2644.2 & 37.4 & 93.8 & 94.7 & \textbf{+20.62\,pp}$^\dagger$ / \textbf{$-$743.6\,ms}$^\dagger$ / \textbf{+15.9\,k}$^\dagger$ \\
+& App + MinRTT & 3.12 & 1993.1 & 14.9 & 87.4 & 94.4 & \textbf{+21.88\,pp}$^\dagger$ / $-$92.6\,ms / \textbf{+22.3\,k}$^\dagger$ \\
+& Fixed-MinRTT & 3.12 & 2194.4 & 27.7 & 144.5 & 80.8 & \textbf{+21.88\,pp}$^\dagger$ / \textbf{$-$293.9\,ms}$^\dagger$ / $-$34.8\,k$^\dagger$ \\
+& ECF~\cite{lim2017ecf} & 3.12 & 2195.2 & 27.5 & 144.0 & 80.8 & \textbf{+21.88\,pp}$^\dagger$ / \textbf{$-$294.6\,ms}$^\dagger$ / $-$34.4\,k$^\dagger$ \\
+& BLEST~\cite{ferlin2016blest} & 2.81 & 2245.7 & 27.3 & 147.9 & 81.1 & \textbf{+22.19\,pp}$^\dagger$ / \textbf{$-$345.2\,ms}$^\dagger$ / $-$38.2\,k$^\dagger$ \\
+& Prob-Only & 24.69 & 1878.1 & 32.7 & 109.9 & 86.8 & +0.31\,pp (n.s.) / +22.5\,ms (n.s.) / $-$0.2\,k \\
+& \textbf{FAP-MPQUIC} & \textbf{25.00} & \textbf{1900.6} & \textbf{33.7} & \textbf{109.7} & \textbf{87.1} & Ref.\ (NoProbe: 25.31\%, 1875.0\,ms, 33.1\% cov.) \\
 \midrule
 \multirow{7}{*}{S2: Asym.\ Rev.}
-& FIFO + MinRTT & 20.00 & 2326.4 & 109.8 & 59.8 & +0.62\,pp / \textbf{$-$399.3\,ms}$^\dagger$ / +7.5\,k \\
-& App + MinRTT & 20.00 & 1996.4 & 111.0 & 60.0 & +0.62\,pp / \textbf{$-$69.4\,ms}$^\dagger$ / +6.3\,k \\
-& Fixed-MinRTT & 20.00 & 2058.8 & 104.5 & 45.5 & +0.62\,pp / \textbf{$-$131.7\,ms}$^\dagger$ / +12.8\,k \\
-& ECF~\cite{lim2017ecf} & 20.00 & 1995.9 & 112.9 & 49.7 & +0.62\,pp / \textbf{$-$68.9\,ms}$^\dagger$ / +4.4\,k \\
-& BLEST~\cite{ferlin2016blest} & 20.00 & 2052.6 & 102.5 & 44.4 & +0.62\,pp / \textbf{$-$125.6\,ms}$^\dagger$ / +14.8\,k \\
-& Prob-Only & 20.00 & 2003.3 & 113.6 & 78.2 & +0.62\,pp / $-$76.3\,ms ($p_{\text{raw}}{=}0.016$) / +3.7\,k \\
-& \textbf{FAP-MPQUIC} & \textbf{20.62} & \textbf{1927.0} & \textbf{117.3} & \textbf{79.6} & Ref.\ (NoProbe: 2052.2\,ms; Cross: 1925.3) \\
+& FIFO + MinRTT & 20.00 & 2326.4 & 53.5 & 109.8 & 59.8 & +0.62\,pp / \textbf{$-$399.3\,ms}$^\dagger$ / +7.5\,k \\
+& App + MinRTT & 20.00 & 1996.4 & 36.4 & 111.0 & 60.0 & +0.62\,pp / \textbf{$-$69.4\,ms}$^\dagger$ / +6.3\,k \\
+& Fixed-MinRTT & 20.00 & 2058.8 & 32.4 & 104.5 & 45.5 & +0.62\,pp / \textbf{$-$131.7\,ms}$^\dagger$ / +12.8\,k \\
+& ECF~\cite{lim2017ecf} & 20.00 & 1995.9 & 35.9 & 112.9 & 49.7 & +0.62\,pp / \textbf{$-$68.9\,ms}$^\dagger$ / +4.4\,k \\
+& BLEST~\cite{ferlin2016blest} & 20.00 & 2052.6 & 32.2 & 102.5 & 44.4 & +0.62\,pp / \textbf{$-$125.6\,ms}$^\dagger$ / +14.8\,k \\
+& Prob-Only & 20.00 & 2003.3 & 36.2 & 113.6 & 78.2 & +0.62\,pp / $-$76.3\,ms ($p_{\text{raw}}{=}0.016$) / +3.7\,k \\
+& \textbf{FAP-MPQUIC} & \textbf{20.62} & \textbf{1927.0} & \textbf{39.8} & \textbf{117.3} & \textbf{79.6} & Ref.\ (NoProbe: 2052.2\,ms, 33.9\%; Cross: 1925.3) \\
 \midrule
 \multirow{8}{*}{S3: Double Rev.}
-& FIFO + MinRTT & 20.00 & 2348.2 & 111.4 & 32.8 & +0.31\,pp / \textbf{$-$408.6\,ms}$^\dagger$ / +3.2\,k \\
-& App + MinRTT & 20.00 & 2092.1 & 111.3 & 30.9 & +0.31\,pp / \textbf{$-$152.5\,ms}$^\dagger$ / +3.2\,k \\
-& Fixed-MinRTT & 20.00 & 2074.2 & 101.2 & 24.0 & +0.31\,pp / \textbf{$-$134.5\,ms}$^\dagger$ / \textbf{+13.4\,k}$^\dagger$ \\
-& ECF~\cite{lim2017ecf} & 20.00 & 2112.4 & 113.0 & 7.9 & +0.31\,pp / \textbf{$-$172.7\,ms}$^\dagger$ / +1.6\,k \\
-& BLEST~\cite{ferlin2016blest} & 20.00 & 2096.7 & 103.9 & 25.0 & +0.31\,pp / \textbf{$-$157.1\,ms}$^\dagger$ / +10.7\,k \\
-& Prob-Only & 20.62 & 2031.5 & 114.9 & 50.4 & $-$0.31\,pp / $-$91.9\,ms ($p_{\text{raw}}{=}0.015$) / $-$0.3\,k \\
-& FAP-NoProbe & 20.31 & 2009.7 & 117.2 & 49.2 & +0.00\,pp / \textbf{$-$70.1\,ms}$^\dagger$ ($p_{\text{Holm}}{=}0.012$) / $-$2.6\,k \\
-& \textbf{FAP-MPQUIC} & \textbf{20.31} & \textbf{1939.6} & \textbf{114.6} & \textbf{58.9} & Ref.\ (Cross: 20.00\%, 1942.9\,ms) \\
+& FIFO + MinRTT & 20.00 & 2348.2 & 52.4 & 111.4 & 32.8 & +0.31\,pp / \textbf{$-$408.6\,ms}$^\dagger$ / +3.2\,k \\
+& App + MinRTT & 20.00 & 2092.1 & 29.8 & 111.3 & 30.9 & +0.31\,pp / \textbf{$-$152.5\,ms}$^\dagger$ / +3.2\,k \\
+& Fixed-MinRTT & 20.00 & 2074.2 & 30.9 & 101.2 & 24.0 & +0.31\,pp / \textbf{$-$134.5\,ms}$^\dagger$ / \textbf{+13.4\,k}$^\dagger$ \\
+& ECF~\cite{lim2017ecf} & 20.00 & 2112.4 & 30.4 & 113.0 & 7.9 & +0.31\,pp / \textbf{$-$172.7\,ms}$^\dagger$ / +1.6\,k \\
+& BLEST~\cite{ferlin2016blest} & 20.00 & 2096.7 & 30.1 & 103.9 & 25.0 & +0.31\,pp / \textbf{$-$157.1\,ms}$^\dagger$ / +10.7\,k \\
+& Prob-Only & 20.62 & 2031.5 & 27.3 & 114.9 & 50.4 & $-$0.31\,pp / $-$91.9\,ms ($p_{\text{raw}}{=}0.015$) / $-$0.3\,k \\
+& FAP-NoProbe & 20.31 & 2009.7 & 29.5 & 117.2 & 49.2 & +0.00\,pp / \textbf{$-$70.1\,ms}$^\dagger$ ($p_{\text{Holm}}{=}0.012$) / $-$2.6\,k \\
+& \textbf{FAP-MPQUIC} & \textbf{20.31} & \textbf{1939.6} & \textbf{27.7} & \textbf{114.6} & \textbf{58.9} & Ref.\ (Cross: 20.00\%, 1942.9\,ms, 27.1\% cov.) \\
 \midrule
 \multirow{7}{*}{S4: Mid-Blackout}
-& FIFO + MinRTT & 33.33 & 1786.4 & 78.6 & 76.1 & \textbf{+52.08\,pp}$^\dagger$ / \textbf{$-$871.7\,ms}$^\dagger$ / +1.2\,k \\
-& App + MinRTT & 63.89 & 1222.3 & 70.1 & 70.8 & \textbf{+21.53\,pp}$^\dagger$ / \textbf{$-$307.7\,ms}$^\dagger$ / \textbf{+9.8\,k}$^\dagger$ \\
-& Fixed-MinRTT & 52.78 & 1132.9 & 70.3 & 45.9 & \textbf{+32.64\,pp}$^\dagger$ / \textbf{$-$218.2\,ms}$^\dagger$ / \textbf{+9.5\,k}$^\dagger$ \\
-& ECF~\cite{lim2017ecf} & 55.56 & 1118.0 & 71.0 & 46.1 & \textbf{+29.86\,pp}$^\dagger$ / \textbf{$-$203.4\,ms}$^\dagger$ / \textbf{+8.9\,k}$^\dagger$ \\
-& BLEST~\cite{ferlin2016blest} & 54.17 & 1082.8 & 71.0 & 46.6 & \textbf{+31.25\,pp}$^\dagger$ / \textbf{$-$168.2\,ms}$^\dagger$ / \textbf{+8.9\,k}$^\dagger$ \\
-& Prob-Only & 88.89 & 901.6 & 81.6 & 86.5 & $-$3.47\,pp (n.s.) / +13.0\,ms (n.s.) / $-$1.8\,k \\
-& \textbf{FAP-MPQUIC} & \textbf{85.42} & \textbf{914.6} & \textbf{79.8} & \textbf{83.5} & Ref.\ (Cross: 87.50\%, 926.7\,ms) \\
+& FIFO + MinRTT & 33.33 & 1786.4 & 78.7 & 78.6 & 76.1 & \textbf{+52.08\,pp}$^\dagger$ / \textbf{$-$871.7\,ms}$^\dagger$ / +1.2\,k \\
+& App + MinRTT & 63.89 & 1222.3 & 68.6 & 70.1 & 70.8 & \textbf{+21.53\,pp}$^\dagger$ / \textbf{$-$307.7\,ms}$^\dagger$ / \textbf{+9.8\,k}$^\dagger$ \\
+& Fixed-MinRTT & 52.78 & 1132.9 & 64.5 & 70.3 & 45.9 & \textbf{+32.64\,pp}$^\dagger$ / \textbf{$-$218.2\,ms}$^\dagger$ / \textbf{+9.5\,k}$^\dagger$ \\
+& ECF~\cite{lim2017ecf} & 55.56 & 1118.0 & 67.0 & 71.0 & 46.1 & \textbf{+29.86\,pp}$^\dagger$ / \textbf{$-$203.4\,ms}$^\dagger$ / \textbf{+8.9\,k}$^\dagger$ \\
+& BLEST~\cite{ferlin2016blest} & 54.17 & 1082.8 & 67.4 & 71.0 & 46.6 & \textbf{+31.25\,pp}$^\dagger$ / \textbf{$-$168.2\,ms}$^\dagger$ / \textbf{+8.9\,k}$^\dagger$ \\
+& Prob-Only & 88.89 & 901.6 & 74.8 & 81.6 & 86.5 & $-$3.47\,pp (n.s.) / +13.0\,ms (n.s.) / $-$1.8\,k \\
+& \textbf{FAP-MPQUIC} & \textbf{85.42} & \textbf{914.6} & \textbf{72.8} & \textbf{79.8} & \textbf{83.5} & Ref.\ (Cross: 87.50\%, 926.7\,ms, 73.4\% cov.) \\
 \bottomrule
-\multicolumn{7}{@{}l@{}}{\scriptsize $^\dagger$Global Holm-Bonferroni significant ($p_{\text{Holm}} < 0.05$, 20,000 sign-flip permutations, 16 seeds). $+\Delta$Ev/$+\Delta$GP and $-\Delta$AoI favor \texttt{FAP-MPQUIC}.}
-\end{tabular}
+\multicolumn{8}{@{}l@{}}{\scriptsize $^\dagger$Global Holm-Bonferroni significant ($p_{\text{Holm}} < 0.05$, two-sided Monte Carlo sign-flip test with 20,000 draws across 16 seeds).} \\
+\multicolumn{8}{@{}l@{}}{\scriptsize AoI: post-first-update observed-span mean; Cov.: observed-span coverage (\%); Rx GP: accepted payload goodput (includes late events); Path-B (\%): received UDP byte share.}
+\end{tabular}}
 \end{table*}
 
-\subsection{Layer 1: Dominance of Loss- and Slack-Aware Binding Under Blackouts (S1 \& S4)}
-Fig.~\ref{fig:main}, Fig.~\ref{fig:pareto}, Fig.~\ref{fig:effects}, and Table~\ref{tab:main} show that under sudden Path-A blackouts, loss- and slack-aware probability binding (\texttt{Prob-Only} and \texttt{FAP-MPQUIC}) consistently outperforms all five classical RTT-based schedulers. In S1 (high-load outage-reversal), \texttt{FAP-MPQUIC} increases event deadline success to \textbf{25.00\%} compared with 4.38\% (\texttt{FIFO+MinRTT}), 3.12\% (\texttt{App+MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}), and 2.81\% (\texttt{BLEST})---a gain of \textbf{+20.62 to +22.19\,pp} (Cohen's $d_z \in [5.43, 6.66]$, all $p_{\text{Holm}}{\le}0.0025$)---while reducing state AoI by \textbf{$-$293.9 to $-$743.6\,ms} relative to \texttt{Fixed-MinRTT}, \texttt{ECF}, \texttt{BLEST}, and \texttt{FIFO+MinRTT} ($p_{\text{Holm}}{\le}0.0031$). Although \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST} report higher raw goodput (144--148\,kbps) in S1, this volume consists largely of late, expired event packets delivered after Path~A recovers.
+\subsection{Blackout and Outage-Reversal Regimes (S1 and S4)}
+\label{sec:blackout}
 
-In S4 (mid-connection Path-A blackout), \texttt{FAP-MPQUIC} Pareto-dominates all four classical path schedulers across all three metrics simultaneously: \textbf{+21.53 to +32.64\,pp} event deadline success ($p_{\text{Holm}}{\le}0.0230$; +52.08\,pp vs.\ \texttt{FIFO+MinRTT}), \textbf{$-$168.2 to $-$307.7\,ms} state AoI ($p_{\text{Holm}}{\le}0.0063$; $-$871.7\,ms vs.\ \texttt{FIFO+MinRTT}), and \textbf{+8.86 to +9.80\,kbps} useful goodput ($p_{\text{Holm}}{\le}0.0072$). As shown in Fig.~\ref{fig:pareto}(b), \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST} stall at 45.9--46.6\% Path-B utilization, whereas \texttt{FAP-MPQUIC} shifts 83.5\% of traffic onto Path~B. Moreover, \texttt{FAP-MPQUIC} is statistically indistinguishable from \texttt{Prob-Only} in both S1 and S4 (all $p_{\text{Holm}}{=}1.0$), confirming Proposition~\ref{prop:fap}(ii): health-gating suppresses probes on dead Path~A so probing introduces zero blackout penalty.
+Under sudden primary blackouts, Figs.~\ref{fig:main}(a)--(b), \ref{fig:pareto}, and \ref{fig:effects} reveal a sharp structural separation between RTT-driven heuristics and probability-based binders.
 
-\begin{figure*}[t]
+\paragraph{Why classical schedulers collapse in S1 and why raw goodput misleads}
+In S1, Path~A starts faster ($4$\,ms) and then silently drops 100\% of packets from $120$\,ms to $850$\,ms. Because \texttt{FIFO+MinRTT}, \texttt{App+MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST} rely on cached RTT rather than loss probability and deadline slack, they continue issuing new streams onto Path~A during the initial outage window. With only $C{=}4$ unidirectional stream credits available, unacknowledged streams parked on the dead link quickly consume the concurrency window and stall behind exponential PTO timers. As a result, alarm deadline success drops to 2.81--4.38\% across all five classical baselines, whereas \texttt{FAP-MPQUIC} achieves \textbf{25.00\%} (+20.62 to +22.19\,pp; Cohen's $d_z \in [5.43, 6.66]$, all $p_{\text{Holm}} \le 0.0025$) while lowering state AoI by \textbf{$-$293.9 to $-$743.6\,ms} against \texttt{Fixed-MinRTT}, \texttt{ECF}, \texttt{BLEST}, and \texttt{FIFO+MinRTT} ($p_{\text{Holm}} \le 0.0031$) and reducing full-window max-age violation by 1.56--1.76\,pp ($p_{\text{Holm}} \le 0.0023$).
+
+A counterintuitive feature in Table~\ref{tab:main} requires explicit transport-level explanation: in S1, \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST} report \emph{higher} accepted payload goodput (144.0--147.9\,kbps) than \texttt{FAP-MPQUIC} (109.7\,kbps, $p_{\text{Holm}} = 0.0031$). This inversion is not a sign of superior service. Rather, because classical schedulers park large batches of alarm streams on Path~A during the blackout, \texttt{XQUIC} flushes those long-expired frames in bulk once Path~A recovers at $850$\,ms ($45$\,ms, $6$\,Mbps). Because accepted payload goodput counts late arrivals, post-outage flushing inflates raw bytes even though 97\% of those alarms missed their hard deadlines.
+
+\paragraph{Pareto dominance and the FIFO coverage paradox in S4}
+In S4, the blackout strikes mid-connection at $450$\,ms after both links have established steady state. Fig.~\ref{fig:pareto}(a) plots the resulting AoI--EvSucc Pareto frontier: \texttt{FAP-MPQUIC} occupies the optimal upper-left corner and strictly Pareto-dominates \texttt{App+MinRTT}, \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST} across every metric simultaneously: \textbf{+21.53 to +32.64\,pp} event deadline success ($p_{\text{Holm}} \le 0.0230$; +52.08\,pp over \texttt{FIFO+MinRTT}), \textbf{$-$168.2 to $-$307.7\,ms} observed-span AoI ($p_{\text{Holm}} \le 0.0063$; $-$871.7\,ms over \texttt{FIFO+MinRTT}), \textbf{$-$4.95 to $-$8.81\,pp} full-window max-age violation ($p_{\text{Holm}} \le 0.0214$), and \textbf{+8.86 to +9.80\,kbps} accepted goodput ($p_{\text{Holm}} \le 0.0072$). Fig.~\ref{fig:pareto}(b) explains why: \texttt{Fixed-MinRTT}, \texttt{ECF}, and \texttt{BLEST} stall at 45.9--46.6\% Path-B UDP byte share because they keep probing Path~A via its cached pre-blackout RTT and only spill over when Path~A's send window fills. By contrast, loss and PTO penalties in Eqs.~\eqref{eq:time}--\eqref{eq:prob} immediately drive $P_A^{\text{cwnd}} \to 0$ and shift 83.5\% of bytes onto healthy Path~B.
+
+Table~\ref{tab:main} also reveals why \texttt{FIFO+MinRTT} exhibits the highest observed-span coverage (78.7\% in S4, 53.5\% in S2) yet the worst AoI (1,786--2,644\,ms) and worst event success (33.33\% in S4). Without per-sensor state overwriting or urgency scoring, FIFO admits early state records promptly---starting each sensor's observation window early---but subsequently fills the four stream credits with obsolete, superseded sensor snapshots ahead of fresh readings and alarms, causing receiver age to climb steadily between accepted updates.
+
+\paragraph{Statistical tie between \texttt{FAP-MPQUIC} and \texttt{Prob-Only} during blackouts}
+As shown in Fig.~\ref{fig:effects}, \texttt{FAP-MPQUIC}, \texttt{Prob-Only}, and \texttt{FAP-NoProbe} are statistically indistinguishable across both S1 and S4 (all $p_{\text{Holm}} = 1.0$; in S4, point estimates are 85.42\% vs.\ 88.89\% for \texttt{EvSucc} and 914.6 vs.\ 901.6\,ms for AoI). Mechanistically, this tie confirms clean separation of concerns: once 100\% packet loss occurs on Path~A, $(1-L_A)^{\lceil B/1200\rceil}$ and $\mathbb{I}[\text{pto}_A > 0]$ already force traffic onto Path~B even without CWND penalties or probing, while Eq.~\eqref{eq:probe_gate} suppresses probing on any lossy or busy link. The slight, non-significant numerical gap in S4 reflects the occasional clean pre-blackout or post-recovery probe consuming one of the $C{=}4$ credits for a single RTT---a minor variance trade-off that unlocks the non-blackout reversal gains analyzed next.
+
+\begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig03_pareto_and_path_shift.pdf}
-\caption{Mechanistic separation across dynamic paths: (a) S4 mid-run blackout Pareto frontier showing \texttt{FAP-MPQUIC} and probability-based policies far in the optimal upper-left corner vs.\ \texttt{MinRTT}, \texttt{ECF}, and \texttt{BLEST}; (b) Path-B UDP utilization showing classical schedulers trapped on degraded Path~A in S2--S4 (especially \texttt{ECF} at 7.9\% in S3).}
+\caption{Mechanistic separation across dynamic paths: (a)~S4 mid-run blackout Pareto frontier placing \texttt{FAP-MPQUIC} and probability-based policies far in the optimal upper-left corner relative to \texttt{MinRTT}, \texttt{ECF}, and \texttt{BLEST}; (b)~Path-B received UDP byte share showing classical schedulers trapped on degraded Path~A across S2--S4 (most severely \texttt{ECF} at 7.9\% in S3).}
 \label{fig:pareto}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig04_paired_effects.pdf}
-\caption{Paired 16-seed bootstrap 95\% confidence intervals (\texttt{FAP-MPQUIC} minus comparator): (a) event deadline success gains on S1 and S4; (b) state AoI reductions on S1, S3, and S4, including the Holm-significant $-$70.1\,ms AoI reduction of health-gated probing over \texttt{FAP-NoProbe} in S3.}
+\caption{Paired 16-seed bootstrap 95\% confidence intervals (\texttt{FAP-MPQUIC} minus comparator): (a)~event deadline success gains in blackout scenarios S1 and S4; (b)~observed state AoI reductions across S1, S3, and S4, including the globally Holm-significant $-$70.1\,ms AoI reduction of health-gated probing over \texttt{FAP-NoProbe} in S3.}
 \label{fig:effects}
-\end{figure*}
+\end{figure}
 
-\subsection{Layer 2: Breaking the Stale-RTT Trap Under Non-Blackout Reversals (S2 \& S3)}
-Under non-blackout asymmetric (S2) and bidirectional (S3) reversals, packet loss does not automatically expel traffic from Path~A. Consequently, classical schedulers remain heavily pinned to degraded Path~A (\texttt{ECF} uses only 7.9\% Path~B in S3; \texttt{Fixed-MinRTT} and \texttt{BLEST} use 24--25\%), and both \texttt{Prob-Only} and \texttt{FAP-NoProbe} remain exposed to stale cached RTTs on the idle alternate path. Health-gated probing resolves this stale-RTT bottleneck: the two probing variants (\texttt{FAP-MPQUIC} and \texttt{FAP-Cross}) attain the lowest observed mean state AoI among all nine policies in both S2 (1,927.0 and 1,925.3\,ms) and S3 (1,939.6 and 1,942.9\,ms), with \texttt{FAP-MPQUIC} achieving the lowest AoI among all strict-affinity policies in S2 and the single lowest AoI overall in S3.
+\subsection{Non-Blackout Asymmetric and Bidirectional Reversals (S2 and S3)}
+\label{sec:reversal}
 
-Specifically, in S2, \texttt{FAP-MPQUIC} reaches \textbf{1,927.0\,ms} AoI (Holm-significant relative to all five classical baselines: $-$68.9 to $-$399.3\,ms, $p_{\text{Holm}}{\le}0.0034$) and the highest goodput among strict policies (117.3\,kbps), lowering AoI by $-$76.3\,ms compared with \texttt{Prob-Only} ($p_{\text{raw}}{=}0.0162$) and $-$125.2\,ms compared with \texttt{FAP-NoProbe} ($p_{\text{raw}}{=}0.0126$). In S3, \texttt{FAP-MPQUIC} reaches \textbf{1,939.6\,ms} AoI (Holm-significant relative to all five classical baselines: $-$134.5 to $-$408.6\,ms, $p_{\text{Holm}}{\le}0.0031$) and outperforms its own no-probe ablation \texttt{FAP-NoProbe} by \textbf{$-$70.06\,ms} (95\% CI $[-128.0, -20.4]$\,ms, $p_{\text{Holm}}{=}0.0123$; $-$91.9\,ms vs.\ \texttt{Prob-Only}, $p_{\text{raw}}{=}0.015$), directly isolating the effect of health-gated stale-path probing under bidirectional link reversals.
+Non-blackout reversals behave very differently from blackouts because the degraded link continues acknowledging packets, albeit at 110--120\,ms RTT and 0.8--1.0\,Mbps bandwidth. Without packet drops or PTOs to expel traffic from Path~A, passive schedulers must rely on stale cached RTT estimates for the idle backup path.
 
-\subsection{Mechanism Analysis: Cross-Path Failover and Offline Calibration}
-Two supplementary mechanism evaluations (Fig.~\ref{fig:repair}) examine failover and probability calibration trade-offs in isolation. Across the general dual-path matrix (S1--S4), strict path affinity (\texttt{FAP-MPQUIC}) and cross-path retransmission (\texttt{FAP-Cross}) perform almost identically (within 0.3--2.1\,pp and 2--12\,ms, all $p_{\text{Holm}}{=}1.0$). Under directed single-stream outages (20 independent seeds, Fig.~\ref{fig:repair}(a)), however, cross-path repair reduces mean probe completion latency from \textbf{1,544\,ms to 253\,ms} ($-$83.6\%, 95\% CI $[-1314, -1267]$\,ms) and lowers duplicate stream-offset UDP bytes from 24.1\,KB to 15.1\,KB.
+\paragraph{Why \texttt{ECF} stalls at 7.9\% Path-B share in S3}
+Fig.~\ref{fig:pareto}(b) exposes a striking divergence in S3 (double reversal): whereas \texttt{FAP-MPQUIC} shifts 58.9\% of UDP bytes onto Path~B, \texttt{Fixed-MinRTT} and \texttt{BLEST} shift only 24.0--25.0\%, and \texttt{ECF} uses just \textbf{7.9\%}. The cause lies directly in \texttt{ECF}'s fast-path waiting inequality~\cite{lim2017ecf}: before Path~B improves to $5$\,ms at $450$\,ms, \texttt{ECF} caches Path~B's larger initial RTT and routes exclusively over Path~A. Once Path~A slows down, \texttt{ECF} compares Path~A's estimated drain time against Path~B's \emph{unupdated} stale RTT, concludes that waiting for Path~A finishes sooner, and never transmits on Path~B to discover its new $5$\,ms latency until the second reversal flips the paths back at $1250$\,ms. Non-probing probability schedulers (\texttt{Prob-Only} at 50.4\% and \texttt{FAP-NoProbe} at 49.2\%) partially escape via queue growth on Path~A, but still suffer prolonged stale-RTT lag.
 
-In the offline probability calibration analysis across 1,031 held-out randomized-path delivery records (Fig.~\ref{fig:repair}(b)), Platt scaling reduces effective-budget Brier error from 0.0413 to \textbf{0.0355} (and from 0.260 to 0.218 on 0--100\,ms short budgets). Even after calibration, gains over \texttt{Slack-only} on short budgets remain modest under abrupt distribution shift~\cite{ovadia2019uncertainty}.
+\paragraph{How health-gated probing reduces reversal AoI}
+Because Path~B remains clean and idle ($\text{pto}_B{=}0$, $m_B{=}0$, $f_B{=}0$) while its RTT age crosses $\tau_{\text{stale}} = 150$\,ms, \texttt{FAP-MPQUIC} dispatches a replaceable state record onto Path~B under Eq.~\eqref{eq:probe_gate}. By Proposition~\ref{prop:fap}(i), \texttt{XQUIC} updates $R_B$ immediately upon receiving the probe's transport-layer QUIC ACK (roughly 10--20\,ms after wire departure, compared with 930--960\,ms for application-ACK adaptation), allowing subsequent streams to migrate promptly to the faster link.
 
-\begin{figure*}[t]
+Consequently, the two probing variants (\texttt{FAP-MPQUIC} and \texttt{FAP-Cross}) achieve the lowest observed mean state AoI of all nine policies in both S2 (1,927.0 and 1,925.3\,ms) and S3 (1,939.6 and 1,942.9\,ms), as seen in Fig.~\ref{fig:main}(c)--(d). In S2, \texttt{FAP-MPQUIC} cuts AoI by $-$68.9 to $-$399.3\,ms against all five classical baselines ($p_{\text{Holm}} \le 0.0034$), improves AoI by $-$76.3\,ms vs.\ \texttt{Prob-Only} ($p_{\text{raw}} = 0.0162$) and $-$125.2\,ms vs.\ \texttt{FAP-NoProbe} ($p_{\text{raw}} = 0.0126$), and lifts observation coverage from 33.9\% (\texttt{FAP-NoProbe}) to 39.8\% (+5.9\,pp, $p_{\text{raw}} = 0.016$). In S3, \texttt{FAP-MPQUIC} cuts AoI by $-$134.5 to $-$408.6\,ms against all five classical baselines ($p_{\text{Holm}} \le 0.0031$) and beats its own no-probe ablation \texttt{FAP-NoProbe} by \textbf{$-$70.06\,ms} (95\% CI $[-128.0, -20.4]$\,ms, $p_{\text{Holm}} = 0.0123$; $-$91.9\,ms vs.\ \texttt{Prob-Only}, $p_{\text{raw}} = 0.015$).
+
+\paragraph{Why \texttt{EvSucc} and full-window max-age saturate in S2 and S3}
+Table~\ref{tab:main} also documents a clear operating boundary: in both S2 and S3, alarm deadline success stays tightly clustered at 20.00--20.62\% across all nine policies (all pairwise contrasts $p_{\text{Holm}} = 1.0$), and full-window max-age violation remains near 98.0--99.4\% (statistically tied between \texttt{FAP-MPQUIC} and \texttt{FAP-NoProbe} after Holm correction: 98.70\% vs.\ 98.95\% in S3, with comparable coverage 27.7\% vs.\ 29.5\%, $p_{\text{raw}} = 0.070$). The reason is admission-capacity saturation rather than path ranking: during the high-mixed 4\,s burst workload, offered alarm arrival rate exceeds the $C{=}4$ unidirectional stream concurrency limit regardless of which link is chosen, while pre-first-update cold-start intervals dominate the full-window violation metric. Health-gated probing therefore improves \emph{post-first-update} state freshness without being able to create concurrency credits beyond $C{=}4$.
+
+\subsection{Isolated Mechanism Analyses: Failover Repair and Offline Calibration}
+\label{sec:mech}
+
+Two targeted experiments (Fig.~\ref{fig:repair}) explain why cross-path retransmission and static probability calibration behave differently in isolated failure modes versus the aggregate S1--S4 matrix.
+
+\paragraph{Resolving the S1--S4 vs.\ single-stream failover divergence}
+Across the high-rate mixed workloads S1--S4, strict path affinity (\texttt{FAP-MPQUIC}) and cross-path retransmission (\texttt{FAP-Cross}) perform nearly identically (within 0.3--2.1\,pp in \texttt{EvSucc} and 2--12\,ms in AoI, all $p_{\text{Holm}} = 1.0$). The reason is stream turnover: under continuous record arrivals, new alarms and overwriting state records immediately bypass the dead link via initial path binding, masking the fate of the few streams already in flight. Under a directed single-stream outage across 20 independent seeds (Fig.~\ref{fig:repair}(a)), however, an \emph{already-bound} stream is stranded on a blacked-out path with no replacement stream arriving. There, strict affinity must wait for PTO backoff and path recovery (1,544\,ms mean completion, 24.1\,KB duplicate stream-offset UDP bytes), whereas cross-path repair immediately reroutes the lost frames onto the live alternate path, slashing completion latency to \textbf{253\,ms} (\textbf{$-$83.6\%}, 95\% CI $[-1314, -1267]$\,ms) and cutting duplicate bytes to 15.1\,KB.
+
+\paragraph{Calibration under abrupt link shifts}
+Fig.~\ref{fig:repair}(b) evaluates path-completion probability calibration across 1,031 held-out randomized-path test records. An \texttt{RTT-only} predictor exhibits severe miscalibration on tight 0--100\,ms deadlines (Brier score 0.500) because ignoring RTT variance, in-flight backlog, and packet loss produces overconfident predictions whenever links degrade. Incorporating loss and slack in \texttt{Raw Prob.}\ cuts overall effective-budget Brier error sharply to 0.0413 (0.260 on 0--100\,ms budgets), and post-hoc Platt calibration reduces it further to \textbf{0.0355} overall and \textbf{0.218} on short budgets. Yet short-budget gains over \texttt{Slack-only} (0.240) remain modest: whenever a link undergoes an abrupt step shift, causal transport counters lag the physical transition by at least one RTT, creating an irreducible shift floor~\cite{ovadia2019uncertainty} that static offline calibration cannot eliminate without active transport-layer probing.
+
+\begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig05_repair_and_calibration.pdf}
-\caption{Supplementary mechanism analyses: (a) directed single-stream outage failover across 20 seeds (cross-path repair reduces completion latency by $-$83.6\%); (b) held-out path-completion Brier score across 1,031 randomized-path test records.}
+\caption{Isolated mechanism analyses: (a)~directed single-stream outage failover across 20 seeds, showing why cross-path repair cuts completion time by $-$83.6\% when an already-bound stream is stranded; (b)~held-out path-completion Brier score across 1,031 randomized-path records, showing sharp gains over \texttt{RTT-only} and the step-shift floor on 0--100\,ms short budgets.}
 \label{fig:repair}
-\end{figure*}
+\end{figure}
+
+\subsection{Cross-Regime Synthesis and Operating Envelope}
+\label{sec:synthesis}
+
+Synthesizing all 1,596+ audited connections yields a clear map of when \texttt{FAP-MPQUIC} excels, when simpler components suffice, and when alternative bottlenecks dominate. Table~\ref{tab:synthesis} consolidates these operating boundaries across six distinct regimes.
+
+\begin{table*}[t]
+\centering
+\caption{Cross-regime synthesis and operating envelope of \texttt{FAP-MPQUIC} across all audited real-\texttt{XQUIC} regimes.}
+\label{tab:synthesis}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{4.1cm}@{}}
+\toprule
+Operating regime & Relative outcome of \texttt{FAP-MPQUIC} & Dominant transport mechanism & Practical deployment takeaway \\
+\midrule
+Sudden primary blackout (S1, S4) & \textbf{Large win vs.\ RTT} (+20.6--52.1\,pp EvSucc, $-$168--872\,ms AoI); \textbf{tied} with \texttt{Prob-Only} & Loss $L_k$ and $\text{pto}_k{>}0$ expel streams from dead Path~A; health gate $f_j{=}m_j{=}\text{pto}_j{=}0$ suppresses blackout probes & Loss- and slack-aware binding delivers the primary blackout protection; probing stays safe \\
+\addlinespace[3pt]
+Non-blackout asymmetric / double reversal (S2, S3) & \textbf{Best overall AoI} (1,927--1,940\,ms; $-$70.1\,ms Holm-sig vs.\ \texttt{FAP-NoProbe} in S3) & Without loss, RTT heuristics (\texttt{ECF} at 7.9\% Path-B) and passive binders stay trapped by stale $R_B$; state probes refresh $R_B$ in 1 RTT & Enable health-gated probing ($\tau_{\text{stale}}{=}150$\,ms) whenever links experience latency/rate shifts without drops \\
+\addlinespace[3pt]
+Stranded single stream on dead path (Fig.~\ref{fig:repair}a) & \textbf{Underperforms \texttt{FAP-Cross}} (1,544\,ms vs.\ 253\,ms, $-$83.6\%) & Initial binding cannot rescue a stream already in flight when its path dies & Pair \texttt{FAP-MPQUIC} with cross-path retransmission (\texttt{FAP-Cross}) for low-rate, non-overwriteable alarms \\
+\addlinespace[3pt]
+Overloaded burst under tight $C{=}4$ credits (S1--S3 EvSucc) & \textbf{All policies saturate} ($\approx$20--25\% EvSucc, $\approx$98--99\% max-age viol.) & QUIC \texttt{MAX\_STREAMS} credit capacity, not path ranking, caps alarm throughput & Raise $C$ or apply admission control at the gateway when alarm burst rate exceeds $C/\text{RTT}$ \\
+\addlinespace[3pt]
+Post-outage recovery throughput (S1 Rx GP) & \textbf{Lower raw GP} than RTT baselines (109.7 vs.\ 144--148\,kbps) & Classical schedulers flush expired backlog after Path~A recovers, inflating raw bytes without timely value & Evaluate IoT transports on deadline-met goodput and AoI rather than raw byte throughput \\
+\addlinespace[3pt]
+Short-budget (0--100\,ms) abrupt step shifts (Fig.~\ref{fig:repair}b) & \textbf{Modest calibration gain} over \texttt{Slack-only} (0.218 vs.\ 0.240 Brier) & Causal counters lag physical step transitions by $\ge 1$\,RTT, bounding static recalibration & Combine lightweight transport probing with online shift-aware bounds rather than static offline fits \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+Two general engineering principles emerge from Table~\ref{tab:synthesis}. First, blackout resilience and reversal freshness are \emph{orthogonal} mechanisms in real MPQUIC stacks: loss- and slack-aware binding prevents credit lockup during silent drops, whereas health-gated transport-ACK probing breaks stale-RTT lock-in when links degrade without dropping packets. Combining both in one $O(|\mathcal{Q}|+K)$ callback protects gateways across both failure classes without trading away blackout safety. Second, path-binding policies must be matched to traffic persistence: high-rate replaceable telemetry performs equally well under strict path affinity, whereas sparse, non-replaceable alarms benefit substantially from enabling cross-path retransmission (\texttt{FAP-Cross}) so already-bound streams do not stall behind PTO timers.
 
 \section{Discussion and Limitations}
-The 1,596+ real-\texttt{XQUIC} connections highlight two complementary design lessons for dual-path IoT gateways. First, replacing pure-RTT schedulers (\texttt{MinRTT}, \texttt{ECF}, and \texttt{BLEST}) with loss- and slack-aware probability binding yields +20--32\,pp higher event deadline delivery under sudden link blackouts because cached-RTT heuristics do not react rapidly to silent drops on previously fast links. Second, probing stale backup paths with replaceable state streams refreshes transport SRTTs within a single QUIC RTT ($\approx$10--20\,ms versus $\approx$950\,ms for application-ACK adaptation), decreasing AoI by 70--125\,ms during link reversals while the $f_j{=}m_j{=}\text{pto}_j{=}0$ gate prevents probe traffic from consuming stream credits on a blacked-out path.
+\label{sec:discussion}
 
-Three scope limitations warrant future investigation. First, while both endpoints run unmodified \texttt{XQUIC}/\texttt{BoringSSL} over Linux UDP sockets and \texttt{tc-netem}, both namespaces share one physical host rather than multi-hop physical Wi-Fi and cellular radios with real RF interference. Second, the connection concurrency limit is set to $C{=}4$ unidirectional streams to represent resource-constrained IoT gateway budgets and expose bad-path credit blocking; larger \texttt{MAX\_STREAMS} budgets would reduce queueing contention during high-mixed bursts. Third, the offline calibration study remains decoupled from online path selection; integrating shift-robust online conformal calibration is left for future work.
+The 1,596+ audited \texttt{XQUIC} connections confirm that production multipath transport behavior cannot be inferred reliably from single-path slotted models or raw throughput summaries. Even small implementation details---such as conditioning CWND penalties on $f_k > W_k$ rather than $Q_k > W_k$, or refreshing SRTT via transport QUIC ACKs rather than application ACKs (10--20\,ms vs.\ $\approx$950\,ms)---govern whether a dual-path IoT gateway survives asymmetric wireless transitions.
+
+Four scope limitations define clear directions for future work:
+\begin{enumerate}
+    \item \textbf{Single-host emulated links vs.\ physical RF radios.} Both endpoints execute unmodified \texttt{XQUIC} and \texttt{BoringSSL} over Linux UDP sockets and \texttt{tc-netem}, but the two namespaces share one physical host rather than multi-hop physical Wi-Fi, 5G, and Sub-GHz radios with real MAC contention and RF interference.
+    \item \textbf{Fixed 4\,s horizon and $C{=}4$ credit budget.} Fixing $C{=}4$ intentionally exposes credit-lockup failures, yet it also causes S1--S3 alarm success to saturate near 20--25\% and full-window max-age violation near 98--99\% across all policies. Sweeping $C \in \{4, 8, 16\}$, $\tau_{\text{stale}}$, 20--30\,s steady-state horizons, and explicit idle-backup-path blackouts will further disentangle credit capacity from probing gains.
+    \item \textbf{Comparator breadth and on-time goodput accounting.} Our benchmark focuses on classical transport heuristics (\texttt{MinRTT}, \texttt{ECF}, \texttt{BLEST}) and controlled internal ablations; porting recent deadline-aware video schedulers such as \texttt{DaMPS}~\cite{chen2024damps} into \texttt{XQUIC} and separating on-time event goodput from total accepted payload goodput remain important next steps.
+    \item \textbf{Online shift-robust calibration.} Our probability calibration study remains offline and decoupled from online binding; integrating lightweight online conformal or shift-aware calibration into the C path binder is left for future work.
+\end{enumerate}
 
 \section{Conclusion}
-We presented \texttt{FAP-MPQUIC}, a lightweight, zero-control-overhead multipath scheduler built directly on production C \texttt{XQUIC} for mixed-traffic IoT gateways. By combining overwrite-freshness application scheduling, CWND-blocking-aware timely delivery estimation, and health-gated stale-path freshness probing with proved discovery and zero-blackout-waste bounds, \texttt{FAP-MPQUIC} achieves Holm-significant gains across 576 held-out real \texttt{XQUIC} connections---increasing event deadline delivery by +20.6 to +52.1\,pp over \texttt{MinRTT}, \texttt{ECF}, and \texttt{BLEST}, Pareto-dominating all four classical path schedulers under mid-connection blackouts, and reducing state AoI by $-$70.1\,ms over its no-probe ablation under bidirectional reversals with zero blackout credit waste.
+\label{sec:conclusion}
+
+We introduced \texttt{FAP-MPQUIC}, a lightweight, zero-control-overhead multipath scheduler implemented directly inside Alibaba's C \texttt{XQUIC} stack for dual-path IoT gateways carrying mixed hard-deadline alarms and overwriteable state updates. By uniting overwrite-freshness application scheduling, loss- and CWND-blocking-aware timely delivery estimation, and health-gated stale-path freshness probing backed by per-decision gating guarantees, \texttt{FAP-MPQUIC} cleanly addresses both sudden blackouts and non-blackout link reversals. Across 576 held-out 4\,s real-\texttt{XQUIC} connections and 1,020+ mechanism connections, loss- and slack-aware binding (shared with \texttt{Prob-Only}) boosts blackout alarm deadline success by +20.6 to +52.1\,pp over \texttt{MinRTT}, \texttt{ECF}, and \texttt{BLEST} ($p_{\text{Holm}} \le 0.0230$) while lowering state AoI by 168--872\,ms. Under non-blackout link reversals, health-gated probing breaks the stale-RTT trap to achieve the lowest observed-span state AoI among all nine policies (1,927--1,940\,ms; $-$70.1\,ms vs.\ \texttt{FAP-NoProbe} in S3, $p_{\text{Holm}}=0.0123$) while excluding busy or lossy paths from probe selection. Finally, our cross-regime operating-envelope synthesis clarifies where strict affinity, health-gated probing, cross-path retransmission ($-$83.6\% stranded-stream failover latency), and stream-credit provisioning each govern real-world IoT gateway reliability.
 
 \FloatBarrier
-\section*{Declarations}
-\noindent\textbf{CRediT Authorship Contribution Statement:} \textbf{Weicheng Tong:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Writing -- original draft, Writing -- review \& editing, Visualization.
 
-\vspace{4pt}
-\noindent\textbf{Declaration of Competing Interest:} The author declares that he has no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
-\vspace{4pt}
-\noindent\textbf{Data Availability:} All C/XQUIC source code, Linux \texttt{netns}/\texttt{tc-netem} scripts, Oracle verification tools, and aggregated evaluation datasets are publicly available at \url{https://github.com/Sver0411/IoT-MPQUIC-Scheduler}.
+\section*{CRediT authorship contribution statement}
+\textbf{Weicheng Tong:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Writing -- original draft, Writing -- review \& editing, Visualization.
 
-\vspace{4pt}
-\noindent\textbf{Declaration of Generative AI and AI-Assisted Technologies in the Writing Process:} During the preparation of this work, the author used generative AI tools to assist with language editing, experiment-script drafting, and \LaTeX{} typesetting. After using these tools, the author reviewed, edited, and verified all source code, proofs, experimental runs, and text, and takes full responsibility for the content of the publication.
+\section*{Declaration of competing interest}
+The author declares that he has no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
-\bibliographystyle{IEEEtran}
+\section*{Data availability}
+All C/\texttt{XQUIC} source code, Linux \texttt{netns}/\texttt{tc-netem} scripts, independent Oracle verification tools, and aggregated evaluation archives are publicly available at \url{https://github.com/Sver0411/IoT-MPQUIC-Scheduler}.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the writing process}
+During the preparation of this work, the author used generative AI tools to assist with language editing, experiment-script drafting, and \LaTeX{} formatting. After using these tools, the author reviewed, verified, and edited all source code, proofs, experimental runs, and manuscript text, and takes full responsibility for the content of the publication.
+
+\bibliographystyle{elsarticle-num}
 \bibliography{references}
 
 \end{document}
