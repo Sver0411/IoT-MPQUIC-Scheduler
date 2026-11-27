@@ -6,7 +6,7 @@
 
 IoT-MPQUIC-Scheduler 在同一条加密多路径 QUIC（`XQC_MULTIPATH_10` + `BoringSSL`）连接上，通过两条真实 Linux UDP 路径（`ip netns` + `tc-netem`）同时传输突发硬截止期报警事件与可覆盖周期传感器状态。项目提出了轻量级、零额外控制帧的 C 语言调度器 **`FAP-MPQUIC`**（`fresh-aware`），将覆盖新鲜度队列调度、拥塞窗口阻塞感知概率估计与健康门控陈旧路径新鲜度探测结合在一起。
 
-[项目概览](#项目概览) · [架构与调度设计](#架构与调度设计) · [真实协议栈实测结果](#真实-xquic-双路径实测结果) · [快速开始](#快速开始) · [复现实验](#复现实验) · [IEEE 论文 (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf)
+[项目概览](#项目概览) · [架构与调度设计](#架构与调度设计) · [真实协议栈实测结果](#真实-xquic-双路径实测结果) · [快速开始](#快速开始) · [复现实验](#复现实验) · [Elsevier 论文 (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf)
 
 ---
 
@@ -19,7 +19,7 @@ IoT-MPQUIC-Scheduler 在同一条加密多路径 QUIC（`XQC_MULTIPATH_10` + `Bo
 - **事件按时交付率提升 +20.6 至 +52.1 个百分点**：在高负载断路反转与途中主路径黑洞场景下显著优于 `FIFO+MinRTT`、`App+MinRTT`、`Fixed-MinRTT`、`ECF` 与 `BLEST`（$p_{\text{Holm}} \le 0.0230$，效应量 $d_z$ 最高达 `6.66`）。
 - **途中黑洞场景（S4）三指标同时严格帕累托支配全部 4 个经典选路基线**：事件按时率（**+21.5–32.6 pp**）、平均状态 AoI（**−168.2 至 −307.7 ms**）与有效吞吐（**+8.9–9.8 kbps**）全部显著占优，且健康门控确保黑洞路径零探测浪费。
 - **非断路单向/双向反转（S2、S3）取得全部 9 策略最低 AoI**：分别达 **1,927.0 ms** 与 **1,939.6 ms**（显著优于全部 5 个经典基线，$p_{\text{Holm}} \le 0.0034$）；在 S3 中还经 Holm 校正显著优于自身无探测消融 `FAP-NoProbe`（**−70.1 ms**，$p_{\text{Holm}} = 0.0123$），直接验证健康门控探测的因果收益。
-- **完整学术与工程交付**：附带 8 页独立 IEEEtran 英文论文（含 2 条理论命题证明与 29 篇核验文献，[manuscript.pdf](papers/iot-mpquic-scheduler/manuscript.pdf)）、印刷级矢量图表及全套 C/Python 自动化测试。
+- **完整学术与工程交付**：附带 18 页独立 Elsevier `elsarticle` 英文论文（*Computer Communications*，含曲线机理解释、跨工况运行边界综合表、2 条理论命题证明与 31 篇核验文献，[manuscript.pdf](papers/iot-mpquic-scheduler/manuscript.pdf)）、印刷级矢量图表及全套 C/Python 自动化测试。
 
 ![FAP-MPQUIC 图形摘要](papers/iot-mpquic-scheduler/graphical_abstract.png)
 
@@ -79,7 +79,7 @@ flowchart LR
 - **离线概率校准与特征审计**：在 1,031 条随机路径测试记录上，离线 Platt 校准将有效预算 Brier 误差从 `0.0413` 降至 **`0.0355`**（0–100 ms 短预算由 `0.260` 降至 `0.218`），同时如实记录其在链路分布偏移下相对 `Slack-only` 的有限增益。另有 288 次连接（`6,072` 条带标签提交）完成端到端决策-抓包追踪链完整性、5 ms 切换精度与 ±5% Goodput 等效性审计。
 - **应用层与路径层因子分离**：600 次因子实验与 400 次独立泛化运行完整拆解了应用层覆盖调度与路径层绑定的各自贡献。
 
-[IEEEtran 英文论文 (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [中文技术报告](docs/stage10-fap-mpquic-report.md) · [汇总 CSV](results/stage10/summary.csv) · [配对统计 CSV](results/stage10/paired_effects.csv) · [泛化与校准报告](docs/stage8-research-report.md) · [数据质量与特征审计](docs/stage93a-data-quality-feature-analysis.md)
+[Elsevier 英文论文 (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [中文技术报告](docs/stage10-fap-mpquic-report.md) · [汇总 CSV](results/stage10/summary.csv) · [配对统计 CSV](results/stage10/paired_effects.csv) · [泛化与校准报告](docs/stage8-research-report.md) · [数据质量与特征审计](docs/stage93a-data-quality-feature-analysis.md)
 
 ---
 
@@ -134,7 +134,7 @@ diff -rq results/stage93a results/runs/audit-recomputed
 | `experiments/`、`evaluation/` | 实验矩阵运行器、自助法/Holm 统计校验与绘图 |
 | `patches/xquic/` | 应用于 `XQUIC` 的 STREAM PTO 调度、完整性追踪与 RTT 测量补丁 |
 | `results/`、`docs/` | 原始证据、整理后的数据表格、图表及技术报告 |
-| `papers/` | 独立 8 页 IEEEtran 英文论文（`manuscript.tex`/`.pdf`）、29 条核验文献、绘图脚本与图形摘要 |
+| `papers/` | 独立 18 页 Elsevier `elsarticle` 英文论文（`manuscript.tex`/`.pdf`）、31 条核验文献、绘图脚本与图形摘要 |
 
 ## 实验范围与局限
 
@@ -149,4 +149,4 @@ diff -rq results/stage93a results/runs/audit-recomputed
 - **L1 · 可信感知：** [SensorTrust](https://github.com/Sver0411/SensorTrust)
 - **L2 · 自适应观测：** [AdaptiveSense](https://github.com/Sver0411/AdaptiveSense) · [TAIS](https://github.com/Sver0411/TAIS)
 - **L3 · 数据鲜度与弱网传输：** [EventGuard-LoRa](https://github.com/Sver0411/EventGuard-LoRa) · [NetAdapt-IoT](https://github.com/Sver0411/NetAdapt-IoT) · [IoT-MPQUIC-Scheduler](https://github.com/Sver0411/IoT-MPQUIC-Scheduler)
-- **L4 · 故障韧性与 CPS 验证：** [EdgeFaultLab](https://github.com/Sver0411/EdgeFaultLab) · [TinyEdgeBench](https://github.com/Sver0411/TinyEdgeBench) · [Smart-Agriculture-Edge-AI](https://github.com/Sver0411/Smart-Agriculture-Edge-AI) · [AgriTwin-CPS](https://github.com/Sver0411/AgriTwin-CPS)
+- **L4 · 故障韧性与 CPS 验证：** [EdgeFaultLab](https://github.com/Sver0411/EdgeFaultLab) · [TinyEdgeBench](https://github.com/Sver0411/TinyEdgeBench) · [Smart-Agriculture-Edge-AI](https://github.com/Sver0411/Smart-Agriculture-Edge-AI) · [AgriTwin-CPS](https://github.com/Sver0411/AgriTwin-CPS) · [AgriTinyVision](https://github.com/Sver0411/AgriTinyVision)

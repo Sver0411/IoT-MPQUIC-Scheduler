@@ -6,7 +6,7 @@
 
 IoT-MPQUIC-Scheduler multiplexes sporadic hard-deadline alarm events and overwriteable periodic sensor state updates over a single encrypted Multipath QUIC (`XQC_MULTIPATH_10` + `BoringSSL`) connection spanning two real Linux UDP paths (`ip netns` + `tc-netem`). It introduces **`FAP-MPQUIC`** (`fresh-aware`), a lightweight zero-control-overhead C scheduler that combines overwrite-freshness queue scheduling, CWND-blocking-aware timely delivery estimation, and health-gated stale-path freshness probing.
 
-[Overview](#overview) · [Architecture](#architecture-and-scheduling-design) · [Results](#real-xquic-dual-path-evaluation) · [Quick Start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [IEEE Paper (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf)
+[Overview](#overview) · [Architecture](#architecture-and-scheduling-design) · [Results](#real-xquic-dual-path-evaluation) · [Quick Start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Elsevier Paper (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf)
 
 ---
 
@@ -19,7 +19,7 @@ Across **1,596+ audited real `XQUIC` connections** (including a **576-connection
 - **+20.6 to +52.1 pp higher event deadline delivery** than `FIFO+MinRTT`, `App+MinRTT`, `Fixed-MinRTT`, `ECF`, and `BLEST` under high-load outage-reversal and mid-connection Path-A blackouts ($p_{\text{Holm}} \le 0.0230$, Cohen's $d_z$ up to `6.66`).
 - **Strict 3-metric Pareto dominance under mid-connection blackouts (S4):** Simultaneously beats all four classical path schedulers on Event Deadline Success (**+21.5–32.6 pp**), State AoI (**−168.2 to −307.7 ms**), and Useful Goodput (**+8.9–9.8 kbps**), while health-gating ensures zero wasted probes on the dead path.
 - **Lowest state AoI of all 9 policies under non-blackout reversals (S2 & S3):** Achieves **1,927.0 ms** (S2) and **1,939.6 ms** (S3), beating all five classical baselines ($p_{\text{Holm}} \le 0.0034$) and outperforming its own no-probe ablation `FAP-NoProbe` by **−70.1 ms** in S3 ($p_{\text{Holm}} = 0.0123$).
-- **Standalone IEEEtran manuscript & reproducible artifacts:** Includes an 8-page IEEEtran paper with 2 theoretical propositions and 29 verified citations ([manuscript.pdf](papers/iot-mpquic-scheduler/manuscript.pdf)), print-ready vector figures, and full C/Python verification tests.
+- **Standalone Elsevier manuscript & reproducible artifacts:** Includes an 18-page Elsevier `elsarticle` paper (*Computer Communications*) with mechanistic curve analysis, cross-regime operating-envelope synthesis, 2 theoretical propositions, and 31 verified citations ([manuscript.pdf](papers/iot-mpquic-scheduler/manuscript.pdf)), print-ready vector figures, and full C/Python verification tests.
 
 ![FAP-MPQUIC Graphical Abstract](papers/iot-mpquic-scheduler/graphical_abstract.png)
 
@@ -79,7 +79,7 @@ Complementing the primary matrix, the repository archives over 1,000 additional 
 - **Offline probability calibration & feature audit:** Across 1,031 randomized-path test records, offline Platt calibration lowers effective-budget Brier error from `0.0413` to **`0.0355`** (`0.260` to `0.218` on `0–100 ms` short budgets), though short-budget calibrated gains over `Slack-only` remain modest under link shift. An independent trace-chain audit of 288 connections (`6,072` labeled submissions, `1,688` short-budget) verifies end-to-end decision-to-PCAP integrity, 5 ms switch precision, and ±5% Goodput equivalence.
 - **Application–path factorial separation:** 600 factorial runs plus 400 independent generalization runs isolate application-layer overwrite scheduling from path-layer binding across both load and reversal regimes.
 
-[IEEEtran Manuscript (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [Technical Report (ZH)](docs/stage10-fap-mpquic-report.md) · [Summary CSV](results/stage10/summary.csv) · [Paired Effects CSV](results/stage10/paired_effects.csv) · [Generalization & Calibration Report](docs/stage8-research-report.md) · [Data & Feature Audit](docs/stage93a-data-quality-feature-analysis.md)
+[Elsevier Manuscript (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [Technical Report (ZH)](docs/stage10-fap-mpquic-report.md) · [Summary CSV](results/stage10/summary.csv) · [Paired Effects CSV](results/stage10/paired_effects.csv) · [Generalization & Calibration Report](docs/stage8-research-report.md) · [Data & Feature Audit](docs/stage93a-data-quality-feature-analysis.md)
 
 ---
 
@@ -134,7 +134,7 @@ diff -rq results/stage93a results/runs/audit-recomputed
 | `experiments/`, `evaluation/` | Benchmark runners, paired bootstrap / Holm-Bonferroni analysis, verification, plotting |
 | `patches/xquic/` | STREAM PTO scheduling, integrity tracing, and RTT telemetry patches applied to `XQUIC` |
 | `results/`, `docs/` | Audited metrics, derived tables, figures, and technical reports |
-| `papers/` | Standalone 8-page IEEEtran manuscript (`manuscript.tex`/`.pdf`), 29 BibTeX references, figure scripts, graphical abstract |
+| `papers/` | Standalone 18-page Elsevier `elsarticle` manuscript (`manuscript.tex`/`.pdf`), 31 BibTeX references, figure scripts, graphical abstract |
 
 ## Scope & Limitations
 
@@ -149,4 +149,4 @@ Project code and documentation use the [MIT License](LICENSE). `XQUIC` and `Bori
 - **L1 · Reliable Sensing:** [SensorTrust](https://github.com/Sver0411/SensorTrust)
 - **L2 · Adaptive Observation:** [AdaptiveSense](https://github.com/Sver0411/AdaptiveSense) · [TAIS](https://github.com/Sver0411/TAIS)
 - **L3 · Freshness & Lossy Links:** [EventGuard-LoRa](https://github.com/Sver0411/EventGuard-LoRa) · [NetAdapt-IoT](https://github.com/Sver0411/NetAdapt-IoT) · [IoT-MPQUIC-Scheduler](https://github.com/Sver0411/IoT-MPQUIC-Scheduler)
-- **L4 · Resilience & CPS Validation:** [EdgeFaultLab](https://github.com/Sver0411/EdgeFaultLab) · [TinyEdgeBench](https://github.com/Sver0411/TinyEdgeBench) · [Smart-Agriculture-Edge-AI](https://github.com/Sver0411/Smart-Agriculture-Edge-AI) · [AgriTwin-CPS](https://github.com/Sver0411/AgriTwin-CPS)
+- **L4 · Resilience & CPS Validation:** [EdgeFaultLab](https://github.com/Sver0411/EdgeFaultLab) · [TinyEdgeBench](https://github.com/Sver0411/TinyEdgeBench) · [Smart-Agriculture-Edge-AI](https://github.com/Sver0411/Smart-Agriculture-Edge-AI) · [AgriTwin-CPS](https://github.com/Sver0411/AgriTwin-CPS) · [AgriTinyVision](https://github.com/Sver0411/AgriTinyVision)

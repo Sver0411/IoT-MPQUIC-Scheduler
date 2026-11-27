@@ -1,4 +1,4 @@
-# IoT-MPQUIC-Scheduler Manuscript (*Internet of Things*, Elsevier)
+# IoT-MPQUIC-Scheduler Manuscript (*Computer Communications*, Elsevier)
 
 Standalone Elsevier `elsarticle` (`preprint,12pt,number`, `elsarticle-num`) manuscript documenting real C `XQUIC` multipath scheduling (`FAP-MPQUIC`) against `MinRTT`, `Fixed-MinRTT`, `ECF`, `BLEST`, `Prob-Only`, and internal ablations (`FAP-NoProbe`, `FAP-Cross`) across 1,596+ dual-path Linux `netns` + `tc-netem` connections, including mechanistic curve explanations and a cross-regime operating-envelope synthesis.
 
