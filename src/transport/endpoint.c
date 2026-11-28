@@ -40,6 +40,7 @@ struct iot_run {
     uint64_t attempts, blocked_attempts;
     bool no_candidate[IOT_MAX_RECORDS];
     bool window_blocked, bind_path, oracle;
+    unsigned max_credits, tx_window;
     enum iot_path_rule path_rule;
     uint32_t assignment_seed;
     struct iot_scheduler scheduler;
@@ -49,7 +50,7 @@ struct iot_run {
 struct link {
     int fd;
     struct sockaddr_in local, peer;
-    uint64_t id, tx, rx, tx_bytes, rx_bytes, last_probe_us;
+    uint64_t id, tx, rx, tx_bytes, rx_bytes, last_probe_us, last_rttvar_us;
     struct iot_path_feedback delivery;
     bool blocked;
 };
@@ -76,7 +77,7 @@ struct record_stream {
     struct endpoint *ep;
     size_t used, size;
     unsigned id;
-    bool sending, writing, fin;
+    bool sending, writing, fin, reset;
     unsigned char data[IOT_HEADER + IOT_MAX_PAYLOAD + 1];
 };
 
@@ -481,6 +482,10 @@ static xqc_int_t stream_write(xqc_stream_t *stream, void *user)
               xqc_stream_id(stream), record->id, record->used, remaining, n);
     if (n == -XQC_EAGAIN)
         return 0;
+    if (n == -XQC_ESTREAM_RESET) {
+        record->reset = true;
+        return 0;
+    }
     if (n < 0) {
         event("stream_write_error", "code=%zd", n);
         record->ep->failed = true;
@@ -532,7 +537,8 @@ static int finish_iot_record(xqc_stream_t *stream, struct record_stream *buffer)
         return -1;
     struct iot_entry *entry = &workload->entries[ack.id - 1];
     bool state = entry->record.kind == IOT_STATE;
-    if (entry->state != IOT_SUBMITTED || ack.stream_id != entry->stream_id ||
+    bool was_preempted = entry->state == IOT_PREEMPTED;
+    if ((entry->state != IOT_SUBMITTED && !was_preempted) || ack.stream_id != entry->stream_id ||
         ack.received < entry->submitted || ack.received > received ||
         ack.on_time != (ack.received <= ep->iot->start + entry->record.deadline) ||
         (ack.status <= IOT_STALE) != state ||
@@ -561,7 +567,9 @@ static int finish_iot_record(xqc_stream_t *stream, struct record_stream *buffer)
               elapsed - after->generated);
     }
     entry->state = IOT_ACKED;
-    workload->outstanding--;
+    entry->stream_handle = NULL;
+    if (!was_preempted && workload->outstanding > 0)
+        workload->outstanding--;
     event("iot_ack", "id=%u stream_id=%" PRIu64 " ack_stream_id=%" PRIu64
           " submitted=%" PRIu64 " server_received=%" PRIu64 " client_received=%" PRIu64
           " status=%u on_time=%d latest_generated=%" PRIu64 " latest_serial=%" PRIu64,
@@ -579,6 +587,31 @@ static int finish_iot_record(xqc_stream_t *stream, struct record_stream *buffer)
                   ack.id, ack.stream_id, binding->home, binding->base_estimate_us,
                   actual, residual, feedback->bias_us, feedback->samples);
         }
+    } else if (ep->iot->path_rule == IOT_ACSP_CONFORMAL ||
+               ep->iot->path_rule == IOT_ACSP_JOINT ||
+               ep->iot->path_rule == IOT_ACSP_FULL) {
+        const struct iot_binding *binding = &ep->iot->paths.bindings[ack.stream_id / 4];
+        struct iot_path_feedback *feedback = path_feedback(ep, binding->home);
+        if (feedback) {
+            uint64_t actual = ack.received - entry->submitted;
+            double residual = (double)actual - binding->base_estimate_us;
+            double rttvar_us = 15000.0;
+            for (int k = 0; k < PATHS; k++) {
+                if (ep->links[k].id == binding->home && ep->links[k].last_rttvar_us > 0) {
+                    rttvar_us = (double)ep->links[k].last_rttvar_us;
+                    break;
+                }
+            }
+            iot_update_conformal_feedback(feedback, residual, rttvar_us);
+            event("iot_conformal_update", "id=%u path_id=%" PRIu64 " residual_us=%.1f q_us=%.1f"
+                  " misses=%u samples=%u", ack.id, binding->home, residual,
+                  feedback->conformal_q_us, feedback->conformal_misses, feedback->conformal_samples);
+        }
+    } else if (ep->iot->path_rule == IOT_PEEKABOO_UCB) {
+        const struct iot_binding *binding = &ep->iot->paths.bindings[ack.stream_id / 4];
+        struct iot_path_feedback *feedback = path_feedback(ep, binding->home);
+        if (feedback)
+            iot_update_ucb_feedback(feedback, ack.on_time ? 1.0 : 0.0);
     }
     return 0;
 }
@@ -630,6 +663,12 @@ static xqc_int_t stream_read(xqc_stream_t *stream, void *user)
                                     record->size + 1 - record->used, &fin);
         if (n == -XQC_EAGAIN)
             return 0;
+        if (n == -XQC_ESTREAM_RESET) {
+            record->reset = true;
+            event("iot_rx_reset", "stream_id=%" PRIu64 " id=%u bytes=%zu",
+                  xqc_stream_id(stream), record->id, record->used);
+            return 0;
+        }
         if (n < 0)
             break;
         record->used += (size_t)n;
@@ -646,7 +685,7 @@ static xqc_int_t stream_read(xqc_stream_t *stream, void *user)
         if (n == 0)
             return 0;
     }
-    if (record->fin)
+    if (record->fin || record->reset)
         return 0;
     event("invalid_stream", "stream_id=%" PRIu64 " bytes=%zu",
           xqc_stream_id(stream), record->used);
@@ -654,16 +693,34 @@ static xqc_int_t stream_read(xqc_stream_t *stream, void *user)
     return -1;
 }
 
+static void stream_closing(xqc_stream_t *stream, xqc_int_t err_code, void *user)
+{
+    struct record_stream *record = user;
+    if (record)
+        record->reset = true;
+    event("iot_rx_reset", "stream_id=%" PRIu64 " id=%u err=%d",
+          xqc_stream_id(stream), record ? record->id : 0, err_code);
+}
+
 static xqc_int_t stream_closed(xqc_stream_t *stream, void *user)
 {
     struct record_stream *record = user;
     if (record) {
-        record->ep->failed |= !record->fin;
+        bool preempted = false;
+        if (record->sending && record->ep->iot && !record->ep->server &&
+            record->id > 0 && record->id <= record->ep->iot->workload.count) {
+            struct iot_entry *entry = &record->ep->iot->workload.entries[record->id - 1];
+            if (entry->stream_handle == stream)
+                entry->stream_handle = NULL;
+            if (entry->state == IOT_PREEMPTED)
+                preempted = true;
+        }
+        record->ep->failed |= (!record->fin && !record->reset && !preempted);
         if (record->sending)
             record->ep->active_tx--;
-        event("stream_closed", "stream_id=%" PRIu64 " id=%u fin=%d direction=%s active_tx=%u",
-              xqc_stream_id(stream), record->id, record->fin, record->sending ? "tx" : "rx",
-              record->ep->active_tx);
+        event("stream_closed", "stream_id=%" PRIu64 " id=%u fin=%d reset=%d direction=%s active_tx=%u",
+              xqc_stream_id(stream), record->id, record->fin, record->reset || preempted,
+              record->sending ? "tx" : "rx", record->ep->active_tx);
         free(record);
     }
     return 0;
@@ -715,9 +772,10 @@ static bool queue_stream(struct endpoint *ep, unsigned id, size_t size)
 
 static bool iot_tx_slot(struct endpoint *ep)
 {
-    bool blocked = ep->active_tx >= IOT_WINDOW;
+    unsigned limit = ep->iot->tx_window ? ep->iot->tx_window : IOT_WINDOW;
+    bool blocked = ep->active_tx >= limit;
     if (ep->iot->window_blocked != blocked)
-        event("iot_window", "blocked=%d active_tx=%u limit=%d", blocked, ep->active_tx, IOT_WINDOW);
+        event("iot_window", "blocked=%d active_tx=%u limit=%u", blocked, ep->active_tx, limit);
     ep->iot->window_blocked = blocked;
     return !blocked;
 }
@@ -757,6 +815,12 @@ static const char *const path_rules[] = {
     [IOT_BLEST_PATH] = "blest",
     [IOT_FRESH_AWARE] = "fresh-aware",
     [IOT_FRESH_NOPROBE] = "fresh-aware-noprobe",
+    [IOT_PEEKABOO_UCB] = "peekaboo-ucb",
+    [IOT_DAMPS_EDF] = "damps-edf",
+    [IOT_ACSP_FGCA] = "acsp-fgca",
+    [IOT_ACSP_CONFORMAL] = "acsp-conformal",
+    [IOT_ACSP_JOINT] = "acsp-joint",
+    [IOT_ACSP_FULL] = "acsp-full",
 };
 
 static void exercise_lifecycle(struct endpoint *ep, uint64_t elapsed)
@@ -844,10 +908,15 @@ static void progress_iot(struct endpoint *ep)
     bool stage10_rule = ep->iot->path_rule == IOT_BLEST_PATH ||
                         ep->iot->path_rule == IOT_FRESH_AWARE ||
                         ep->iot->path_rule == IOT_FRESH_NOPROBE;
+    bool acsp_rule = ep->iot->path_rule >= IOT_ACSP_FGCA && ep->iot->path_rule <= IOT_ACSP_FULL;
+    bool acsp_conformal = ep->iot->path_rule >= IOT_ACSP_CONFORMAL && ep->iot->path_rule <= IOT_ACSP_FULL;
+    bool acsp_joint = ep->iot->path_rule == IOT_ACSP_JOINT || ep->iot->path_rule == IOT_ACSP_FULL;
+    bool acsp_preempt = ep->iot->path_rule == IOT_ACSP_FULL;
+    bool stage11_rule = ep->iot->path_rule >= IOT_PEEKABOO_UCB && ep->iot->path_rule <= IOT_ACSP_FULL;
     if (!ep->iot->start) {
         ep->iot->start = now_us();
-        event("iot_start", "origin=%" PRIu64 " records=%zu tx_window=%d initial_uni_credit=%d send_packets=%d policy=%s",
-              ep->iot->start, workload->count, IOT_WINDOW, IOT_CREDIT, IOT_SEND_PACKETS,
+        event("iot_start", "origin=%" PRIu64 " records=%zu tx_window=%u initial_uni_credit=%u send_packets=%d policy=%s",
+              ep->iot->start, workload->count, ep->iot->tx_window, ep->iot->max_credits, IOT_SEND_PACKETS,
               iot_policy_name(scheduler->policy));
         if (proposed)
             event("iot_recovery_config", "k=%u event_burst=%u", scheduler->recovery_k,
@@ -909,19 +978,88 @@ static void progress_iot(struct endpoint *ep)
             }
         }
     }
+    if (acsp_rule) {
+        /* Pillar 1 (FGCA fast pass): shed already-expired pending alarms immediately. */
+        for (size_t i = 0; i < workload->next; i++) {
+            struct iot_entry *entry = &workload->entries[i];
+            if (entry->state == IOT_PENDING && entry->record.kind == IOT_EVENT &&
+                iot_record_slack(&entry->record, elapsed) <= 0.0) {
+                entry->state = IOT_SHED;
+                event("iot_shed", "id=%u slack_us=%.0f best_prob=0",
+                      entry->record.id, iot_record_slack(&entry->record, elapsed));
+            }
+        }
+    }
+    if (acsp_preempt && workload->outstanding > 0) {
+        /* Pillar 4: QUIC-native RESET_STREAM in-flight preemption on stalled paths. */
+        struct iot_path_sample pre_paths[PATHS];
+        size_t pre_count = iot_path_samples(ep->conn, pre_paths, PATHS, scheduler->tuning.loss_scale, true);
+        if (pre_count > 0) {
+            uint64_t now_cur = now_us();
+            for (size_t i = 0; i < workload->next; i++) {
+                struct iot_entry *entry = &workload->entries[i];
+                if (entry->state != IOT_SUBMITTED || !entry->stream_handle)
+                    continue;
+                uint64_t in_flight_us = now_cur > entry->submitted ? now_cur - entry->submitted : 0;
+                if (in_flight_us < 30000)
+                    continue;
+                uint64_t home_id = ep->iot->paths.bindings[entry->stream_id / 4].home;
+                const struct iot_path_sample *home_s = NULL;
+                bool alt_healthy = false;
+                for (size_t k = 0; k < pre_count; k++) {
+                    if (pre_paths[k].id == home_id)
+                        home_s = &pre_paths[k];
+                    else if (pre_paths[k].pto == 0)
+                        alt_healthy = true;
+                }
+                bool path_stalled = !home_s || home_s->pto > 0 ||
+                                    (home_s->rtt_us > 0 && in_flight_us > home_s->rtt_us * 2 + 60000);
+                if (!path_stalled)
+                    continue;
+                bool should_reset = false;
+                if (entry->record.kind == IOT_EVENT) {
+                    if (elapsed > entry->record.deadline)
+                        should_reset = true;
+                } else if (entry->record.kind == IOT_STATE && alt_healthy && in_flight_us >= 50000) {
+                    for (size_t j = i + 1; j < workload->next; j++) {
+                        const struct iot_entry *newer = &workload->entries[j];
+                        if (newer->state == IOT_PENDING && newer->record.kind == IOT_STATE &&
+                            newer->record.source == entry->record.source &&
+                            newer->record.serial > entry->record.serial) {
+                            should_reset = true;
+                            break;
+                        }
+                    }
+                }
+                if (should_reset) {
+                    xqc_stream_t *st = (xqc_stream_t *)entry->stream_handle;
+                    if (xqc_stream_reset(st, 0x01) == 0) {
+                        entry->state = IOT_PREEMPTED;
+                        entry->stream_handle = NULL;
+                        if (workload->outstanding > 0)
+                            workload->outstanding--;
+                        event("iot_reset_stream", "id=%u stream_id=%" PRIu64 " kind=%u home=%" PRIu64
+                              " in_flight_us=%" PRIu64,
+                              entry->record.id, entry->stream_id, entry->record.kind, home_id, in_flight_us);
+                    }
+                }
+            }
+        }
+    }
     while (!ep->failed && iot_pending(workload) && iot_tx_slot(ep) &&
            now_us() >= ep->iot->retry_at) {
         struct iot_plan plan = {0};
         struct iot_entry *entry;
         struct iot_path_sample paths[PATHS];
         size_t count = 0;
+        size_t chosen_joint_idx = 0;
         uint64_t planning_started = measure ? iot_profile_clock() : 0;
         uint64_t decision_us = now_us() - ep->iot->start;
         if (ep->iot->oracle && decision_us >= ep->iot->horizon_us)
             break;
         if (bind_path) {
             count = iot_path_samples(ep->conn, paths, PATHS, scheduler->tuning.loss_scale,
-                                     path_features || stage10_rule);
+                                     path_features || stage10_rule || stage11_rule);
             if (adaptive) {
                 for (size_t i = 0; i < count; i++) {
                     const struct iot_path_feedback *feedback = path_feedback(ep, paths[i].id);
@@ -929,11 +1067,19 @@ static void progress_iot(struct endpoint *ep)
                         paths[i].delay_correction_us = iot_path_correction(feedback);
                 }
             }
-            if (stage10_rule) {
+            if (stage10_rule || stage11_rule) {
+                unsigned total_ucb = 0;
+                for (int k = 0; k < PATHS; k++)
+                    total_ucb += ep->links[k].delivery.ucb_pulls;
                 for (size_t i = 0; i < count; i++) {
                     for (int k = 0; k < PATHS; k++) {
                         if (ep->links[k].id == paths[i].id) {
+                            ep->links[k].last_rttvar_us = paths[i].rttvar_us;
                             paths[i].last_probe_us = ep->links[k].last_probe_us;
+                            paths[i].conformal_q_us = ep->links[k].delivery.conformal_q_us;
+                            paths[i].ucb_reward_sum = ep->links[k].delivery.ucb_reward_sum;
+                            paths[i].ucb_pulls = ep->links[k].delivery.ucb_pulls;
+                            paths[i].ucb_total_pulls = total_ucb;
                             break;
                         }
                     }
@@ -950,8 +1096,38 @@ static void progress_iot(struct endpoint *ep)
                 }
                 break;
             }
+            if (acsp_rule) {
+                /* Pillar 1 (FGCA full pass): shed infeasible pending alarms before locking credits. */
+                size_t pending_events = 0;
+                for (size_t i = 0; i < workload->next; i++)
+                    if (workload->entries[i].state == IOT_PENDING &&
+                        workload->entries[i].record.kind == IOT_EVENT)
+                        pending_events++;
+                bool under_pressure = pending_events > 1;
+                for (size_t i = 0; i < workload->next; i++) {
+                    struct iot_entry *cand = &workload->entries[i];
+                    if (cand->state != IOT_PENDING || cand->record.kind != IOT_EVENT)
+                        continue;
+                    double ev_slack = iot_record_slack(&cand->record, decision_us);
+                    double best_p = 0.0;
+                    if (iot_should_shed_event(&cand->record, ev_slack, paths, count,
+                                              ep->iot->path_rule, under_pressure, &best_p)) {
+                        cand->state = IOT_SHED;
+                        if (pending_events > 0)
+                            pending_events--;
+                        under_pressure = pending_events > 1;
+                        event("iot_shed", "id=%u slack_us=%.0f best_prob=%.6f",
+                              cand->record.id, ev_slack, best_p);
+                    }
+                }
+            }
         }
-        if (proposed) {
+        if (acsp_joint && bind_path) {
+            plan = iot_plan_joint_acsp(scheduler, workload, decision_us, paths, count,
+                                       ep->iot->path_rule, workload->outstanding,
+                                       ep->iot->max_credits, &chosen_joint_idx);
+            entry = plan.entry;
+        } else if (proposed) {
             plan = iot_plan_record(scheduler, workload, decision_us, paths, count);
             entry = plan.entry;
         } else {
@@ -960,9 +1136,9 @@ static void progress_iot(struct endpoint *ep)
         if (!entry)
             break;
         double slack = iot_record_slack(&entry->record, decision_us);
-        if (bind_path && !joint) {
+        if (bind_path && !joint && !acsp_joint) {
             plan.entry = entry;
-            if (!ep->iot->oracle && !adaptive && !stage10_rule)
+            if (!ep->iot->oracle && !adaptive && !stage10_rule && !stage11_rule)
                 iot_plan_path(&plan, slack - scheduler->tuning.slack_margin_us, paths, count, false);
         }
         if (measure)
@@ -987,22 +1163,41 @@ static void progress_iot(struct endpoint *ep)
             return;
         // Freeze the queue entry only after stream creation succeeds, before the first write.
         entry->stream_id = xqc_stream_id(stream);
+        entry->stream_handle = stream;
         entry->submitted = now_us();
         entry->state = IOT_SUBMITTED;
         workload->outstanding++;
         if (bind_path) {
             double base_estimate_us = 0;
-            if (ep->iot->oracle || adaptive || stage10_rule) {
+            if (acsp_joint) {
+                double q_adj = paths[chosen_joint_idx].conformal_q_us > 0
+                                   ? paths[chosen_joint_idx].conformal_q_us : 0.0;
+                base_estimate_us = plan.estimate.duration_us - q_adj;
+                for (int k = 0; k < PATHS; k++) {
+                    if (ep->links[k].id == paths[chosen_joint_idx].id) {
+                        ep->links[k].last_probe_us = paths[chosen_joint_idx].sampled_us;
+                        break;
+                    }
+                }
+            } else if (ep->iot->oracle || adaptive || stage10_rule || stage11_rule) {
                 size_t chosen = iot_choose_initial_path(&entry->record, slack, paths, count,
                                                         ep->iot->path_rule, ep->iot->assignment_seed);
                 plan.path_id = paths[chosen].id;
-                bool use_cwnd_est = ep->iot->path_rule == IOT_FRESH_AWARE || ep->iot->path_rule == IOT_FRESH_NOPROBE;
-                plan.estimate = use_cwnd_est
-                                    ? iot_estimate_path_cwnd(&paths[chosen], buffer->size, slack)
-                                    : iot_estimate_path(&paths[chosen], buffer->size, slack);
+                bool use_cwnd_est = ep->iot->path_rule == IOT_FRESH_AWARE ||
+                                    ep->iot->path_rule == IOT_FRESH_NOPROBE ||
+                                    ep->iot->path_rule == IOT_ACSP_FGCA;
+                plan.estimate = acsp_conformal
+                                    ? iot_estimate_path_conformal(&paths[chosen], buffer->size, slack)
+                                    : use_cwnd_est
+                                          ? iot_estimate_path_cwnd(&paths[chosen], buffer->size, slack)
+                                          : iot_estimate_path(&paths[chosen], buffer->size, slack);
                 if (adaptive)
                     base_estimate_us = plan.estimate.duration_us - paths[chosen].delay_correction_us;
-                if (stage10_rule) {
+                if (acsp_conformal) {
+                    double q_adj = paths[chosen].conformal_q_us > 0 ? paths[chosen].conformal_q_us : 0.0;
+                    base_estimate_us = plan.estimate.duration_us - q_adj;
+                }
+                if (stage10_rule || acsp_rule) {
                     for (int k = 0; k < PATHS; k++) {
                         if (ep->links[k].id == paths[chosen].id) {
                             ep->links[k].last_probe_us = paths[chosen].sampled_us;
@@ -1033,10 +1228,14 @@ static void progress_iot(struct endpoint *ep)
                       path->queued_bytes + path->in_flight_bytes, path->in_flight_bytes,
                       path->queued_bytes, path->loss, path->observed_loss, path->pto);
                 if (ep->iot->oracle) {
-                    bool use_cwnd_est = ep->iot->path_rule == IOT_FRESH_AWARE || ep->iot->path_rule == IOT_FRESH_NOPROBE;
-                    struct iot_estimate estimate = use_cwnd_est
-                                                       ? iot_estimate_path_cwnd(path, buffer->size, slack)
-                                                       : iot_estimate_path(path, buffer->size, slack);
+                    bool use_cwnd_est = ep->iot->path_rule == IOT_FRESH_AWARE ||
+                                        ep->iot->path_rule == IOT_FRESH_NOPROBE ||
+                                        ep->iot->path_rule == IOT_ACSP_FGCA;
+                    struct iot_estimate estimate = acsp_conformal
+                                                       ? iot_estimate_path_conformal(path, buffer->size, slack)
+                                                       : use_cwnd_est
+                                                             ? iot_estimate_path_cwnd(path, buffer->size, slack)
+                                                             : iot_estimate_path(path, buffer->size, slack);
                     event("iot_path_forecast", "id=%u path_id=%" PRIu64 " recent_sent=%" PRIu64
                           " recent_lost=%" PRIu64 " estimate_us=%.9f probability=%.17g correction_us=%.9f",
                           record.id, path->id, path->recent_sent, path->recent_lost,
@@ -1313,15 +1512,16 @@ int main(int argc, char **argv)
         size_t count = sizeof(path_rules) / sizeof(*path_rules);
         while (rule < count && strcmp(path_policy, path_rules[rule]))
             rule++;
+        bool allow_no_oracle = rule == IOT_ACK_ADAPTIVE || rule == IOT_BLEST_PATH ||
+                               rule == IOT_FRESH_AWARE || rule == IOT_FRESH_NOPROBE ||
+                               (rule >= IOT_PEEKABOO_UCB && rule <= IOT_ACSP_FULL);
         if (rule == count || (bind_path && rule == IOT_NATIVE_PATH) ||
-            (!oracle && rule > IOT_PROBABILITY_PATH && rule != IOT_ACK_ADAPTIVE &&
-             rule != IOT_BLEST_PATH && rule != IOT_FRESH_AWARE && rule != IOT_FRESH_NOPROBE)) {
+            (!oracle && rule > IOT_PROBABILITY_PATH && !allow_no_oracle)) {
             fprintf(stderr, "Invalid path policy or MinRTT requested for a joint policy\n");
             return 2;
         }
-        if ((rule == IOT_ACK_ADAPTIVE || rule == IOT_BLEST_PATH ||
-             rule == IOT_FRESH_AWARE || rule == IOT_FRESH_NOPROBE) && policy != IOT_PROPOSED_APP) {
-            fprintf(stderr, "adaptive/stage10 path policies require proposed-app\n");
+        if (allow_no_oracle && policy != IOT_PROPOSED_APP) {
+            fprintf(stderr, "adaptive/stage10/stage11 path policies require proposed-app\n");
             return 2;
         }
         path_rule = (enum iot_path_rule)rule;
@@ -1329,13 +1529,27 @@ int main(int argc, char **argv)
     }
     const char *cross = getenv("IOT_STAGE8_REPAIR");
     if (oracle && cross) {
-        if (strcmp(cross, "cross") ||
-            (path_rule != IOT_PROBABILITY_PATH && path_rule != IOT_FRESH_AWARE && path_rule != IOT_FRESH_NOPROBE)) {
-            fprintf(stderr, "Stage 8 cross repair requires Proposed Probability or Fresh-Aware\n");
+        bool allow_cross = path_rule == IOT_PROBABILITY_PATH || path_rule == IOT_FRESH_AWARE ||
+                           path_rule == IOT_FRESH_NOPROBE ||
+                           (path_rule >= IOT_ACSP_FGCA && path_rule <= IOT_ACSP_FULL);
+        if (strcmp(cross, "cross") || !allow_cross) {
+            fprintf(stderr, "Stage 8 cross repair requires Proposed Probability, Fresh-Aware, or ACSP\n");
             return 2;
         }
         repair = true;
     }
+    unsigned max_credits = IOT_CREDIT;
+    const char *credits_arg = getenv("IOT_MAX_CREDITS");
+    if (iot && credits_arg && *credits_arg) {
+        char *end;
+        unsigned long value = strtoul(credits_arg, &end, 10);
+        if (*end || value < 2 || value > 64) {
+            fprintf(stderr, "IOT_MAX_CREDITS must be from 2 to 64\n");
+            return 2;
+        }
+        max_credits = (unsigned)value;
+    }
+    unsigned tx_window = max_credits * 2 > IOT_WINDOW ? max_credits * 2 : IOT_WINDOW;
     uint64_t horizon = 0;
     const char *horizon_arg = getenv("IOT_HORIZON_US");
     if (iot && horizon_arg) {
@@ -1408,6 +1622,8 @@ int main(int argc, char **argv)
         ep.iot->bind_path = bind_path;
         ep.iot->path_rule = path_rule;
         ep.iot->oracle = oracle;
+        ep.iot->max_credits = max_credits;
+        ep.iot->tx_window = tx_window;
         ep.iot->assignment_seed = assignment_seed;
         ep.iot->paths.cross = repair;
         ep.iot->paths.integrity = integrity_trace;
@@ -1468,6 +1684,7 @@ int main(int argc, char **argv)
             .stream_create_notify = stream_open,
             .stream_read_notify = stream_read,
             .stream_write_notify = stream_write,
+            .stream_closing_notify = stream_closing,
             .stream_close_notify = stream_closed,
         },
     };
@@ -1476,7 +1693,7 @@ int main(int argc, char **argv)
         .enable_multipath = 1,
         .multipath_version = XQC_MULTIPATH_10,
         .init_max_path_id = 1,
-        .max_streams_uni = iot ? IOT_CREDIT : 32,
+        .max_streams_uni = iot ? max_credits : 32,
         .sndq_packets_used_max = iot ? IOT_SEND_PACKETS : 0,
         .scheduler_callback = bind_path ? iot_affinity_callback : xqc_minrtt_scheduler_cb,
         .cong_ctrl_callback = xqc_cubic_cb,

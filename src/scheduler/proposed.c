@@ -52,10 +52,72 @@ struct iot_estimate iot_estimate_path_cwnd(const struct iot_path_sample *path, s
     return (struct iot_estimate){time, arrival * clean};
 }
 
+/* Pillar 2: Online Adaptive Conformal Residual Quantile (OCRQ) timely delivery estimator. */
+struct iot_estimate iot_estimate_path_conformal(const struct iot_path_sample *path, size_t bytes, double slack_us)
+{
+    double rate = fmax(path->rate_Bps, 15000);
+    double load = (double)path->queued_bytes + (double)path->in_flight_bytes + (double)bytes;
+    double cwnd_penalty = 0;
+    if (path->cwnd_bytes > 0 && path->in_flight_bytes > path->cwnd_bytes) {
+        double cwnd_denom = fmax((double)path->cwnd_bytes, 1200.0);
+        cwnd_penalty = (double)path->rtt_us * (((double)path->in_flight_bytes - (double)path->cwnd_bytes) / cwnd_denom);
+    }
+    double pto_delay = 0.0;
+    if (path->pto > 0) {
+        unsigned shift = path->pto > 3 ? 3 : path->pto;
+        pto_delay = (double)path->rtt_us * (2.5 * (double)(1u << shift)) + 50000.0 * (double)path->pto;
+    }
+    double base_time = (path->pto ? pto_delay : 0.5 * (double)path->rtt_us) +
+                       load * 1000000.0 / rate +
+                       cwnd_penalty;
+    double q_adj = path->conformal_q_us > 0 ? path->conformal_q_us : 0.0;
+    double time = base_time + q_adj;
+    double spread = fmax((double)path->rttvar_us, 2000.0);
+    double arrival = 0.0;
+    if (slack_us > 0) {
+        double z = (slack_us - time) / spread;
+        if (z > 10.0)
+            arrival = 1.0;
+        else if (z < -10.0)
+            arrival = 0.0;
+        else
+            arrival = 1.0 / (1.0 + exp(-2.0 * z));
+    }
+    double clean = pow(1.0 - path->loss, ceil((double)bytes / 1200.0));
+    if (path->pto > 0)
+        clean *= pow(0.35, (double)path->pto);
+    return (struct iot_estimate){time, arrival * clean};
+}
+
 void iot_update_path_feedback(struct iot_path_feedback *feedback, double residual_us)
 {
     feedback->bias_us = 0.25 * residual_us + 0.75 * feedback->bias_us;
     feedback->samples++;
+}
+
+void iot_update_conformal_feedback(struct iot_path_feedback *feedback, double residual_us, double rttvar_us)
+{
+    /* Online Adaptive Conformal Inference (ACI) at target miscoverage alpha = 0.20.
+     * Tracks positive one-way queueing/retransmission tail residuals without over-inflating
+     * during transient startup bursts. */
+    const double alpha = 0.20;
+    const double eta = 0.25;
+    double step_scale = fmax(fmin(rttvar_us, 40000.0), 10000.0);
+    double miss = residual_us > feedback->conformal_q_us ? 1.0 : 0.0;
+    if (miss > 0.5)
+        feedback->conformal_misses++;
+    feedback->conformal_q_us += eta * (miss - alpha) * step_scale;
+    if (feedback->conformal_q_us < -15000.0)
+        feedback->conformal_q_us = -15000.0;
+    if (feedback->conformal_q_us > 250000.0)
+        feedback->conformal_q_us = 250000.0;
+    feedback->conformal_samples++;
+}
+
+void iot_update_ucb_feedback(struct iot_path_feedback *feedback, double reward)
+{
+    feedback->ucb_pulls++;
+    feedback->ucb_reward_sum += reward;
 }
 
 double iot_path_correction(const struct iot_path_feedback *feedback)
@@ -170,6 +232,97 @@ size_t iot_choose_initial_path(const struct iot_record *record, double slack,
         }
         return best;
     }
+    if (rule == IOT_PEEKABOO_UCB) {
+        /* Peekaboo-style online UCB1 multi-armed bandit over paths (Wu et al., JSAC 2020). */
+        size_t best_k = 0;
+        double best_ucb = -INFINITY;
+        unsigned total_pulls = 1;
+        for (size_t i = 0; i < count; i++)
+            total_pulls += paths[i].ucb_pulls;
+        for (size_t i = 0; i < count; i++) {
+            double score;
+            if (paths[i].pto > 0) {
+                score = -10.0 - (double)paths[i].pto;
+            } else if (paths[i].ucb_pulls == 0) {
+                score = 100.0 - (double)paths[i].rtt_us * 1e-6;
+            } else {
+                double mean_r = paths[i].ucb_reward_sum / (double)paths[i].ucb_pulls;
+                double bonus = 0.5 * sqrt(log((double)total_pulls + 1.0) / (double)paths[i].ucb_pulls);
+                score = mean_r + bonus;
+            }
+            if (score > best_ucb) {
+                best_ucb = score;
+                best_k = i;
+            }
+        }
+        return best_k;
+    }
+    if (rule == IOT_DAMPS_EDF) {
+        /* DaMPS-style deadline-aware minimum expected completion time (Chen et al., MASS 2024). */
+        size_t best_k = 0;
+        double best_t = INFINITY;
+        for (size_t i = 0; i < count; i++) {
+            double rate = fmax((double)paths[i].rate_Bps, 15000.0);
+            double load = (double)paths[i].queued_bytes + (double)paths[i].in_flight_bytes + (double)bytes;
+            double loss_pen = (paths[i].loss / fmax(1.0 - paths[i].loss, 0.05)) * (double)paths[i].rtt_us;
+            double exp_t = 0.5 * (double)paths[i].rtt_us + load * 1e6 / rate + loss_pen;
+            if (paths[i].pto > 0)
+                exp_t += 2.0 * (double)paths[i].rtt_us;
+            if (exp_t < best_t) {
+                best_t = exp_t;
+                best_k = i;
+            }
+        }
+        return best_k;
+    }
+    if (rule == IOT_ACSP_FGCA || rule == IOT_ACSP_CONFORMAL ||
+        rule == IOT_ACSP_JOINT || rule == IOT_ACSP_FULL) {
+        bool use_conf = rule != IOT_ACSP_FGCA;
+        size_t best_k = 0;
+        struct iot_estimate chosen = use_conf
+            ? iot_estimate_path_conformal(&paths[0], bytes, slack)
+            : iot_estimate_path_cwnd(&paths[0], bytes, slack);
+        for (size_t i = 1; i < count; i++) {
+            struct iot_estimate cand = use_conf
+                ? iot_estimate_path_conformal(&paths[i], bytes, slack)
+                : iot_estimate_path_cwnd(&paths[i], bytes, slack);
+            bool better = cand.probability > chosen.probability ||
+                          (cand.probability == chosen.probability && cand.duration_us < chosen.duration_us);
+            if (better) {
+                best_k = i;
+                chosen = cand;
+            }
+        }
+        if (count > 1) {
+            const struct iot_path_sample *pri = &paths[best_k];
+            uint64_t adapt_stale = pri->rtt_us * 4;
+            if (adapt_stale < 60000)
+                adapt_stale = 60000;
+            if (adapt_stale > 220000)
+                adapt_stale = 220000;
+            double pri_load = (double)pri->queued_bytes + (double)pri->in_flight_bytes + (double)bytes;
+            bool pri_stressed = pri->pto > 0 ||
+                                (pri->cwnd_bytes > 0 && pri_load > (double)pri->cwnd_bytes) ||
+                                (slack > 0 && chosen.probability < 0.25);
+            if (record->kind == IOT_STATE || pri_stressed) {
+                size_t probe = best_k;
+                uint64_t oldest = 0;
+                for (size_t i = 0; i < count; i++) {
+                    if (i == best_k || paths[i].pto > 0 || paths[i].recent_lost > 0 || paths[i].in_flight_bytes > 0)
+                        continue;
+                    uint64_t now_s = paths[i].sampled_us;
+                    uint64_t rtt_age = now_s > paths[i].rtt_updated_us ? (now_s - paths[i].rtt_updated_us) : 0;
+                    uint64_t probe_age = now_s > paths[i].last_probe_us ? (now_s - paths[i].last_probe_us) : UINT64_MAX;
+                    if (rtt_age >= adapt_stale && probe_age >= adapt_stale && rtt_age > oldest) {
+                        oldest = rtt_age;
+                        probe = i;
+                    }
+                }
+                return probe;
+            }
+        }
+        return best_k;
+    }
     size_t best = 0;
     struct iot_estimate chosen = iot_estimate_path(&paths[0], bytes, slack);
     for (size_t i = 1; i < count; i++) {
@@ -266,4 +419,156 @@ void iot_commit_plan(struct iot_scheduler *scheduler, enum iot_class category)
         scheduler->normal_since_recovery = 0;
     else if (category == IOT_NORMAL && scheduler->normal_since_recovery < scheduler->recovery_k)
         scheduler->normal_since_recovery++;
+}
+
+/* Pillar 1: Feasibility-Gated Credit Admission (FGCA) — shed provably doomed/expired alarms
+ * before they lock scarce MAX_STREAMS credits and trigger deadline-inversion cascades.
+ * Always sheds expired (slack <= 0) or propagation-impossible alarms; only applies the
+ * CWND/rate feasibility threshold under active credit/queue contention so light regimes
+ * never suffer false shedding from transient slow-start rate underestimates. */
+bool iot_should_shed_event(const struct iot_record *record, double slack,
+                           const struct iot_path_sample *paths, size_t count,
+                           enum iot_path_rule rule, bool under_pressure, double *best_prob_out)
+{
+    (void)rule;
+    if (best_prob_out)
+        *best_prob_out = 0.0;
+    if (record->kind != IOT_EVENT)
+        return false;
+    if (slack <= 0.0)
+        return true;
+    if (!paths || !count)
+        return false;
+    size_t bytes = IOT_HEADER + record->payload_len;
+    double best_p = 0.0;
+    double min_prop = INFINITY;
+    for (size_t i = 0; i < count; i++) {
+        struct iot_estimate est = iot_estimate_path_cwnd(&paths[i], bytes, slack);
+        if (est.probability > best_p)
+            best_p = est.probability;
+        if (paths[i].pto == 0) {
+            double prop = 0.5 * (double)paths[i].rtt_us;
+            if (prop < min_prop)
+                min_prop = prop;
+        }
+    }
+    if (best_prob_out)
+        *best_prob_out = best_p;
+    if (isfinite(min_prop) && slack < min_prop)
+        return true;
+    return under_pressure && best_p < 0.02;
+}
+
+/* Pillar 3: Joint Record-Path Bipartite Matching with Dynamic Credit Shadow Price (JBM-SP)
+ * and RTT-Adaptive Health-Gated Probing. Complexity: strictly O(|Q| * K). */
+struct iot_plan iot_plan_joint_acsp(const struct iot_scheduler *scheduler, struct iot_workload *workload,
+                                    uint64_t elapsed, const struct iot_path_sample *paths, size_t count,
+                                    enum iot_path_rule rule, size_t outstanding, size_t max_credits,
+                                    size_t *chosen_path_index)
+{
+    struct iot_plan best[IOT_URGENT + 1] = {0};
+    size_t best_idx[IOT_URGENT + 1] = {0};
+    if (!paths || !count)
+        return best[IOT_NO_RECORD];
+
+    double lambda = max_credits > 0 ? fmin(1.5, (double)outstanding / (double)max_credits) : 0.0;
+    /* Identify baseline fastest healthy path for RTT-adaptive stale horizon. */
+    size_t fast_k = 0;
+    for (size_t k = 1; k < count; k++)
+        if ((paths[k].pto == 0 && paths[fast_k].pto > 0) ||
+            (paths[k].pto == paths[fast_k].pto && paths[k].rtt_us < paths[fast_k].rtt_us))
+            fast_k = k;
+    uint64_t adapt_stale = paths[fast_k].rtt_us * 4;
+    if (adapt_stale < 60000)
+        adapt_stale = 60000;
+    if (adapt_stale > 220000)
+        adapt_stale = 220000;
+
+    bool probe_ready[4] = {false, false, false, false};
+    for (size_t k = 0; k < count && k < 4; k++) {
+        if (paths[k].pto > 0 || paths[k].recent_lost > 0 || paths[k].in_flight_bytes > 0)
+            continue;
+        uint64_t now_s = paths[k].sampled_us;
+        uint64_t rtt_age = now_s > paths[k].rtt_updated_us ? (now_s - paths[k].rtt_updated_us) : 0;
+        uint64_t probe_age = now_s > paths[k].last_probe_us ? (now_s - paths[k].last_probe_us) : UINT64_MAX;
+        if (rtt_age >= adapt_stale && probe_age >= adapt_stale)
+            probe_ready[k] = true;
+    }
+
+    for (size_t i = 0; i < workload->next; i++) {
+        struct iot_entry *entry = &workload->entries[i];
+        if (entry->state != IOT_PENDING || iot_obsolete(scheduler, &entry->record))
+            continue;
+        const struct iot_record *rec = &entry->record;
+        double slack = iot_record_slack(rec, elapsed);
+        size_t bytes = IOT_HEADER + rec->payload_len;
+        double waiting = (double)(elapsed - entry->release);
+        double priority = saturate(rec->priority);
+        double wait_score = scheduler->tuning.waiting_weight * saturate(waiting / wait_scale_us);
+        enum iot_class category = IOT_URGENT;
+        double gain = 0.0, excess = 0.0;
+        if (rec->kind == IOT_STATE) {
+            const struct iot_feedback *latest = iot_latest_feedback(scheduler, rec->source);
+            double scale = rec->maximum_age;
+            gain = latest ? saturate((rec->generated - latest->generated) / scale) : 1.0;
+            excess = latest ? saturate(fmax(0.0, (elapsed - latest->generated) / scale - 1.0)) : 1.0;
+            category = slack > 0 ? IOT_NORMAL : IOT_RECOVERY;
+        }
+        double severity = rec->kind == IOT_EVENT ? saturate(rec->severity) : 0.0;
+        double urgency = wait_scale_us / (wait_scale_us + fmax(0.0, slack));
+
+        for (size_t k = 0; k < count; k++) {
+            struct iot_estimate est = iot_estimate_path_conformal(&paths[k], bytes, slack);
+            double hold_cost = fmin(2.5, est.duration_us / wait_scale_us);
+            double score;
+            if (category == IOT_URGENT) {
+                /* Credit-shadow-priced timely alarm matching: preserves EDF urgency among
+                 * feasible alarms (P >= 0.20) while penalizing long credit holding time under
+                 * tight credit pressure lambda and preferring higher conformal delivery probability. */
+                double alarm_val = priority + scheduler->tuning.severity_weight * severity + urgency + wait_score;
+                double feasible = est.probability >= 0.20 ? 1.0 : est.probability / 0.20;
+                score = feasible * alarm_val + 1.50 * est.probability - 0.20 * lambda * hold_cost;
+            } else {
+                double base_u = priority + gain + wait_score + (category == IOT_RECOVERY ? excess : 0.0);
+                /* Clean stale alternate path gets probing bonus for replaceable state records,
+                 * naturally pairing loose-slack state updates onto idle backup links. */
+                double p_bonus = (k < 4 && probe_ready[k] && k != fast_k) ? 0.60 : 0.0;
+                double util_mult = category == IOT_RECOVERY ? (0.50 + 0.50 * (1.0 - paths[k].loss))
+                                                            : (0.40 + 0.60 * est.probability);
+                score = base_u * util_mult + p_bonus - 0.15 * lambda * hold_cost;
+            }
+            struct iot_plan *cur = &best[category];
+            if (!cur->entry || score > cur->score ||
+                (score == cur->score && est.duration_us < cur->estimate.duration_us)) {
+                *cur = (struct iot_plan){
+                    .entry = entry,
+                    .category = category,
+                    .path_id = paths[k].id,
+                    .estimate = est,
+                    .score = score,
+                };
+                best_idx[category] = k;
+            }
+        }
+    }
+
+    (void)rule;
+    enum iot_class pick = IOT_NO_RECORD;
+    if (best[IOT_RECOVERY].entry && scheduler->normal_since_recovery >= scheduler->recovery_k) {
+        pick = IOT_RECOVERY;
+    } else if (scheduler->event_streak >= scheduler->tuning.event_burst &&
+               (best[IOT_NORMAL].entry || best[IOT_RECOVERY].entry)) {
+        pick = best[IOT_NORMAL].entry ? IOT_NORMAL : IOT_RECOVERY;
+    } else if (best[IOT_URGENT].entry &&
+               (!best[IOT_NORMAL].entry || best[IOT_URGENT].estimate.probability >= 0.05 ||
+                best[IOT_URGENT].score >= best[IOT_NORMAL].score)) {
+        pick = IOT_URGENT;
+    } else if (best[IOT_NORMAL].entry) {
+        pick = IOT_NORMAL;
+    } else if (best[IOT_RECOVERY].entry) {
+        pick = IOT_RECOVERY;
+    }
+    if (chosen_path_index)
+        *chosen_path_index = best_idx[pick];
+    return best[pick];
 }

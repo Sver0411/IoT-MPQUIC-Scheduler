@@ -53,16 +53,27 @@ struct iot_path_sample {
     uint64_t last_probe_us;
     double retransmission_rate;
     double loss, observed_loss, delay_correction_us;
+    double conformal_q_us, ucb_reward_sum;
+    unsigned ucb_pulls, ucb_total_pulls;
     unsigned pto;
 };
 
-enum iot_path_rule { IOT_NATIVE_PATH, IOT_PROBABILITY_PATH, IOT_FIXED_MINRTT,
-                     IOT_EARLIEST_COMPLETION, IOT_RANDOM_PATH, IOT_ACK_ADAPTIVE,
-                     IOT_BLEST_PATH, IOT_FRESH_AWARE, IOT_FRESH_NOPROBE };
+enum iot_path_rule {
+    IOT_NATIVE_PATH, IOT_PROBABILITY_PATH, IOT_FIXED_MINRTT,
+    IOT_EARLIEST_COMPLETION, IOT_RANDOM_PATH, IOT_ACK_ADAPTIVE,
+    IOT_BLEST_PATH, IOT_FRESH_AWARE, IOT_FRESH_NOPROBE,
+    IOT_PEEKABOO_UCB, IOT_DAMPS_EDF,
+    IOT_ACSP_FGCA, IOT_ACSP_CONFORMAL, IOT_ACSP_JOINT, IOT_ACSP_FULL
+};
 
 struct iot_path_feedback {
     double bias_us;
+    double conformal_q_us;
+    double ucb_reward_sum;
     unsigned samples;
+    unsigned conformal_samples;
+    unsigned conformal_misses;
+    unsigned ucb_pulls;
 };
 
 struct iot_estimate {
@@ -94,7 +105,10 @@ void iot_schedule_commit(struct iot_scheduler *scheduler, const struct iot_recor
 bool iot_obsolete(const struct iot_scheduler *scheduler, const struct iot_record *record);
 struct iot_estimate iot_estimate_path(const struct iot_path_sample *path, size_t bytes, double slack_us);
 struct iot_estimate iot_estimate_path_cwnd(const struct iot_path_sample *path, size_t bytes, double slack_us);
+struct iot_estimate iot_estimate_path_conformal(const struct iot_path_sample *path, size_t bytes, double slack_us);
 void iot_update_path_feedback(struct iot_path_feedback *feedback, double residual_us);
+void iot_update_conformal_feedback(struct iot_path_feedback *feedback, double residual_us, double rttvar_us);
+void iot_update_ucb_feedback(struct iot_path_feedback *feedback, double reward);
 double iot_path_correction(const struct iot_path_feedback *feedback);
 double iot_record_slack(const struct iot_record *record, uint64_t elapsed);
 void iot_plan_path(struct iot_plan *plan, double slack, const struct iot_path_sample *paths,
@@ -104,6 +118,13 @@ size_t iot_choose_initial_path(const struct iot_record *record, double slack,
                               enum iot_path_rule rule, uint32_t seed);
 struct iot_plan iot_plan_record(const struct iot_scheduler *scheduler, struct iot_workload *workload,
                                 uint64_t elapsed, const struct iot_path_sample *paths, size_t count);
+struct iot_plan iot_plan_joint_acsp(const struct iot_scheduler *scheduler, struct iot_workload *workload,
+                                    uint64_t elapsed, const struct iot_path_sample *paths, size_t count,
+                                    enum iot_path_rule rule, size_t outstanding, size_t max_credits,
+                                    size_t *chosen_path_index);
+bool iot_should_shed_event(const struct iot_record *record, double slack,
+                           const struct iot_path_sample *paths, size_t count,
+                           enum iot_path_rule rule, bool under_pressure, double *best_prob_out);
 void iot_commit_plan(struct iot_scheduler *scheduler, enum iot_class category);
 
 #endif

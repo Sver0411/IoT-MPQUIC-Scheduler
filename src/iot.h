@@ -41,12 +41,16 @@ size_t iot_encode_record(unsigned char *data, const struct iot_record *record);
 bool iot_decode_ack(const unsigned char *data, size_t size, struct iot_ack *ack);
 void iot_encode_ack(unsigned char *data, const struct iot_ack *ack);
 
-enum entry_state { IOT_SCHEDULED, IOT_PENDING, IOT_SUPERSEDED, IOT_OBSOLETE, IOT_SUBMITTED, IOT_ACKED };
+enum entry_state {
+    IOT_SCHEDULED, IOT_PENDING, IOT_SUPERSEDED, IOT_OBSOLETE, IOT_SUBMITTED, IOT_ACKED,
+    IOT_SHED, IOT_PREEMPTED
+};
 
 struct iot_entry {
     struct iot_record record;
     unsigned char *wire;
     uint64_t release, submitted, stream_id;
+    void *stream_handle;
     enum entry_state state;
 };
 

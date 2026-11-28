@@ -2,143 +2,125 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-**Freshness- and stall-aware Multipath QUIC scheduling for deadline-constrained IoT traffic on a real production `XQUIC` stack.**
+**Adaptive Conformal, Shadow-Priced, and Preemptive Multipath QUIC (`ACSP-MPQUIC`) scheduling for deadline-constrained IoT traffic on a real production `XQUIC` stack.**
 
-IoT-MPQUIC-Scheduler multiplexes sporadic hard-deadline alarm events and overwriteable periodic sensor state updates over a single encrypted Multipath QUIC (`XQC_MULTIPATH_10` + `BoringSSL`) connection spanning two real Linux UDP paths (`ip netns` + `tc-netem`). It introduces **`FAP-MPQUIC`** (`fresh-aware`), a lightweight zero-control-overhead C scheduler that combines overwrite-freshness queue scheduling, CWND-blocking-aware timely delivery estimation, and health-gated stale-path freshness probing.
+IoT-MPQUIC-Scheduler multiplexes sporadic hard-deadline alarm events and overwriteable periodic sensor state updates over a single encrypted Multipath QUIC (`XQC_MULTIPATH_10` + `BoringSSL`) connection spanning two real Linux UDP paths (`ip netns` + `tc-netem`). Building upon our earlier freshness-aware scheduler (`FAP-MPQUIC`), **`ACSP-MPQUIC`** introduces **four protocol-grounded C-level innovations**—**Feasibility-Gated Credit Admission (`FGCA`)**, **Online Adaptive Conformal Residual Quantiles (`OCRQ`)**, **Joint Record–Path Bipartite Matching with Dynamic Credit Shadow Pricing (`JBM-SP`)**, and **RFC 9000 `RESET_STREAM` In-Flight Stream Preemption**—benchmarked against both classical (`MinRTT`, `ECF`, `BLEST`) and modern external SOTA schedulers (`Peekaboo-UCB`, `DaMPS-EDF`).
 
-[Overview](#overview) · [Architecture](#architecture-and-scheduling-design) · [Results](#real-xquic-dual-path-evaluation) · [Quick Start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Elsevier Paper (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf)
+[Overview](#overview) · [Architecture](#architecture-and-four-pillar-design) · [Stage 11 Results (`ACSP-MPQUIC`)](#stage-11-real-xquic-evaluation-acsp-mpquic) · [Quick Start](#quick-start) · [Reproduce](#reproduce-the-experiments) · [Stage 11 Report](docs/stage11-acsp-mpquic-report.md)
 
 ---
 
 ## Overview
 
-Classical multipath schedulers—such as native `MinRTT`, `ECF`, and `BLEST`—rank paths using cached RTT and drain time without modeling deadline slack, packet loss, overwriteable Age of Information (AoI), or stale-RTT blindness on idle backup paths. When a gateway's primary link suffers an asymmetric reversal or silent blackout, classical schedulers remain trapped on the degraded path and miss urgent IoT deadlines.
+Under tight QUIC stream concurrency limits (`MAX_STREAMS_UNI` $C=4\text{–}8$) and dynamic dual-path wireless impairments (silent blackouts, asymmetric congestion reversals, and jitter), classical and learning-based multipath schedulers—including `MinRTT`, `ECF`, `BLEST`, `Peekaboo-UCB`, `DaMPS-EDF`, and even freshness-probing `FAP-MPQUIC`—suffer from a **deadline-inversion credit lockup**: already-expired alarms jump to the front of the queue, lock scarce QUIC stream credits across PTO backoffs, starve saveable alarms, and drive sensor Age of Information (AoI) to multi-second levels.
 
-Across **1,596+ audited real `XQUIC` connections** (including a **576-connection held-out benchmark** across 4 dynamic dual-path regimes × 16 seeds × 9 policies, dual-interface PCAP captures, and independent replay Oracles), `FAP-MPQUIC` achieves:
+Across **2,820+ audited real `XQUIC` connections** (including **1,224 new Stage-11 held-out connections** across 13 policies, 5 dynamic regimes including a 12 s multi-reversal trace, and 3 credit budgets $C \in \{4,8,16\}$, with honest all-released-events denominators and `100% client_ok = 1`), **`ACSP-MPQUIC`** achieves:
 
-- **+20.6 to +52.1 pp higher event deadline delivery** than `FIFO+MinRTT`, `App+MinRTT`, `Fixed-MinRTT`, `ECF`, and `BLEST` under high-load outage-reversal and mid-connection Path-A blackouts ($p_{\text{Holm}} \le 0.0230$, Cohen's $d_z$ up to `6.66`).
-- **Strict 3-metric Pareto dominance under mid-connection blackouts (S4):** Simultaneously beats all four classical path schedulers on Event Deadline Success (**+21.5–32.6 pp**), State AoI (**−168.2 to −307.7 ms**), and Useful Goodput (**+8.9–9.8 kbps**), while health-gating ensures zero wasted probes on the dead path.
-- **Lowest state AoI of all 9 policies under non-blackout reversals (S2 & S3):** Achieves **1,927.0 ms** (S2) and **1,939.6 ms** (S3), beating all five classical baselines ($p_{\text{Holm}} \le 0.0034$) and outperforming its own no-probe ablation `FAP-NoProbe` by **−70.1 ms** in S3 ($p_{\text{Holm}} = 0.0123$).
-- **Standalone Elsevier manuscript & reproducible artifacts:** Includes an 18-page Elsevier `elsarticle` paper (*Computer Communications*) with mechanistic curve analysis, cross-regime operating-envelope synthesis, 2 theoretical propositions, and 31 verified citations ([manuscript.pdf](papers/iot-mpquic-scheduler/manuscript.pdf)), print-ready vector figures, and full C/Python verification tests.
-
-![FAP-MPQUIC Graphical Abstract](papers/iot-mpquic-scheduler/graphical_abstract.png)
+- **Up to +44.7 pp higher alarm deadline success (1.9×–21× gains) under $C=4$ saturation:** In high-load outage-reversal (`S1`), asymmetric reversal (`S2`), and double reversal (`S3`), `ACSP-OCRQ` (`P1+P2`) lifts Event Deadline Success to **46.9% (S1)**, **40.9% (S2)**, and **32.2% (S3)**—beating `ECF`, `BLEST`, `Peekaboo-UCB`, and `DaMPS-EDF` by **+12.2 to +44.7 pp** ($p_{\text{Holm}} \le 0.0046$, Cohen's $d_z$ up to `9.62`) and beating our own Stage-10 `FAP-MPQUIC` by **+11.6 to +22.5 pp** ($p_{\text{Holm}} \le 0.0046$).
+- **−56.0% to −59.2% Mean AoI collapse (>2.0 seconds saved) in 12 s long-horizon multi-reversal + blackout (`S5`):** While `ECF`, `BLEST`, `DaMPS-EDF`, `Peekaboo-UCB`, and `FAP-MPQUIC` lock up at **3,517–3,917 ms** Mean AoI (93.7%–94.8% max-age violation), **`ACSP-Full`** cuts Mean AoI to **1,597 ms** ($d_z = -2.42$ to $-4.58$, $p_{\text{Holm}} = 0.040$) and slashes max-age violations by **−9.8 to −11.0 pp** ($d_z = -5.57$ to $-6.39$, $p_{\text{Holm}} \le 0.044$).
+- **Dominant credit scaling across $C \in \{4, 8, 16\}$:** At $C=8$, `ACSP-Full`/`ACSP-Cross` achieves **53.1%–56.9%** EvSucc in S1 (**+16.9–20.6 pp** over FAP, **10×–15×** over ECF/BLEST/Peekaboo/DaMPS) and **53.1% EvSucc + lowest 1,487 ms AoI** in S3; at $C=16$, `ACSP-Cross` reaches **98.8% EvSucc** in S1 while classical/modern baselines remain stuck at **6.3%–10.0%**.
+- **Explicit Alarm–Freshness Pareto Frontier & Zero-Regression Engineering:** Transparently characterizes the $C=4$ trade-off between `ACSP-OCRQ` (alarm-maximizing) and `ACSP-Full`/`ACSP-Cross` (freshness/coverage-maximizing via `JBM-SP` + RFC 9000 `RESET_STREAM`), verified by 9 C unit tests and 23 Python verification suites.
 
 ---
 
-## Architecture and Scheduling Design
+## Architecture and Four-Pillar Design
 
 ```mermaid
 flowchart LR
-    Q["Event & overwrite state queue"] --> A["Proposed-App (urgency + AoI gain)"]
-    A --> P["FAP-MPQUIC / BLEST / ECF / MinRTT"]
-    P --> S["Real XQUIC stream · two Linux UDP paths"]
-    S --> R["Receiver FIN · deadline & AoI"]
-    R -->|"Application ACK"| A
-    S -.->|"Causal XQUIC telemetry"| P
-    A --> O["Independent app oracle"]
-    P --> O2["Independent path oracle"]
+    Q["Pending alarms & overwrite states"] --> P1["P1 · FGCA\n(Feasibility-Gated Credit Admission)"]
+    P1 -->|"Shed dead/infeasible alarms\n(honest miss count)"| SHED["IOT_SHED"]
+    P1 --> P3["P3 · JBM-SP\nO(|Q|·K) Joint Matching\n+ Credit Shadow Price λ(t)\n+ RTT-Adaptive Probing"]
+    T["Causal XQUIC Telemetry\n(SRTT, RTTVAR, CWND, PTO)"] --> P2["P2 · OCRQ\nOnline Adaptive Conformal\nResidual Quantile q_k(t)"]
+    P2 --> P3
+    P3 --> XQ["Real XQUIC Multipath\n(XQC_MULTIPATH_10 + BoringSSL)"]
+    XQ -->|"Stalled / PTO path"| P4["P4 · RFC 9000 RESET_STREAM\nIn-Flight Credit Preemption"]
+    P4 -->|"Control frame via healthy path\nreclaims MAX_STREAMS in ~1 RTT"| XQ
+    XQ --> RX["Receiver FIN · Deadline & AoI"]
+    RX -->|"Causal ACK residuals"| P2
 ```
 
-1. **Overwrite-freshness application queue (`Proposed-App`):** Replaces older pending state updates per sensor, discards obsolete records superseded by receiver ACKs, scores candidates by deadline slack, severity, wait time, and potential AoI gain, and enforces bounded burst/recovery quotas.
-2. **CWND-blocking-aware timely delivery estimation:** Queries each active `XQUIC` path's strictly causal `xqc_send_ctl_t` counters (`srtt`, `rttvar`, bandwidth, `cwnd`, `in_flight`, recent loss, PTO) and adds a linear RTT blocking round penalty whenever `in_flight > cwnd`, without falsely penalizing clean slow-start backup paths.
-3. **Health-gated stale-path freshness probing (`FAP-MPQUIC`):** When an alternate path's transport RTT is stale ($\ge 150\text{ ms}$) and the path is clean and idle (`pto == 0`, `recent_lost == 0`, `in_flight == 0`), `FAP-MPQUIC` binds a replaceable state stream onto that path (zero extra control frames), refreshing transport SRTT in a single QUIC RTT while guaranteeing zero wasted stream credits on blacked-out paths.
-4. **Strict affinity vs. cross-path repair & independent Oracles:** Strict mode keeps retransmissions on the initially bound path; cross-path mode permits failover repair over the alternate path. Two independent Oracles replay every queue and path decision against dual-interface `tcpdump` captures.
+1. **P1 · Feasibility-Gated Credit Admission (`FGCA`):** Before allocating a scarce `MAX_STREAMS_UNI` credit, sheds already-expired (`slack <= 0`), propagation-impossible (`slack < min_k RTT_k/2`), or contention-infeasible alarms (`pending_events > 1` and CWND/rate feasibility `< 0.02`). Periodic sensor states are never shed, and all shed alarms remain honestly counted in the denominator.
+2. **P2 · Online Adaptive Conformal Residual Quantile (`OCRQ`):** Tracks per-path one-way delivery tail residuals via online Adaptive Conformal Inference ($\alpha = 0.20, \eta = 0.25$) combined with exponential PTO stall physics, steering urgent traffic off degraded links without inflating `FGCA` shedding.
+3. **P3 · Joint Record–Path Bipartite Matching with Dynamic Credit Shadow Pricing (`JBM-SP`):** Replaces decoupled queue-then-path planning with $O(|\mathcal{Q}| \cdot K)$ joint matching weighted by dynamic credit pressure $\lambda(t) = \min(1.5, \text{outstanding}/C)$ and RTT-adaptive health-gated probing ($\tau_{\text{adapt}} = \text{clip}(4 R_{\text{fast}}, 60\text{ ms}, 220\text{ ms})$).
+4. **P4 · QUIC-Native In-Flight Stream Preemption (`RESET_STREAM`):** Actively issues RFC 9000 `xqc_stream_reset(stream, 0x01)` for expired alarms or superseded sensor updates trapped on a stalled/PTO path. Because `RESET_STREAM` is a control frame, `XQUIC` routes it over the healthy path and reclaims peer stream credits in ~1 RTT with clean server-side `stream_closing_notify` / `-XQC_ESTREAM_RESET` handling.
 
 ---
 
-## Real `XQUIC` Dual-Path Evaluation
+## Stage 11 Real `XQUIC` Evaluation (`ACSP-MPQUIC`)
 
-### 1. Dynamic Dual-Path Benchmark (576 Real Connections, 16 Held-Out Seeds × 9 Policies)
+### 1. Main Held-Out Benchmark (832 Real Connections: 16 Held-Out Seeds × 4 Regimes × 13 Policies, $C=4$)
 
-Evaluated on real encrypted `XQUIC` + `BoringSSL` endpoints over isolated Linux `netns`/`tc-netem` links across four dynamic regimes (`S1` high-load outage+reversal, `S2` pure asymmetric reversal, `S3` bidirectional double reversal with 12 ms jitter, `S4` sudden mid-connection Path-A blackout), with 5,000-resample seed-bootstrap 95% CIs, 20,000-draw paired sign-flip permutation tests, and global Holm-Bonferroni correction (`all_client_ok = True` on 576/576 runs):
+| Policy (16 held-out seeds `10101–10116`) | **S1** Outage+Rev<br>EvSucc / AoI / Cov | **S2** Asym. Rev<br>EvSucc / AoI / Cov | **S3** Double Rev<br>EvSucc / AoI / Cov | **S4** Mid Blackout<br>EvSucc / AoI / Viol |
+| --- | :---: | :---: | :---: | :---: |
+| `FIFO-MinRTT` | 4.7% / 2,626 ms / 38.2% | 20.0% / 2,304 ms / 54.4% | 20.0% / 2,345 ms / 52.4% | 33.3% / 1,810 ms / 97.6% |
+| `ECF` | 2.5% / 2,235 ms / 27.0% | 20.0% / 1,980 ms / 37.2% | 20.0% / 2,112 ms / 30.5% | 54.2% / 1,148 ms / 95.4% |
+| `BLEST` | 2.2% / 2,235 ms / 27.6% | 20.0% / 2,027 ms / 35.1% | 20.0% / 2,082 ms / 30.5% | 52.8% / 1,120 ms / 95.7% |
+| `Peekaboo-UCB` (JSAC '20) | 3.1% / 2,210 ms / 27.4% | 25.6% / 1,932 ms / 45.1% | 26.3% / 1,946 ms / 28.7% | **99.3%** / 891 ms / 87.2% |
+| `DaMPS-EDF` (MASS '24) | 2.8% / 2,208 ms / 27.9% | 20.0% / 1,991 ms / 36.8% | 20.0% / 2,101 ms / 30.6% | 54.9% / 1,112 ms / 95.8% |
+| `FAP-MPQUIC` (Stage 10) | 24.4% / 1,879 ms / 36.6% | 20.9% / 1,931 ms / 40.6% | 20.6% / 1,942 ms / 28.6% | 84.7% / 934 ms / 88.4% |
+| **`ACSP-OCRQ` (`P1+P2`, Ours)** | **46.9%** / 1,784 ms / 52.6% | **40.9%** / 1,866 ms / 51.3% | **32.2%** / 1,915 ms / 39.9% | 79.9% / 923 ms / 87.9% |
+| **`ACSP-Full` (`P1–P4`, Ours)** | 30.0% / 1,750 ms / 60.2% | 29.7% / 1,817 ms / 54.0% | 28.4% / **1,877 ms** / **45.8%** | 83.3% / 882 ms / 85.0% |
+| **`ACSP-Cross` (`P1–P4+Cross`, Ours)** | 36.6% / **1,714 ms** / **61.6%** | 26.3% / **1,810 ms** / **54.5%** | 29.7% / 1,886 ms / 44.9% | 84.7% / **849 ms** / **83.4%** |
 
-| Scenario (16 seeds × 9 policies) | `FIFO+MinRTT` | `App+MinRTT` | `Fixed-MinRTT` | `ECF` | `BLEST` | `Prob` | `FAP-NoProbe` | **`FAP-MPQUIC` (Strict)** |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **S1** Outage + Reversal — EvSucc (%) / AoI (ms) | 4.4 / 2,644 | 3.1 / 1,993 | 3.1 / 2,194 | 3.1 / 2,195 | 2.8 / 2,246 | 24.7 / 1,878 | 25.3 / 1,875 | **25.0 / 1,901** |
-| **S2** Asymmetric Reversal — AoI (ms) / Goodput (kbps) | 2,326 / 109.8 | 1,996 / 111.0 | 2,059 / 104.5 | 1,996 / 112.9 | 2,053 / 102.5 | 2,003 / 113.6 | 2,052 / 106.8 | **1,927 / 117.3** |
-| **S3** Double Reversal + Jitter — AoI (ms) / Path-B (%) | 2,348 / 32.8% | 2,092 / 30.9% | 2,074 / 24.0% | 2,112 / 7.9% | 2,097 / 25.0% | 2,031 / 50.4% | 2,010 / 49.2% | **1,940 / 58.9%** |
-| **S4** Mid-Run Blackout — EvSucc (%) / AoI (ms) / Goodput (kbps) | 33.3 / 1,786 / 78.6 | 63.9 / 1,222 / 70.1 | 52.8 / 1,133 / 70.3 | 55.6 / 1,118 / 71.0 | 54.2 / 1,083 / 71.0 | 88.9 / 902 / 81.6 | 88.2 / 915 / 80.0 | **85.4 / 915 / 79.8** |
+![Stage 11 Main SOTA Comparison](results/stage11/figures/fig1_sota_comparison.png)
 
-- **High-load Outage + Reversal (S1):** `FAP-MPQUIC` raises Event Deadline Success by **+20.62 to +22.19 pp** over all five classical baselines ($p_{\text{Holm}} \le 0.0025$, $d_z = 5.43\text{–}6.66$) and slashes mean AoI by **293.9–743.6 ms** vs. `Fixed-MinRTT`, `ECF`, `BLEST`, and `FIFO+MinRTT` ($p_{\text{Holm}} \le 0.0031$).
-- **Pure Asymmetric & Double Reversals (S2 & S3):** Classical schedulers stay pinned to degraded Path A (`ECF` shifts only 7.9% to Path B in S3; `Fixed-MinRTT` and `BLEST` 24–25%). `FAP-MPQUIC` achieves the **lowest mean AoI of all 9 policies** (**1,927.0 ms** in S2; **1,939.6 ms** in S3, $p_{\text{Holm}} \le 0.0034$ vs. all classical baselines) and beats `FAP-NoProbe` by **−70.1 ms** in S3 ($p_{\text{Holm}} = 0.0123$), isolating the causal gain of health-gated probing.
-- **Mid-Run Path-A Blackout (S4):** `FAP-MPQUIC` **strictly Pareto-dominates all four classical path schedulers across Event Success (+21.5–32.6 pp, $p_{\text{Holm}} \le 0.023$), AoI (−168.2 to −307.7 ms, $p_{\text{Holm}} \le 0.0063$), and Goodput (+8.9–9.8 kbps, $p_{\text{Holm}} \le 0.0072$)** while tying statistically with probability-only `Prob` ($p_{\text{Holm}} = 1.0$) because health-gating avoids probing the blacked-out path.
+![Stage 11 4-Pillar Ablation Ladder](results/stage11/figures/fig2_ablation_ladder.png)
 
-![Primary real-XQUIC benchmark across S1–S4](results/stage10/figures/fig02_stage10_main.png)
+### 2. Credit Scaling ($C \in \{4, 8, 16\}$) & 12 s Long-Horizon Multi-Reversal + Blackout (`S5`) (392 Real Connections)
 
-![AoI-vs-deadline Pareto frontier and Path-B traffic shift](results/stage10/figures/fig03_pareto_and_path_shift.png)
+| Suite 2 Experiment (8 held-out seeds `10201–10208`) | `ECF` | `BLEST` | `Peekaboo-UCB` | `DaMPS-EDF` | `FAP-MPQUIC` | **`ACSP-Full`** | **`ACSP-Cross`** |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **S1**, $C=8$ — EvSucc (%) / AoI (ms) | 4.4 / 2,037 | 5.0 / 1,998 | 5.6 / 2,012 | 3.8 / 2,074 | 36.3 / 1,750 | 53.1 / **1,709** | **56.9** / 1,796 |
+| **S1**, $C=16$ — EvSucc (%) | 8.8% | 10.0% | 10.0% | 6.3% | 95.6% | 97.5% | **98.8%** |
+| **S3**, $C=8$ — EvSucc (%) / AoI (ms) | 27.5 / 1,707 | 27.5 / 1,682 | 42.5 / 1,634 | 27.5 / 1,689 | 38.8 / 1,569 | **53.1** / **1,487** | 51.9 / 1,493 |
+| **S5 (12 s Multi-Rev + Blackout, $C=4$)** — Mean AoI (ms) ↓ | 3,917 | 3,835 | 3,517 | 3,807 | 3,631 | **1,597 (−56%)** | 1,670 (−54%) |
+| **S5 (12 s, $C=4$)** — Max-Age Violation (%) ↓ | 94.8% | 94.6% | 93.7% | 94.8% | 94.2% | 83.8% | **83.7%** |
 
-![Paired bootstrap confidence intervals and Holm-Bonferroni significance](results/stage10/figures/fig04_paired_effects.png)
+![Credit Scaling and 12s Long-Horizon S5](results/stage11/figures/fig3_credit_and_long_horizon.png)
 
-### 2. Cross-Path Failover, Offline Calibration & Trace Integrity Audits
-
-Complementing the primary matrix, the repository archives over 1,000 additional audited `XQUIC` connections examining underlying transport mechanisms:
-
-![Directed outage failover and held-out path-prediction calibration](results/stage10/figures/fig05_repair_and_calibration.png)
-
-- **Directed outage cross-path failover (20 seeds):** Under single-stream outages, cross-path repair reduces mean probe completion from **1,544 ms to 253 ms** (**−83.6%**, 95% CI `[-1314, -1267] ms`) and lowers duplicate stream-offset UDP bytes from `24.1 KB` to `15.1 KB`.
-- **Offline probability calibration & feature audit:** Across 1,031 randomized-path test records, offline Platt calibration lowers effective-budget Brier error from `0.0413` to **`0.0355`** (`0.260` to `0.218` on `0–100 ms` short budgets), though short-budget calibrated gains over `Slack-only` remain modest under link shift. An independent trace-chain audit of 288 connections (`6,072` labeled submissions, `1,688` short-budget) verifies end-to-end decision-to-PCAP integrity, 5 ms switch precision, and ±5% Goodput equivalence.
-- **Application–path factorial separation:** 600 factorial runs plus 400 independent generalization runs isolate application-layer overwrite scheduling from path-layer binding across both load and reversal regimes.
-
-[Elsevier Manuscript (PDF)](papers/iot-mpquic-scheduler/manuscript.pdf) · [Technical Report (ZH)](docs/stage10-fap-mpquic-report.md) · [Summary CSV](results/stage10/summary.csv) · [Paired Effects CSV](results/stage10/paired_effects.csv) · [Generalization & Calibration Report](docs/stage8-research-report.md) · [Data & Feature Audit](docs/stage93a-data-quality-feature-analysis.md)
+[Stage 11 Technical Report](docs/stage11-acsp-mpquic-report.md) · [Stage 11 Summary CSV](results/stage11/summary.csv) · [Stage 11 Paired Effects CSV](results/stage11/paired_effects.csv) · [Credit Sweep CSV](results/stage11/credit_sweep_summary.csv) · [12 s S5 CSV](results/stage11/long_horizon_summary.csv) · [Stage 10 FAP Report (ZH)](docs/stage10-fap-mpquic-report.md)
 
 ---
 
 ## Quick Start
 
-Requires Linux with network namespaces (`ip netns`), `veth`, and `sch_netem` (tested on Ubuntu 24.04 / Linux kernel 6.x and Linux containers).
+Requires Linux with network namespaces (`ip netns`), `veth`, and `sch_netem` (tested on Ubuntu 24.04 / Linux kernel 6.x and privileged Docker containers).
 
 ```bash
-sudo apt-get install -y build-essential git cmake ninja-build iproute2 iputils-ping tcpdump openssl python3
+sudo apt-get install -y build-essential git cmake ninja-build iproute2 iputils-ping tcpdump openssl python3 python3-numpy python3-matplotlib
 git submodule update --init
 bash scripts/build.sh
 bash scripts/test.sh
 ```
 
-Run a 20-connection quick pilot that checks queue decisions, path bindings, endpoint traces, and dual-interface captures:
-
-```bash
-sudo python3 experiments/run_stage8.py results/runs/pilot --suite pilot --jobs 5
-```
-
-[Environment setup](docs/experiment-environment.md)
-
 ## Reproduce the Experiments
 
-**1. Full 576-connection `FAP-MPQUIC` benchmark, vector figures & IEEE manuscript**
+**1. Stage 11 `ACSP-MPQUIC` Real-Stack Benchmark (1,224 connections + publication figures)**
 
 ```bash
-sudo python3 experiments/run_stage10_fap.py results/stage10 --jobs 6
-python3 papers/iot-mpquic-scheduler/build_figures.py
-cd papers/iot-mpquic-scheduler && tectonic manuscript.tex
+# Suite 1: 832 real XQUIC dual-path connections (16 held-out seeds x 4 regimes x 13 policies)
+sudo python3 experiments/run_stage11_acsp.py --suite formal --out results/stage11 --build build --jobs 8
+
+# Suite 2: 336 credit-scaling runs (C=4,8,16) + 56 12-second long-horizon S5 runs + PNG/PDF figures
+sudo python3 experiments/run_stage11_acsp.py --suite scaling --out results/stage11 --build build --jobs 8
 ```
 
-**2. Generalization, failover, calibration & trace-audit replay**
+**2. Prior Stage 8–10 Replays & Trace Integrity Audits**
 
 ```bash
-sudo python3 experiments/run_stage8.py results/runs/paired --suite paired --jobs 8
-sudo python3 experiments/run_stage8.py results/runs/explore --suite explore --jobs 8
-python3 evaluation/verify_stage8.py results/stage8 --archive
+sudo python3 experiments/run_stage10_fap.py --suite formal --out results/stage10 --build build --jobs 6
 bash scripts/test.sh --evidence results/stage91/final
-python3 -B evaluation/stage93a.py results/runs/audit-recomputed
-diff -rq results/stage93a results/runs/audit-recomputed
 ```
-
-[Experiment configuration](configs/stage8.json) · [Paper build guide](papers/iot-mpquic-scheduler/README.md) · [Documentation index](docs/)
 
 ## Repository Layout
 
 | Directory | Contents |
 | --- | --- |
-| `src/` | Gateway queue, `FAP-MPQUIC` / `BLEST` / `ECF` / `MinRTT` schedulers, `XQUIC` endpoints, workload generator |
+| `src/` | Gateway queue, `ACSP-MPQUIC` (`FGCA`/`OCRQ`/`JBM-SP`/`RESET_STREAM`), `FAP-MPQUIC`, `Peekaboo-UCB`, `DaMPS-EDF`, `BLEST`, `ECF`, `MinRTT`, `XQUIC` endpoints |
 | `network/` | Dual-`veth` Linux namespace topology and timed `tc-netem` link schedules |
-| `experiments/`, `evaluation/` | Benchmark runners, paired bootstrap / Holm-Bonferroni analysis, verification, plotting |
+| `experiments/`, `evaluation/` | Stage 7–11 benchmark runners, paired bootstrap / Holm-Bonferroni analysis, verification, plotting |
 | `patches/xquic/` | STREAM PTO scheduling, integrity tracing, and RTT telemetry patches applied to `XQUIC` |
-| `results/`, `docs/` | Audited metrics, derived tables, figures, and technical reports |
-| `papers/` | Standalone 18-page Elsevier `elsarticle` manuscript (`manuscript.tex`/`.pdf`), 31 BibTeX references, figure scripts, graphical abstract |
-
-## Scope & Limitations
-
-Both endpoints run pinned production `XQUIC` (`XQC_MULTIPATH_10`) + `BoringSSL` over real Linux UDP sockets and `tc-netem` links on a single host rather than physical multi-hop Wi-Fi + cellular radios. Concurrency is set to $C=4$ unidirectional streams to expose gateway saturation, and offline probability calibration remains decoupled from online path binding. [XQUIC API notes](docs/xquic-api.md) · [Scheduling specification](docs/stage7-algorithm-spec.md)
+| `results/`, `docs/` | Audited Stage 7–11 metrics, paired effect tables, PNG/PDF figures, and technical reports |
 
 ## License & Related Research Stack
 

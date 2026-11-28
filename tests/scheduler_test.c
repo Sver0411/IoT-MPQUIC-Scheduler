@@ -210,6 +210,63 @@ static void test_independent_factors(void)
     s10[1].rtt_us = 18000;
     assert(iot_choose_initial_path(&ev_rec, 50000, s10, 2, IOT_BLEST_PATH, 0) == 1);
 
+    /* Stage 11 unit checks: FGCA shedding, OCRQ conformal quantiles, JBM-SP joint matching,
+     * Peekaboo-UCB, and DaMPS-EDF. */
+    struct iot_path_feedback conf_fb = {0};
+    /* Positive residuals above q push conformal_q_us upward; negative residuals decay it smoothly. */
+    iot_update_conformal_feedback(&conf_fb, 80000.0, 20000.0);
+    assert(conf_fb.conformal_q_us > 0.0 && conf_fb.conformal_misses == 1 && conf_fb.conformal_samples == 1);
+    double q_after_miss = conf_fb.conformal_q_us;
+    iot_update_conformal_feedback(&conf_fb, -5000.0, 20000.0);
+    assert(conf_fb.conformal_q_us < q_after_miss && conf_fb.conformal_samples == 2);
+
+    struct iot_path_sample acsp_paths[] = {
+        {.id = 0, .rtt_us = 20000, .rttvar_us = 4000, .rate_Bps = 1000000, .cwnd_bytes = 24000,
+         .sampled_us = 1000000, .rtt_updated_us = 995000, .last_probe_us = 995000, .conformal_q_us = 90000.0},
+        {.id = 1, .rtt_us = 35000, .rttvar_us = 4000, .rate_Bps = 1000000, .cwnd_bytes = 24000,
+         .sampled_us = 1000000, .rtt_updated_us = 700000, .last_probe_us = 700000, .conformal_q_us = 0.0},
+    };
+    /* OCRQ should steer tight-slack event away from path 0 (high conformal tail q=90ms) to path 1. */
+    assert(iot_estimate_path_conformal(&acsp_paths[1], 1252, 60000.0).probability >
+           iot_estimate_path_conformal(&acsp_paths[0], 1252, 60000.0).probability);
+    assert(iot_choose_initial_path(&ev_rec, 60000.0, acsp_paths, 2, IOT_ACSP_CONFORMAL, 0) == 1);
+
+    /* FGCA sheds expired alarms and provably infeasible alarms, never sheds saveable alarms or states. */
+    double best_p = 0.0;
+    assert(iot_should_shed_event(&ev_rec, -1000.0, acsp_paths, 2, IOT_ACSP_FULL, false, &best_p));
+    assert(iot_should_shed_event(&ev_rec, 1000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p) && best_p < 0.02);
+    assert(!iot_should_shed_event(&ev_rec, 100000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p) && best_p > 0.5);
+    assert(!iot_should_shed_event(&st_rec, -1000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p));
+
+    /* Peekaboo-UCB explores untried path first, then exploits higher reward path; avoids PTO. */
+    struct iot_path_sample ucb_paths[] = {
+        {.id = 0, .rtt_us = 10000, .ucb_pulls = 10, .ucb_reward_sum = 2.0, .ucb_total_pulls = 20},
+        {.id = 1, .rtt_us = 15000, .ucb_pulls = 10, .ucb_reward_sum = 9.0, .ucb_total_pulls = 20},
+    };
+    assert(iot_choose_initial_path(&ev_rec, 50000.0, ucb_paths, 2, IOT_PEEKABOO_UCB, 0) == 1);
+    ucb_paths[1].pto = 1;
+    assert(iot_choose_initial_path(&ev_rec, 50000.0, ucb_paths, 2, IOT_PEEKABOO_UCB, 0) == 0);
+
+    /* DaMPS-EDF minimizes loss-adjusted expected completion time. */
+    struct iot_path_sample damps_paths[] = {
+        {.id = 0, .rtt_us = 20000, .rate_Bps = 1000000, .loss = 0.50},
+        {.id = 1, .rtt_us = 24000, .rate_Bps = 1000000, .loss = 0.01},
+    };
+    assert(iot_choose_initial_path(&ev_rec, 50000.0, damps_paths, 2, IOT_DAMPS_EDF, 0) == 1);
+
+    /* JBM-SP joint bipartite matching selects saveable urgent alarm on highest-value conformal path. */
+    workload.count = workload.next = 0;
+    add(IOT_STATE, 1, 0, 200000, 200000, 1);
+    add(IOT_EVENT, 2, 0, 80000, 0, 5);
+    workload.entries[1].record.severity = 5;
+    admit(0);
+    admit(0);
+    size_t joint_k = 99;
+    struct iot_plan jp = iot_plan_joint_acsp(&scheduler, &workload, 10000, acsp_paths, 2,
+                                             IOT_ACSP_FULL, 2, 4, &joint_k);
+    assert(jp.entry == &workload.entries[1] && joint_k == 1 && jp.path_id == 1);
+    workload.count = workload.next = 0;
+
     add(IOT_STATE, 1, 0, 100000, 100000, 1);
     add(IOT_EVENT, 1, 0, 100000, 0, 4);
     workload.entries[1].record.severity = 4;
