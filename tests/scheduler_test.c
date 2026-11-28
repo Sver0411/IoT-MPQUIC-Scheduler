@@ -231,10 +231,10 @@ static void test_independent_factors(void)
            iot_estimate_path_conformal(&acsp_paths[0], 1252, 60000.0).probability);
     assert(iot_choose_initial_path(&ev_rec, 60000.0, acsp_paths, 2, IOT_ACSP_CONFORMAL, 0) == 1);
 
-    /* FGCA sheds expired alarms and provably infeasible alarms, never sheds saveable alarms or states. */
+    /* FGCA sheds expired alarms and contention-infeasible alarms, never sheds saveable alarms or states. */
     double best_p = 0.0;
     assert(iot_should_shed_event(&ev_rec, -1000.0, acsp_paths, 2, IOT_ACSP_FULL, false, &best_p));
-    assert(iot_should_shed_event(&ev_rec, 1000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p) && best_p < 0.02);
+    assert(iot_should_shed_event(&ev_rec, 1000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p) && best_p < 0.05);
     assert(!iot_should_shed_event(&ev_rec, 100000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p) && best_p > 0.5);
     assert(!iot_should_shed_event(&st_rec, -1000.0, acsp_paths, 2, IOT_ACSP_FULL, true, &best_p));
 

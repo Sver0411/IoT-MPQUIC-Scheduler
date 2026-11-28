@@ -1012,15 +1012,20 @@ static void progress_iot(struct endpoint *ep)
                     else if (pre_paths[k].pto == 0)
                         alt_healthy = true;
                 }
-                bool path_stalled = !home_s || home_s->pto > 0 ||
+                bool path_blackout = !home_s || home_s->pto > 0;
+                bool path_stalled = path_blackout ||
                                     (home_s->rtt_us > 0 && in_flight_us > home_s->rtt_us * 2 + 60000);
                 if (!path_stalled)
                     continue;
+                bool credit_tight = workload->outstanding + 1 >= ep->iot->max_credits;
                 bool should_reset = false;
                 if (entry->record.kind == IOT_EVENT) {
-                    if (elapsed > entry->record.deadline)
+                    /* Always preempt expired alarms trapped on blacked-out/stalled paths. */
+                    if (elapsed > entry->record.deadline && (path_blackout || credit_tight))
                         should_reset = true;
-                } else if (entry->record.kind == IOT_STATE && alt_healthy && in_flight_us >= 50000) {
+                } else if (entry->record.kind == IOT_STATE && alt_healthy &&
+                           ((path_blackout && in_flight_us >= 50000) ||
+                            (credit_tight && in_flight_us >= 70000))) {
                     for (size_t j = i + 1; j < workload->next; j++) {
                         const struct iot_entry *newer = &workload->entries[j];
                         if (newer->state == IOT_PENDING && newer->record.kind == IOT_STATE &&
